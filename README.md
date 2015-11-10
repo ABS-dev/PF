@@ -2,7 +2,7 @@ PF - Prevented Fraction
 ==
 
 
-#### First-time usage
+#### To install or update PF:
 
 From **within R**
 
