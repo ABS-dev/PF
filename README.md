@@ -2,7 +2,7 @@ PF - Prevented Fraction
 ==
 
 
-#### To install or update PF:
+### To install or update PF:
 
 From **within R**
 
@@ -12,7 +12,7 @@ install_github("ABS-dev/PF")
 ```
 
 
-#### Package Vignette:
+### Package Vignette:
 
 Read online at https://github.com/ABS-dev/PF/blob/master/inst/doc/PFvignette.pdf
 
