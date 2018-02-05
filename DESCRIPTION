@@ -2,13 +2,15 @@ Package: PF
 Type: Package
 Title: Prevented fraction.
 Version: 9.5.3
-Date: 2017-04-17
+Date: XXXX-XX-XX
 Author: Dave Siev
 Maintainer: Marie Vendettuoli <marie.c.vendettuoli@aphis.usda.gov>
 Description: Functions related to PF (prevented fraction). Calculate incidence
     density ratio, confidence interval, and Rao-Scott weights of PF by multiple
     methods. See http://goo.gl/eJ6Rxi for definition of PF.
 License: MIT + file LICENSE
+URL: https://www.aphis.usda.gov/animal_health/vet_biologics/publications/STATWI0007.pdf, https://github.com/ABS-dev/PF/blob/master/doc/PFPackageManual.pdf
+BugReports: https://github.com/ABS-dev/PF/issues
 LazyLoad: yes
 LazyData: yes
 Depends:
