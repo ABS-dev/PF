@@ -17,7 +17,7 @@ install_github("ABS-dev/PF", ref = "v9.5.1")
 
 ```
 require(devtools)
-install_github("ABS-dev/PF
+install_github("ABS-dev/PF")
 ```
 
 ### Package Vignette:
