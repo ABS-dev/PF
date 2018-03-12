@@ -7,7 +7,8 @@ Author: Dave Siev
 Maintainer: Marie Vendettuoli <marie.c.vendettuoli@aphis.usda.gov>
 Description: Functions related to PF (prevented fraction). Calculate incidence
     density ratio, confidence interval, and Rao-Scott weights of PF by multiple
-    methods. See http://goo.gl/eJ6Rxi for definition of PF.
+    methods. See http://goo.gl/eJ6Rxi for definition of PF. 
+    No endorsement, claim, or warranty is implied for this package. It is made available for investigational or pedagogical use only
 License: MIT + file LICENSE
 URL: https://www.aphis.usda.gov/animal_health/vet_biologics/publications/STATWI0007.pdf, https://github.com/ABS-dev/PF/blob/master/doc/PFPackageManual.pdf
 BugReports: https://github.com/ABS-dev/PF/issues
