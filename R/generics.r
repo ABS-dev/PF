@@ -18,7 +18,7 @@ print.rr1 <- function(x,...){
     options(digits = num.dig)
     }
 	
-#' @nord
+
 setMethod('show', 'rr1', function(object){print(object)})
 
 #' @rdname print.PF
@@ -43,7 +43,7 @@ print.rror <- function(x,...){
     }
 	
 
-#' @nord
+
 setMethod('show', 'rror', function(object){print(object)})
 
 
@@ -68,7 +68,7 @@ print.rrsi <- function(x,...){
 	options(digits = num.dig)
 }
 
-#' @nord
+
 setMethod('show', 'rrsi', function(object){print(object)})
 
 #' @rdname print.PF
@@ -87,7 +87,7 @@ print.rrmp <- function(x,...){
     options(digits = num.dig)
 }
 
-#' @nord
+
 setMethod('show', 'rrmp', function(object){print(object)})
 
 
@@ -107,7 +107,7 @@ print.rrsc <- function(x,...){
     options(digits = num.dig)
     }
 	
-#' @nord
+
 setMethod('show', 'rrsc', function(object){print(object)})
 
 
@@ -138,5 +138,4 @@ print.rrstr <- function(x,...){
 }
 	
 
-#' @nord
 setMethod('show', 'rrstr', function(object){print(object)})

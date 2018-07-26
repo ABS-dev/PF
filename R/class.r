@@ -97,7 +97,6 @@ rrmp <- setRefClass('rrmp', contains = 'rr1', fields = list(compare = 'character
 	xtable = 'matrix', freqvec = 'numeric', multvec = 'data.frame'))
 
 #' @title Data class rrsc
-#' @alias rrsc
 #' @rdname rrscclass
 #' @section Fields:
 #' \itemize{

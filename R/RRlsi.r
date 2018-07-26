@@ -1,5 +1,5 @@
 #' @title RR likelihood support interval.
-#' @descriptionEstimates likelihood support interval for the risk ratio or prevented fraction by the likelihood profile.
+#' @description likelihood support interval for the risk ratio or prevented fraction by the likelihood profile.
 #' @details Estimates a likelihood support interval for \emph{RR} or \emph{PF} by the profile likelihood method using the DUD algorithm.
 #' \cr \cr Likelihood support intervals are usually formed based on the desired likelihood ratio, often 1/8 or 1/32. Under some conditions the log likelihood ratio
 #' may follow the chi square distribution. If so, 
