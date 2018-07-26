@@ -2,9 +2,10 @@
 % Please edit documentation in R/class.r
 \docType{class}
 \name{rrsc-class}
-\alias{rrsc}
 \alias{rrsc-class}
+\alias{rrsc}
 \title{Data class rrsc}
+
 \section{Fields}{
 
 \itemize{
@@ -15,10 +16,10 @@
 \item[\code{y}]{  data vector}
 }
 }
-\author{
-Marie Vendettuoli \email{marie.c.vendettuoli@aphis.usda.gov}
-}
+
 \seealso{
 \code{\link{RRsc}}
 }
-
+\author{
+Marie Vendettuoli \email{marie.c.vendettuoli@aphis.usda.gov}
+}

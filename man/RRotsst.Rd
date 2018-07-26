@@ -59,9 +59,6 @@ Level tested: Moderate.
  #    PF     LL     UL 
 # 0.6111 0.0148 0.8519 }
 }
-\author{
-David Siev \email{david.siev@aphis.usda.gov}
-}
 \references{
 Koopman PAR, 1984. Confidence intervals for the ratio of two binomial proportions. \emph{Biometrics} 40:513-517.
 \cr Agresti A, Min Y, 2001.  On small-sample confidence intervals for parameters in discrete distribution. \emph{Biometrics} 57: 963-971.
@@ -70,4 +67,6 @@ Koopman PAR, 1984. Confidence intervals for the ratio of two binomial proportion
 \seealso{
 \code{\link{RRtosst}, \link{rr1}}.
 }
-
+\author{
+David Siev \email{david.siev@aphis.usda.gov}
+}

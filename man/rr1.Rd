@@ -4,6 +4,7 @@
 \name{rr1}
 \alias{rr1}
 \title{Data class rr1}
+
 \section{Fields}{
 
 \itemize{
@@ -14,10 +15,10 @@
 \item[\code{alpha}]{  complement of c.i.}
 }
 }
-\author{
-Marie Vendettuoli \email{marie.c.vendettuoli@aphis.usda.gov}
-}
+
 \seealso{
 \code{\link{IDRsc}, \link{RRotsst}, \link{RRtosst}}
 }
-
+\author{
+Marie Vendettuoli \email{marie.c.vendettuoli@aphis.usda.gov}
+}

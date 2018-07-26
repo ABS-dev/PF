@@ -13,4 +13,3 @@
 Weil's rat data (Table 1 of Rao and Scott)
 }
 \keyword{datasets}
-

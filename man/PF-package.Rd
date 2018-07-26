@@ -2,8 +2,8 @@
 % Please edit documentation in R/PF-package.r
 \docType{package}
 \name{PF-package}
-\alias{PF}
 \alias{PF-package}
+\alias{PF}
 \title{Package for PF.}
 \description{
 Includes functions related to prevented fraction.
@@ -47,4 +47,3 @@ invisible()
 \author{
 David Siev \email{David.Siev@aphis.usda.gov}
 }
-

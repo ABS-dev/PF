@@ -79,9 +79,6 @@ RRstr(cbind(y,n) ~ tx + cluster(clus), Table6 , pf = FALSE)
 RRstr(Y = table6, pf = FALSE)
 
 }
-\author{
-David Siev \email{david.siev@aphis.usda.gov}
-}
 \references{
 Gart JJ, 1985. Approximate tests and interval estimation of the common relative risk in the combination of \eqn{2 x 2} tables. \emph{Biometrika} 72:673-677.
 \cr Gart JJ, Nam J, 1988. Approximate interval estimation of the ratio of binomial parameters: a review and corrections for skewness. \emph{Biometrics} 44:323-338.
@@ -90,4 +87,6 @@ Gart JJ, 1985. Approximate tests and interval estimation of the common relative 
 \seealso{
 \code{\link{rrstr}}
 }
-
+\author{
+David Siev \email{david.siev@aphis.usda.gov}
+}

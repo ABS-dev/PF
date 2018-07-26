@@ -68,13 +68,12 @@ IDRlsi(c(26, 204, 10, 205), pf = FALSE)
 #  IDR   LL   UL 
 # 2.61 1.26 5.88 
 }
-\author{
-David Siev \email{david.siev@aphis.usda.gov}
-}
 \references{
 Royall R. \emph{Statistical Evidence: A Likelihood Paradigm}. Chapman & Hall, Boca Raton, 1997. Section 7.2.
 }
 \seealso{
 \code{\link{IDRsc}}
 }
-
+\author{
+David Siev \email{david.siev@aphis.usda.gov}
+}

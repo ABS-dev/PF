@@ -40,6 +40,9 @@ An object of class \code{\link{rrsi}} with the following fields: \cr
  \item{k}{likelihood ratio criterion}
  \item{alpha}{complement of confidence level}
 }
+\description{
+likelihood support interval for the risk ratio or prevented fraction by the likelihood profile.
+}
 \details{
 Estimates a likelihood support interval for \emph{RR} or \emph{PF} by the profile likelihood method using the DUD algorithm.
 \cr \cr Likelihood support intervals are usually formed based on the desired likelihood ratio, often 1/8 or 1/32. Under some conditions the log likelihood ratio
@@ -64,11 +67,10 @@ RRlsi(c(4,24,12,28))
 #     PF     LL     UL 
 # 0.6111 0.0168 0.8859 
 }
-\author{
-David Siev \email{david.siev@aphis.usda.gov}
-}
 \references{
 Royall R. \emph{Statistical Evidence: A Likelihood Paradigm}. Chapman & Hall, Boca Raton, 1997.  Section 7.6
 \cr Ralston ML, Jennrich RI, 1978. DUD, A Derivative-Free Algorithm for Nonlinear Least Squares. \emph{Technometrics} 20:7-14.
 }
-
+\author{
+David Siev \email{david.siev@aphis.usda.gov}
+}

@@ -47,9 +47,6 @@ IDRsc(c(26, 204, 10, 205),pf = FALSE)
 #  IDR   LL   UL 
 # 2.61 1.28 5.34 
 }
-\author{
-David Siev \email{david.siev@aphis.usda.gov}
-}
 \references{
 Siev D, 1994. Estimating vaccine efficacy in prospective studies. \emph{Preventive Veterinary Medicine} 20:279-296, Appendix 1.
 \cr Graham PL, Mengersen K, Morton AP, 2003. Confidence limits for the ratio of two rates based on likelihood scores:non-iterative method 
@@ -60,4 +57,6 @@ signs with subscript dots.)
 \seealso{
 \code{\link{IDRlsi}}
 }
-
+\author{
+David Siev \email{david.siev@aphis.usda.gov}
+}

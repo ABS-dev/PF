@@ -45,13 +45,12 @@ RRor(rsbWt(birdm.fit))
 #
 # See the package vignette for more examples
 }
-\author{
-David Siev \email{david.siev@aphis.usda.gov}
-}
 \references{
 Rao JNK, Scott AJ, 1992. A simple method for the analysis of clustered binary data. \emph{Biometrics} 48:577-585.
 }
 \seealso{
 \code{\link{RRor}, \link{rsb}}. See the package vignette for more examples.
 }
-
+\author{
+David Siev \email{david.siev@aphis.usda.gov}
+}

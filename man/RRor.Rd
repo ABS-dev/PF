@@ -68,13 +68,12 @@ RRor(tauWt(bird.fit))
 # 
 # See the package vignette for more examples
 }
-\author{
-David Siev \email{david.siev@aphis.usda.gov}
-}
 \references{
 No references yet.
 }
 \seealso{
 \code{\link{rror}, \link{phiWt}, \link{tauWt}}. See the package vignette for more examples.
 }
-
+\author{
+David Siev \email{david.siev@aphis.usda.gov}
+}

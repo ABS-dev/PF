@@ -2,9 +2,10 @@
 % Please edit documentation in R/class.r
 \docType{class}
 \name{rror-class}
-\alias{rror}
 \alias{rror-class}
+\alias{rror}
 \title{Data class rror}
+
 \section{Fields}{
 
 \itemize{
@@ -18,10 +19,10 @@
 \item[\code{mu}]{  matrix with rows giving probability estimates for each of the groups}
 }
 }
-\author{
-Marie Vendettuoli \email{marie.c.vendettuoli@aphis.usda.gov}
-}
+
 \seealso{
 \code{\link{RRor}}
 }
-
+\author{
+Marie Vendettuoli \email{marie.c.vendettuoli@aphis.usda.gov}
+}

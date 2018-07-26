@@ -56,9 +56,6 @@ RRsc(c(4, 24, 12, 28))
 # skew corr    0.611 0.0380 0.876
 
 }
-\author{
-David Siev \email{david.siev@aphis.usda.gov}
-}
 \references{
 Gart JJ, Nam J, 1988. Approximate interval estimation of the ratio of binomial parameters: a review and corrections for skewness. \emph{Biometrics} 44:323-338.
 \cr Koopman PAR, 1984. Confidence intervals for the ratio of two binomial proportions. \emph{Biometrics} 40:513-517.
@@ -68,4 +65,6 @@ Gart JJ, Nam J, 1988. Approximate interval estimation of the ratio of binomial p
 \seealso{
 \code{\link{rrsc}}
 }
-
+\author{
+David Siev \email{david.siev@aphis.usda.gov}
+}

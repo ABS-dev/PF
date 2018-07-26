@@ -2,9 +2,10 @@
 % Please edit documentation in R/class.r
 \docType{class}
 \name{rrsi-class}
-\alias{rrsi}
 \alias{rrsi-class}
+\alias{rrsi}
 \title{Data class rrsi}
+
 \section{Fields}{
 
 \itemize{
@@ -16,10 +17,10 @@
 \item[\code{estimator}]{  either \code{"PF"} or \code{"IDR"}}
 }
 }
-\author{
-Marie Vendettuoli \email{marie.c.vendettuoli@aphis.usda.gov}
-}
+
 \seealso{
 \code{\link{IDRlsi}, \link{RRlsi}}
 }
-
+\author{
+Marie Vendettuoli \email{marie.c.vendettuoli@aphis.usda.gov}
+}

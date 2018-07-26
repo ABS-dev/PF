@@ -5,4 +5,3 @@
 \title{table6 dataset}
 \format{matrix for of data in \code{\link{Table6}}}
 \keyword{datasets}
-

@@ -34,13 +34,12 @@ rsb(rat$y, rat$n, rat$group)$d
 #  control  treated 
 # 1.232495 3.952861 
 }
-\author{
-David Siev \email{david.siev@aphis.usda.gov}
-}
 \references{
 Rao JNK, Scott AJ, 1992. A simple method for the analysis of clustered binary data. \emph{Biometrics} 48:577-585.
 }
 \seealso{
 \code{\link{rsbWt}}. See the package vignette for more examples.
 }
-
+\author{
+David Siev \email{david.siev@aphis.usda.gov}
+}

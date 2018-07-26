@@ -2,10 +2,10 @@
 % Please edit documentation in R/generics.r
 \name{print.rr1}
 \alias{print.rr1}
-\alias{print.rrmp}
 \alias{print.rror}
-\alias{print.rrsc}
 \alias{print.rrsi}
+\alias{print.rrmp}
+\alias{print.rrsc}
 \alias{print.rrstr}
 \title{Print values for PF data obhects.}
 \usage{
@@ -29,4 +29,3 @@
 \description{
 Print values for PF data obhects.
 }
-

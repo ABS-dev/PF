@@ -54,9 +54,6 @@ RRor(tauWt(birdm.fit))
 #
 # See the package vignette for more examples
 }
-\author{
-David Siev \email{david.siev@aphis.usda.gov}
-}
 \references{
 Williams DA, 1982. Extra-binomial variation in logistic linear models. \emph{Applied Statistics} 31:144-148.
 \cr Wedderburn RWM, 1974. Quasi-likelihood functions, generalized linear models, and the Gauss-Newton method. \emph{Biometrika} 61:439-447.
@@ -64,4 +61,6 @@ Williams DA, 1982. Extra-binomial variation in logistic linear models. \emph{App
 \seealso{
 \code{\link{phiWt}}, \code{\link{RRor}}, see package vignette for more examples
 }
-
+\author{
+David Siev \email{david.siev@aphis.usda.gov}
+}

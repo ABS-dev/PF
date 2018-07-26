@@ -85,4 +85,3 @@ RRmpWald(x = c(2, 9, 1, 6))
 \author{
 David Siev \email{david.siev@aphis.usda.gov}
 }
-

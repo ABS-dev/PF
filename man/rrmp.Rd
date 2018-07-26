@@ -2,9 +2,10 @@
 % Please edit documentation in R/class.r
 \docType{class}
 \name{rrmp-class}
-\alias{rrmp}
 \alias{rrmp-class}
+\alias{rrmp}
 \title{Data class rrmp}
+
 \section{Fields}{
 
 \itemize{
@@ -19,10 +20,10 @@
 \item[\code{multvec}]{  data.frame showing the multinomial representation of the data}
 }
 }
-\author{
-Marie Vendettuoli \email{marie.c.vendettuoli@aphis.usda.gov}
-}
+
 \seealso{
 \code{\link{RRmpWald}}
 }
-
+\author{
+Marie Vendettuoli \email{marie.c.vendettuoli@aphis.usda.gov}
+}

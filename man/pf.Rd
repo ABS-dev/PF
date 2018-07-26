@@ -2,9 +2,10 @@
 % Please edit documentation in R/class.r
 \docType{class}
 \name{pf-class}
-\alias{pf}
 \alias{pf-class}
+\alias{pf}
 \title{Data class pf}
+
 \section{Fields}{
 
 \itemize{
@@ -13,10 +14,10 @@
 \item[\code{alpha}]{  complement of c.i.}
 }
 }
-\author{
-Marie Vendettuoli \email{marie.c.vendettuoli@aphis.usda.gov}
-}
+
 \seealso{
 \code{\link{rr1}, \link{rrsi}, \link{rrsc}, \link{rrstr}}
 }
-
+\author{
+Marie Vendettuoli \email{marie.c.vendettuoli@aphis.usda.gov}
+}

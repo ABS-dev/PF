@@ -15,4 +15,3 @@
 Table 1 from Gart (1985)
 }
 \keyword{datasets}
-

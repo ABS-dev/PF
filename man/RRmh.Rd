@@ -69,9 +69,6 @@ RRmh(cbind(y,n) ~ tx + cluster(clus), Table6 , pf = FALSE)
 RRmh(Y = table6, pf = FALSE)
 
 }
-\author{
-Christopher Tong \email{Christopher.H.Tong@aphis.usda.gov}
-}
 \references{
 Mantel N, Haenszel W, 1959.  Statistical aspects of the analysis of data from retrospective studies of disease.  
 \emph{Journal of the National Cancer Institute} 22:  719-748.
@@ -82,4 +79,6 @@ Mantel N, Haenszel W, 1959.  Statistical aspects of the analysis of data from re
 \seealso{
 \code{\link{rr1}}
 }
-
+\author{
+Christopher Tong \email{Christopher.H.Tong@aphis.usda.gov}
+}

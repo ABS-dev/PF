@@ -2,9 +2,10 @@
 % Please edit documentation in R/class.r
 \docType{class}
 \name{rrstr-class}
-\alias{rrstr}
 \alias{rrstr-class}
+\alias{rrstr}
 \title{Data class rrstr}
+
 \section{Fields}{
 
 \itemize{
@@ -17,10 +18,10 @@
 \item[\code{compare}]{  groups compared}
 }
 }
-\author{
-Marie Vendettuoli \email{marie.c.vendettuoli@aphis.usda.gov}
-}
+
 \seealso{
 \code{\link{RRstr}}
 }
-
+\author{
+Marie Vendettuoli \email{marie.c.vendettuoli@aphis.usda.gov}
+}
