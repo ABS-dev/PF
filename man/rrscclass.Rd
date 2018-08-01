@@ -5,6 +5,9 @@
 \alias{rrsc-class}
 \alias{rrsc}
 \title{Data class rrsc}
+\description{
+data class rrsc
+}
 
 \section{Fields}{
 

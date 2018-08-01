@@ -5,6 +5,9 @@
 \alias{rrstr-class}
 \alias{rrstr}
 \title{Data class rrstr}
+\description{
+data class rrstr
+}
 
 \section{Fields}{
 

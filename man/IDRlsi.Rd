@@ -50,7 +50,8 @@ may follow the chi square distribution. If so,
 then \eqn{\alpha=1-F(2log(k),1)}, where \eqn{F} is a chi-square CDF. 
 \code{RRsc()} will make the conversion from \eqn{\alpha}
 to \emph{k} if \code{use.alpha = TRUE}.
-\cr \cr The data may also be a matrix. In that case \code{y} would be entered as \code{matrix(c(y1, n1 - y1, y2, n2 - y2), 2, 2, byrow = TRUE)}.
+\cr \cr The data may also be a matrix. In that case \code{y} would be entered as \cr
+\code{matrix(c(y1, n1 - y1, y2, n2 - y2), 2, 2, byrow = TRUE)}.
 }
 \note{
 Level tested: Low.

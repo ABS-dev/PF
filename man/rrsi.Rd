@@ -5,6 +5,9 @@
 \alias{rrsi-class}
 \alias{rrsi}
 \title{Data class rrsi}
+\description{
+data class rrsi
+}
 
 \section{Fields}{
 

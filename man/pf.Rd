@@ -5,6 +5,9 @@
 \alias{pf-class}
 \alias{pf}
 \title{Data class pf}
+\description{
+data class pf
+}
 
 \section{Fields}{
 

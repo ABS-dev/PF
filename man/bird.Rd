@@ -11,6 +11,9 @@
 \item{tx}{treatment 'vac' or 'con'}
 \item{all}{all?}
 }}
+\description{
+bird dataset
+}
 \references{
 we need some references
 }

@@ -4,6 +4,9 @@
 \name{rr1}
 \alias{rr1}
 \title{Data class rr1}
+\description{
+Data class rr1
+}
 
 \section{Fields}{
 

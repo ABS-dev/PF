@@ -10,6 +10,9 @@
 \item{tx}{treatment. one of 'con' or 'vac'}
 \item{pos}{numeric indicator of positive response. 0 = FALSE or 1 = TRUE}
 }}
+\description{
+New dataset
+}
 \references{
 We need some references
 }

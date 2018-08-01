@@ -11,6 +11,9 @@
 \item{tx}{treatment 'vac' or 'con'}
 \item{clus}{cluster ID}
 }}
+\description{
+Set1 dataset
+}
 \references{
 We need some references
 }

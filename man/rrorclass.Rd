@@ -5,6 +5,9 @@
 \alias{rror-class}
 \alias{rror}
 \title{Data class rror}
+\description{
+data class rror
+}
 
 \section{Fields}{
 

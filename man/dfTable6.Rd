@@ -11,6 +11,9 @@
 \item{tx}{treatment 'a' or 'b'}
 \item{clus}{cluster ID}
 }}
+\description{
+Table6 dataset
+}
 \references{
 Table 1 from Gart (1985)
 }

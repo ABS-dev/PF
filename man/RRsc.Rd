@@ -39,7 +39,8 @@ and Nam's modification (1988) includes a skewness correction. The method of Miet
 more conservative than Koopman's by including a factor of \code{(N-1)/N}. The starting estimate for the DUD algorithm is obtained by the 
 modified Katz method (log method with 0.5 added to each cell). Both forms of the Katz estimate may be retrieved from the returned object
 using \code{RRsc()$estimate}.
-\cr \cr The data may also be a matrix. In that case \code{y} would be entered as \code{matrix(c(y1, n1-y1, y2, n2-y2), 2, 2, byrow = TRUE)}.
+\cr \cr The data may also be a matrix. In that case \code{y} would be entered as \cr
+\code{matrix(c(y1, n1-y1, y2, n2-y2), 2, 2, byrow = TRUE)}.
 }
 \note{
 Level tested: High.

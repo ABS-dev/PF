@@ -5,6 +5,9 @@
 \alias{rrmp-class}
 \alias{rrmp}
 \title{Data class rrmp}
+\description{
+data class rrmp
+}
 
 \section{Fields}{
 

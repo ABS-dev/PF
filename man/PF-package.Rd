@@ -13,37 +13,22 @@ Includes functions related to prevented fraction.
 Package: \tab pf-package\cr
 Type: \tab Package\cr
 Version: \tab 9.5.3\cr
-Date: \tab 2017-04-17\cr
+Date: \tab 2018-08-01\cr
 License: \tab MIT\cr
 LazyLoad: \tab yes\cr
 LazyData: \tab yes\cr
 }
 }
-\examples{
-#---------------------------------------------
-# Checking PF package
-#---------------------------------------------
-example(RRsc)
-example(RRstr)
-example(RRmh)
-example(RRor)
-example(phiWt)
-example(tauWt)
-example(rsbWt)
-example(rsb)
-example(RRlsi)
-example(IDRsc)
-example(IDRlsi)
-#---------------------------------------------
-# The next two take a moment to run
-#---------------------------------------------
-example(RRtosst)
-example(RRotsst)
-#---------------------------------------------
-# End examples
-#---------------------------------------------
-invisible()
+\section{Resources}{
+
+
+\itemize{
+\item GUIDANCE: \url{https://www.aphis.usda.gov/aphis/ourfocus/animalhealth/veterinary-biologics/biologics-regulations-and-guidance/ct_vb_statwi}
+\item QUICK START: \url{https://github.com/ABS-dev/PF/blob/master/README.md}
+\item BUG REPORTS: \url{https://github.com/ABS-dev/PF/issues}
 }
+}
+
 \author{
 David Siev \email{David.Siev@aphis.usda.gov}
 }

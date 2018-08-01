@@ -9,6 +9,9 @@
 \item{n}{total number}
 \item{group}{treatment group: 'control' or 'treated'}
 }}
+\description{
+rat dataset
+}
 \references{
 Weil's rat data (Table 1 of Rao and Scott)
 }
