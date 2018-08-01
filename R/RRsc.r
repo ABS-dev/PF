@@ -6,7 +6,8 @@
 #' more conservative than Koopman's by including a factor of \code{(N-1)/N}. The starting estimate for the DUD algorithm is obtained by the 
 #' modified Katz method (log method with 0.5 added to each cell). Both forms of the Katz estimate may be retrieved from the returned object
 #' using \code{RRsc()$estimate}.
-#' \cr \cr The data may also be a matrix. In that case \code{y} would be entered as \code{matrix(c(y1, n1-y1, y2, n2-y2), 2, 2, byrow = TRUE)}.
+#' \cr \cr The data may also be a matrix. In that case \code{y} would be entered as \cr
+#' \code{matrix(c(y1, n1-y1, y2, n2-y2), 2, 2, byrow = TRUE)}.
 # @usage RRsc(y, alpha = 0.05, pf = T)
 #' @param y Data vector c(y1, n1, y2, n2) where y are the positives, n are the total, and group 1 is compared to group 2.
 #' @param alpha Complement of the confidence level.

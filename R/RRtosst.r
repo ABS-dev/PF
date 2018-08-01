@@ -4,7 +4,8 @@
 #' @details Estimates confidence intervals based on the score statistic that are 'exact' in the sense of accounting for discreteness. 
 #' Inverts two one-sided score tests. The score statistic is used to select tail area tables, and the binomial probability is estimated 
 #' over the tail area by taking the maximum over the nuisance parameter. Algorithm is a simple step search.
-#' \cr \cr The data may also be a matrix. In that case \code{y} would be entered as \code{matrix(c(y1, n1-y1, y2, n2-y2), 2, 2, byrow = TRUE)}.
+#' \cr \cr The data may also be a matrix. In that case \code{y} would be entered as \cr
+#' \code{matrix(c(y1, n1-y1, y2, n2-y2), 2, 2, byrow = TRUE)}.
 #' @param y Data vector c(y1, n1, y2, n2) where y are the positives, n are the total, and group 1 is compared to group 2.
 #' @param alpha Complement of the confidence level.
 #' @param pf Estimate \emph{RR} or its complement \emph{PF}? 
