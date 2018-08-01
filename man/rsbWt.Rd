@@ -26,9 +26,6 @@ Rao-Scott weighting of clustered binomial observations.
 Estimates the cluster design effect \eqn{{d}_{i}}{d_i} as the variance inflation due to clustering by the method of Rao and Scott. 
 Observations are then weighted by the inverse of the \eqn{{d}_{i}}{d_i}.
 }
-\note{
-Level tested: Moderate.
-}
 \examples{
 birdm.fit <- glm(cbind(y,n-y)~tx-1,binomial,birdm)
 RRor(rsbWt(birdm.fit))

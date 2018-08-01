@@ -28,9 +28,6 @@ MME estimate of dispersion parameter phi.
 Estimates binomial dispersion parameter \eqn{\phi} by the method of moments. Refits the model, weighting the observations
 by \eqn{1/\phi}. Uses \code{quasibinomial} family in \code{glm()}.
 }
-\note{
-Level tested: Moderate. (Extensive in S+, not as much in R. They have different \code{glm()} functions.)
-}
 \examples{
 birdm.fit <- glm(cbind(y, n - y)~tx-1, binomial, birdm)
 RRor(phiWt(birdm.fit))

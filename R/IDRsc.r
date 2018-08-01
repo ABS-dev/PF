@@ -25,7 +25,6 @@
 #' \cr Siev D, 2004. Letter to the editor. \emph{Statistics in Medicine} 23:693. (Typographical error in formula: replace the two final minus
 #' signs with subscript dots.)
 #' @author David Siev \email{david.siev@@aphis.usda.gov}
-#' @note Level tested: High.
 #' @seealso \code{\link{IDRlsi}}
 #' 
 #' @examples

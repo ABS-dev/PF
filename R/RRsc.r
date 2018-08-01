@@ -28,7 +28,6 @@
 #' \cr Miettinen O, Nurminen M, 1985. Comparative analysis of two rates. \emph{Statistics in Medicine} 4:213-226.
 #' \cr Ralston ML, Jennrich RI, 1978. DUD, A Derivative-Free Algorithm for Nonlinear Least Squares. \emph{Technometrics} 20:7-14. 
 #' @author David Siev \email{david.siev@@aphis.usda.gov}
-#' @note Level tested: High.
 #' @seealso \code{\link{rrsc}}
 #' 
 #' @examples

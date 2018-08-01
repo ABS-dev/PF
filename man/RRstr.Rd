@@ -52,7 +52,6 @@ Uses the DUD algorithm to estimate confidence intervals by the method of Gart.
 \note{
 See vignette \emph{Examples for Stratified Designs} for more examples (enter \code{?PF}).
 
-Level tested: High. \cr \cr
 Call to this function may be one of two formats: (1) specify \code{data} and \code{formula} or (2) as a matrix \code{Y} \cr \cr
 \code{RRstr(formula, data, compare = c('b','a'), pf = TRUE, alpha = 0.05, trace.it = FALSE,} \cr
 {iter.max = 24, converge = 1e-6, rnd = 3, multiplier = 0.7, divider = 1.1)} \cr \cr

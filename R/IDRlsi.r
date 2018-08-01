@@ -33,7 +33,6 @@
 #'  \item{alpha}{complement of confidence level}
 #' @references Royall R. \emph{Statistical Evidence: A Likelihood Paradigm}. Chapman & Hall, Boca Raton, 1997. Section 7.2.
 #' @author David Siev \email{david.siev@@aphis.usda.gov}
-#' @note Level tested: Low.
 #' @seealso \code{\link{IDRsc}}
 #' @export
 #' @examples

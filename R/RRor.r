@@ -28,8 +28,7 @@
 #' @export
 #' @references No references yet.
 #' @author David Siev \email{david.siev@@aphis.usda.gov}
-#' @note Level tested: Moderate. (Extensive in S+, not as much in R. They have different \code{glm()} functions.) \cr \cr
-#' Call to this function may be one of two formats: (1) specify \code{fit}  or (2) \code{beta.hat}, \code{var.beta.hat}, \code{degf}  \cr \cr
+#' @note Call to this function may be one of two formats: (1) specify \code{fit}  or (2) \code{beta.hat}, \code{var.beta.hat}, \code{degf}  \cr \cr
 #' \code{RRor(fit, degf = NULL, pf = TRUE, alpha = 0.05, which = c(1, 2), norm = TRUE, rnd = 3)} \cr \cr
 #' \code{RRor(beta.hat, var.beta.hat, degf,  pf = TRUE, alpha = 0.05, which = c(1, 2), norm = TRUE, rnd = 3)}
 #' @seealso \code{\link{rror}, \link{phiWt}, \link{tauWt}}. See the package vignette for more examples.

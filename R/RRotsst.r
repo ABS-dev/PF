@@ -27,7 +27,6 @@
 #' \cr Agresti A, Min Y, 2001.  On small-sample confidence intervals for parameters in discrete distribution. \emph{Biometrics} 57: 963-971.
 #' \cr Berger RL, Boos DD, 1994. P values maximized over a confidence set for the nuisance parameter. \emph{Journal of the American Statistical Association} 89:214-220.
 #' @author David Siev \email{david.siev@@aphis.usda.gov}
-#' @note Level tested: Moderate.
 #' @seealso \code{\link{RRtosst}, \link{rr1}}.
 #' 
 #' @examples

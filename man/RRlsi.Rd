@@ -53,9 +53,6 @@ to \emph{k} if \code{use.alpha = TRUE}.
 \cr \cr The data may also be a matrix. In that case \code{y} would be entered as \cr
 \code{matrix(c(y1, n1-y1, y2, n2-y2), 2, 2, byrow = TRUE)}.
 }
-\note{
-Level tested: High.
-}
 \examples{
 RRlsi(c(4,24,12,28))
 

@@ -18,7 +18,6 @@
 #' @references Williams DA, 1982. Extra-binomial variation in logistic linear models. \emph{Applied Statistics} 31:144-148.
 #' \cr Wedderburn RWM, 1974. Quasi-likelihood functions, generalized linear models, and the Gauss-Newton method. \emph{Biometrika} 61:439-447.
 #' @author David Siev \email{david.siev@@aphis.usda.gov}
-#' @note Level tested: Moderate. (Extensive in S+, not as much in R. They have different \code{glm()} functions.)
 #' @seealso \code{\link{phiWt}}, \code{\link{RRor}}, see package vignette for more examples
 #' 
 #' @examples

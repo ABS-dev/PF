@@ -35,9 +35,6 @@ procedure, weighting the observations by \eqn{1/\phi_{ij}}{1/\phi_ij},
 where \eqn{\phi_{ij}=1+\tau _j(n_{ij}-1)}{\phi_ij=1+\tau_j(n_ij - 1)}, 
 \eqn{j} indexes the subsets, and \eqn{i} indexes the observations.
 }
-\note{
-Level tested: Moderate. (Extensive in S+, not as much in R. They have different \code{glm()} functions.)
-}
 \examples{
 birdm.fit <- glm(cbind(y,n-y)~tx-1, binomial, birdm)
 RRor(tauWt(birdm.fit))

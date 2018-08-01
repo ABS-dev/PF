@@ -48,9 +48,6 @@ over the tail area by taking the maximum over the nuisance parameter. Algorithm 
 \cr \cr The data may also be a matrix. In that case \code{y} would be entered as \cr
 \code{matrix(c(y1, n1-y1, y2, n2-y2), 2, 2, byrow = TRUE)}.
 }
-\note{
-Level tested: Moderate.
-}
 \examples{
 \dontrun{RRtosst(c(4, 24, 12, 28))
 

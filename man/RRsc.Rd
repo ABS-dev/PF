@@ -42,9 +42,6 @@ using \code{RRsc()$estimate}.
 \cr \cr The data may also be a matrix. In that case \code{y} would be entered as \cr
 \code{matrix(c(y1, n1-y1, y2, n2-y2), 2, 2, byrow = TRUE)}.
 }
-\note{
-Level tested: High.
-}
 \examples{
 RRsc(c(4, 24, 12, 28))
 

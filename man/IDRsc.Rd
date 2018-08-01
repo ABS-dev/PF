@@ -36,9 +36,6 @@ IDR=\widehat{IDR}\left\{ 1+\left( \frac{1}{{{y}_{1}}}+\frac{1}{{{y}_{2}}} \right
 \cr \cr The data may also be a matrix. In that case \code{y} would be entered as \cr
 \code{matrix(c(y1, n1 - y1, y2, n2 - y2), 2, 2, byrow = TRUE)}.
 }
-\note{
-Level tested: High.
-}
 \examples{
 IDRsc(c(26, 204, 10, 205),pf = FALSE)
 

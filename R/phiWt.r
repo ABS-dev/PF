@@ -14,7 +14,6 @@
 #' @export
 #' @references Wedderburn RWM, 1974. Quasi-likelihood functions, generalized linear models, and the Gauss-Newton method. \emph{Biometrika} 61:439-447.
 #' @author David Siev \email{david.siev@@aphis.usda.gov}
-#' @note Level tested: Moderate. (Extensive in S+, not as much in R. They have different \code{glm()} functions.)
 #' @seealso \code{\link{tauWt}}, \code{\link{RRor}}. See the package vignette for more examples.
 #' @examples
 #' birdm.fit <- glm(cbind(y, n - y)~tx-1, binomial, birdm)
