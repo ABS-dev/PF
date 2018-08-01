@@ -1,8 +1,8 @@
 Package: PF
 Type: Package
-Title: Prevented fraction.
+Title: Prevented fraction
 Version: 9.5.3
-Date: XXXX-XX-XX
+Date: 2018-08-01
 Author: Dave Siev
 Maintainer: Marie Vendettuoli <marie.c.vendettuoli@aphis.usda.gov>
 Description: Functions related to PF (prevented fraction). Calculate incidence
@@ -16,8 +16,9 @@ LazyLoad: yes
 LazyData: yes
 Depends:
     R (>= 3.4.4), methods
+Suggests:
+  knitr
 Collate:
-    'aaa.r'
     'aab.r'
     'class.r'
     'generics.r'
