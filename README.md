@@ -23,3 +23,8 @@ install_github("ABS-dev/PF")
 ### Package Vignette:
 
 Read online at https://www.aphis.usda.gov/animal_health/vet_biologics/publications/STATWI0007.pdf
+
+### Package Manual:
+
+Read online at https://github.com/ABS-dev/PF/blob/master/inst/doc/PFPackageManual.pdf
+
