@@ -26,3 +26,7 @@ exportClasses(rror)
 exportClasses(rrsc)
 exportClasses(rrsi)
 exportClasses(rrstr)
+importFrom("methods", "new")
+importFrom("stats", "binomial", "coef", "glm", "model.frame", "pchisq",
+             "qbeta", "qchisq", "qnorm", "qt", "resid", "terms",
+             "update")
