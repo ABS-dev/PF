@@ -25,9 +25,6 @@ Rao-Scott weights.
 Estimates the cluster design effect \eqn{{d}_{i}}{d_i} as the variance inflation due to clustering by the method of Rao and Scott. 
 \code{rsb} estimates the \eqn{{d}_{i}}{d_i} for use by \code{rsbWt} or other functions.
 }
-\note{
-Level tested: Moderate.
-}
 \examples{
 # Weil's rat data (Table 1 of Rao and Scott)
 rsb(rat$y, rat$n, rat$group)$d
