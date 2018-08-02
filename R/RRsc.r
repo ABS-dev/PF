@@ -44,15 +44,15 @@
 ##-------------------------------
 ## RRsc function
 ##-------------------------------
-RRsc <- function(y = NULL, alpha = 0.05, pf = TRUE, trace.it = FALSE, iter.max = 18, converge = 1e-6, rnd = 3){
-# coded 1993 by D. Siev (as ve.rr)
-# revised for package 2010
+RRsc <- function(y = NULL, alpha = 0.05, pf = TRUE, 
+                 trace.it = FALSE, iter.max = 18, converge = 1e-6, rnd = 3){
+
 #---------------------------------------
-# define internal functions:
-#  u.p, zi.phi, zis.phi, root, rr.opt	
-	
-	u.p <- function(p1, p2, n1, n2)
-		(1 - p1)/(n1 * p1) + (1 - p2)/(n2 * p2)
+# internal functions
+###############################
+  u.p <- function(p1, p2, n1, n2){
+    (1 - p1)/(n1 * p1) + (1 - p2)/(n2 * p2)
+  }
 	
 	zsc.phi <- function(phi, x1, x2, n1, n2, u.p, root, za, MN = F){
 		# for score interval in RRsc
@@ -109,8 +109,8 @@ RRsc <- function(y = NULL, alpha = 0.05, pf = TRUE, trace.it = FALSE, iter.max =
 		return(c(r1, r2))
 		}
 
-rr.opt <- function(z.phi,phi,za,trace.it,u.p,root,MN){
-    # optimizer function for RRsc
+  rr.opt <- function(z.phi,phi,za,trace.it,u.p,root,MN){
+  # optimizer function for RRsc
 	# data from parent environment
         zz <- c(z.phi(phi[1], x1, x2, n1, n2, u.p, root, za, MN), z.phi(phi[2], x1, x2, n1, n2, u.p, root, za, MN))
         if(abs(za - zz[1]) > abs(za - zz[2]))
@@ -236,9 +236,7 @@ rr.opt <- function(z.phi,phi,za,trace.it,u.p,root,MN){
         dimnames(int)[[2]] <- c("PF", "LL", "UL")
         }
 	return(rrsc$new(estimate = int, estimator = ifelse(pf, 'PF', 'RR'), y = y, rnd = rnd, alpha = alpha))
-    # out <- list(estimate = int, estimator = ifelse(pf, 'PF', 'RR'), y = y, rnd = rnd, alpha = alpha)
-    # class(out) <- 'rrsc'
-    # return(out)
+
 }
 
 
