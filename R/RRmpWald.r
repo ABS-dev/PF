@@ -34,7 +34,7 @@
 #'  \item{multvec}{data frame showing the multinomial representation of the data}
 #' @export
 #' @author David Siev \email{david.siev@@aphis.usda.gov}
-#' @note Level tested: Low. \cr\cr Experimental functions for estimating profile likelihood intervals are in the CVBmisc package. \cr \cr
+#' @note Experimental functions for estimating profile likelihood intervals are in the CVBmisc package. \cr \cr
 #' Call to this function may be one of two formats: (1) specify \code{data} and \code{formula} or (2) as a vector or 2 x 2 table \code{x} \cr \cr
 #' \code{RRmpWald(formula, data, compare = c('con', 'vac'), affected = 1, alpha = 0.05,} \cr
 #' \code{pf = TRUE, tdist = TRUE, df = NULL, rnd = 3)} \cr \cr
