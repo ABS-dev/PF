@@ -176,26 +176,6 @@ RRstr <- function(formula = NULL, data = NULL, compare = c('b', 'a'), Y, alpha =
     return(phi.new)
 	}
 
-# 1/18/2012 moved to aab.r this is a shared function do not duplicate as an 
-# internal function
-# # matricize <- function(formula, data, compare = compare){
-    # # assign('cluster',function(x) {return(x)}, envir = .GlobalEnv)
-    # # A <- model.frame(formula = formula, data = data)
-    # # A <- data.frame(A[,1],A[,2:3]) # for easier subscripting
-    # # A <- A[order(A[,4],A[,3]),]
-    # # y <- A[,1]
-    # # n <- A[,2]
-    # # x <- as.factor(A[,3])
-    # # if(!any(levels(x)==compare[1]) | !any(levels(x)==compare[2]))
-        # # stop('What is being compared?')
-    # # clus <- A[,4]
-    # # Y1 <- A[x==compare[2],1:2]
-    # # Y2 <- A[x==compare[1],1:2]
-    # # Y <- as.matrix(cbind(Y1,Y2))
-    # # dimnames(Y) <- list(levels(clus),c('y1','n1','y2','n2'))
-    # # return(list(A=A,Y=Y))
-# # }
-
 #---------------------------------------
 # end internal function definitions
 #---------------------------------------
