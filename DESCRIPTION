@@ -16,6 +16,8 @@ LazyLoad: yes
 LazyData: yes
 Depends:
     R (>= 3.4.4), methods
+Imports:
+    plyr
 Suggests:
   knitr
 Collate:
