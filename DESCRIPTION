@@ -39,4 +39,4 @@ Collate:
     'rsbWt.r'
     'tauWt.r'
 VignetteBuilder: knitr
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.1
