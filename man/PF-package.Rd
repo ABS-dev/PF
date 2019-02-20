@@ -12,8 +12,8 @@ Includes functions related to prevented fraction.
 \tabular{ll}{
 Package: \tab pf-package\cr
 Type: \tab Package\cr
-Version: \tab 9.5.3\cr
-Date: \tab 2018-08-01\cr
+Version: \tab 9.5.4\cr
+Date: \tab XXXX-XX-XX\cr
 License: \tab MIT\cr
 LazyLoad: \tab yes\cr
 LazyData: \tab yes\cr

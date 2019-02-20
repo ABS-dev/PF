@@ -5,8 +5,8 @@
 \title{Wald confidence intervals for RR from matched pairs}
 \usage{
 RRmpWald(formula = NULL, data = NULL, compare = c("con", "vac"),
-  affected = 1, x, alpha = 0.05, pf = TRUE, tdist = TRUE, df = NULL,
-  rnd = 3)
+  affected = 1, x, alpha = 0.05, pf = TRUE, tdist = TRUE,
+  df = NULL, rnd = 3)
 }
 \arguments{
 \item{formula}{Formula of the form \code{y ~ x + cluster(w)}, where y is the 
