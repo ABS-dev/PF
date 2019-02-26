@@ -43,6 +43,7 @@
 #' 
 #' @examples
 #' RRmpWald(pos ~ tx + cluster(cage), New, compare = c('con', 'vac'))
+#' RRmpWald(x = c(7, 13, 2, 4))
 #'
 #' # PF 
 #' # 95% interval estimates
