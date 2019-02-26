@@ -22,6 +22,7 @@ Suggests:
   knitr
 Collate:
     'aab.r'
+    'aac.r'
     'class.r'
     'generics.r'
     'PF-package.r'
