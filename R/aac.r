@@ -14,20 +14,15 @@
   Terms <- terms(formula, specials = 'cluster', data = data)
   environment(Terms) <- environment()
   A <- model.frame(formula = Terms, data = data)
-  dat <- A[, 1]
-  group <- A[, 2]
-  clusters <- A[, 3]
+  dat <- A[, 1] # all.vars(Terms)[1], response variable y
+  group <- A[, 2] # attr(Terms, 'term.labels')[1], treatment variable x
+  clusters <- A[, 3] # attr(Terms, 'term.labels')[2], grouping variable w
   tbl <- table(clusters, dat, group)[, 2, 1:2]
   for (i in 1:2) {
     tbl[,i] <- ifelse(tbl[,i] == affected, 'af', 'un')
   }
-  tbl <- data.frame(tbl)	
-  # both levels must be present in both groups
-  for (i in 1:2) {
-    levels(tbl[,i]) <- c(levels(tbl[,i]), c('af', 'un')[!c('af', 'un') %in% 
-        levels(tbl[,i])]) 
-  }
-  xtable <- table(tbl[,compare[2]], tbl[,compare[1]])
+
+    xtable <- table(tbl[,compare[2]], tbl[,compare[1]])
   # order table
   xtable <- xtable[c('af', 'un'), c('af', 'un')] 
   names(dimnames(xtable)) <- rev(compare)
@@ -37,5 +32,5 @@
   names(freqvec) <- paste(rep(dimnames(xtable)[[1]], 2), rep(dimnames(xtable)[[2]], 
     c(2, 2)))
   multvec <- as.data.frame(xtable)
-  return(list(xtable = xtable, freqvec = freqvec, multvec = multvec))
+  return(list(xtable = matrix(xtable, 2, 2), freqvec = freqvec, multvec = multvec))
 }
