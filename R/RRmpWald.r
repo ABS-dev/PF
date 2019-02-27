@@ -101,7 +101,7 @@ RRmpWald <- function(formula = NULL, data = NULL, compare = c('con', 'vac'),
 		if (length(x) != 4) {
 			stop('Vector length must be 4\n')
 		}
-		xtable <- matrix(x, 2, 2, byrow = TRUE)
+		xtable <- matrix(x, 2, 2, byrow = FALSE)
 	}
 
 	N <- sum(x)
