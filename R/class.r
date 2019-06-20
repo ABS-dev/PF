@@ -1,3 +1,5 @@
+setClassUnion("listORchar", c("list", "character"))
+
 #' @title Data class pf
 # @name pf-class
 #' @description data class pf
@@ -129,7 +131,9 @@ rrsc <- setRefClass('rrsc', contains = 'pf', fields = list(estimate = 'matrix',
 #' \item[\code{rnd}]{  how many digits to round display}
 #' \item[\code{alpha}]{  complement of c.i.}
 #' \item[\code{estimator}]{  either \code{"PF"} or \code{"RR"}}
-#' \item[\code{hom}]{  list of homogeneity statistic, p-value, and degrees of freedom}
+#' \item[\code{hom}]{list of homogeneity statistic, p-value, and degrees of freedom.
+#' If \code{Phi == 0 | Phi == 1}, homogeneity test is not possible and error message
+#' displays}
 #' \item[\code{y}]{  matrix of data}
 #' \item[\code{compare}]{  groups compared}
 #' }
@@ -137,5 +141,5 @@ rrsc <- setRefClass('rrsc', contains = 'pf', fields = list(estimate = 'matrix',
 #' @export
 #' @author Marie Vendettuoli \email{marie.c.vendettuoli@@aphis.usda.gov}
 rrstr <- setRefClass('rrstr', contains = 'pf', fields = list(estimate = 'matrix',
-	hom = 'list', y = 'matrix', compare = 'character'))
+  hom = 'listORchar', y = 'matrix', compare = 'character'))
 	
