@@ -16,7 +16,9 @@ data class rrstr
 \item[\code{rnd}]{  how many digits to round display}
 \item[\code{alpha}]{  complement of c.i.}
 \item[\code{estimator}]{  either \code{"PF"} or \code{"RR"}}
-\item[\code{hom}]{  list of homogeneity statistic, p-value, and degrees of freedom}
+\item[\code{hom}]{list of homogeneity statistic, p-value, and degrees of freedom.
+If \code{Phi == 0 | Phi == 1}, homogenity test is not possible and error message
+displays}
 \item[\code{y}]{  matrix of data}
 \item[\code{compare}]{  groups compared}
 }

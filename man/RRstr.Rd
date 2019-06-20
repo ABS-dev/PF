@@ -36,7 +36,7 @@ RRstr(formula = NULL, data = NULL, compare = c("b", "a"), Y,
 \value{
 A \code{\link{rrstr}} object with the following fields:
  \item{estimate}{matrix of point and interval estimates - starting value, MLE, and skewness corrected}
- \item{hom}{list of homogeneity statistic, p-value, and degrees of freedom}
+ \item{hom}{list of homogeneity statistic, p-value, and degrees of freedom, or error message if appropriate.}
  \item{estimator}{either \code{"PF"} or \code{"RR"}}
  \item{y}{Y matrix of the data}
  \item{compare}{groups compared}
@@ -79,6 +79,21 @@ RRstr(cbind(y,n) ~ tx + cluster(clus), Table6 , pf = FALSE)
 ## or as matrix
 RRstr(Y = table6, pf = FALSE)
 
+tst <- data.frame(y = c(0, 2, 0, 4, 0, 3, 0, 7),
+n = rep(10, 8),
+tx = rep(c('a', 'b'), 4),
+clus = rep(paste('Row', 1:4, sep = ''), each = 2))
+
+RRstr(cbind(y,n) ~ tx + cluster(clus), tst)
+#  Homogeneity test not possible because MLE =  1 
+#   
+#  PF 
+#  95\% interval estimates
+#   
+#  PF    LL UL
+#  starting   1 0.000  1
+#  mle        1 0.783  1
+#  skew corr  1 0.827  1
 }
 \references{
 Gart JJ, 1985. Approximate tests and interval estimation of the common relative risk in the combination of \eqn{2 x 2} tables. \emph{Biometrika} 72:673-677.
