@@ -14,7 +14,8 @@
 #' \code{matrix(c(y1, n1 - y1, y2, n2 - y2), 2, 2, byrow = TRUE)}.
 #' 
 # @usage IDRlsi(y, k=8, use.alpha = F, pf = T)
-#' @param y Data vector c(y1, n1, y2, n2) where y are the positives, n are the total, and group 1 is compared to group 2.
+#' @param y Data vector c(y1, n1, y2, n2) where y are the positives, n are the total, 
+#' and group 1 is compared to group 2.
 #' @param k Likelihood ratio criterion.
 #' @param alpha Complement of the confidence level.
 #' @param use.alpha Base choice of k on its relationship to alpha?
@@ -36,8 +37,11 @@
 #' @seealso \code{\link{IDRsc}}
 #' @export
 #' @examples
+#' # Both examples represent the same observation, with data entry by vector
+#' # and matrix notation.
 #' 
-#' IDRlsi(c(26, 204, 10, 205), pf = FALSE)
+#' y_vector <- c(26, 204, 10, 205)
+#' IDRlsi(y_vector, pf = FALSE)
 #' 
 #' # 1/8 likelihood support interval for IDR 
 #' 
@@ -47,7 +51,23 @@
 #' # IDR 
 #' #  IDR   LL   UL 
 #' # 2.61 1.26 5.88 
-
+#' 
+#' y_matrix <- matrix(c(26, 178, 10, 195), 2, 2, byrow = TRUE)
+#' y_matrix
+#' #      [,1] [,2]
+#' # [1,]   26  178
+#' # [2,]   10  195
+#' 
+#' IDRlsi(y_matrix, pf = FALSE)
+#' 
+#' # 1/8 likelihood support interval for IDR 
+#' 
+#' # corresponds to 95.858% confidence
+#' #   (under certain assumptions)
+#' 
+#' # IDR 
+#' #  IDR   LL   UL 
+#' # 2.61 1.26 5.88 
 ##---------------------------------------
 ## IDRlsi
 ##--------------------------------------- 
