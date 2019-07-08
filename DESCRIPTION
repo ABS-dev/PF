@@ -20,10 +20,11 @@ Depends:
 Imports:
     plyr
 Suggests:
-  knitr,
-  tidyr,
-  magrittr,
-  dplyr
+    knitr,
+    tidyr,
+    magrittr,
+    dplyr,
+    testthat
 Collate:
     'aab.r'
     'aac.r'
