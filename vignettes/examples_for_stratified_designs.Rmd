@@ -1,0 +1,684 @@
+---
+title: "PF Package"
+subtitle: |
+  | Examples for Stratified Designs
+author: Center for Veterinary Biologics - Statistics Section
+date: July 2019
+output: pdf_document
+bibliography: examples_for_stratified_designs.bib
+csl: american-statistical-association.csl
+toc: true
+number_sections: true
+numbersections: true
+fontsize: 12pt
+urlcolor: blue
+vignette: >
+  %\VignetteIndexEntry{Examples for Stratified Designs}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, echo=FALSE, message=FALSE}
+require(magrittr)
+library(xtable)
+```
+
+# Introduction
+
+
+Consider a prospective, parallel-group, placebo-controlled, randomized, blinded clinical trial with a single binary endpoint (e.g., positive or negative for disease).  In veterinary biologics research, an efficacy trial for a vaccine may often follow a vaccination-challenge protocol.
+For simplicity, suppose that there are only two treatment groups, vaccinate and (placebo) control.  Suppose further that there is also a stratification variable with $K$ levels, crossed with treatment group.
+This stratification variable could be cohort, litter, housing unit, site, etc.  Animals from the two groups are commingled within strata. Define the *risk ratio* ($RR$) as the fraction of vaccinates positive for disease divided by the fraction of control animals positive for disease.
+The *prevented fraction* ($PF$) is $1 - RR$.
+
+
+This vignette will consider the estimation of the risk ratio (or prevented fraction) particularly in the case where the number of animals per
+stratum is small, the number of strata is small, and the results are *sparse*.  By sparse we mean that in the cross tabulation of results,
+many low or zero counts show up in the cells of the $K\times2\times2$ tables.  This occurs, for instance, when nearly all vaccinates are negative for disease and nearly all
+controls are positive.  In such cases, the methods of [@mantel; @gart1988]
+may be particularly useful.
+Functions using these two methods are included in the `PF` package as `RRmh()` and `RRstr()`, respectively.  
+
+
+Good general references on the class of problems considered here include [@agresti2002] and [@lachin], although neither of these 
+covers the Gart-Nam method.
+We are grateful to colleagues in the CVB Statistics Section for helpful discussion.
+
+
+## Model assumptions and criticisms
+
+Both the Mantel-Haenszel and Gart-Nam
+methods rely on the asymptotic normality of the $\log (RR)$, % which I denote as $\theta$, 
+although the Gart-Nam procedure includes a
+skewness correction to mitigate the use of this assumption.  Nonetheless, the use of an asymptotic result could be questioned for
+the case of small samples.  Unfortunately, all of the existing work on exact methods for this problem is focused on the odds ratio, not the
+risk ratio.  These include StatXact's `Proc Stratify` as well as exact (conditional) logistic regression methods provided
+by either SAS's `Proc Logistic` or Cytel's `LogXact`.  
+Work on exact analysis of risk difference and relative risk models [for] $K\times2\times2$ tables 
+appears nonexistent" [@hirji, p.~274].  Exact methods aside, many other alternative analysis procedures, such as logistic
+regression, also rely on asymptotics [@mcculloch].
+
+Secondly, both the Mantel-Haenszel and Gart-Nam methods make the assumption of *homogeneity*,  that
+there is no treatment group-by-stratum interaction.  Specifically, they assume that the prevalence of disease in the placebo group
+varies across strata, but that the risk ratio is the *same* for all strata.  For small, sparse data sets, it can be difficult to assess the plausibility
+of this assumption.  Tests for homogeneity often lack power for such data sets, except for the most egregious cases, which
+can usually be detected by visual inspection.  
+When the assumption is false,  a question is raised of what is meant by an overall
+risk ratio, and why should you be estimating it?  It is plausible that the assumption is false when a large variation in disease prevalence in the placebo group
+across strata is evident.  The latter may suggest variation in challenge exposure, perhaps due to varying environmental conditions.  
+In that situation the apparent efficacy of the vaccine may be expected to vary.
+
+A third criticism of the Gart-Nam and Mantel-Haenszel approaches is that neither is able to accomodate other covariates,
+unlike the logistic regression approach.  If there are two crossed stratification variables (e.g., cohort and pen), one could replace them with
+a composite stratification variable consisting of all combinations of levels of the two original ones.  Nested stratification variables
+could be partially accomodated by using only the lowest level of nesting (and ensuring that all levels are uniquely labeled).
+
+## Alternatives {#sec:alter}
+
+A few words can be said about alternative approaches to estimation. Many of these rely on generalized linear models (GLMs) that fall into the 
+category of logistic regression models.  When accounting for strata in some way, these models typically imply that there is a common odds 
+ratio for all strata, but that the prevalence of disease among control animals may vary between strata.  
+
+A fixed effect GLM would include a separate parameter for the baseline odds of disease in each stratum.  If the link is logit, the model can 
+estimate a common odds ratio but not a common risk ratio (as could be done by transformation, i.e., by using the delta method, when there are no stratum-specific covariates).  
+To estimate the risk ratio, the log link would need to be used, as suggested by some authors in other contexts.^[E.g., See [@wacholder]
+for a model using the log link in a binomial GLM or quasi-likelihood GLM with binomial variance function.  See [@zou; @carter]
+for a model using the log link with a robust Poisson variance function.  Such efforts are not always successful, because unlike the logit link, 
+which constrains estimation of the binomial parameter to the appropriate parameter space, the log link does not [@yelland].]
+
+Another challenge for logistic regression is the case of complete separation, when it occurs.
+(An example of complete separation is when all controls are positive for disease and all vaccinates are negative for disease, in all strata.
+In this case, the covariate is able to perfectly separate positives from negatives.)
+Complete separation results in a non-existent maximum likelihood for the logistic regression model, although there are
+mitigation strategies [@heinze2002]. 
+
+Binomial GLMs may be extended relaxing the assumption that the dispersion parameter is unity. Quasi-likelihood [@wedderburn] or extended 
+quasi-likelihood [@mccullagh, Section 10.4] models provide a means to estimate the dispersion parameter.  
+A fully parametric approach 
+to the same end would be a hierarchical mixture model such as the beta-binomial. Such models could be used to estimate a risk ratio by 
+transformation, with the understanding that the estimate is a kind of average over the strata.
+However, when fitting such
+models, one witholds certain information about the study design, namely the assignment of subjects to strata.
+
+Random effects models are sometimes used in a similar fashion, but they are different.^[The term *random effects model* these days has come 
+to mean tacking on an additive normally distributed random variable to whatever likelihood is supported by the sampling distribution. This 
+practice is also done for GLMs, where they are called generalized linear mixed models in emulation of linear mixed models, and the prevalence 
+of software has encouraged their widespread use without much consideration for their plausibility or suitability. Typically stratum would be 
+included as a random but not fixed effect in the linear predictor. There are also technical issues associated with such models [@agresti2000].] 
+In quasi-likelihood models, the dispersion is a 
+weight of the mean. In a random effect model, the random effect is a modification to the logit transformed mean. It would be questionable to 
+estimate a risk ratio from such a model.
+
+
+# Theory
+
+## Notation
+
+In stratum $j$, for $1 \le j \le K$, define the following notation.  Suppose that $\pi_{1j}$ is the probability for a vaccinate to be positive
+and $\pi_{2j}$ is the probability for a control animal to be positive.  Denote the number of animals positive and negative for disease as 
+in Table \ref{tab:notation}.
+
+\begin{table}
+\caption{Notation for $j$th stratum} \label{tab:notation}
+\begin{center}
+\begin{tabular}{|c|l|l|l|}\hline
+Group & Positives & Negatives & Total\\
+& Animals & Animals & Animals\\
+\hline \hline
+Vaccinate & $y_{1j}$ & $n_{1j} - y_{1j}$ & $n_{1j}$ \\
+Placebo & $y_{2j}$ & $n_{2j} - y_{2j}$ & $n_{2j} $ \\
+ \hline
+\end{tabular}
+\end{center}
+\end{table}
+
+Then let $p_{1j} = y_{1j}/n_{1j}$ and $p_{2j} = y_{2j}/n_{2j}$ be estimates for $\pi_{1j}$ and $\pi_{2j}$, respectively.  
+An estimate of the risk ratio in the $j$th stratum is then $\hat{RR}_j = p_{1j}/p_{2j}$.
+
+
+## Mantel-Haenszel (MH) estimator
+
+The [@mantel] estimator for $RR$, using the asymptotic variance formula for sparse asymptotics [@greenland1985], is as follows.
+\begin{eqnarray}
+\hat{RR} & = & \frac{\sum_{j=1}^K y_{1j} n_{2j}/(n_{1j}+n_{2j})}{\sum_{j=1}^K y_{2j} n_{1j}/(n_{1j}+n_{2j})}. \\
+\hat{Var}(\log \hat{RR}) & = & \frac{\sum_{j=1}^K \left( n_{1j} n_{2j} (y_{1j} + y_{2j}) - y_{1j} y_{2j} (n_{1j}+n_{2j})\right)/
+(n_{1j}+n_{2j})^2}{\left( \sum_{j=1}^K \frac{y_{1j} n_{2j}}{n_{1j}+n_{2j}}\right) 
+\left( \sum_{j=1}^K \frac{y_{2j} n_{1j}}{n_{1j}+n_{2j}}\right)}.
+\end{eqnarray}
+Note that if $y_{1j} = 0$ or $y_{2j} = 0$ for all strata, then there will be a division by zero error.  In other words, if all the vaccinates
+are negative for disease and/or all the controls are negative for disease, we will not be able to use the Mantel-Haenszel estimator.
+Do **not** attempt to remedy this problem by replacing the zero cells with tiny constants [@agresti2000].
+
+@greenland1985 find that the Mantel-Haenszel estimator is consistent for both the case of sparse strata where the number of strata
+is assumed increasing, and the case of a limited number of strata where the stratum size is assumed increasing.  In the latter case, however,
+the MH estimator is less efficient than maximum likelihood.  They recommend that the MH estimator only be used for sparse data.  
+In that situation, @agresti2000 find that the Mantel-Haenszel
+estimator is preferred to maximum likelihood estimators from generalized linear models, due to the latter's known bias for sparse data.
+
+A broader perspective on the Cochran-Mantel-Haenszel framework, which is usually discussed in terms of odds ratio estimation rather than
+risk ratio estimation, can be found in @kuritz.
+
+The above MH estimator is implemented in SAS `Proc Freq`, according to the documentation for SAS 9.3.  It is also implemented
+as the `mhgr()` function in Prof.~Frank Harrell, Jr.'s `Hmisc` R package; its interface differs from the one provided
+for `RRmh()` in the `PF` package discussed below.
+
+SAS's `Proc Freq` also provides a weighted least squares estimate that it calls `logit`
+[@lachin; @stokes].
+The latter estimator is **not** recommended due to ``large and erratic bias'' among other reasons [@greenland1985].
+
+
+## Gart-Nam (GN) estimator
+
+The @gart1988 estimator is a skew-corrected version of the @gart1985 estimator, which is related to the @radha test
+against the null hypothesis $RR=1$.  The skew correction mitigates the use of an asymptotic variance for the $\log RR$, especially
+for unblanced designs or when the $\pi$'s are near zero or one.  
+
+There is no closed form expression for the @gart1985 estimator.  An iterative algorithm to calculate it can be described as follows:
+\begin{itemize}
+\item Assume that $\phi$ is the common risk ratio across all strata.
+\item Write the likelihood as the product of two binomial distributions, with parameters $\pi_{1j}$ and $\pi_{2j}$ for each stratum $j$.
+\item Set $\pi_{1j} = \phi \pi_{2j}$.  Now there are $K+1$ unknowns, $\phi$ and the $\pi_{2j}$'s.
+\item Set the nuisance scores (partial derivatives of the log likelihood with respect to the $K$ parameters $\pi_{2j}$) equal to zero.
+This results in a set of $K$ quadratic equations to solve, for a given $\phi$, for the maximum likelihood estimators of the $\pi_{2j}$'s.
+\item The distribution of the score for $\phi$ is asymptotically normal with mean zero, and variance 
+$1/((1-\hat{\pi}_{1j})/(n_{1j}\hat{\pi}_{1j}) + (1-\hat{\pi}_{2j})/(n_{2j}\hat{\pi}_{2j}))$.  Combine this variance
+expression with the nuisance equations and solve iteratively.
+\item Finally, apply the Cornish-Fisher skewness correction to the confidence interval limits.
+\end{itemize}
+
+Sadly, the Gart-Nam method for stratified data is not usually incorporated in popular software packages.  
+(Several software packages incorporate the analogous Gart-Nam estimate for a *single* stratum, such as
+StatsDirect, NCSS [Number Crunching Statistical Systems], and the R package `pairwiseCI`.)  Happily the `PF`
+package includes an implementation of the Gart-Nam method for stratified designs in the `RRstr()` function.
+
+
+# Examples
+
+As a source of examples, we will use either literature (with citations included) or mock examples based on our experience.
+
+When comparing results with those calculated by pooling the strata, the pooled estimator we use is the ``exact'' 
+interval based on inverting the two one-sided score tests (TOSST).  The function  `RRtosst()`
+in the `PF` package implements this procedure.  See the `PF` vignette for more details.
+The pooled estimator can be hazardous and result in, e.g., Simpson's paradox type
+phenomena, where there is an apparent effect in the opposite direction of the true effect.  
+Even when there is no heterogeneity, the use of a pooled estimator can be misleading
+if the ratio of sample sizes between the two treatment groups is different among strata, e.g., [@gart1962].  
+We use it here to illustrate the consequences of ignoring strata on the estimates.
+
+First, let's load the `PF` package.  
+
+```{r, warning=FALSE}
+library(PF)
+```
+
+In the examples presented below, I input the data matrix directly as a summary table.  Both the \texttt{RRmh()} and \texttt{RRstr()} functions also allow
+data input by \textit{formula}.  See the `PF` vignette and package help files for more details.  In that case, the functions
+also produce the data matrix.  
+
+
+## An example with 8 strata {#sec-8strata}
+
+
+In this first example, I will flesh out the details of the usage of the R functions in greater detail than in the remaining examples.
+The data within the strata are sparse and have small sample sizes:
+
+```{r}
+input.mtx <- matrix(c(0, 3, 1, 3, 1, 3, 3, 3, 0, 2, 2, 2, 1, 3, 2, 3, 2, 3,
+  3, 3, 1, 2, 3, 3, 0, 2, 3, 3, 0, 3, 2, 2), 8, 4, byrow = TRUE)
+```
+
+The rows of the matrix represent the eight strata.  
+The four columns are, from left to right, the number of vaccinates positive for disease,
+the total number of vaccinates, the number of controls positive for disease, and the total number of controls.
+A tabulation of the data (where each row is a stratum) is found in Table \ref{tab:8strata}.
+
+```{r echo=FALSE, eval=TRUE, results='asis'}
+x <- input.mtx
+colnames(x) <- c('Positive vaccinates', 'Total vaccinates', 
+  'Positive controls', 'Total controls')
+xtable(x, digits = 0, label = "tab:8strata", 
+  caption = "An example with 8 strata") %>%
+  print(., comment = FALSE)
+```
+
+First, let's attempt to (informally) assess homogeneity by calculating the $PF$s within each strata.
+
+```{r}
+rr.by.stratum <- (input.mtx[, 1] / input.mtx[, 2]) /
+  (input.mtx[, 3] / input.mtx[, 4])
+round(1 - rr.by.stratum, 2)
+```
+
+<!-- %(The same calculation is more readily obtained from the \texttt{RRstr()} function---see the end of this section.) -->
+
+Four of the eight strata have $PF$s of one; the other four have $PFs$
+of 2/3, 1/2, 1/2, and 1/3.  It is hard to know whether the apparent variability
+is an artifact of the small sample sizes (2 or 3 animals per group per stratum), which
+restricts the attainable values of $PF$.  Inidentally, the above calculation of the stratum-specific $PF$s is
+automatically done by the \texttt{RRstr()} function, as I will show at the end of this section.
+
+How much variation exists in the prevalence of disease among control animals?
+
+```{r}
+control.prev <- input.mtx[, 3] / input.mtx[, 4]
+round(control.prev, 2)
+```
+
+Six of the eight strata (75\%) have all controls affected by disease; there is only one stratum
+each with prevalences of 0.33 and 0.67.
+
+As is typical with this kind of data, the question of homogeneity cannot be resolved with any satisfaction.
+Although homogeneity could be questioned, we will proceed by assuming it.
+Let's calculate the Mantel-Haenszel estimate of the prevented fraction:
+
+```{r}
+RRmh(Y = input.mtx)
+```
+
+The output includes the 95\% confidence intervals, with \texttt{LL} as the lower limit and \texttt{UL} as the upper limit.
+Here is the Gart-Nam estimate, both with and without the skew-correction:
+
+```{r}
+a <- RRstr(Y = input.mtx)
+a
+```
+
+The function first returns the results of the score-based $\chi^2$-test for homogeneity [@gart1988].
+Next, the starting (initial) value for the prevented fraction estimate is given, followed by the
+maximum likelihood estimate (MLE) and skew corrected (skew corr) estimate.  As before, the 95\% confidence
+interval limits are also included.  In this case,
+the skew correction does not affect the confidence interval much.  The GN interval is less wide (less
+conservative) than the Mantel-Haenszel estimate's.  A case where the GN interval is more conservative
+than the MH interval will be shown in Subsection 3.3.
+
+Finally, note that all the information  displayed by the print method of \texttt{RRstr()}, and more, can
+be extracted from the object \texttt{a}.  Particularly useful are the stratum-specific estimates of the risk ratio,
+which is accessed through the data matrix:
+
+```{r}
+a$y
+```
+
+If you prefer to look at the $PF$s, you may use the following calculation:
+
+```{r}
+round(1 - a$y[, 5], 2)
+```
+
+which is equivalent to the calculation of the stratum-specific $PF$s shown earlier.
+
+
+<!-- A = test vaccine, B = placebo -->
+
+## Examples with heterogeneity
+
+The next example provides a clearer illustration of inhomogeneity.  Here are the data:
+
+```{r}
+input.mtx <- matrix(c(0, 3, 3, 3, 0, 1, 1, 1, 1, 2, 1, 2, 2, 3, 2, 2, 1, 1, 
+  1, 1, 1, 3, 1, 2, 0, 3, 2, 3, 0, 4, 4, 5), 8, 4, byrow = TRUE)
+```
+
+A tabulation of the data (where each row is a stratum) is found in Table \ref{tab:inhomog}.
+
+```{r, echo=FALSE, eval=TRUE, results='asis'}
+x <- input.mtx
+colnames(x) <- 
+	c('Positive vaccinates','Total vaccinates','Positive controls','Total controls')
+xtable(x, digits = 0, label = "tab:inhomog", 
+  caption = "An example with inhomogeneity") %>% 
+  print(., comment = FALSE)
+```
+
+The prevented fractions for each stratum are as follows.
+
+```{r}
+rr.by.stratum <- (input.mtx[, 1] / input.mtx[, 2]) / 
+  (input.mtx[, 3] / input.mtx[, 4])
+round(1 - rr.by.stratum, 2)
+```
+
+In half of the litters, complete protection of vaccinates is evident ($PF=1$), in a quarter there
+is partial protection ($PF = 1/3$), and in the other quarter there is no protection at all ($PF=0$).
+The pooled estimate of prevented fraction is
+
+```{r}
+RRtosst(apply(input.mtx, 2, sum))
+```
+
+Here are the MH and GN estimates.
+
+```{r}
+RRmh(Y = input.mtx)
+RRstr(Y = input.mtx)
+```
+
+The MH point estimate is slightly higher than the GN and pooled estimates.  On the other hand,
+the confidence interval width of the MH and pooled estimates are close.  Note how different the
+confidence intervals are for the GN estimate, with and without the skewness correction, in contrast
+to the last example.
+
+In this example, the assumption of homogeneity is likely to be unconvincing.  Thus, any of the
+estimates reported above could be questioned.  Note that the $\chi^2$-test for homogeneity
+does not reject the null hypothesis at the 0.05 level, illustrating its lack of power for small samples.
+
+Now let's turn to another example where the inhomogeneity is so severe that even the $\chi^2$-test will detect it.
+The strata represent age groups; thus it is questionable to even treat this factor as a stratification variable.
+
+```{r}
+input.mtx2 <- matrix(c(9, 10, 4, 5, 1, 10, 5, 5), 2, 4, byrow = TRUE)
+```
+
+A tabulation of the data (where each row is a stratum) is found in 
+Table \ref{tab:trainwreck}.
+
+```{r, echo=FALSE, eval=TRUE, results='asis'}
+x <- input.mtx2
+colnames(x) <- c('Positive vaccinates', 'Total vaccinates', 
+  'Positive controls', 'Total controls')
+xtable(x, digits = 0, caption = "An example with severe inhomogeneity",
+  label = "tab:trainwreck") %>%
+  print(., comment = FALSE)
+
+```
+
+The prevented fractions for each stratum are as follows.
+
+```{r}
+rr.by.stratum <- (input.mtx2[, 1] / input.mtx2[, 2]) / 
+  (input.mtx2[, 3] / input.mtx2[, 4])
+round(1 - rr.by.stratum, 2)
+```
+
+In one stratum the treatment is arguably harmful and in the other it is quite protective.
+Most statisticians would proceed to analyze the strata separately.  But, for the sake
+of illustrating the test for homogeneity, here is the GN estimate.
+
+```{r}
+RRstr(Y = input.mtx2)
+```
+
+Look at the p-value for the homogeneity test.  The inferences for the $PF$ are not valid.  There
+is no single $PF$; the efficacy of the vaccine depends on the age at which vaccination and challenge occur.
+
+A reckless person might compute the pooled estimate,
+
+```{r}
+RRtosst(apply(input.mtx2, 2, sum))
+```
+
+or the MH estimate, which is slightly less conservative:
+
+```{r}
+RRmh(Y = input.mtx2)
+```
+
+Statistical significance is barely achieved; there would be no sign of trouble unless the individual stratum results were also reported.
+
+
+## An example with 9 strata{#sec-9strata}
+
+In this example, the strata are litters.
+
+```{r}
+input.mtx <- matrix(c(2, 3, 3, 3, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 3, 
+  3, 3, 4, 4, 4, 4, 3, 3, 3, 3, 3, 4, 4, 4, 1, 2, 3, 3), 9, 4, 
+  byrow = TRUE)
+```
+
+A tabulation of the data (where each row is a stratum) is found in Table 5.
+```{r, echo=FALSE, eval=TRUE, results='asis'}
+x <- input.mtx
+colnames(x) <- 
+	c('Positive vaccinates', 'Total vaccinates', 'Positive controls', 'Total controls')
+xtable(x, digits = 0, caption = "An example with 9 strata", 
+  label = "tab:9strata") %>% 
+  print(., comment = FALSE)
+```
+
+The prevented fractions for each stratum are as follows.
+
+```{r}
+rr.by.stratum <- (input.mtx[, 1] / input.mtx[, 2]) / 
+  (input.mtx[, 3] / input.mtx[, 4])
+round(1 - rr.by.stratum, 2)
+summary(1 - rr.by.stratum)
+```
+
+The prevented fractions are low, ranging from zero to 0.50.
+The prevalence of disease in control animals is 1.00 in all strata.
+The pooled estimate of $PF$ is
+
+```{r}
+RRtosst(apply(input.mtx, 2, sum))
+```
+
+and the MH estimate of prevented fraction is
+
+```{r}
+RRmh(Y = input.mtx)
+```
+
+which is close to the pooled estimate.  However, the GN estimate is
+
+```{r}
+RRstr(Y = input.mtx)
+```
+
+Although all the point estimates are close to each other, the GN estimate fails to achieve *statistical significance*
+while the MH and pooled estimates barely do.  The point is that in this example GN is much more conservative than MH and the pooled estimate,
+in contrast to the example in Subsection 3.1.
+
+
+## Examples with only two strata
+
+In the first such example, males and females were segregated in different rooms:
+
+```{r}
+input.mtx <- matrix(c(1, 3, 4, 4, 0, 6, 6, 6), 2, 4, byrow = TRUE)
+```
+
+A tabulation of the data (where each row is a stratum) is in Table \ref{tab:2strata1}.
+
+```{r, echo=FALSE, eval=TRUE, results='asis'}
+x <- input.mtx
+colnames(x) <- 
+	c('Positive vaccinates', 'Total vaccinates', 'Positive controls', 'Total controls')
+xtable(x, digits = 0, caption = "First example with 2 strata", 
+  label = "tab:2strata1") %>%
+  print(., comment = FALSE)
+```
+
+The individual prevented fractions by rooms are 0.67 and 1.00, respectively.
+Here are the MH and GN estimators of prevented fraction.
+
+```{r}
+RRmh(Y = input.mtx)
+RRstr(Y = input.mtx)
+```
+
+The point estimates are nearly identical, but the MH confidence interval is much wider (more conservative) than the GN confidence
+interval.  For comparison, the pooled estimate is
+
+```{r}
+RRtosst(apply(input.mtx,2,sum))
+```
+
+This is a bit more conservative than the GN estimate, but not as conservate as the MH estimate.
+
+Here is another 2-strata example; the strata represent cohorts.
+
+```{r}
+input.mtx2 <- matrix(c(1, 8, 1, 7, 1, 8, 4, 7), 2, 4, byrow = TRUE)
+```
+
+A tabulation of the data (where each row is a stratum) is in Table \ref{tab:2strata2}.
+
+```{r, echo=FALSE, eval=TRUE, results='asis'}
+x <- input.mtx2
+colnames(x) <- 
+	c('Positive vaccinates','Total vaccinates','Positive controls','Total controls')
+xtable(x, digits = 0, label = "tab:2strata2", 
+  caption = "Second example with 2 strata") %>%
+  print(., comment = FALSE)
+```
+
+In the first cohort, the challenge was very weak, as indicated by the low prevalence of disease in the placebo animals.
+However, the vaccinates also had one animal affected by disease!  Here are estimates of prevented fraction for each stratum:
+
+```{r}
+rr.by.stratum <- (input.mtx2[, 1] / input.mtx2[, 2]) / 
+  (input.mtx2[, 3] / input.mtx2[, 4])
+1 - round(rr.by.stratum, 2)
+```
+
+Homogeneity could certainly be questioned here.  If we blithely proceed, here are the MH and GN estimates of prevented fraction.
+
+```{r}
+RRmh(Y = input.mtx2)
+RRstr(Y = input.mtx2)
+```
+
+Neither estimate achieves *statistical significance*.  The pooled estimate is
+
+```{r}
+RRtosst(apply(input.mtx2, 2, sum))
+```
+
+This is comparable to the MH estimate.  The GN estimate has a narrower (less conservative) confidence interval.
+
+## An example with a `non-informative` stratum
+
+In this example, we have three strata representing housing units. Piglets were housed by farrowing date, so the strata
+also represent cohorts staggered in time.  The outcome was mortality.  Here is the data matrix:
+
+```{r}
+input.mtx <- matrix(c(0, 5, 0, 4, 0, 5, 1, 3, 0, 2, 4, 6), 3, 4, 
+  byrow = TRUE)
+```
+
+A tabulation of the data (where each row is a stratum) is found in Table \ref{tab:nonInf}.
+
+```{r, echo=FALSE, eval=TRUE, results='asis'}
+x <- input.mtx
+colnames(x) <- 
+	c('Positive vaccinates', 'Total vaccinates', 'Positive controls', 'Total controls')
+xtable(x, digits = 0, label = "tab:nonInf", 
+  caption = "An example with a non-informative stratum") %>%
+  print(., comment = FALSE)
+```
+
+The allocation of animals to strata is unbalanced due both to dropouts and human error.
+In the first stratum, no vaccinates and no controls were affected by disease; the risk ratio for that stratum is inestimable.
+This is an example of a so-called *non-informative* table, since we cannot learn anything about the stratum-specific protection
+offered by the vaccine from this stratum.  The risk ratios in the other two strata are zero.
+The prevalences of disease in the control animals in each stratum are zero, 1/3, and 2/3, respectively.
+
+If we attempt to estimate the prevented fraction using the Mantel-Haenszel estimator, we obtain
+
+```{r}
+RRmh(Y = input.mtx)
+```
+
+The lower confidence limit is inestimable due to the fact that no vaccinates were positive for disease in any stratum.
+The Mantel-Haenszel estimator cannot be used with this data, regardless of whether we choose to retain or ignore the
+*non-informative* stratum.
+
+The Gart-Nam estimator breaks down if we include the *non-informative stratum*:  if you were to type `RRstr(Y = input.mtx)` you would
+receive an error message ``\texttt{Error in zd[is.na(zd)] <- 2 * zd[!is.na(zd)] : 
+  replacement has length zero}.''
+At present the function does not have a graceful exit when an error occurs.
+Now if we *remove* the *non-informative* stratum, here is what we get.
+
+```{r, error =TRUE}
+input.mtx2 <- input.mtx[-1,]
+RRstr(Y = input.mtx2)
+
+```
+
+The homogeneity test cannot be carried out.
+Although the prevented fraction is unity, the confidence interval is very wide.
+
+Now suppose that in addition to mortality we include pigs showing clinical signs of disease as positive for *morbidity*. 
+If so, it turns out that we only need to switch one control animal to positive in the first stratum.
+
+```{r}
+input.mtx3 <- input.mtx
+input.mtx3[1, 3] <- 1
+```
+
+Although the MH estimator still will not work, we can now apply the GN estimator to the full data set:
+
+```{r, error =TRUE}
+RRstr(Y = input.mtx3)
+```
+
+The point estimate is still unity, but the confidence interval is now noticeably narrower than when we
+threw out the first stratum.  This illustrates how sensitive the estimates can be to the endpoint of interest,
+mortality vs.~morbidity, or put another way, relabeling a single animal from negative to positive.
+
+
+## A large sample example
+
+This example is from the literature, @stokes[p.~45].  A treatment for respiratory illness
+was evaluated at two centers.  The endpoint is improvement (yes or no).  The interest was in estimating
+the risk ratio, with $RR > 1$ being favorable to the experimental treatment.  Here are the data:
+
+```{r}
+input.mtx <- matrix(c(29, 45, 14, 45, 37, 45, 24, 45), 2, 4, byrow = TRUE)
+```
+
+A tabulation of the data (each row is a stratum) is in Table \ref{tab:large}.
+
+```{r, echo=FALSE, eval=TRUE, results='asis'}
+x <- input.mtx
+colnames(x) <- 
+	c('Positive vaccinates', 'Total vaccinates', 'Positive controls', 'Total controls')
+xtable(x, digits = 0, caption = "A large sample example", label = "tab:large") %>%
+  print(., comment = FALSE)
+```
+
+Here are the risk ratios for individual strata:
+
+```{r}
+rr.by.stratum <- (input.mtx[, 1] / input.mtx[, 2]) / 
+  (input.mtx[, 3] / input.mtx[, 4])
+round(rr.by.stratum, 2)
+```
+
+There are only two strata, not enough to adequately assess homogeneity.  The Mantel-Haenszel estimate is
+
+```{r}
+RRmh(Y = input.mtx, pf = FALSE)
+```
+
+This matches the output of SAS `Proc Freq` [@stokes,p.~50].  Here is the Gart-Nam estimate:
+
+```{r}
+RRstr(Y = input.mtx, pf = FALSE)
+```
+
+Let's compare the MH and GN estimates to the pooled estimate.  The calculation takes a few moments, so let's time it:
+
+```{r}
+system.time(b <- RRtosst(apply(input.mtx, 2, sum), pf = FALSE))
+b
+```
+
+The Mantel-Haenszel and pooled estimates match, but the pooled estimate has a slightly wider (most conservative) confidence interval.
+The Gart-Nam estimate has a lower point estimate and has the least conservative (narrowest) confidence interval.  
+All of the point estimates are *in between* the individual
+strata risk ratios, 2.07 and 1.54.
+
+# Future work
+
+This vignette should be expanded in the future with the following enhancements:
+
+- Comparison of input data formats for `RRmh()` and `mhgr()` (from the `Hmisc` package).
+- Comparison of these methods with logistic regression based methods, including dispersion models, for the same example data sets.
+
+
+Code in this vignette was run using version ```r packageVersion('PF')``` of the 
+`PF` package available via [github](https://github.com/ABS-dev/PF/blob/master/README.md).
+
+# References
