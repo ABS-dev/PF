@@ -14,11 +14,11 @@ install_github("ABS-dev/PF", ref = "v9.5.3")
 ```
 *See all historical releases [here](https://github.com/ABS-dev/PF/releases)*
 
-2. Installing work-in-progress towards v9.5.4
+2. Installing work-in-progress towards v9.5.4 for this branch /bug/issue-11
 
 ```
 require(devtools)
-install_github("ABS-dev/PF")
+install_github("ABS-dev/PF", ref = "bug/issue-11")
 ```
 
 ### Package Vignette:
