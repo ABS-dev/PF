@@ -23,7 +23,8 @@ Suggests:
   knitr,
   tidyr,
   magrittr,
-  dplyr
+  dplyr,
+  xtable
 Collate:
     'aab.r'
     'aac.r'
