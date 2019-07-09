@@ -31,7 +31,11 @@
 #' @seealso \code{\link{rrsc}}
 #' 
 #' @examples
-#' RRsc(c(4, 24, 12, 28))
+#' # Both examples represent the same observation, with data entry by vector
+#' # and matrix notation.
+#' 
+#' y_vector <- c(4, 24, 12, 28)
+#' RRsc(y_vector)
 #' 
 #' # PF 
 #' # 95% interval estimates
@@ -41,6 +45,20 @@
 #' # score method 0.611 0.0328 0.855
 #' # skew corr    0.611 0.0380 0.876
 #' 
+#' y_matrix <- matrix(c(4, 20, 12, 16), 2, 2, byrow = TRUE)
+#' #       [,1] [,2]
+#' # [1,]    4   20
+#' # [2,]   12   16
+#' 
+#' RRsc(y_matrix)
+#' 
+#' # PF 
+#' # 95% interval estimates
+#' 
+#' # 				PF     LL    UL
+#' # MN method    0.611 0.0251 0.857
+#' # score method 0.611 0.0328 0.855
+#' # skew corr    0.611 0.0380 0.876
 ##-------------------------------
 ## RRsc function
 ##-------------------------------

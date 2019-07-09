@@ -37,7 +37,25 @@ IDR=\widehat{IDR}\left\{ 1+\left( \frac{1}{{{y}_{1}}}+\frac{1}{{{y}_{2}}} \right
 \code{matrix(c(y1, n1 - y1, y2, n2 - y2), 2, 2, byrow = TRUE)}.
 }
 \examples{
-IDRsc(c(26, 204, 10, 205),pf = FALSE)
+# Both examples represent the same observation, with data entry by vector
+# and matrix notation.
+
+y_vector <- c(26, 204, 10, 205)
+IDRsc(y_vector, pf = FALSE)
+
+# IDR 
+# 95\% interval estimates
+
+#  IDR   LL   UL 
+# 2.61 1.28 5.34 
+
+y_matrix <- matrix(c(26, 178, 10, 195), 2, 2, byrow = TRUE)
+y_matrix
+#      [,1] [,2]
+# [1,]   26  178
+# [2,]   10  195
+
+IDRsc(y_matrix, pf = FALSE)
 
 # IDR 
 # 95\% interval estimates

@@ -33,8 +33,28 @@
 #' @references Royall R. \emph{Statistical Evidence: A Likelihood Paradigm}. Chapman & Hall, Boca Raton, 1997.  Section 7.6
 #' \cr Ralston ML, Jennrich RI, 1978. DUD, A Derivative-Free Algorithm for Nonlinear Least Squares. \emph{Technometrics} 20:7-14. 
 #' @author David Siev \email{david.siev@@aphis.usda.gov}
-#' @examples
-#' RRlsi(c(4,24,12,28))
+#' @examples 
+#' # Both examples represent the same observation, with data entry by vector
+#' # and matrix notation.
+#' y_vector <- c(4, 24, 12, 28)
+#' RRlsi(y_vector)
+#' 
+#' # 1/8 likelihood support interval for PF 
+#' 
+#' # corresponds to 95.858% confidence
+#' #   (under certain assumptions)
+#' 
+#' # PF 
+#' #     PF     LL     UL 
+#' # 0.6111 0.0168 0.8859 
+#' 
+#' y_matrix <- matrix(c(4, 20, 12, 16), 2, 2, byrow = TRUE)
+#' y_matrix
+#' #      [,1] [,2]
+#' # [1,]    4   20
+#' # [2,]   12   16
+#' 
+#' RRlsi(y_matrix)
 #' 
 #' # 1/8 likelihood support interval for PF 
 #' 

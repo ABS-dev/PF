@@ -49,13 +49,26 @@ by taking the maximum over the nuisance parameter. Algorithm is a simple step se
 \code{matrix(c(y1, n1 - y1, y2, n2 - y2), 2, 2, byrow = TRUE)}.
 }
 \examples{
- \dontrun{RRotsst(c(4, 24, 12, 28), rnd = 3)
+# Both examples represent the same observation, with data entry by vector
+# and matrix notation.
+
+y_vector <- c(4, 24, 12, 28)
+RRotsst(y_vector, rnd = 3)
 
 # PF 
 # 95\% interval estimates
 
- #    PF     LL     UL 
-# 0.6111 0.0148 0.8519 }
+#    PF     LL     UL 
+# 0.6111 0.0148 0.8519 
+
+y_matrix <- matrix(c(4, 20, 12, 16), 2, 2, byrow = TRUE)
+RRotsst(y_matrix, rnd = 3)
+
+# PF 
+# 95\% interval estimates
+
+#    PF     LL     UL 
+# 0.6111 0.0148 0.8519 
 }
 \references{
 Koopman PAR, 1984. Confidence intervals for the ratio of two binomial proportions. \emph{Biometrics} 40:513-517.
