@@ -9,8 +9,9 @@ test_that("examples work", {
   expect_identical(ex1$y, y1)
   expect_identical(ex1$k, 8)
   expect_identical(names(ex1$estimate), c("IDR", "LL", "UL"))
-  expect_equal(ex1$estimate %>% unname, c(2.613, 1.265, 5.884),
-    tolerance = 0.00005)
+  expect_equal(ex1$estimate %>% 
+      unname %>%
+      signif(ex1$rnd), c(2.61, 1.26, 5.88))
   
   y2 <- matrix(c(26, 178, 10, 195), 2, 2, byrow = TRUE)
   ex2 <- IDRlsi(y2, pf = FALSE)
@@ -20,5 +21,10 @@ test_that("examples work", {
   expect_identical(ex2$y, ex1$y)
   expect_identical(ex2$k, ex1$k)
   expect_identical(names(ex2$estimate), names(ex1$estimate))
-  expect_equal(ex2$estimate %>% unname, ex1$estimate %>% unname)
+  expect_equal(ex2$estimate %>% 
+      unname %>%
+      signif(ex1$rnd), 
+    ex1$estimate %>% 
+      unname %>%
+      signif(ex1$rnd))
 })
