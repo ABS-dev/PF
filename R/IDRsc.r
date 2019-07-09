@@ -28,7 +28,25 @@
 #' @seealso \code{\link{IDRlsi}}
 #' 
 #' @examples
-#' IDRsc(c(26, 204, 10, 205),pf = FALSE)
+#' # Both examples represent the same observation, with data entry by vector
+#' # and matrix notation.
+#' 
+#' y_vector <- c(26, 204, 10, 205)
+#' IDRsc(y_vector, pf = FALSE)
+#' 
+#' # IDR 
+#' # 95% interval estimates
+#' 
+#' #  IDR   LL   UL 
+#' # 2.61 1.28 5.34 
+#' 
+#' y_matrix <- matrix(c(26, 178, 10, 195), 2, 2, byrow = TRUE)
+#' y_matrix
+#' #      [,1] [,2]
+#' # [1,]   26  178
+#' # [2,]   10  195
+#' 
+#' IDRsc(y_matrix, pf = FALSE)
 #' 
 #' # IDR 
 #' # 95% interval estimates
@@ -40,12 +58,8 @@
 # IDRsc
 #-------------------------------
 IDRsc <- function(y, alpha = 0.05, pf = TRUE, rnd =3){
-	# confidence intervals for idr by score method
-	# Siev 1993
-
-	# data vector
-	if(is.matrix(y))
-		y <- c(t(cbind(y[,1],apply(y,1,sum))))
+	if (is.matrix(y))
+		y <- c(t(cbind(y[,1], apply(y, 1, sum))))
 	y1 <- y[1.]
 	s1 <- y[2.]
 	y2 <- y[3.]
@@ -54,17 +68,16 @@ IDRsc <- function(y, alpha = 0.05, pf = TRUE, rnd =3){
 	z <- qnorm(1. - alpha/2.)
 	idr.hat <- (y1 * s2)/(y2 * s1)
 	det <- (z * sqrt(y.dot * (y.dot * z^2. + 4. * y1 * y2)))/(2. * y1 * y2)
-	det <- c( - det, det)
+	det <- c( -det, det)
 	ci <- idr.hat * (1. + (z^2. * (1./y1 + 1./y2))/2. + det)
 	int <- c(idr.hat, ci)
-	if(!pf) 
-        names(int) <- c("IDR", "LL", "UL")
-    else{
-        int <- 1 - int[c(1,3,2)]
-        names(int) <- c("PF.IDR", "LL", "UL")
-        }
-	return(rr1$new(estimate = int, estimator = ifelse(pf, 'PF_IDR', 'IDR'), y = as.matrix(y), rnd = rnd, alpha = alpha))
-    # out <- list(estimate = int, estimator = ifelse(pf, 'PF_IDR', 'IDR'), y = y, rnd = rnd, alpha = alpha)
-    # class(out) <- 'rr1'
-    # return(out)
+	if (!pf) {
+    names(int) <- c("IDR", "LL", "UL")
+  } else {
+    int <- 1 - int[c(1, 3, 2)]
+    names(int) <- c("PF.IDR", "LL", "UL")
+  }
+	return(rr1$new(estimate = int, estimator = ifelse(pf, 'PF_IDR', 'IDR'), 
+	  y = as.matrix(y), rnd = rnd, alpha = alpha))
+
 }
