@@ -64,8 +64,19 @@ RRor(tauWt(bird.fit))
 #       mu.hat    LL     UL
 # txcon  0.733 0.943 0.3121
 # txvac  0.367 0.752 0.0997
+
+RRor(phiWt(bird.fit))
+# 95\% t intervals on 4 df
 # 
-# See the package vignette for more examples
+# PF 
+#     PF     LL     UL 
+#  0.500 -0.583  0.842 
+# 
+#       mu.hat    LL     UL
+# txcon  0.733 0.943 0.3121
+# txvac  0.367 0.752 0.0997
+
+# See \\href{https://www.aphis.usda.gov/animal_health/vet_biologics/publications/STATWI0007.pdf}{StatWI007} for more examples
 }
 \references{
 No references yet.
