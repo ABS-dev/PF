@@ -49,13 +49,30 @@ over the tail area by taking the maximum over the nuisance parameter. Algorithm 
 \code{matrix(c(y1, n1-y1, y2, n2-y2), 2, 2, byrow = TRUE)}.
 }
 \examples{
-\dontrun{RRtosst(c(4, 24, 12, 28))
+# Both examples represent the same observation, with data entry by vector
+# and matrix notation.
+
+y_vector <- c(4, 24, 12, 28)
+RRtosst(y_vector)
 
 # PF 
 # 95\% interval estimates
 
 #    PF    LL    UL 
-# 0.611 0.012 0.902 }
+# 0.611 0.012 0.902 
+
+y_matrix <- matrix(c(4, 20, 12, 16), 2, 2, byrow = TRUE)
+#      [,1] [,2]
+# [1,]    4   20
+# [2,]   12   16
+
+RRtosst(y_matrix)
+
+# PF 
+# 95\% interval estimates
+
+#    PF    LL    UL 
+# 0.611 0.012 0.902 
 }
 \references{
 Koopman PAR, 1984. Confidence intervals for the ratio of two binomial proportions. \emph{Biometrics} 40:513-517.
