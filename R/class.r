@@ -134,12 +134,12 @@ rrsc <- setRefClass('rrsc', contains = 'pf', fields = list(estimate = 'matrix',
 #' \item[\code{hom}]{list of homogeneity statistic, p-value, and degrees of freedom.
 #' If \code{Phi == 0 | Phi == 1}, homogeneity test is not possible and error message
 #' displays}
-#' \item[\code{y}]{  matrix of data}
+#' \item[\code{y}]{data.frame of restructured input}
 #' \item[\code{compare}]{  groups compared}
 #' }
 #' @seealso \code{\link{RRstr}}
 #' @export
 #' @author Marie Vendettuoli \email{marie.c.vendettuoli@@aphis.usda.gov}
 rrstr <- setRefClass('rrstr', contains = 'pf', fields = list(estimate = 'matrix',
-  hom = 'listORchar', y = 'matrix', compare = 'character'))
+  hom = 'listORchar', y = 'data.frame', compare = 'character'))
 	
