@@ -9,7 +9,7 @@ test_that("examples work", {
   expect_identical(ex1$estimate %>% signif(ex1$rnd) %>% unname,
     c(0.611, 0.0168, 0.8860))
   expect_identical(names(ex1$estimate), c("PF", "LL", "UL"))
-  expect_identical(ex1$y, c(4, 24, 12, 28))
+  expect_identical(ex1$y %>% as.numeric, c(4, 24, 12, 28))
   expect_identical(ex1$k, 8)
   expect_identical(round((1 - ex1$alpha) * 100, 3), 95.858)
   
