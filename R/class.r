@@ -28,15 +28,15 @@ pf <- setRefClass('pf', fields = list(estimator = 'character', rnd = 'numeric',
 #' \itemize{
 #' \item[\code{estimate}]{  vector with point and interval estimate}
 #' \item[\code{estimator}]{  either \code{"PF"} or \code{"IDR"}}
-#' \item[\code{y}]{  data vector}
-#' \item[\code{rnd}]{  how many digits to round display}
-#' \item[\code{alpha}]{  complement of c.i.}
+#' \item[\code{y}]{data.frame with restructured input}
+#' \item[\code{rnd}]{how many digits to round display}
+#' \item[\code{alpha}]{complement of c.i.}
 #' }
 #' @seealso \code{\link{IDRsc}, \link{RRotsst}, \link{RRtosst}}
 #' @export
 #' @author Marie Vendettuoli \email{marie.c.vendettuoli@@aphis.usda.gov}
 rr1 <- setRefClass('rr1', contains = 'pf', fields = list(estimate = 'numeric',
-	y = 'matrix'))
+	y = 'data.frame'))
 
 #' @title Data class rror
 # @name rror-class
@@ -67,7 +67,7 @@ rror <- setRefClass('rror', contains = 'rr1', fields = list(norm = 'logical',
 #' @rdname rrsi
 #' @section Fields:
 #' \itemize{
-#' \item[\code{y}]{  numeric data vector }
+#' \item[\code{y}]{ data.frame with restructured input}
 #' \item[\code{k}]{  likelihood ratio criterion}
 #' \item[\code{rnd}]{  digits to round display}
 #' \item[\code{alpha}]{  complement of c.i.}
@@ -77,7 +77,7 @@ rror <- setRefClass('rror', contains = 'rr1', fields = list(norm = 'logical',
 #' @seealso \code{\link{IDRlsi}, \link{RRlsi}}
 #' @export
 #' @author Marie Vendettuoli \email{marie.c.vendettuoli@@aphis.usda.gov}
-rrsi <- setRefClass('rrsi', contains = 'pf', fields = list(y = 'numeric', k = 
+rrsi <- setRefClass('rrsi', contains = 'pf', fields = list(y = 'data.frame', k = 
 	'numeric', estimate = 'numeric'))
 
 #' @title Data class rrmp
@@ -112,13 +112,13 @@ rrmp <- setRefClass('rrmp', contains = 'rr1', fields = list(compare = 'character
 #' \item[\code{rnd}]{  how many digits to round display}
 #' \item[\code{alpha}]{  complement of c.i.}
 #' \item[\code{estimator}]{  either \code{"PF"} or \code{"RR"}}
-#' \item[\code{y}]{  data vector}
+#' \item[\code{y}]{ data.frame with restructured input}
 #' }
 #' @seealso \code{\link{RRsc}}
 #' @export
 #' @author Marie Vendettuoli \email{marie.c.vendettuoli@@aphis.usda.gov}
 rrsc <- setRefClass('rrsc', contains = 'pf', fields = list(estimate = 'matrix',
-	y = 'numeric'))
+	y = 'data.frame'))
 	
 #' @title Data class rrstr
 #' @description data class rrstr

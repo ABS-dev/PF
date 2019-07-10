@@ -28,7 +28,7 @@
 #' @return A \code{\link{rrsi}} object with the following elements.
 #'  \item{estimate}{vector with point and interval estimate}
 #'  \item{estimator}{either \emph{PF} or \emph{IDR}}
-#'  \item{y}{data vector}
+#'  \item{y}{data.frame with "y1", "n1", "y2", "n2" values.}
 #'	\item{k}{Likelihood ratio criterion}
 #'  \item{rnd}{how many digits to round the display}
 #'  \item{alpha}{complement of confidence level}
@@ -132,8 +132,12 @@ IDRlsi <- function(y, alpha = 0.05, k = 8, use.alpha = FALSE, pf = TRUE, converg
     else{
         int <- 1 - int[c(1,3,2)]
         names(int) <- c("PF.IDR", "LL", "UL")
-        }
-	return(rrsi$new(estimate = int, estimator = ifelse(pf, 'PF_IDR', 'IDR'), y = y, rnd = rnd, k=k, alpha = alpha))
+    }
+	
+	y <- as.data.frame(t(y))
+	names(y) <- c("y1", "n1", "y2", "n2")
+	return(rrsi$new(estimate = int, estimator = ifelse(pf, 'PF_IDR', 'IDR'), 
+	  y = y, rnd = rnd, k=k, alpha = alpha))
     # out <- list(estimate = int, estimator = ifelse(pf, 'PF_IDR', 'IDR'), y = y, rnd = rnd, k=k, alpha = alpha)
     # class(out) <- 'rrsi'
     # return(out)

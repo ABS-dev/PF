@@ -77,7 +77,9 @@ IDRsc <- function(y, alpha = 0.05, pf = TRUE, rnd =3){
     int <- 1 - int[c(1, 3, 2)]
     names(int) <- c("PF.IDR", "LL", "UL")
   }
+	names(y) <- c('y1', 'n1', 'y2', 'n2')
+	
 	return(rr1$new(estimate = int, estimator = ifelse(pf, 'PF_IDR', 'IDR'), 
-	  y = as.matrix(y), rnd = rnd, alpha = alpha))
+	  y = as.data.frame(t(y)), rnd = rnd, alpha = alpha))
 
 }

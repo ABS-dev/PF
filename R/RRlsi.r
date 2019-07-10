@@ -25,7 +25,7 @@
 #' @return An object of class \code{\link{rrsi}} with the following fields: \cr
 #'  \item{estimate}{matrix of point and interval estimates - see details}
 #'  \item{estimator}{either \code{"PF"} or \code{"RR"}}
-#'  \item{y}{data vector}
+#'  \item{y}{data.frame with "y1", "n1", "y2", "n2" values. }
 #'  \item{rnd}{how many digits to round the display}
 #'  \item{k}{likelihood ratio criterion}
 #'  \item{alpha}{complement of confidence level}
@@ -151,7 +151,9 @@ RRlsi <- function(y, alpha = 0.05, k=8, use.alpha = FALSE, pf=TRUE, iter.max = 5
     else{
         int <- 1 - int[c(1,3,2)]
         names(int) <- c("PF", "LL", "UL")
-        }
+    }
+	y <- data.frame(t(y))
+	names(y) <- c("y1", "n1", "y2", "n2")
     return(rrsi$new(estimate = int, estimator = ifelse(pf, 'PF', 'RR'), y = y, rnd = rnd, k=k, alpha = alpha))
 
 }
