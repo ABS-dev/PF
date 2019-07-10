@@ -35,7 +35,7 @@ RRlsi(y, alpha = 0.05, k = 8, use.alpha = FALSE, pf = TRUE,
 An object of class \code{\link{rrsi}} with the following fields: \cr
  \item{estimate}{matrix of point and interval estimates - see details}
  \item{estimator}{either \code{"PF"} or \code{"RR"}}
- \item{y}{data vector}
+ \item{y}{data.frame with "y1", "n1", "y2", "n2" values. }
  \item{rnd}{how many digits to round the display}
  \item{k}{likelihood ratio criterion}
  \item{alpha}{complement of confidence level}

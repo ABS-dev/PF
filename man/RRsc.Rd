@@ -26,7 +26,7 @@ RRsc(y = NULL, alpha = 0.05, pf = TRUE, trace.it = FALSE,
 A \code{\link{rrsc}} object with the following fields.
  \item{estimate}{matrix of point and interval estimates - see details}
  \item{estimator}{either \code{"PF"} or \code{"RR"}}
- \item{y}{data vector}
+ \item{y}{data.frame with "y1", "n1", "y2", "n2" values. }
  \item{rnd}{how many digits to round the display}
  \item{alpha}{complement of confidence level}
 }

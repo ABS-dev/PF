@@ -19,7 +19,7 @@
 #' @return A \code{\link{rr1}} object with the following fields.
 #'  \item{estimate}{vector with point and interval estimate}
 #'  \item{estimator}{either \code{"PF"} or \code{"RR"}}
-#'  \item{y}{data vector}
+#'  \item{y}{data.frame with "y1", "n1", "y2", "n2" values. }
 #'  \item{rnd}{how many digits to round the display}
 #'  \item{alpha}{complement of confidence level}
 #' @export
@@ -224,8 +224,11 @@ RRtosst <- function(y, alpha = 0.05, pf = TRUE, stepstart=.1, iter.max = 36, con
     else{
         int <- 1 - int[c(1,3,2)]
         names(int) <- c("PF", "LL", "UL")
-        }
-	return(rr1$new(estimate = int, estimator = ifelse(pf, 'PF', 'RR'), y = as.matrix(y), rnd = rnd, alpha = alpha))
+    }
+	y <- as.data.frame(t(y))
+	names(y) <- c("y1", "n1", "y2", "n2")
+	return(rr1$new(estimate = int, estimator = ifelse(pf, 'PF', 'RR'), 
+	  y = y, rnd = rnd, alpha = alpha))
     # out <- list(estimate = int, estimator = ifelse(pf, 'PF', 'RR'), y = y, rnd = rnd, alpha = alpha)
     # class(out) <- 'rr1'
     # return(out)

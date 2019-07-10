@@ -19,7 +19,7 @@ data class rrstr
 \item[\code{hom}]{list of homogeneity statistic, p-value, and degrees of freedom.
 If \code{Phi == 0 | Phi == 1}, homogeneity test is not possible and error message
 displays}
-\item[\code{y}]{  matrix of data}
+\item[\code{y}]{data.frame of restructured input}
 \item[\code{compare}]{  groups compared}
 }
 }

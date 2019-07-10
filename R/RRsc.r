@@ -19,7 +19,7 @@
 #' @return A \code{\link{rrsc}} object with the following fields.
 #'  \item{estimate}{matrix of point and interval estimates - see details}
 #'  \item{estimator}{either \code{"PF"} or \code{"RR"}}
-#'  \item{y}{data vector}
+#'  \item{y}{data.frame with "y1", "n1", "y2", "n2" values. }
 #'  \item{rnd}{how many digits to round the display}
 #'  \item{alpha}{complement of confidence level}
 #' @export
@@ -252,7 +252,9 @@ RRsc <- function(y = NULL, alpha = 0.05, pf = TRUE,
     else{
         int <- 1 - int[,c(1,3,2)]
         dimnames(int)[[2]] <- c("PF", "LL", "UL")
-        }
+    }
+	y <- data.frame(t(y))
+	names(y) <- c("y1", "n1", "y2", "n2")
 	return(rrsc$new(estimate = int, estimator = ifelse(pf, 'PF', 'RR'), y = y, rnd = rnd, alpha = alpha))
 
 }

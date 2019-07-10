@@ -6,7 +6,7 @@ test_that("examples work", {
   expect_s4_class(ex1, "rrsi")
   expect_identical(ex1$estimator, "IDR")
   expect_equal(ex1$alpha, 0.0414, tolerance = 0.00005)
-  expect_identical(ex1$y, y1)
+  expect_identical(ex1$y %>% as.numeric, y1)
   expect_identical(ex1$k, 8)
   expect_identical(names(ex1$estimate), c("IDR", "LL", "UL"))
   expect_equal(ex1$estimate %>% 

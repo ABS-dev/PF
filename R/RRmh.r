@@ -15,7 +15,7 @@
 #' @return An object of class \code{\link{rr1}}  with the following fields.
 #'  \item{estimate}{vector of point and interval estimates:  point estimate, lower confidence limit, upper confidence limit}
 #'  \item{estimator}{either \code{"PF"} or \code{"RR"}}
-#'  \item{y}{y matrix of the data}
+#'  \item{y}{data.frame of restructured input}
 #'  \item{compare}{groups compared}
 #'  \item{rnd}{how many digits to round the display}
 #'  \item{alpha}{complement of confidence level}
@@ -68,7 +68,8 @@ RRmh <- function(formula = NULL, data = NULL, compare = c('b', 'a'), Y, alpha = 
     if(!is.null(formula) & !is.null(data)){
         Y <- .matricize(formula = formula, data = data, compare = compare)$Y
     } 
-    
+    colnames(Y) <- c('y1', 'n1', 'y2', 'n2')
+    rownames(Y) <- paste("Row", 1:nrow(Y), sep = "")
 # save data and empirical Rs
     Y <- cbind(Y, R.obs = (Y[, 1]/Y[, 2])/(Y[, 3]/Y[, 4]))
 
@@ -105,8 +106,8 @@ RRmh <- function(formula = NULL, data = NULL, compare = c('b', 'a'), Y, alpha = 
         names(int) <- c("PF", "LL", "UL")
     }
 	
-    return(rr1$new(estimate = int, estimator = ifelse(pf, 'PF', 'RR'), y = Y, 
-		rnd = rnd, alpha = alpha))
+    return(rr1$new(estimate = int, estimator = ifelse(pf, 'PF', 'RR'), 
+      y = as.data.frame(Y), rnd = rnd, alpha = alpha))
     # out <- list(estimate = int,  estimator = ifelse(pf, 'PF', 'RR'), Y = Y, compare = compare, alpha = alpha, rnd=rnd)
     # class(out) <- 'rr1'
     # return(out)

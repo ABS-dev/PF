@@ -34,7 +34,7 @@ and group 1 is compared to group 2.}
 A \code{\link{rrsi}} object with the following elements.
  \item{estimate}{vector with point and interval estimate}
  \item{estimator}{either \emph{PF} or \emph{IDR}}
- \item{y}{data vector}
+ \item{y}{data.frame with "y1", "n1", "y2", "n2" values.}
 \item{k}{Likelihood ratio criterion}
  \item{rnd}{how many digits to round the display}
  \item{alpha}{complement of confidence level}

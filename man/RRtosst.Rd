@@ -33,7 +33,7 @@ RRtosst(y, alpha = 0.05, pf = TRUE, stepstart = 0.1, iter.max = 36,
 A \code{\link{rr1}} object with the following fields.
  \item{estimate}{vector with point and interval estimate}
  \item{estimator}{either \code{"PF"} or \code{"RR"}}
- \item{y}{data vector}
+ \item{y}{data.frame with "y1", "n1", "y2", "n2" values. }
  \item{rnd}{how many digits to round the display}
  \item{alpha}{complement of confidence level}
 }

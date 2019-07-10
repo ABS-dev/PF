@@ -7,10 +7,13 @@ test_that("examples work", {
     1.3107358581469, 5.07721615622715), nrow = 3, ncol = 3, byrow = TRUE)
   rownames(thisestimate) <- c("starting", "mle", "skew corr")
   colnames(thisestimate) <- c('RR', 'LL', 'UL')
-  thisy <- matrix(c(4, 2, 4, 1, 16, 16, 18, 15, 5, 3, 10, 3, 79, 87, 90, 82,
-    3.95, 3.625, 2, 1.82222222222222), nrow = 4, ncol = 5, byrow = FALSE)
+  thisy <- data.frame(y1 = c(4, 2, 4, 1), 
+    n1 = c(16, 16, 18, 15),
+    y2 = c(5, 3, 10, 3),
+    n2 = c(79, 87, 90, 82),
+    R.obs = c(3.95, 3.625, 2, 1.82222222222222))
   rownames(thisy) <- paste("Row", 1:4, sep = "")
-  colnames(thisy) <- c("y1", "n1", "y2", "n2", "R.obs")
+  
   
   expect_s4_class(ex1, "rrstr")
   expect_identical(ex1$estimator, "RR")
@@ -20,5 +23,5 @@ test_that("examples work", {
   expect_identical(ex1$compare, c("b", "a"))
   
   ex2 <- RRstr(Y = table6, pf = FALSE)
-  # expect_equal(ex1, ex2) # this will work when issue #17 is resolved
+  expect_equal(ex1, ex2) 
 })

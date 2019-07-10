@@ -38,7 +38,7 @@ A \code{\link{rrstr}} object with the following fields:
  \item{estimate}{matrix of point and interval estimates - starting value, MLE, and skewness corrected}
  \item{hom}{list of homogeneity statistic, p-value, and degrees of freedom, or error message if appropriate.}
  \item{estimator}{either \code{"PF"} or \code{"RR"}}
- \item{y}{Y matrix of the data}
+ \item{y}{data.frame of restructured input}
  \item{compare}{groups compared}
  \item{rnd}{how many digits to round the display}
  \item{alpha}{size of test; complement of confidence level}

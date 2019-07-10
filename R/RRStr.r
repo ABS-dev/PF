@@ -17,7 +17,7 @@
 #'  \item{estimate}{matrix of point and interval estimates - starting value, MLE, and skewness corrected}
 #'  \item{hom}{list of homogeneity statistic, p-value, and degrees of freedom, or error message if appropriate.}
 #'  \item{estimator}{either \code{"PF"} or \code{"RR"}}
-#'  \item{y}{Y matrix of the data}
+#'  \item{y}{data.frame of restructured input}
 #'  \item{compare}{groups compared}
 #'  \item{rnd}{how many digits to round the display}
 #'  \item{alpha}{size of test; complement of confidence level}
@@ -193,7 +193,8 @@ RRstr <- function(formula = NULL, data = NULL, compare = c('b', 'a'), Y, alpha =
     if (!is.null(formula) & !is.null(data)) {
         Y <- .matricize(formula = formula, data = data, compare = compare)$Y
     }
-
+    rownames(Y) <- paste("Row", 1:nrow(Y), sep = '')
+    colnames(Y) <- c("y1", "n1", "y2", "n2")
 # save data and empirical Rs
     Y <- cbind(Y, R.obs = (Y[, 1]/Y[, 2])/(Y[, 3]/Y[, 4]))
 
@@ -290,6 +291,6 @@ RRstr <- function(formula = NULL, data = NULL, compare = c('b', 'a'), Y, alpha =
         dimnames(int) <- list(c("starting", "mle", "skew corr"), c("PF", "LL", "UL"))
     }
     return(rrstr$new(estimate = int, hom = hom, estimator = ifelse(pf, 'PF', 'RR'), 
-		y = Y, compare = compare, rnd = rnd, alpha = alpha))
+		y = as.data.frame(Y), compare = compare, rnd = rnd, alpha = alpha))
 }
 
