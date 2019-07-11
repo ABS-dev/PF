@@ -73,7 +73,9 @@
 ##--------------------------------------- 
 
 IDRlsi <-
-  function(y,
+  function(y = NULL,
+    formula = NULL,
+    data = NULL,
     alpha = 0.05,
     k = 8,
     use.alpha = FALSE,
@@ -82,7 +84,25 @@ IDRlsi <-
     rnd = 3,
     start = NULL,
     trace.it = FALSE,
-    iter.max = 24) {
+    iter.max = 24,
+    compare = c('con', 'vac'),
+    affected = 1) {
+    
+    ###########################################
+    ## Error handling for input options
+    ## - y can be matrix or vector (expects formula and data to be NULL)
+    ## - if formula is specified, data is required (expects y is null)
+    ###########################################
+    .check_3input_cases_freq(data = data, formula = formula, y = y)
+
+    
+    ## END error handling
+    ####
+    
+    ###########################################
+    ## internal helper function
+    ###########################################
+    
     # support interval based on factoring orthogonal parameterization (Royall, p. 152)
     # Coded 1999
     L <- function(y, r) {
@@ -94,9 +114,25 @@ IDRlsi <-
       Lk <- (r * h) ^ y1 / (1 + r * h) ^ (y1 + y2)
       return(Lk)
     }
-    # data vector
-    if (is.matrix(y))
+    
+    ## END internal helpers
+    ####
+
+    
+    ###########################################
+    ## Data reshaping
+    ## - y can be matrix or vector (expects formula and data to be NULL)
+    ## - if formula is specified, data is required (expects y is null)
+    ###########################################
+    
+    if (is.null(y)) {
+
+      #extract from data+formula to vector c(y1, n1, y2, n2)
+      
+    } else if (is.matrix(y)) {
       y <- c(t(cbind(y[, 1], apply(y, 1, sum))))
+    } 
+    
     y1 <- y[1]
     h1 <- y[2]
     y2 <- y[3]

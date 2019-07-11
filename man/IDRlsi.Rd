@@ -4,9 +4,9 @@
 \alias{IDRlsi}
 \title{IDR likelihood support interval.}
 \usage{
-IDRlsi(y, alpha = 0.05, k = 8, use.alpha = FALSE, pf = TRUE,
-  converge = 1e-08, rnd = 3, start = NULL, trace.it = FALSE,
-  iter.max = 24)
+IDRlsi(y = NULL, formula = NULL, data = NULL, alpha = 0.05,
+  k = 8, use.alpha = FALSE, pf = TRUE, converge = 1e-08, rnd = 3,
+  start = NULL, trace.it = FALSE, iter.max = 24)
 }
 \arguments{
 \item{y}{Data vector c(y1, n1, y2, n2) where y are the positives, n are the total, 
