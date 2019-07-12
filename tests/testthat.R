@@ -1,5 +1,5 @@
 library(testthat)
 library(PF)
-library(tidyverse)
+library(dplyr)
 
 test_check("PF")
