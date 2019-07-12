@@ -1,5 +1,5 @@
 library(testthat)
 library(PF)
-library(magrittr)
+library(dplyr)
 
 test_check("PF")
