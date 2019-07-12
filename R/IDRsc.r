@@ -8,7 +8,13 @@
 #' }{(See the PF Package Vignette for the formula.)}
 #' \cr \cr The data may also be a matrix. In that case \code{y} would be entered as \cr
 #' \code{matrix(c(y1, n1 - y1, y2, n2 - y2), 2, 2, byrow = TRUE)}.
-#' @param y Data vector c(y1, n1, y2, n2) where y are the positives, n are the total, and group 1 is compared to group 2.
+#' @param y Data vector c(y1, n1, y2, n2) where y are the positives, 
+#' n are the total, and group 1 is compared to group 2.
+#' @param formula Formula of the form cbind(y, n) ~ x, where y is the number 
+#' positive, n is the group size, x is a factor with two levels of treatment.
+#' @param data data.frame containing variables of formula.
+#' @param compare Text vector stating the factor levels: compare[1] is the 
+#' control or reference group to which compare[2] is compared
 #' @param alpha Complement of the confidence level.
 #' @param pf Estimate \emph{IDR}, or its complement \emph{PF}?
 #' @param rnd Number of digits for rounding. Affects display only, not estimates.
@@ -28,8 +34,8 @@
 #' @seealso \code{\link{IDRlsi}}
 #'
 #' @examples
-#' # Both examples represent the same observation, with data entry by vector
-#' # and matrix notation.
+#' # All examples represent the same observation, with data entry by vector,
+#' # matrix, and formula+data notation.
 #'
 #' y_vector <- c(26, 204, 10, 205)
 #' IDRsc(y_vector, pf = FALSE)
@@ -53,16 +59,57 @@
 #'
 #' #  IDR   LL   UL
 #' # 2.61 1.28 5.34
+#' 
+#' require(dplyr)
+#' data1 <- data.frame(group = rep(c('control', 'treated'), each = 5),
+#'             n = c(rep(41, 4), 40, rep(41, 5)),
+#'             y = c(4, 5, 7, 6, 4, 1, 3, 3, 2, 1), 
+#'             cage = rep(paste('cage', 1:5), 2))
+#' data2 <- data1 %>%
+#'   group_by(group) %>%
+#'   summarize(sum_y = sum(y),
+#'   sum_n = sum(n))
+#' IDRsc(data = data2, formula =  cbind(sum_y, sum_n) ~ group, 
+#'     compare = c("control", 'treated'), pf = FALSE)
+#'
+#' # IDR
+#' # 95% interval estimates
+#'
+#' #  IDR   LL   UL
+#' # 2.61 1.28 5.34
 
 #-------------------------------
 # IDRsc
 #-------------------------------
-IDRsc <- function(y,
+IDRsc <- function(y = NULL, 
+  data = NULL, 
+  formula = NULL,
+  compare = c('con', 'vac'),
   alpha = 0.05,
   pf = TRUE,
   rnd = 3) {
-  if (is.matrix(y))
+  
+  ###########################################
+  ## Error handling for input options
+  ## - y can be matrix or vector (expects formula and data to be NULL)
+  ## - if formula is specified, data is required (expects y is null)
+  ###########################################
+  .check_3input_cases_freq(data = data, formula = formula, y = y)
+  
+  ###########################################
+  ## Data reshaping
+  ## - y can be matrix or vector (expects formula and data to be NULL)
+  ## - if formula is specified, data is required (expects y is null)
+  ###########################################
+  
+  if (is.null(y)) {
+    #extract from data+formula to vector c(y1, n1, y2, n2)
+    y <- .extract_freqvec(formula, data, compare)
+    
+  } else if (is.matrix(y)) {
     y <- c(t(cbind(y[, 1], apply(y, 1, sum))))
+  }
+  
   y1 <- y[1.]
   s1 <- y[2.]
   y2 <- y[3.]
