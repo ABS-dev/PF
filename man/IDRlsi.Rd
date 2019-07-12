@@ -104,6 +104,7 @@ IDRlsi(data = data1, formula = cbind(y, n) ~ group,
 #  IDR   LL   UL 
 # 2.61 1.26 5.88 
 
+require(dplyr)
 data2 <- data1 \%>\%
   group_by(group) \%>\%
   summarize(sum_y = sum(y),
