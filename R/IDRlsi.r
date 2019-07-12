@@ -68,6 +68,39 @@
 #' # IDR 
 #' #  IDR   LL   UL 
 #' # 2.61 1.26 5.88 
+#' 
+#' data1 <- data.frame(group = rep(c('control', 'treated'), each = 5),
+#'              n = c(rep(41, 4), 40, rep(41, 5)),
+#'              y = c(4, 5, 7, 6, 4, 1, 3, 3, 2, 1), 
+#'              cage = rep(paste('cage', 1:5), 2))
+#' IDRlsi(data = data1, formula = cbind(y, n) ~ group, 
+#'                compare = c("control", 'treated'), pf = FALSE)
+#' 
+#' # 1/8 likelihood support interval for IDR 
+#' 
+#' # corresponds to 95.858% confidence
+#' #   (under certain assumptions)
+#' 
+#' # IDR 
+#' #  IDR   LL   UL 
+#' # 2.61 1.26 5.88 
+#' 
+#' data2 <- data1 %>%
+#'   group_by(group) %>%
+#'   summarize(sum_y = sum(y),
+#'     sum_n = sum(n))
+#'     
+#' IDRlsi(data = data1, formula = cbind(y, n) ~ group, 
+#'                compare = c("control", 'treated'), pf = FALSE)
+#' 
+#' # 1/8 likelihood support interval for IDR 
+#' 
+#' # corresponds to 95.858% confidence
+#' #   (under certain assumptions)
+#' 
+#' # IDR 
+#' #  IDR   LL   UL 
+#' # 2.61 1.26 5.88 
 ##---------------------------------------
 ## IDRlsi
 ##--------------------------------------- 
@@ -85,8 +118,7 @@ IDRlsi <-
     start = NULL,
     trace.it = FALSE,
     iter.max = 24,
-    compare = c('con', 'vac'),
-    affected = 1) {
+    compare = c("con", "vac")) {
     
     ###########################################
     ## Error handling for input options
@@ -128,6 +160,7 @@ IDRlsi <-
     if (is.null(y)) {
 
       #extract from data+formula to vector c(y1, n1, y2, n2)
+      y <- .extract_freqvec(formula, data, compare)
       
     } else if (is.matrix(y)) {
       y <- c(t(cbind(y[, 1], apply(y, 1, sum))))

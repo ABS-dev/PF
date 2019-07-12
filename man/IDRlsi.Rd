@@ -6,7 +6,8 @@
 \usage{
 IDRlsi(y = NULL, formula = NULL, data = NULL, alpha = 0.05,
   k = 8, use.alpha = FALSE, pf = TRUE, converge = 1e-08, rnd = 3,
-  start = NULL, trace.it = FALSE, iter.max = 24)
+  start = NULL, trace.it = FALSE, iter.max = 24, compare = c("con",
+  "vac"))
 }
 \arguments{
 \item{y}{Data vector c(y1, n1, y2, n2) where y are the positives, n are the total, 
@@ -77,6 +78,39 @@ y_matrix
 # [2,]   10  195
 
 IDRlsi(y_matrix, pf = FALSE)
+
+# 1/8 likelihood support interval for IDR 
+
+# corresponds to 95.858\% confidence
+#   (under certain assumptions)
+
+# IDR 
+#  IDR   LL   UL 
+# 2.61 1.26 5.88 
+
+data1 <- data.frame(group = rep(c('control', 'treated'), each = 5),
+             n = c(rep(41, 4), 40, rep(41, 5)),
+             y = c(4, 5, 7, 6, 4, 1, 3, 3, 2, 1), 
+             cage = rep(paste('cage', 1:5), 2))
+IDRlsi(data = data1, formula = cbind(y, n) ~ group, 
+               compare = c("control", 'treated'), pf = FALSE)
+
+# 1/8 likelihood support interval for IDR 
+
+# corresponds to 95.858\% confidence
+#   (under certain assumptions)
+
+# IDR 
+#  IDR   LL   UL 
+# 2.61 1.26 5.88 
+
+data2 <- data1 \%>\%
+  group_by(group) \%>\%
+  summarize(sum_y = sum(y),
+    sum_n = sum(n))
+    
+IDRlsi(data = data1, formula = cbind(y, n) ~ group, 
+               compare = c("control", 'treated'), pf = FALSE)
 
 # 1/8 likelihood support interval for IDR 
 
