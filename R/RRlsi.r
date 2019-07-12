@@ -11,7 +11,13 @@
 #' \cr \cr The data may also be a matrix. In that case \code{y} would be entered as \cr
 #' \code{matrix(c(y1, n1-y1, y2, n2-y2), 2, 2, byrow = TRUE)}.
 # @usage RRlsi(y, k=8, use.alpha = F pf = T)
-#' @param y Data vector c(y1, n1, y2, n2) where y are the positives, n are the total, and group 1 is compared to group 2.
+#' @param y Data vector c(y1, n1, y2, n2) where y are the positives, n are the 
+#' total, and group 1 (control or reference group) is compared to group 2.
+#' @param formula Formula of the form cbind(y, n) ~ x, where y is the number 
+#' positive, n is the group size, x is a factor with two levels of treatment.
+#' @param data data.frame containing variables of formula.
+#' @param compare Text vector stating the factor levels: compare[1] is the 
+#' control or reference group to which compare[2] is compared.
 #' @param k Likelihood ratio criterion.
 #' @param alpha Complement of the confidence level (see details).
 #' @param use.alpha Base choice of k on its relationship to alpha? 
@@ -34,8 +40,9 @@
 #' \cr Ralston ML, Jennrich RI, 1978. DUD, A Derivative-Free Algorithm for Nonlinear Least Squares. \emph{Technometrics} 20:7-14. 
 #' @author David Siev \email{david.siev@@aphis.usda.gov}
 #' @examples 
-#' # Both examples represent the same observation, with data entry by vector
-#' # and matrix notation.
+#' # All examples represent the same observation, with data entry by vector,
+#' # matrix, and formula+data notation.
+#' 
 #' y_vector <- c(4, 24, 12, 28)
 #' RRlsi(y_vector)
 #' 
@@ -64,14 +71,38 @@
 #' # PF 
 #' #     PF     LL     UL 
 #' # 0.6111 0.0168 0.8859 
-
+#' 
+#' require(dplyr)
+#' data1 <- data.frame(group = rep(c('control', 'treated'), each = 2),
+#'   y = c(1, 3, 7, 5),
+#'   n = c(12, 12, 14, 14), 
+#'   cage = rep(paste('cage', 1:2), 2))
+#' 
+#' data2 <- data1 %>%
+#'   group_by(group) %>%
+#'   summarize(sum_y = sum(y),
+#'     sum_n = sum(n))
+#' RRlsi(data = data2, formula =  cbind(sum_y, sum_n) ~ group, 
+#'    compare = c("control", 'treated'))
+#' 
+#' # 1/8 likelihood support interval for PF 
+#' # 
+#' # corresponds to 95.858% confidence
+#' # (under certain assumptions)
+#' # 
+#' # PF 
+#' # PF     LL     UL 
+#' # 0.6111 0.0168 0.8859 
 ##--------------------------------------------------------------------
 ## RR likelihood support interval by the profile likelihood method
 ##--------------------------------------------------------------------
 ##
 ## see file RR likelihood functions.r for other versions including conditional likelihood
 RRlsi <-
-  function(y,
+  function(y = NULL,
+    formula = NULL,
+    data = NULL,
+    compare = c('con', 'vac'),
     alpha = 0.05,
     k = 8,
     use.alpha = FALSE,
@@ -82,6 +113,14 @@ RRlsi <-
     start = NULL,
     track = FALSE,
     full.track = FALSE) {
+    
+    ###########################################
+    ## Error handling for input options
+    ## - y can be matrix or vector (expects formula and data to be NULL)
+    ## - if formula is specified, data is required (expects y is null)
+    ###########################################
+    .check_3input_cases_freq(data = data, formula = formula, y = y)
+    
     # 9/14/07
     # alpha to k: k=exp(qchisq(1-alpha,1)/2)
     # k to alpha: alpha=1-pchisq(log(k)*2,1)
@@ -90,9 +129,20 @@ RRlsi <-
     else
       alpha <- 1 - pchisq(log(k) * 2, 1)
     
-    # data vector
-    if (is.matrix(y))
+    ###########################################
+    ## Data reshaping
+    ## - y can be matrix or vector (expects formula and data to be NULL)
+    ## - if formula is specified, data is required (expects y is null)
+    ###########################################
+    
+    if (is.null(y)) {
+      #extract from data+formula to vector c(y1, n1, y2, n2)
+      y <- .extract_freqvec(formula, data, compare)
+      
+    } else if (is.matrix(y)) {
       y <- c(t(cbind(y[, 1], apply(y, 1, sum))))
+    }
+
     y1 <- y[1]
     n1 <- y[2]
     y2 <- y[3]
