@@ -109,7 +109,6 @@ IDRsc <- function(y = NULL,
   } else if (is.matrix(y)) {
     y <- c(t(cbind(y[, 1], apply(y, 1, sum))))
   }
-
   y1 <- y[1.]
   s1 <- y[2.]
   y2 <- y[3.]

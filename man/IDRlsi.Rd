@@ -11,7 +11,12 @@ IDRlsi(y = NULL, formula = NULL, data = NULL, alpha = 0.05,
 }
 \arguments{
 \item{y}{Data vector c(y1, n1, y2, n2) where y are the positives, n are the total, 
-and group 1 is compared to group 2.}
+and group 1 is compared to group 2 (control or reference).}
+
+\item{formula}{Formula of the form cbind(y, n) ~ x, where y is the number 
+positive, n is the group size, x is a factor with two levels of treatment.#'}
+
+\item{data}{data.frame containing variables of the formula.}
 
 \item{alpha}{Complement of the confidence level.}
 
@@ -30,6 +35,9 @@ and group 1 is compared to group 2.}
 \item{trace.it}{Verbose tracking of the iterations?}
 
 \item{iter.max}{Maximum number of iterations}
+
+\item{compare}{Text vector stating the factor levels: compare[1] is the 
+vaccinate group to which compare[2] (control or reference) is compared.}
 }
 \value{
 A \code{\link{rrsi}} object with the following elements.
@@ -93,7 +101,7 @@ data1 <- data.frame(group = rep(c("treated", "control"), each = 5),
              y = c(4, 5, 7, 6, 4, 1, 3, 3, 2, 1), 
              cage = rep(paste('cage', 1:5), 2))
 IDRlsi(data = data1, formula = cbind(y, n) ~ group, 
-               compare = c("control", 'treated'), pf = FALSE)
+               compare = c("treated", "control"), pf = FALSE)
 
 # 1/8 likelihood support interval for IDR 
 
@@ -107,10 +115,10 @@ IDRlsi(data = data1, formula = cbind(y, n) ~ group,
 require(dplyr)
 data2 <- data1 \%>\%
   group_by(group) \%>\%
-  summarize(sum_y = sum(y),
-    sum_n = sum(n))
+  summarize(y = sum(y),
+    n = sum(n))
     
-IDRlsi(data = data1, formula = cbind(y, n) ~ group, 
+IDRlsi(data = data2, formula = cbind(y, n) ~ group, 
                compare = c("treated", "control"), pf = FALSE)
 
 # 1/8 likelihood support interval for IDR 

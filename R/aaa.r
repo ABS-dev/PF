@@ -36,6 +36,7 @@
 }
 
 
+
 # Extract frequency vector (y1, n1, y2, n2) where -2 is control group, 
 # y- are positive counts and n- is total count from data+vector input
 # handle both summarized data (each group on one line) and stratified data where 
@@ -55,12 +56,15 @@
     group_by_at(vars[3]) %>%
     summarize_at(c(vars[1:2]), sum, na.rm = TRUE)
   colnames(sumdata) <- c('group', 'y', 'n')
-  out <- c(sumdata %>%
-      filter(group == compare[2]) %>%
-      select(y, n) %>%
-      as.numeric,
+  out <- c(
+    ## vaccine
     sumdata %>%
       filter(group == compare[1]) %>%
+      select(y, n) %>%
+      as.numeric,
+    ## control or reference
+    sumdata %>%
+      filter(group == compare[2]) %>%
       select(y, n) %>%
       as.numeric)
   

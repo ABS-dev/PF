@@ -12,10 +12,13 @@
 #' to \emph{k} if \code{use.alpha = TRUE}.
 #' \cr \cr The data may also be a matrix. In that case \code{y} would be entered as \cr
 #' \code{matrix(c(y1, n1 - y1, y2, n2 - y2), 2, 2, byrow = TRUE)}.
-#' 
-# @usage IDRlsi(y, k=8, use.alpha = F, pf = T)
 #' @param y Data vector c(y1, n1, y2, n2) where y are the positives, n are the total, 
-#' and group 1 is compared to group 2.
+#' and group 1 is compared to group 2 (control or reference).
+#' @param compare  Text vector stating the factor levels: compare[1] is the 
+#' vaccinate group to which compare[2] (control or reference) is compared.
+#' @param data data.frame containing variables of the formula.
+#' @param formula  Formula of the form cbind(y, n) ~ x, where y is the number 
+#' positive, n is the group size, x is a factor with two levels of treatment.#' 
 #' @param k Likelihood ratio criterion.
 #' @param alpha Complement of the confidence level.
 #' @param use.alpha Base choice of k on its relationship to alpha?
@@ -74,7 +77,7 @@
 #'              y = c(4, 5, 7, 6, 4, 1, 3, 3, 2, 1), 
 #'              cage = rep(paste('cage', 1:5), 2))
 #' IDRlsi(data = data1, formula = cbind(y, n) ~ group, 
-#'                compare = c("control", 'treated'), pf = FALSE)
+#'                compare = c("treated", "control"), pf = FALSE)
 #' 
 #' # 1/8 likelihood support interval for IDR 
 #' 
@@ -88,10 +91,10 @@
 #' require(dplyr)
 #' data2 <- data1 %>%
 #'   group_by(group) %>%
-#'   summarize(sum_y = sum(y),
-#'     sum_n = sum(n))
+#'   summarize(y = sum(y),
+#'     n = sum(n))
 #'     
-#' IDRlsi(data = data1, formula = cbind(y, n) ~ group, 
+#' IDRlsi(data = data2, formula = cbind(y, n) ~ group, 
 #'                compare = c("treated", "control"), pf = FALSE)
 #' 
 #' # 1/8 likelihood support interval for IDR 
@@ -166,7 +169,7 @@ IDRlsi <-
     } else if (is.matrix(y)) {
       y <- c(t(cbind(y[, 1], apply(y, 1, sum))))
     } 
-    
+ 
     y1 <- y[1]
     h1 <- y[2]
     y2 <- y[3]
