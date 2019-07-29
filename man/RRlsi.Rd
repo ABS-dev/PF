@@ -107,7 +107,7 @@ data2 <- data1 \%>\%
   summarize(sum_y = sum(y),
     sum_n = sum(n))
 RRlsi(data = data2, formula =  cbind(sum_y, sum_n) ~ group, 
-   compare = c("control", 'treated'))
+   compare = c("treated", "control"))
 
 # 1/8 likelihood support interval for PF 
 # 
