@@ -102,7 +102,7 @@ RRlsi <-
   function(y = NULL,
     formula = NULL,
     data = NULL,
-    compare = c('con', 'vac'),
+    compare = c("vac", "con"),
     alpha = 0.05,
     k = 8,
     use.alpha = FALSE,
