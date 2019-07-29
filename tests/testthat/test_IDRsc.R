@@ -29,13 +29,13 @@ test_that("examples work", {
   ## not noted in help file
   ## for scenario when data for one treatment group is split over two
   ## rows.
-  data1 <- data.frame(group = rep(c('control', 'treated'), each = 5),
+  data1 <- data.frame(group = rep(c("treated", "control"), each = 5),
     n = c(rep(41, 4), 40, rep(41, 5)),
     y = c(4, 5, 7, 6, 4,
       1, 3, 3, 2, 1), 
     cage = rep(paste('cage', 1:5), 2))
   ex3 <- IDRsc(data = data1, formula = cbind(y, n) ~ group, 
-    compare = c("control", 'treated'), pf = FALSE)
+    compare = c("treated", "control"), pf = FALSE)
   expect_equal(ex1, ex3)
   
   data2 <- data1 %>%
@@ -43,7 +43,7 @@ test_that("examples work", {
     summarize(sum_y = sum(y),
       sum_n = sum(n))
   ex4 <- IDRsc(data = data2, formula =  cbind(sum_y, sum_n) ~ group, 
-    compare = c("control", 'treated'), pf = FALSE)
+    compare = c("treated", "control"), pf = FALSE)
   expect_equal(ex1, ex4)
   
 })
