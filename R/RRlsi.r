@@ -12,12 +12,12 @@
 #' \code{matrix(c(y1, n1-y1, y2, n2-y2), 2, 2, byrow = TRUE)}.
 # @usage RRlsi(y, k=8, use.alpha = F pf = T)
 #' @param y Data vector c(y1, n1, y2, n2) where y are the positives, n are the 
-#' total, and group 1 (control or reference group) is compared to group 2.
+#' total, and group 1 is compared to group 2 (control or reference group).
 #' @param formula Formula of the form cbind(y, n) ~ x, where y is the number 
 #' positive, n is the group size, x is a factor with two levels of treatment.
 #' @param data data.frame containing variables of formula.
-#' @param compare Text vector stating the factor levels: compare[1] is the 
-#' control or reference group to which compare[2] is compared.
+#' @param compare Text vector stating the factor levels: compare[1] is the vaccinate
+#' group to which compare[2] (control or reference) is compared.
 #' @param k Likelihood ratio criterion.
 #' @param alpha Complement of the confidence level (see details).
 #' @param use.alpha Base choice of k on its relationship to alpha? 
@@ -83,7 +83,7 @@
 #'   summarize(sum_y = sum(y),
 #'     sum_n = sum(n))
 #' RRlsi(data = data2, formula =  cbind(sum_y, sum_n) ~ group, 
-#'    compare = c("control", 'treated'))
+#'    compare = c("treated", "control"))
 #' 
 #' # 1/8 likelihood support interval for PF 
 #' # 
@@ -136,7 +136,7 @@ RRlsi <-
     ###########################################
     
     if (is.null(y)) {
-      #extract from data+formula to vector c(y1, n1, y2, n2)
+      # extract from data+formula to vector c(y1, n1, y2, n2)
       y <- .extract_freqvec(formula, data, compare)
       
     } else if (is.matrix(y)) {

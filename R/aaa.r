@@ -36,12 +36,12 @@
 }
 
 
-# Extract frequency vector (y1, n1, y2, n2) where -1 is control group, 
+# Extract frequency vector (y1, n1, y2, n2) where -2 is control group, 
 # y- are positive counts and n- is total count from data+vector input
 # handle both summarized data (each group on one line) and stratified data where 
 # we intend to ignore the strafication and summarize by the control and 
 # vaccinate groups 
-.extract_freqvec <- function(formula, data, compare = c('con', 'vac')) {
+.extract_freqvec <- function(formula, data, compare = c('vac', 'con')) {
   vars <- all.vars(formula)
   
   if (nrow(data) > 2) {
@@ -56,11 +56,11 @@
     summarize_at(c(vars[1:2]), sum, na.rm = TRUE)
   colnames(sumdata) <- c('group', 'y', 'n')
   out <- c(sumdata %>%
-      filter(group == compare[1]) %>%
+      filter(group == compare[2]) %>%
       select(y, n) %>%
       as.numeric,
     sumdata %>%
-      filter(group == compare[2]) %>%
+      filter(group == compare[1]) %>%
       select(y, n) %>%
       as.numeric)
   

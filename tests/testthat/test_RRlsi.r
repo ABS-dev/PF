@@ -19,7 +19,7 @@ test_that("examples work", {
   
   
   
-  data1 <- data.frame(group = rep(c('control', 'treated'), each = 2),
+  data1 <- data.frame(group = rep(c("treated", "control"), each = 2),
     y = c(1, 3, 7, 5),
     n = c(12, 12, 14, 14), 
     cage = rep(paste('cage', 1:2), 2))
