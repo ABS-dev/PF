@@ -7,7 +7,12 @@
 #' \cr \cr The data may also be a matrix. In that case \code{y} would be entered as \cr
 #' \code{matrix(c(y1, n1 - y1, y2, n2 - y2), 2, 2, byrow = TRUE)}.
 #' @param y Data vector c(y1, n1, y2, n2) where y are the positives,
-#' n are the total, and group 1 is compared to group 2.
+#' n are the total, and group 1 is compared to group 2 (control or reference).
+#' @param compare Text vector stating the factor levels: compare[1] is the 
+#' vaccinate group to which compare[2] (control or reference) is compared.
+#' @param data data.frame containing variables of the formula.
+#' @param formula  Formula of the form cbind(y, n) ~ x, where y is the number 
+#' positive, n is the group size, x is a factor with two levels of treatment.
 #' @param alpha Complement of the confidence level.
 #' @param pf Estimate \emph{RR} or its complement \emph{PF}?
 #' @param trace.it Verbose tracking of the iterations?
@@ -57,7 +62,10 @@
 ##-----------------------------------------------
 
 RRotsst <-
-  function(y,
+  function(y = NULL,
+    data = NULL,
+    formula = NULL,
+    compare = c("vac", "con"),
     alpha = 0.05,
     pf = TRUE,
     stepstart = .1,
@@ -80,6 +88,9 @@ RRotsst <-
     #		binci - gets Clopper-Pearson intervals for Berger-Boos method
     #			included here now, but may be moved to another package
     
+    ###########################################
+    ## internal helper function
+    ###########################################   
     binci <- function(y,
       n,
       alpha = .05,
@@ -97,12 +108,38 @@ RRotsst <-
       options(warn = 0)
       return(out)
     }
+    ## END internal helpers
+    ####
     
-    # Data entry y=c(x2,n2,x1,n1) Vaccinates First (order same but subscripts reversed)
+    ###########################################
+    ## Error handling for input options
+    ## - y can be matrix or vector (expects formula and data to be NULL)
+    ## - if formula is specified, data is required (expects y is null)
+    ###########################################
+    .check_3input_cases_freq(data = data, formula = formula, y = y)
+    
+    ## END error handling
+    ####
+    
+    ###########################################
+    ## Data reshaping
+    ## - y can be matrix or vector (expects formula and data to be NULL)
+    ## - if formula is specified, data is required (expects y is null)
+    ###########################################
+    if (is.null(y)) {
+      
+      #extract from data+formula to vector c(y1, n1, y2, n2)
+      #y1n1 from vaccinate group
+      #y2n2 from control group
+      y <- .extract_freqvec(formula, data, compare)
+      
+    } else if (is.matrix(y)) {
+    # Data entry y=c(x2,n2,x1,n1) Vaccinates First (order same but 
+    # subscripts reversed)
     # data vector
-    if (is.matrix(y))
       y <- c(t(cbind(y[, 1], apply(y, 1, sum))))
     # NOTE: the subscripts are reversed compared to the other functions
+    }
     x2 <- y[1]
     n2 <- y[2]
     x1 <- y[3]
