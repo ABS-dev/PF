@@ -118,7 +118,7 @@ data2 <- data1 \%>\%
   summarize(sum_y = sum(y),
     sum_n = sum(n))
     
-IDRlsi(data = data1, formula = cbind(y, n) ~ group, 
+IDRlsi(data = data2, formula = cbind(y, n) ~ group, 
                compare = c("treated", "control"), pf = FALSE)
 
 # 1/8 likelihood support interval for IDR 

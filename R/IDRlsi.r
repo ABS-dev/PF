@@ -94,7 +94,7 @@
 #'   summarize(sum_y = sum(y),
 #'     sum_n = sum(n))
 #'     
-#' IDRlsi(data = data1, formula = cbind(y, n) ~ group, 
+#' IDRlsi(data = data2, formula = cbind(y, n) ~ group, 
 #'                compare = c("treated", "control"), pf = FALSE)
 #' 
 #' # 1/8 likelihood support interval for IDR 
@@ -169,7 +169,7 @@ IDRlsi <-
     } else if (is.matrix(y)) {
       y <- c(t(cbind(y[, 1], apply(y, 1, sum))))
     } 
-    
+ 
     y1 <- y[1]
     h1 <- y[2]
     y2 <- y[3]
