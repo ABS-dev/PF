@@ -8,8 +8,13 @@
 #' using \code{RRsc()$estimate}.
 #' \cr \cr The data may also be a matrix. In that case \code{y} would be entered as \cr
 #' \code{matrix(c(y1, n1-y1, y2, n2-y2), 2, 2, byrow = TRUE)}.
-# @usage RRsc(y, alpha = 0.05, pf = T)
-#' @param y Data vector c(y1, n1, y2, n2) where y are the positives, n are the total, and group 1 is compared to group 2.
+#' @param y Data vector c(y1, n1, y2, n2) where y are the positives,  n are the 
+#' total, and group 1 is compared to group 2 (control or reference group).
+#' @param formula Formula of the form cbind(y, n) ~ x, where y is the number 
+#' positive, n is the group size, x is a factor with two levels of treatment.
+#' @param data data.frame containing variables of formula.
+#' @param compare Text vector stating the factor levels: compare[1] is the vaccinate
+#' group to which compare[2] (control or reference) is compared.
 #' @param alpha Complement of the confidence level.
 #' @param pf Estimate \emph{RR} or its complement \emph{PF}?
 #' @param trace.it Verbose tracking of the iterations?
@@ -31,8 +36,8 @@
 #' @seealso \code{\link{rrsc}}
 #'
 #' @examples
-#' # Both examples represent the same observation, with data entry by vector
-#' # and matrix notation.
+#' # All examples represent the same observation, with data entry by using
+#' # multiple notation options.
 #'
 #' y_vector <- c(4, 24, 12, 28)
 #' RRsc(y_vector)
@@ -63,14 +68,29 @@
 ## RRsc function
 ##-------------------------------
 RRsc <- function(y = NULL,
+  data = NULL,
+  formula = NULL,
+  compare = c('vac', 'con'),
   alpha = 0.05,
   pf = TRUE,
   trace.it = FALSE,
   iter.max = 18,
   converge = 1e-6,
   rnd = 3) {
-  #---------------------------------------
-  # internal functions
+  
+  ###########################################
+  ## Error handling for input options
+  ## - y can be matrix or vector (expects formula and data to be NULL)
+  ## - if formula is specified, data is required (expects y is null)
+  ###########################################
+  .check_3input_cases_freq(data = data, formula = formula, y = y)
+  
+  ## end error checking
+  ###########################################
+  
+  ###########################################
+  ## 
+  ## internal functions
   ###############################
   u.p <- function(p1, p2, n1, n2) {
     (1 - p1) / (n1 * p1) + (1 - p2) / (n2 * p2)
@@ -175,13 +195,22 @@ RRsc <- function(y = NULL,
   # end internal function definitions
   #---------------------------------------
   
-  # data vector
-  if (is.matrix(y))
+  ###########################################
+  ## Data reshaping
+  ## - y can be matrix or vector (expects formula and data to be NULL)
+  ## - if formula is specified, data is required (expects y is null)
+  ###########################################
+  
+  if (is.null(y)) {
+    # extract from data+formula to vector c(y1, n1, y2, n2)
+    y <- .extract_freqvec(formula, data, compare)
+  } else if (is.matrix(y)) {
     y <- c(t(cbind(y[, 1], apply(y, 1, sum))))
-  x1 <- y[1]
-  n1 <- y[2]
-  x2 <- y[3]
-  n2 <- y[4]
+  }
+  x1 <- y[1] ## vacc
+  n1 <- y[2] ## vacc
+  x2 <- y[3] ## control or ref
+  n2 <- y[4] ## control or ref
   p1 <- x1 / n1
   p2 <- x2 / n2
   

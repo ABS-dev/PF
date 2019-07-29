@@ -4,11 +4,21 @@
 \alias{RRsc}
 \title{RR score based asymptotic CI.}
 \usage{
-RRsc(y = NULL, alpha = 0.05, pf = TRUE, trace.it = FALSE,
-  iter.max = 18, converge = 1e-06, rnd = 3)
+RRsc(y = NULL, data = NULL, formula = NULL, compare = c("vac",
+  "con"), alpha = 0.05, pf = TRUE, trace.it = FALSE, iter.max = 18,
+  converge = 1e-06, rnd = 3)
 }
 \arguments{
-\item{y}{Data vector c(y1, n1, y2, n2) where y are the positives, n are the total, and group 1 is compared to group 2.}
+\item{y}{Data vector c(y1, n1, y2, n2) where y are the positives,  n are the 
+total, and group 1 is compared to group 2 (control or reference group).}
+
+\item{data}{data.frame containing variables of formula.}
+
+\item{formula}{Formula of the form cbind(y, n) ~ x, where y is the number 
+positive, n is the group size, x is a factor with two levels of treatment.}
+
+\item{compare}{Text vector stating the factor levels: compare[1] is the vaccinate
+group to which compare[2] (control or reference) is compared.}
 
 \item{alpha}{Complement of the confidence level.}
 
@@ -34,22 +44,22 @@ A \code{\link{rrsc}} object with the following fields.
 Estimates confidence intervals for the risk ratio or prevented fraction based on the score statistic.
 }
 \details{
-Estimates are returned for three estimators based on the score statistic. The score method was introduced by Koopman (1984). Gart 
-and Nam's modification (1988) includes a skewness correction. The method of Miettinen and Nurminen (1985) is a version made slightly 
-more conservative than Koopman's by including a factor of \code{(N-1)/N}. The starting estimate for the DUD algorithm is obtained by the 
+Estimates are returned for three estimators based on the score statistic. The score method was introduced by Koopman (1984). Gart
+and Nam's modification (1988) includes a skewness correction. The method of Miettinen and Nurminen (1985) is a version made slightly
+more conservative than Koopman's by including a factor of \code{(N-1)/N}. The starting estimate for the DUD algorithm is obtained by the
 modified Katz method (log method with 0.5 added to each cell). Both forms of the Katz estimate may be retrieved from the returned object
 using \code{RRsc()$estimate}.
 \cr \cr The data may also be a matrix. In that case \code{y} would be entered as \cr
 \code{matrix(c(y1, n1-y1, y2, n2-y2), 2, 2, byrow = TRUE)}.
 }
 \examples{
-# Both examples represent the same observation, with data entry by vector
-# and matrix notation.
+# All examples represent the same observation, with data entry by using
+# multiple notation options.
 
 y_vector <- c(4, 24, 12, 28)
 RRsc(y_vector)
 
-# PF 
+# PF
 # 95\% interval estimates
 
 # 				PF     LL    UL
@@ -64,7 +74,7 @@ y_matrix <- matrix(c(4, 20, 12, 16), 2, 2, byrow = TRUE)
 
 RRsc(y_matrix)
 
-# PF 
+# PF
 # 95\% interval estimates
 
 # 				PF     LL    UL
