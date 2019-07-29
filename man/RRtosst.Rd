@@ -83,6 +83,24 @@ RRtosst(y_matrix)
 
 #    PF    LL    UL
 # 0.611 0.012 0.902
+
+require(dplyr)
+data1 <- data.frame(group = rep(c("treated", "control"), each = 2),
+  y = c(1, 3, 7, 5),
+  n = c(12, 12, 14, 14), 
+  cage = rep(paste('cage', 1:2), 2))
+data2 <- data1 \%>\%
+  group_by(group) \%>\%
+  summarize(sum_y = sum(y),
+    sum_n = sum(n))
+RRtosst(data = data2, formula =  cbind(sum_y, sum_n) ~ group, 
+  compare = c("treated", "control")) 
+
+# PF
+# 95\% interval estimates
+
+#    PF    LL    UL
+# 0.611 0.012 0.902
 }
 \references{
 Koopman PAR, 1984. Confidence intervals for the ratio of two binomial proportions. \emph{Biometrics} 40:513-517.
