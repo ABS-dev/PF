@@ -6,7 +6,13 @@
 #' over the tail area by taking the maximum over the nuisance parameter. Algorithm is a simple step search.
 #' \cr \cr The data may also be a matrix. In that case \code{y} would be entered as \cr
 #' \code{matrix(c(y1, n1-y1, y2, n2-y2), 2, 2, byrow = TRUE)}.
-#' @param y Data vector c(y1, n1, y2, n2) where y are the positives, n are the total, and group 1 is compared to group 2.
+#' @param y Data vector c(y1, n1, y2, n2) where y are the positives,n are the 
+#' total, and group 1 is compared to group 2 (control or reference group).
+#' @param formula Formula of the form cbind(y, n) ~ x, where y is the number 
+#' positive, n is the group size, x is a factor with two levels of treatment.
+#' @param data data.frame containing variables of formula.
+#' @param compare Text vector stating the factor levels: compare[1] is the vaccinate
+#' group to which compare[2] (control or reference) is compared.
 #' @param alpha Complement of the confidence level.
 #' @param pf Estimate \emph{RR} or its complement \emph{PF}?
 #' @param trace.it Verbose tracking of the iterations?
@@ -60,7 +66,10 @@
 ##--------------------------------------------------------------------
 
 RRtosst <-
-  function(y,
+  function(y = NULL,
+    formula = NULL,
+    data = NULL,
+    compare = c("vac", "con"),
     alpha = 0.05,
     pf = TRUE,
     stepstart = .1,
@@ -70,6 +79,15 @@ RRtosst <-
     trace.it = FALSE,
     nuisance.points = 120,
     gamma = 1e-6) {
+    ###########################################
+    ## Error handling for input options
+    ## - y can be matrix or vector (expects formula and data to be NULL)
+    ## - if formula is specified, data is required (expects y is null)
+    ###########################################
+    .check_3input_cases_freq(data = data, formula = formula, y = y)
+    
+    
+    
     # Estimates exact confidence interval by the TOSST method
     # Score statistic used to select tail area tables
     # Binomial probability estimated over the tail area
@@ -101,15 +119,26 @@ RRtosst <-
       return(out)
     }
     
-    # Data entry y=c(x2,n2,x1,n1) Vaccinates First (order same but subscripts reversed)
-    # data vector
-    if (is.matrix(y))
+    ###########################################
+    ## Data reshaping
+    ## - y can be matrix or vector (expects formula and data to be NULL)
+    ## - if formula is specified, data is required (expects y is null)
+    ###########################################
+    
+    if (is.null(y)) {
+      # extract from data+formula to vector c(y1, n1, y2, n2)
+      y <- .extract_freqvec(formula, data, compare)
+      
+    } else if (is.matrix(y)) {
+      # Data entry y=c(x2,n2,x1,n1) Vaccinates First (order same but subscripts reversed)
+      # data vector
       y <- c(t(cbind(y[, 1], apply(y, 1, sum))))
     # NOTE: the subscripts are reversed compared to the other functions
-    x2 <- y[1]
-    n2 <- y[2]
-    x1 <- y[3]
-    n1 <- y[4]
+    }
+    x2 <- y[1] ## vacc
+    n2 <- y[2] ## vacc
+    x1 <- y[3] ## con
+    n1 <- y[4] ## con
     p1 <- x1 / n1
     p2 <- x2 / n2
     rho.mle <- p2 / p1
