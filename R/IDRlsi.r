@@ -91,8 +91,8 @@
 #' require(dplyr)
 #' data2 <- data1 %>%
 #'   group_by(group) %>%
-#'   summarize(sum_y = sum(y),
-#'     sum_n = sum(n))
+#'   summarize(y = sum(y),
+#'     n = sum(n))
 #'     
 #' IDRlsi(data = data2, formula = cbind(y, n) ~ group, 
 #'                compare = c("treated", "control"), pf = FALSE)
