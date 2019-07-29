@@ -36,8 +36,8 @@
 #' @seealso \code{\link{RRtosst}, \link{rr1}}.
 #'
 #' @examples
-#' # Both examples represent the same observation, with data entry by vector
-#' # and matrix notation.
+#' # All examples represent the same observation, with data entry by multiple
+#' # options.
 #'
 #' y_vector <- c(4, 24, 12, 28)
 #' RRotsst(y_vector, rnd = 3)
@@ -56,7 +56,25 @@
 #'
 #' #    PF     LL     UL
 #' # 0.6111 0.0148 0.8519
-
+#' 
+#' require(dplyr)
+#' data1 <- data.frame(group = rep(c("treated", "control"), each = 2),
+#'   y = c(1, 3, 7, 5),
+#'   n = c(12, 12, 14, 14), 
+#'   cage = rep(paste('cage', 1:2), 2))
+#' 
+#' data2 <- data1 %>%
+#'   group_by(group) %>%
+#'   summarize(sum_y = sum(y),
+#'     sum_n = sum(n))
+#' RRotsst(data = data2, formula =  cbind(sum_y, sum_n) ~ group, 
+#'    compare = c("treated", "control"))
+#'    
+#' # PF 
+#' # 95% interval estimates
+#' # 
+#' # PF     LL     UL 
+#' # 0.6111 0.0148 0.8519 
 ##-----------------------------------------------
 ## RRotsst
 ##-----------------------------------------------
@@ -140,10 +158,11 @@ RRotsst <-
       y <- c(t(cbind(y[, 1], apply(y, 1, sum))))
     # NOTE: the subscripts are reversed compared to the other functions
     }
-    x2 <- y[1]
-    n2 <- y[2]
-    x1 <- y[3]
-    n1 <- y[4]
+    
+    x2 <- y[1] ## vacc
+    n2 <- y[2] ## vacc
+    x1 <- y[3] ## control
+    n1 <- y[4] ## control
     p1 <- x1 / n1
     p2 <- x2 / n2
     rho.mle <- p2 / p1
