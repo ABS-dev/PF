@@ -81,6 +81,26 @@ RRsc(y_matrix)
 # MN method    0.611 0.0251 0.857
 # score method 0.611 0.0328 0.855
 # skew corr    0.611 0.0380 0.876
+require(dplyr)
+data1 <- data.frame(group = rep(c("treated", "control"), each = 2),
+  y = c(1, 3, 7, 5),
+  n = c(12, 12, 14, 14), 
+  cage = rep(paste('cage', 1:2), 2))
+
+data2 <- data1 \%>\%
+  group_by(group) \%>\%
+  summarize(sum_y = sum(y),
+    sum_n = sum(n))
+RRsc(data = data2, formula = cbind(sum_y, sum_n) ~ group, 
+  compare = c("treated", "control"))
+
+# PF
+# 95\% interval estimates
+
+# 				PF     LL    UL
+# MN method    0.611 0.0251 0.857
+# score method 0.611 0.0328 0.855
+# skew corr    0.611 0.0380 0.876
 }
 \references{
 Gart JJ, Nam J, 1988. Approximate interval estimation of the ratio of binomial parameters: a review and corrections for skewness. \emph{Biometrics} 44:323-338.

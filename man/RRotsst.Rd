@@ -92,6 +92,12 @@ data2 <- data1 \%>\%
     sum_n = sum(n))
 RRotsst(data = data2, formula =  cbind(sum_y, sum_n) ~ group, 
    compare = c("treated", "control"))
+   
+# PF 
+# 95\% interval estimates
+# 
+# PF     LL     UL 
+# 0.6111 0.0148 0.8519 
 }
 \references{
 Koopman PAR, 1984. Confidence intervals for the ratio of two binomial proportions. \emph{Biometrics} 40:513-517.
