@@ -9,12 +9,12 @@
 #' \cr \cr The data may also be a matrix. In that case \code{y} would be entered as \cr
 #' \code{matrix(c(y1, n1 - y1, y2, n2 - y2), 2, 2, byrow = TRUE)}.
 #' @param y Data vector c(y1, n1, y2, n2) where y are the positives, 
-#' n are the total, and group 1 is compared to group 2.
+#' n are the total, and group 1 is compared to group 2 (control or reference).
 #' @param formula Formula of the form cbind(y, n) ~ x, where y is the number 
 #' positive, n is the group size, x is a factor with two levels of treatment.
 #' @param data data.frame containing variables of formula.
 #' @param compare Text vector stating the factor levels: compare[1] is the 
-#' control or reference group to which compare[2] is compared
+#' vaccinate group to which compare[2] (control or reference) is compared.
 #' @param alpha Complement of the confidence level.
 #' @param pf Estimate \emph{IDR}, or its complement \emph{PF}?
 #' @param rnd Number of digits for rounding. Affects display only, not estimates.
@@ -61,7 +61,7 @@
 #' # 2.61 1.28 5.34
 #' 
 #' require(dplyr)
-#' data1 <- data.frame(group = rep(c('control', 'treated'), each = 5),
+#' data1 <- data.frame(group = rep(c("treated", "control"), each = 5),
 #'             n = c(rep(41, 4), 40, rep(41, 5)),
 #'             y = c(4, 5, 7, 6, 4, 1, 3, 3, 2, 1), 
 #'             cage = rep(paste('cage', 1:5), 2))
@@ -70,7 +70,7 @@
 #'   summarize(sum_y = sum(y),
 #'   sum_n = sum(n))
 #' IDRsc(data = data2, formula =  cbind(sum_y, sum_n) ~ group, 
-#'     compare = c("control", 'treated'), pf = FALSE)
+#'     compare = c("treated", "control"), pf = FALSE)
 #'
 #' # IDR
 #' # 95% interval estimates
@@ -109,7 +109,7 @@ IDRsc <- function(y = NULL,
   } else if (is.matrix(y)) {
     y <- c(t(cbind(y[, 1], apply(y, 1, sum))))
   }
-  
+
   y1 <- y[1.]
   s1 <- y[2.]
   y2 <- y[3.]

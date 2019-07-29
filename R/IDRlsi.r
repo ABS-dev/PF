@@ -69,7 +69,7 @@
 #' #  IDR   LL   UL 
 #' # 2.61 1.26 5.88 
 #' 
-#' data1 <- data.frame(group = rep(c('control', 'treated'), each = 5),
+#' data1 <- data.frame(group = rep(c("treated", "control"), each = 5),
 #'              n = c(rep(41, 4), 40, rep(41, 5)),
 #'              y = c(4, 5, 7, 6, 4, 1, 3, 3, 2, 1), 
 #'              cage = rep(paste('cage', 1:5), 2))
@@ -92,7 +92,7 @@
 #'     sum_n = sum(n))
 #'     
 #' IDRlsi(data = data1, formula = cbind(y, n) ~ group, 
-#'                compare = c("control", 'treated'), pf = FALSE)
+#'                compare = c("treated", "control"), pf = FALSE)
 #' 
 #' # 1/8 likelihood support interval for IDR 
 #' 
