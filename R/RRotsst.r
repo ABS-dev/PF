@@ -312,7 +312,5 @@ RRotsst <-
       rnd = rnd,
       alpha = alpha
     ))
-    # out <- list(estimate = int, estimator = ifelse(pf, 'PF', 'RR'), y = y, rnd = rnd, alpha = alpha)
-    # class(out) <- 'rr1'
-    # return(out)
+
   }
