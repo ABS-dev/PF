@@ -21,14 +21,17 @@
   for (i in 1:2) {
     tbl[,i] <- ifelse(tbl[,i] == affected, 'af', 'un')
   }
-
-    xtable <- table(tbl[,compare[2]], tbl[,compare[1]])
+  
+  # compare[2] is control
+  # compare[1] is vaccinate
+  xtable <- table(tbl[,compare[1]], tbl[,compare[2]])
   # order table
   xtable <- xtable[c('af', 'un'), c('af', 'un')] 
-  names(dimnames(xtable)) <- rev(compare)
+  names(dimnames(xtable)) <- compare
   dimnames(xtable) <- lapply(dimnames(xtable), function(x){ifelse(x == 'af', 
     'pos', 'neg')})
   freqvec <- c(xtable)
+
   names(freqvec) <- paste(rep(dimnames(xtable)[[1]], 2), rep(dimnames(xtable)[[2]], 
     c(2, 2)))
   multvec <- as.data.frame(xtable)

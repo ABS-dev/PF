@@ -72,7 +72,7 @@
   clus <- A[, 4]
   Y1 <- A[x == compare[2], 1:2]
   Y2 <- A[x == compare[1], 1:2]
-  Y <- as.matrix(cbind(Y1, Y2))
+  Y <- as.matrix(cbind(Y2, Y1))
   dimnames(Y) <- list(levels(clus), c('y1', 'n1', 'y2', 'n2'))
   return(list(A = A, Y = Y))
 }

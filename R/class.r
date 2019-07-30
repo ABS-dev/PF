@@ -92,16 +92,14 @@ rrsi <- setRefClass('rrsi', contains = 'pf', fields = list(y = 'data.frame', k =
 #' \item[\code{y}]{  data vector}
 #' \item[\code{rnd}]{  how many digits to round display}
 #' \item[\code{alpha}]{  complement of c.i.}
-#' \item[\code{xtable}]{  2 x 2 data matrix} 
 #' \item[\code{compare}]{  text vector, same as input}
-#' \item[\code{frecvec}]{  data arrayed a vector of length 4}
 #' \item[\code{multvec}]{  data.frame showing the multinomial representation of the data}
 #' }
 #' @seealso \code{\link{RRmpWald}}
 #' @export
 #' @author Marie Vendettuoli \email{marie.c.vendettuoli@@aphis.usda.gov}
 rrmp <- setRefClass('rrmp', contains = 'rr1', fields = list(compare = 'character',
-	xtable = 'matrix', freqvec = 'numeric', multvec = 'data.frame'))
+multvec = 'data.frame'))
 
 #' @title Data class rrsc
 #' @description data class rrsc
