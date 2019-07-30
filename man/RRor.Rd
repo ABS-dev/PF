@@ -82,7 +82,7 @@ RRor(phiWt(bird.fit))
 No references yet.
 }
 \seealso{
-\code{\link{rror}, \link{phiWt}, \link{tauWt}}. See the package vignette for more examples.
+\code{\link{rror}, \link{phiWt}, \link{tauWt}}.
 }
 \author{
 David Siev \email{david.siev@aphis.usda.gov}

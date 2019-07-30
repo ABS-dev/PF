@@ -48,7 +48,7 @@ RRor(phiWt(birdm.fit))
 Wedderburn RWM, 1974. Quasi-likelihood functions, generalized linear models, and the Gauss-Newton method. \emph{Biometrika} 61:439-447.
 }
 \seealso{
-\code{\link{tauWt}}, \code{\link{RRor}}. See the package vignette for more examples.
+\code{\link{tauWt}}, \code{\link{RRor}}.
 }
 \author{
 David Siev \email{david.siev@aphis.usda.gov}
