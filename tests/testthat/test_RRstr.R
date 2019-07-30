@@ -1,7 +1,9 @@
 context("RRstr")
 
 test_that("examples work", {
-  ex1 <- RRstr(cbind(y,n) ~ tx + cluster(clus), Table6 , pf = FALSE)
+  Table6$tx <- factor(Table6$tx, labels = c('vac', 'con'))
+  ex1 <- RRstr(cbind(y,n) ~ tx + cluster(clus), Table6 ,
+    pf = FALSE)
   thisestimate <- matrix(c(2.66090262285731, 1.36795706588105, 5.17589546114057,
     2.65200433797186, 1.39144872390597, 5.03137233509942, 2.65200433797186, 
     1.3107358581469, 5.07721615622715), nrow = 3, ncol = 3, byrow = TRUE)
@@ -20,7 +22,7 @@ test_that("examples work", {
   expect_equal(ex1$estimate, thisestimate)
   expect_equal(ex1$hom, list(stat = 0.9540868, df = 3, p = 0.8123596))
   expect_equal(ex1$y, thisy)
-  expect_identical(ex1$compare, c("b", "a"))
+  expect_identical(ex1$compare, c("vac", "con"))
   
   ex2 <- RRstr(Y = table6, pf = FALSE)
   expect_equal(ex1, ex2) 

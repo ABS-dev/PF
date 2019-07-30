@@ -36,7 +36,8 @@
 #' @examples
 #' ## Table 1 from Gart (1985)
 #' ##  as data frame
-#' RRstr(cbind(y,n) ~ tx + cluster(clus), Table6 , pf = FALSE)
+#' ## "b" is control group
+#' RRstr(cbind(y, n) ~ tx + cluster(clus), Table6 , compare = c('a', 'b'), pf = FALSE)
 #' 
 #' # Test of homogeneity across clusters
 #' 
@@ -59,20 +60,10 @@
 #' tx = rep(c('a', 'b'), 4),
 #' clus = rep(paste('Row', 1:4, sep = ''), each = 2))
 #' 
-#' RRstr(cbind(y,n) ~ tx + cluster(clus), tst)
-#' #  Homogeneity test not possible because MLE =  1 
-#' #   
-#' #  PF 
-#' #  95% interval estimates
-#' #   
-#' #  PF    LL UL
-#' #  starting   1 0.000  1
-#' #  mle        1 0.783  1
-#' #  skew corr  1 0.827  1
 ##--------------------------------------------------------------------
 ## RRstr function
 ##--------------------------------------------------------------------
-RRstr <- function(formula = NULL, data = NULL, compare = c('b', 'a'), Y, alpha = 0.05, 
+RRstr <- function(formula = NULL, data = NULL, compare = c('vac', 'con'), Y, alpha = 0.05, 
 	pf = TRUE, trace.it = FALSE, iter.max = 24, converge = 1e-6, rnd = 3, multiplier = 0.7, 
 	divider = 1.1){
   
@@ -86,10 +77,10 @@ RRstr <- function(formula = NULL, data = NULL, compare = c('b', 'a'), Y, alpha =
     # for score interval in RRstr
         zi <- ui <- 0
         for (i in 1:nrow(Y)) {
-            y1 <- Y[i, 1]
-            n1 <- Y[i, 2]
-            y2 <- Y[i, 3]
-            n2 <- Y[i, 4]
+            y1 <- Y[i, 1] # vac
+            n1 <- Y[i, 2] # vac
+            y2 <- Y[i, 3] # con or ref
+            n2 <- Y[i, 4] # con or ref
             p2 <- root(y1, y2, n1, n2, phi)
             p1 <- p2 * phi
             u <- u.p(p1, p2, n1, n2)

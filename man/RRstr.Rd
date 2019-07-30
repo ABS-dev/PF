@@ -4,7 +4,7 @@
 \alias{RRstr}
 \title{Gart-Nam method, CI for common RR over strata or clusters.}
 \usage{
-RRstr(formula = NULL, data = NULL, compare = c("b", "a"), Y,
+RRstr(formula = NULL, data = NULL, compare = c("vac", "con"), Y,
   alpha = 0.05, pf = TRUE, trace.it = FALSE, iter.max = 24,
   converge = 1e-06, rnd = 3, multiplier = 0.7, divider = 1.1)
 }
@@ -61,7 +61,8 @@ Call to this function may be one of two formats: (1) specify \code{data} and \co
 \examples{
 ## Table 1 from Gart (1985)
 ##  as data frame
-RRstr(cbind(y,n) ~ tx + cluster(clus), Table6 , pf = FALSE)
+## "b" is control group
+RRstr(cbind(y, n) ~ tx + cluster(clus), Table6 , compare = c('a', 'b'), pf = FALSE)
 
 # Test of homogeneity across clusters
 
@@ -84,16 +85,6 @@ n = rep(10, 8),
 tx = rep(c('a', 'b'), 4),
 clus = rep(paste('Row', 1:4, sep = ''), each = 2))
 
-RRstr(cbind(y,n) ~ tx + cluster(clus), tst)
-#  Homogeneity test not possible because MLE =  1 
-#   
-#  PF 
-#  95\% interval estimates
-#   
-#  PF    LL UL
-#  starting   1 0.000  1
-#  mle        1 0.783  1
-#  skew corr  1 0.827  1
 }
 \references{
 Gart JJ, 1985. Approximate tests and interval estimation of the common relative risk in the combination of \eqn{2 x 2} tables. \emph{Biometrika} 72:673-677.
