@@ -52,20 +52,20 @@
   }
   sumdata <- data %>% 
     ungroup %>%
-    select(vars[1:3]) %>%
+    select( vars[1:3]) %>%
     group_by_at(vars[3]) %>%
     summarize_at(c(vars[1:2]), sum, na.rm = TRUE)
   colnames(sumdata) <- c('group', 'y', 'n')
   out <- c(
     ## vaccine
     sumdata %>%
-      filter(group == compare[1]) %>%
-      select(y, n) %>%
+      filter(.data$group == compare[1]) %>%
+      select(.data$y, .data$n) %>%
       as.numeric,
     ## control or reference
     sumdata %>%
-      filter(group == compare[2]) %>%
-      select(y, n) %>%
+      filter(.data$group == compare[2]) %>%
+      select(.data$y, .data$n) %>%
       as.numeric)
   
   return(out)
