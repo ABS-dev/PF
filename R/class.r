@@ -19,11 +19,10 @@ pf <- setRefClass('pf', fields = list(estimator = 'character', rnd = 'numeric',
 
 	
 #' @title Data class rr1
-# @name rr1-class
 #' @description Data class rr1
 #' @aliases rr1
-#' @name rr1
-#' @rdname rr1
+#' @name rr1-class
+#' @rdname rr1-class
 #' @section Fields:
 #' \itemize{
 #' \item[\code{estimate}]{  vector with point and interval estimate}
@@ -33,7 +32,7 @@ pf <- setRefClass('pf', fields = list(estimator = 'character', rnd = 'numeric',
 #' \item[\code{alpha}]{complement of c.i.}
 #' }
 #' @seealso \code{\link{IDRsc}, \link{RRotsst}, \link{RRtosst}}
-#' @export
+#' @exportClass rr1
 #' @author Marie Vendettuoli \email{marie.c.vendettuoli@@aphis.usda.gov}
 rr1 <- setRefClass('rr1', contains = 'pf', fields = list(estimate = 'numeric',
 	y = 'data.frame'))
