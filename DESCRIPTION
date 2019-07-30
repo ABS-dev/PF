@@ -16,7 +16,7 @@ BugReports: https://github.com/ABS-dev/PF/issues
 LazyLoad: yes
 LazyData: yes
 Depends:
-    R (>= 3.4.4), methods
+    R (>= 3.5), methods
 Imports:
     plyr,
     dplyr,
