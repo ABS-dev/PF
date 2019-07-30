@@ -23,18 +23,18 @@ A list with the following elements.
 Rao-Scott weighting of clustered binomial observations.
 }
 \details{
-Estimates the cluster design effect \eqn{{d}_{i}}{d_i} as the variance inflation due to clustering by the method of Rao and Scott. 
+Estimates the cluster design effect \eqn{{d}_{i}}{d_i} as the variance inflation due to clustering by the method of Rao and Scott.
 Observations are then weighted by the inverse of the \eqn{{d}_{i}}{d_i}.
 }
 \examples{
 birdm.fit <- glm(cbind(y,n-y)~tx-1,binomial,birdm)
 RRor(rsbWt(birdm.fit))
-# 
+#
 # 95\% t intervals on 4 df
 #
-# PF 
-#     PF     LL     UL 
-#  0.479 -1.061  0.868 
+# PF
+#     PF     LL     UL
+#  0.479 -1.061  0.868
 #
 #       mu.hat    LL     UL
 # txcon  0.768 0.968 0.2659
