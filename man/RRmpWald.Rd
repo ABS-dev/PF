@@ -4,7 +4,7 @@
 \alias{RRmpWald}
 \title{Wald confidence intervals for RR from matched pairs}
 \usage{
-RRmpWald(formula = NULL, data = NULL, compare = c("con", "vac"),
+RRmpWald(formula = NULL, data = NULL, compare = c("vac", "con"),
   affected = 1, x, alpha = 0.05, pf = TRUE, tdist = TRUE,
   df = NULL, rnd = 3)
 }
@@ -15,13 +15,13 @@ of treatment, and w identifies the pairs.}
 
 \item{data}{\code{data.frame} containing variables in formula}
 
-\item{compare}{Text vector stating the factor levels: compare[1] is the control 
-or reference group to which compare[2] is compared.}
+\item{compare}{Text vector stating the factor levels: compare[1] is the vaccinate
+group to which compare[2] (control or reference) is compared.}
 
 \item{affected}{Indicator for positive response}
 
 \item{x}{Alternative data input. Instead of formula and data frame, data may 
-be input as frequency vector.}
+be input as frequency vector. See example for how to order this vector.}
 
 \item{alpha}{Complement of the confidence level}
 
@@ -41,8 +41,6 @@ A \code{\link{rrmp}} object with the following fields:
  \item{compare}{text vector, same as input}
  \item{alpha}{complement of confidence level}
  \item{rnd}{how many digits to round the display}
- \item{xtable}{frequency table as a 2x2 matrix}
- \item{freqvec}{frequency as a 4-vector}
  \item{multvec}{data frame showing the multinomial representation of the data}
 }
 \description{
@@ -62,14 +60,14 @@ Experimental functions for estimating profile likelihood intervals are
 in the CVBmisc package. \cr \cr
 Call to this function may be one of two formats: (1) specify \code{data} and 
 \code{formula} or (2) as a vector  \code{x} \cr \cr
-\code{RRmpWald(formula, data, compare = c('con', 'vac'), affected = 1, 
+\code{RRmpWald(formula, data, compare = c('vac', 'con'), affected = 1, 
 alpha = 0.05,} \cr
 \code{pf = TRUE, tdist = TRUE, df = NULL, rnd = 3)} \cr \cr
-\code{RRmpWald(x, compare = c('con', 'vac'), affected = 1, alpha = 0,05,} \cr 
+\code{RRmpWald(x, compare = c('vac', 'con'), affected = 1, alpha = 0,05,} \cr 
 \code{pf = TRUE, tdist = TRUE, df = NULL, rnd = 3)}
 }
 \examples{
-RRmpWald(pos ~ tx + cluster(cage), New, compare = c('con', 'vac'))
+RRmpWald(pos ~ tx + cluster(cage), New, compare = c('vac', 'con'))
 
 # PF 
 # 95\% interval estimates

@@ -12,11 +12,11 @@
 #' indicator for an individual's positive response, x is a factor with two levels 
 #' of treatment, and w identifies the pairs.
 #' @param data \code{data.frame} containing variables in formula
-#' @param compare Text vector stating the factor levels: compare[1] is the control 
-#' or reference group to which compare[2] is compared.
+#' @param compare Text vector stating the factor levels: compare[1] is the vaccinate
+#' group to which compare[2] (control or reference) is compared.
 #' @param affected Indicator for positive response
 #' @param x Alternative data input. Instead of formula and data frame, data may 
-#' be input as frequency vector.
+#' be input as frequency vector. See example for how to order this vector.
 #' @param alpha Complement of the confidence level
 #' @param pf Estimate \emph{RR} or its complement \emph{PF}?
 #' @param tdist Use t distribution? 
@@ -29,8 +29,6 @@
 #'  \item{compare}{text vector, same as input}
 #'  \item{alpha}{complement of confidence level}
 #'  \item{rnd}{how many digits to round the display}
-#'  \item{xtable}{frequency table as a 2x2 matrix}
-#'  \item{freqvec}{frequency as a 4-vector}
 #'  \item{multvec}{data frame showing the multinomial representation of the data}
 #' @export
 #' @author David Siev \email{david.siev@@aphis.usda.gov}
@@ -38,13 +36,13 @@
 #' in the CVBmisc package. \cr \cr
 #' Call to this function may be one of two formats: (1) specify \code{data} and 
 #' \code{formula} or (2) as a vector  \code{x} \cr \cr
-#' \code{RRmpWald(formula, data, compare = c('con', 'vac'), affected = 1, 
+#' \code{RRmpWald(formula, data, compare = c('vac', 'con'), affected = 1, 
 #' alpha = 0.05,} \cr
 #' \code{pf = TRUE, tdist = TRUE, df = NULL, rnd = 3)} \cr \cr
-#' \code{RRmpWald(x, compare = c('con', 'vac'), affected = 1, alpha = 0,05,} \cr 
+#' \code{RRmpWald(x, compare = c('vac', 'con'), affected = 1, alpha = 0,05,} \cr 
 #' \code{pf = TRUE, tdist = TRUE, df = NULL, rnd = 3)}
 #' @examples
-#' RRmpWald(pos ~ tx + cluster(cage), New, compare = c('con', 'vac'))
+#' RRmpWald(pos ~ tx + cluster(cage), New, compare = c('vac', 'con'))
 #'
 #' # PF 
 #' # 95% interval estimates
@@ -73,15 +71,14 @@
 #' #
 #' #    PF    LL    UL 
 #' # 0.550 0.183 0.752 
-RRmpWald <- function(formula = NULL, data = NULL, compare = c('con', 'vac'), 
+RRmpWald <- function(formula = NULL, data = NULL, compare = c('vac', 'con'), 
 	affected = 1, x, alpha = 0.05, pf = TRUE, tdist = TRUE, df = NULL, rnd = 3){
 	# CI for RR with matched pairs, based on asymptotic normality of log(RR)
 	#  and multinomial variance
 	# Data entry:
-    # formula of the form response ~ treatment + cluster(clustername)
-	#   then it will convert data to matrix and vector
+  #  formula of the form response ~ treatment + cluster(clustername)
+	#  then it will convert data to matrix and vector
 	#  if entered as vector (x=) it must be ordered by vac/con pairs: c(11,01,10,00)
-	#  if entered as matrix (x=) it must be must be matrix(c(11,01,10,00),2,2,byrow=T)
 	multvec <- NULL
 	if (!is.null(formula) & !is.null(data)) {
         Xx <- .twoby(formula = formula, data = data, compare = compare, 
@@ -102,7 +99,14 @@ RRmpWald <- function(formula = NULL, data = NULL, compare = c('con', 'vac'),
 			stop('Vector length must be 4\n')
 		}
 		xtable <- matrix(x, 2, 2, byrow = FALSE)
+		multvec <- xtable
+		rownames(multvec) <- c('pos', 'neg')
+		colnames(multvec) <- c('pos', 'neg')
+		multvec <- multvec %>% as.table %>% as.data.frame
+		colnames(multvec) <- c(compare, 'Freq')
+		
 	}
+
 
 	N <- sum(x)
 	p <- x/N
@@ -143,13 +147,8 @@ RRmpWald <- function(formula = NULL, data = NULL, compare = c('con', 'vac'),
         names(int) <- c("PF", "LL", "UL")
     }
 
-	if (is.null(multvec)) {
-		return(rrmp$new(estimate = int, estimator = ifelse(pf, 'PF', 'RR'), 
-		  compare = compare, alpha = alpha, rnd = rnd, xtable = xtable, freqvec = x))
-	} else {
 
 		return(rrmp$new(estimate = int, estimator = ifelse(pf, 'PF', 'RR'), 
-		  compare = compare, alpha = alpha, rnd = rnd, xtable = xtable, freqvec = x, 
-		  multvec =	multvec))
-	}
+		  compare = compare, alpha = alpha, rnd = rnd, multvec =	multvec))
+
 }
