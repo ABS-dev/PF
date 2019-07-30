@@ -4,8 +4,8 @@
 \alias{RRlsi}
 \title{RR likelihood support interval.}
 \usage{
-RRlsi(y = NULL, formula = NULL, data = NULL, compare = c("con",
-  "vac"), alpha = 0.05, k = 8, use.alpha = FALSE, pf = TRUE,
+RRlsi(y = NULL, formula = NULL, data = NULL, compare = c("vac",
+  "con"), alpha = 0.05, k = 8, use.alpha = FALSE, pf = TRUE,
   iter.max = 50, converge = 1e-06, rnd = 3, start = NULL,
   track = FALSE, full.track = FALSE)
 }
