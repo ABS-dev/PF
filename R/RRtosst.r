@@ -335,12 +335,14 @@ RRtosst <-
 ##
 #' Internal function.
 #'
-#' @usage .rr.score.asymp(y)
 #' @param y data
+#' @param alpha alpha
+#' @param iter.max maximum number of iterations
+#' @param converge convergence criterion
+#' @param mn boolean whether to calculate MN or use default value of 1.0
 #' @export
 #' @examples
 #' # none
-
 .rr.score.asymp <-
   function(y,
     alpha = 0.05,
