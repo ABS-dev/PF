@@ -19,7 +19,8 @@ Depends:
     R (>= 3.4.4), methods
 Imports:
     plyr,
-    dplyr
+    dplyr,
+    rlang
 Suggests:
     knitr,
     tidyr,
