@@ -6,9 +6,12 @@
 #' @param formula Formula of the form \code{cbind(y, n) ~ x + cluster(w)}, where \code{y} is the number positive, \code{n} is the group 
 #' size, \code{x} is a factor with two levels of treatment, and \code{w} is a factor indicating the clusters.
 #' @param data \code{data.frame} containing variables for formula
-#' @param compare Text vector stating the factor levels: \code{compare[1]} is the control or reference group to which \code{compare[2]} is compared
-#' @param Y Matrix of data, \eqn{K \times 4}{K x 4}. Each row is a stratum or cluster. The columns are \eqn{y2, n2, y1, n1}, where the y's are 
-#' the number of positive in each group, and the n is the total in each group. If data entered by formula and dataframe, \code{Y} is generated automatically.
+#' @param compare Text vector stating the factor levels: compare[1] is the vaccinate
+#' group to which compare[2] (control or reference) is compared.
+#' @param Y Matrix of data, \eqn{K \times 4}{K x 4}. Each row is a stratum or cluster. The columns are \eqn{y1, n1, y2, n2}, where the y's are 
+#' the number of positive in each group, and the n is the total in each group.
+#'  Group 1 corresponds to vaccinates and group 2 are controls or reference. 
+#'  If data entered by formula and dataframe, \code{Y} is generated automatically.
 #' @param pf Estimate \emph{RR} or its complement \emph{PF}? 
 #' @param alpha Complement of the confidence level.
 #' @param rnd Number of digits for rounding. Affects display only, not estimates.
@@ -37,10 +40,10 @@
 #' 
 #' ## Table 1 from Gart (1985)
 #' ##  as data frame
-#' RRmh(cbind(y,n) ~ tx + cluster(clus), Table6 , pf = FALSE)
 #' 
-#' #  RR estimates
-#' 
+#' # tx group "b" is control
+#' RRmh(cbind(y,n) ~ tx + cluster(clus), Table6, compare = c('a', 'b'), pf = FALSE)
+#'
 #' # RR 
 #' # 95% interval estimates
 #' # 
@@ -51,6 +54,11 @@
 #' ## or as matrix
 #' RRmh(Y = table6, pf = FALSE)
 #' 
+#' # RR 
+#' # 95% interval estimates
+#' # 
+#' #   RR   LL   UL 
+#' # 2.67 1.37 5.23 
 ##########################################################################################
 #
 # Mantel-Haenszel estimate of common risk ratio for K 2x2 tables.
@@ -61,11 +69,11 @@
 # 
 ##########################################################################################
 
-RRmh <- function(formula = NULL, data = NULL, compare = c('b', 'a'), Y, alpha = 0.05, 
+RRmh <- function(formula = NULL, data = NULL, compare = c('vac', 'con'), Y, alpha = 0.05, 
 	pf = TRUE, rnd = 3)
 {
 # convert data to matrix
-    if(!is.null(formula) & !is.null(data)){
+    if (!is.null(formula) & !is.null(data)) {
         Y <- .matricize(formula = formula, data = data, compare = compare)$Y
     } 
     colnames(Y) <- c('y1', 'n1', 'y2', 'n2')
@@ -75,10 +83,10 @@ RRmh <- function(formula = NULL, data = NULL, compare = c('b', 'a'), Y, alpha = 
 
 ### Innards of the algorithm
     zcrit <- qnorm(1 - alpha/2) 
-    x1vec <- Y[, 1]
-    n1vec <- Y[, 2]
-    x2vec <- Y[, 3]
-    n2vec <- Y[, 4]
+    x1vec <- Y[, 1] # vac
+    n1vec <- Y[, 2] # vac
+    x2vec <- Y[, 3] # con or ref
+    n2vec <- Y[, 4] # con or ref
     nk <- n1vec + n2vec
 
     # Point estimate (Greenland & Robins, eq. 4.  Lachin, eq. 4.17)
@@ -87,7 +95,7 @@ RRmh <- function(formula = NULL, data = NULL, compare = c('b', 'a'), Y, alpha = 
     rr.est <- numer / denom
 
     # variance of log RR (Greenland & Robins, eq. 13)
-    numer <- ( (n1vec * n2vec) * (x1vec + x2vec) - (x1vec * x2vec) * nk )/nk^2
+    numer <- ((n1vec * n2vec) * (x1vec + x2vec) - (x1vec * x2vec) * nk )/nk^2
     rk <- x1vec * n2vec / nk
     sk <- x2vec * n1vec / nk
     denom <- sum(rk) * sum(sk)
@@ -99,7 +107,7 @@ RRmh <- function(formula = NULL, data = NULL, compare = c('b', 'a'), Y, alpha = 
 
     int <- c(rr.est, rr.ci.lo, rr.ci.hi)
 
-    if(!pf) {
+    if (!pf) {
         names(int) <- c("RR", "LL", "UL")
     } else {
         int <- 1 - int[c(1, 3, 2)]
@@ -108,8 +116,6 @@ RRmh <- function(formula = NULL, data = NULL, compare = c('b', 'a'), Y, alpha = 
 	
     return(rr1$new(estimate = int, estimator = ifelse(pf, 'PF', 'RR'), 
       y = as.data.frame(Y), rnd = rnd, alpha = alpha))
-    # out <- list(estimate = int,  estimator = ifelse(pf, 'PF', 'RR'), Y = Y, compare = compare, alpha = alpha, rnd=rnd)
-    # class(out) <- 'rr1'
-    # return(out)
+
 }
 
