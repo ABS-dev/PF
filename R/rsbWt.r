@@ -72,7 +72,7 @@ rsbWt <- function(fit = NULL,
 #' @export
 #' @references Rao JNK, Scott AJ, 1992. A simple method for the analysis of clustered binary data. \emph{Biometrics} 48:577-585.
 #' @author David Siev \email{david.siev@@aphis.usda.gov}
-#' @seealso \code{\link{rsbWt}}. See the package vignette for more examples.
+#' @seealso \code{\link{rsbWt}}. 
 #' @examples
 #' # Weil's rat data (Table 1 of Rao and Scott)
 #' rsb(rat$y, rat$n, id = rat$group)$d
