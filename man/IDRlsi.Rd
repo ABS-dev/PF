@@ -137,5 +137,5 @@ Royall R. \emph{Statistical Evidence: A Likelihood Paradigm}. Chapman & Hall, Bo
 \code{\link{IDRsc}}
 }
 \author{
-David Siev \email{david.siev@aphis.usda.gov}
+\link{PF-package}
 }

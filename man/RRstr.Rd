@@ -95,5 +95,5 @@ Gart JJ, 1985. Approximate tests and interval estimation of the common relative 
 \code{\link{rrstr}}
 }
 \author{
-David Siev \email{david.siev@aphis.usda.gov}
+\link{PF-package}
 }

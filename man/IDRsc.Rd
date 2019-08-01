@@ -102,5 +102,5 @@ signs with subscript dots.)
 \code{\link{IDRlsi}}
 }
 \author{
-David Siev \email{david.siev@aphis.usda.gov}
+\link{PF-package}
 }

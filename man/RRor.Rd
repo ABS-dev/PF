@@ -76,14 +76,12 @@ RRor(phiWt(bird.fit))
 # txcon  0.733 0.943 0.3121
 # txvac  0.367 0.752 0.0997
 
-# See \\href{https://www.aphis.usda.gov/animal_health/vet_biologics/publications/STATWI0007.pdf}{StatWI007} for more examples
-}
-\references{
-No references yet.
+
 }
 \seealso{
-\code{\link{rror}, \link{phiWt}, \link{tauWt}}.
+\code{\link{rror}, \link{phiWt}, \link{tauWt}}
+\href{https://www.aphis.usda.gov/animal_health/vet_biologics/publications/STATWI0007.pdf}{StatWI007} for more examples
 }
 \author{
-David Siev \email{david.siev@aphis.usda.gov}
+\link{PF-package}
 }

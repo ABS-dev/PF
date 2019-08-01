@@ -24,5 +24,5 @@ data class rrsc
 \code{\link{RRsc}}
 }
 \author{
-Marie Vendettuoli \email{marie.c.vendettuoli@aphis.usda.gov}
+\link{PF-package}
 }

@@ -47,5 +47,5 @@ Rao JNK, Scott AJ, 1992. A simple method for the analysis of clustered binary da
 \code{\link{rsbWt}}.
 }
 \author{
-David Siev \email{david.siev@aphis.usda.gov}
+\link{PF-package}
 }

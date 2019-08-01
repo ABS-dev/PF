@@ -86,5 +86,5 @@ Mantel N, Haenszel W, 1959.  Statistical aspects of the analysis of data from re
 \code{\link{rr1}}
 }
 \author{
-Christopher Tong \email{Christopher.H.Tong@aphis.usda.gov}
+\link{PF-package}
 }

@@ -24,5 +24,5 @@ Data class rr1
 \code{\link{IDRsc}, \link{RRotsst}, \link{RRtosst}}
 }
 \author{
-Marie Vendettuoli \email{marie.c.vendettuoli@aphis.usda.gov}
+\link{PF-package}
 }

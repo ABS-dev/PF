@@ -28,5 +28,5 @@ displays}
 \code{\link{RRstr}}
 }
 \author{
-Marie Vendettuoli \email{marie.c.vendettuoli@aphis.usda.gov}
+\link{PF-package}
 }

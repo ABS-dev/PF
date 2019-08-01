@@ -123,5 +123,5 @@ Royall R. \emph{Statistical Evidence: A Likelihood Paradigm}. Chapman & Hall, Bo
 \cr Ralston ML, Jennrich RI, 1978. DUD, A Derivative-Free Algorithm for Nonlinear Least Squares. \emph{Technometrics} 20:7-14.
 }
 \author{
-David Siev \email{david.siev@aphis.usda.gov}
+\link{PF-package}
 }

@@ -25,5 +25,5 @@ data class rrsi
 \code{\link{IDRlsi}, \link{RRlsi}}
 }
 \author{
-Marie Vendettuoli \email{marie.c.vendettuoli@aphis.usda.gov}
+\link{PF-package}
 }
