@@ -13,7 +13,7 @@ setClassUnion("listORchar", c("list", "character"))
 #' }
 #' @seealso \code{\link{rr1}, \link{rrsi}, \link{rrsc}, \link{rrstr}}
 #' @export
-#' @author Marie Vendettuoli \email{marie.c.vendettuoli@@aphis.usda.gov}
+#' @author \link{PF-package}
 pf <- setRefClass('pf', fields = list(estimator = 'character', rnd = 'numeric',
 	alpha = 'numeric'))
 
@@ -33,7 +33,7 @@ pf <- setRefClass('pf', fields = list(estimator = 'character', rnd = 'numeric',
 #' }
 #' @seealso \code{\link{IDRsc}, \link{RRotsst}, \link{RRtosst}}
 #' @exportClass rr1
-#' @author Marie Vendettuoli \email{marie.c.vendettuoli@@aphis.usda.gov}
+#' @author \link{PF-package}
 rr1 <- setRefClass('rr1', contains = 'pf', fields = list(estimate = 'numeric',
 	y = 'data.frame'))
 
@@ -55,7 +55,7 @@ rr1 <- setRefClass('rr1', contains = 'pf', fields = list(estimate = 'numeric',
 #' }
 #' @seealso \code{\link{RRor}}
 #' @export
-#' @author Marie Vendettuoli \email{marie.c.vendettuoli@@aphis.usda.gov}
+#' @author \link{PF-package}
 rror <- setRefClass('rror', contains = 'rr1', fields = list(norm = 'logical',
 	degf = 'numeric', mu = 'matrix'))
 
@@ -75,7 +75,7 @@ rror <- setRefClass('rror', contains = 'rr1', fields = list(norm = 'logical',
 #' }
 #' @seealso \code{\link{IDRlsi}, \link{RRlsi}}
 #' @export
-#' @author Marie Vendettuoli \email{marie.c.vendettuoli@@aphis.usda.gov}
+#' @author \link{PF-package}
 rrsi <- setRefClass('rrsi', contains = 'pf', fields = list(y = 'data.frame', k = 
 	'numeric', estimate = 'numeric'))
 
@@ -96,7 +96,7 @@ rrsi <- setRefClass('rrsi', contains = 'pf', fields = list(y = 'data.frame', k =
 #' }
 #' @seealso \code{\link{RRmpWald}}
 #' @export
-#' @author Marie Vendettuoli \email{marie.c.vendettuoli@@aphis.usda.gov}
+#' @author \link{PF-package}
 rrmp <- setRefClass('rrmp', contains = 'rr1', fields = list(compare = 'character',
 multvec = 'data.frame'))
 
@@ -113,7 +113,7 @@ multvec = 'data.frame'))
 #' }
 #' @seealso \code{\link{RRsc}}
 #' @export
-#' @author Marie Vendettuoli \email{marie.c.vendettuoli@@aphis.usda.gov}
+#' @author \link{PF-package}
 rrsc <- setRefClass('rrsc', contains = 'pf', fields = list(estimate = 'matrix',
 	y = 'data.frame'))
 	
@@ -136,7 +136,7 @@ rrsc <- setRefClass('rrsc', contains = 'pf', fields = list(estimate = 'matrix',
 #' }
 #' @seealso \code{\link{RRstr}}
 #' @export
-#' @author Marie Vendettuoli \email{marie.c.vendettuoli@@aphis.usda.gov}
+#' @author \link{PF-package}
 rrstr <- setRefClass('rrstr', contains = 'pf', fields = list(estimate = 'matrix',
   hom = 'listORchar', y = 'data.frame', compare = 'character'))
 	

@@ -26,7 +26,7 @@
 #' @references Gart JJ, 1985. Approximate tests and interval estimation of the common relative risk in the combination of \eqn{2 x 2} tables. \emph{Biometrika} 72:673-677.
 #' \cr Gart JJ, Nam J, 1988. Approximate interval estimation of the ratio of binomial parameters: a review and corrections for skewness. \emph{Biometrics} 44:323-338.
 #' \cr Ralston ML, Jennrich RI, 1978. DUD, A Derivative-Free Algorithm for Nonlinear Least Squares. \emph{Technometrics} 20:7-14. 
-#' @author David Siev \email{david.siev@@aphis.usda.gov}
+#' @author \link{PF-package}
 #' @note Call to this function may be one of two formats: (1) specify \code{data} and \code{formula} or (2) as a matrix \code{Y} \cr \cr
 #' \code{RRstr(formula, data, compare = c('b','a'), pf = TRUE, alpha = 0.05, trace.it = FALSE,} \cr
 #' {iter.max = 24, converge = 1e-6, rnd = 3, multiplier = 0.7, divider = 1.1)} \cr \cr

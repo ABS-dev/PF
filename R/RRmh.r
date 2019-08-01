@@ -33,7 +33,7 @@
 #' \cr \cr Greenland S, Robins JM, 1985.  Estimation of a common effect parameter from sparse follow-up data.  \emph{Biometrics}  41:  55-68.  Errata, 45:  1323-1324.
 #' \cr \cr Agresti A, Hartzel J, 2000.  Strategies for comparing treatments on a binary response with multi-centre data.  \emph{Statistics in Medicine}  19:  1115-1139.
 #' \cr Lachin JM, 2000.  \emph{Biostatistical Methods:  The Assessment of Relative Risks} (Wiley, New York), Sec. 4.3.1.
-#' @author Christopher Tong \email{Christopher.H.Tong@@aphis.usda.gov}
+#' @author \link{PF-package}
 #' @seealso \code{\link{rr1}}
 #' @examples
 #' 

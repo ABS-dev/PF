@@ -32,7 +32,7 @@
 #' @references Koopman PAR, 1984. Confidence intervals for the ratio of two binomial proportions. \emph{Biometrics} 40:513-517.
 #' \cr Agresti A, Min Y, 2001.  On small-sample confidence intervals for parameters in discrete distribution. \emph{Biometrics} 57: 963-971.
 #' \cr Berger RL, Boos DD, 1994. P values maximized over a confidence set for the nuisance parameter. \emph{Journal of the American Statistical Association} 89:214-220.
-#' @author David Siev \email{david.siev@@aphis.usda.gov}
+#' @author \link{PF-package}
 #' @seealso \code{\link{RRtosst}, \link{rr1}}.
 #'
 #' @examples

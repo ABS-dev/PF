@@ -38,7 +38,7 @@
 #' @export
 #' @references Royall R. \emph{Statistical Evidence: A Likelihood Paradigm}. Chapman & Hall, Boca Raton, 1997.  Section 7.6
 #' \cr Ralston ML, Jennrich RI, 1978. DUD, A Derivative-Free Algorithm for Nonlinear Least Squares. \emph{Technometrics} 20:7-14. 
-#' @author David Siev \email{david.siev@@aphis.usda.gov}
+#' @author \link{PF-package}
 #' @examples 
 #' # All examples represent the same observation, with data entry by vector,
 #' # matrix, and formula+data notation.
