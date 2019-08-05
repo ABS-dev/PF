@@ -11,9 +11,8 @@
 #'	\item{d}{vector of \eqn{{d}_{i}}{d_i} estimates}
 #' @export
 #' @references Rao JNK, Scott AJ, 1992. A simple method for the analysis of clustered binary data. \emph{Biometrics} 48:577-585.
-#' @author David Siev \email{david.siev@@aphis.usda.gov}
-#' @seealso \code{\link{RRor}, \link{rsb}}. See the package vignette for more examples.
-#'
+#' @author \link{PF-package}
+#' @seealso \code{\link{RRor}, \link{rsb}}. 
 #' @examples
 #' birdm.fit <- glm(cbind(y,n-y)~tx-1,binomial,birdm)
 #' RRor(rsbWt(birdm.fit))
@@ -28,7 +27,6 @@
 #' # txcon  0.768 0.968 0.2659
 #' # txvac  0.400 0.848 0.0737
 #' #
-#' # See the package vignette for more examples
 ##-------------------------------
 ## rsbWt uses rsb to refit model
 ##-------------------------------
@@ -71,7 +69,7 @@ rsbWt <- function(fit = NULL,
 #'	\item{d}{vector of \eqn{{d}_{i}}{d_i} estimates}
 #' @export
 #' @references Rao JNK, Scott AJ, 1992. A simple method for the analysis of clustered binary data. \emph{Biometrics} 48:577-585.
-#' @author David Siev \email{david.siev@@aphis.usda.gov}
+#' @author \link{PF-package}
 #' @seealso \code{\link{rsbWt}}. 
 #' @examples
 #' # Weil's rat data (Table 1 of Rao and Scott)

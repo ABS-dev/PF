@@ -49,15 +49,14 @@ RRor(tauWt(birdm.fit))
 # txcon  0.737 0.944 0.320
 # txvac  0.376 0.758 0.104
 #
-# See the package vignette for more examples
 }
 \references{
 Williams DA, 1982. Extra-binomial variation in logistic linear models. \emph{Applied Statistics} 31:144-148.
 \cr Wedderburn RWM, 1974. Quasi-likelihood functions, generalized linear models, and the Gauss-Newton method. \emph{Biometrika} 61:439-447.
 }
 \seealso{
-\code{\link{phiWt}}, \code{\link{RRor}}, see package vignette for more examples
+\code{\link{phiWt}}, \code{\link{RRor}}.
 }
 \author{
-David Siev \email{david.siev@aphis.usda.gov}
+\link{PF-package}
 }

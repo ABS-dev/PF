@@ -44,8 +44,8 @@ rsb(data = rat, formula = cbind(y, n) ~ group)$d
 Rao JNK, Scott AJ, 1992. A simple method for the analysis of clustered binary data. \emph{Biometrics} 48:577-585.
 }
 \seealso{
-\code{\link{rsbWt}}. See the package vignette for more examples.
+\code{\link{rsbWt}}.
 }
 \author{
-David Siev \email{david.siev@aphis.usda.gov}
+\link{PF-package}
 }

@@ -50,7 +50,7 @@ Estimates confidence intervals for the risk ratio or prevented fraction from clu
 Uses the DUD algorithm to estimate confidence intervals by the method of Gart.
 }
 \note{
-See vignette \emph{Examples for Stratified Designs} for more examples (enter \code{?PF}).
+Vignette \emph{Examples for Stratified Designs} forthcoming with more examples.
 
 Call to this function may be one of two formats: (1) specify \code{data} and \code{formula} or (2) as a matrix \code{Y} \cr \cr
 \code{RRstr(formula, data, compare = c('b','a'), pf = TRUE, alpha = 0.05, trace.it = FALSE,} \cr
@@ -95,5 +95,5 @@ Gart JJ, 1985. Approximate tests and interval estimation of the common relative 
 \code{\link{rrstr}}
 }
 \author{
-David Siev \email{david.siev@aphis.usda.gov}
+\link{PF-package}
 }

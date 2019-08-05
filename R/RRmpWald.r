@@ -31,7 +31,7 @@
 #'  \item{rnd}{how many digits to round the display}
 #'  \item{multvec}{data frame showing the multinomial representation of the data}
 #' @export
-#' @author David Siev \email{david.siev@@aphis.usda.gov}
+#' @author \link{PF-package}
 #' @note Experimental functions for estimating profile likelihood intervals are 
 #' in the CVBmisc package. \cr \cr
 #' Call to this function may be one of two formats: (1) specify \code{data} and 

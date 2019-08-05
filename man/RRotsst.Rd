@@ -108,5 +108,5 @@ Koopman PAR, 1984. Confidence intervals for the ratio of two binomial proportion
 \code{\link{RRtosst}, \link{rr1}}.
 }
 \author{
-David Siev \email{david.siev@aphis.usda.gov}
+\link{PF-package}
 }

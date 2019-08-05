@@ -32,7 +32,7 @@
 #' \cr Koopman PAR, 1984. Confidence intervals for the ratio of two binomial proportions. \emph{Biometrics} 40:513-517.
 #' \cr Miettinen O, Nurminen M, 1985. Comparative analysis of two rates. \emph{Statistics in Medicine} 4:213-226.
 #' \cr Ralston ML, Jennrich RI, 1978. DUD, A Derivative-Free Algorithm for Nonlinear Least Squares. \emph{Technometrics} 20:7-14.
-#' @author David Siev \email{david.siev@@aphis.usda.gov}
+#' @author \link{PF-package}
 #' @seealso \code{\link{rrsc}}
 #'
 #' @examples

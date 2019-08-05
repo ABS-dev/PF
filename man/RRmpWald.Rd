@@ -98,5 +98,5 @@ RRmpWald(x = as.vector(thistable))
 # 0.550 0.183 0.752 
 }
 \author{
-David Siev \email{david.siev@aphis.usda.gov}
+\link{PF-package}
 }

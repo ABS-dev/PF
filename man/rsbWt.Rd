@@ -40,14 +40,13 @@ RRor(rsbWt(birdm.fit))
 # txcon  0.768 0.968 0.2659
 # txvac  0.400 0.848 0.0737
 #
-# See the package vignette for more examples
 }
 \references{
 Rao JNK, Scott AJ, 1992. A simple method for the analysis of clustered binary data. \emph{Biometrics} 48:577-585.
 }
 \seealso{
-\code{\link{RRor}, \link{rsb}}. See the package vignette for more examples.
+\code{\link{RRor}, \link{rsb}}.
 }
 \author{
-David Siev \email{david.siev@aphis.usda.gov}
+\link{PF-package}
 }

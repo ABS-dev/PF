@@ -112,5 +112,5 @@ Gart JJ, Nam J, 1988. Approximate interval estimation of the ratio of binomial p
 \code{\link{rrsc}}
 }
 \author{
-David Siev \email{david.siev@aphis.usda.gov}
+\link{PF-package}
 }

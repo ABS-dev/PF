@@ -32,7 +32,6 @@ An object of class \code{\link{rr1}}  with the following fields.
  \item{estimate}{vector of point and interval estimates:  point estimate, lower confidence limit, upper confidence limit}
  \item{estimator}{either \code{"PF"} or \code{"RR"}}
  \item{y}{data.frame of restructured input}
- \item{compare}{groups compared}
  \item{rnd}{how many digits to round the display}
  \item{alpha}{complement of confidence level}
 }
@@ -46,7 +45,7 @@ favor this procedure for small, sparse data sets, but they warn that it is less 
 }
 \note{
 If either all y1's or all y2's are zero, a division by zero may occur, and a NaN returned for some values.
-\cr \cr See vignette \emph{Examples for Stratified Designs} for more examples (enter \code{?PF}).
+\cr \cr Vignette \emph{Examples for Stratified Designs} forthcoming with more examples.
 \cr
 Call to this function may be one of two formats: (1) specify \code{data} and \code{formula} or (2) as a matrix \code{Y} \cr \cr
 \code{RRmh(formula, data, compare = c('b','a'), pf = TRUE, alpha = 0.05, rnd = 3)} \cr \cr
@@ -87,5 +86,5 @@ Mantel N, Haenszel W, 1959.  Statistical aspects of the analysis of data from re
 \code{\link{rr1}}
 }
 \author{
-Christopher Tong \email{Christopher.H.Tong@aphis.usda.gov}
+\link{PF-package}
 }

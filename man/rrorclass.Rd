@@ -27,5 +27,5 @@ data class rror
 \code{\link{RRor}}
 }
 \author{
-Marie Vendettuoli \email{marie.c.vendettuoli@aphis.usda.gov}
+\link{PF-package}
 }
