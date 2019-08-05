@@ -22,13 +22,12 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: CVB Statistics \email{CVB.Data.Help@usda.gov} (starting 2014)
+\strong{Maintainer}: CVB Statistics \email{CVB.Data.Help@usda.gov}
 
 Authors:
 \itemize{
-  \item David Siev (1990-2019) [former owner]
-  \item Marie Vendettuoli (starting 2010)
-  \item Christopher Tong (starting 2010)
+  \item David Siev (until 2019) [former owner]
+  \item CVB Statistics \email{CVB.Data.Help@usda.gov} (starting 2010)
 }
 
 }
