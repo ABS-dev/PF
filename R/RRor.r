@@ -72,39 +72,39 @@
 ##-----------------------------------------------
 
 RRor <- function(fit=NULL, beta.hat=NULL, var.beta.hat=NULL, degf=NULL, which = c(1, 2), pf = TRUE, norm = FALSE, alpha = 0.05, rnd=3){
-	if(!is.null(fit)){
-		beta.hat <- coef(fit)
-		var.beta.hat <- summary(fit)$cov.sc
-		if(is.null(degf)) degf <- summary(fit)$df.resid
-	}
-	q <- c(0.5, alpha/2, 1 - alpha/2)
-	B <- beta.hat[which]
-	b1 <- B[1]
-	b2 <- B[2]
-	m1 <- 1/(1 + exp( - b1))
-	m2 <- 1/(1 + exp( - b2))
-	log.r <- log(1 + exp( - b1)) - log(1 + exp( - b2))
-	grad.log.r <- c( - exp( - b1) * m1, exp( - b2) * m2)
-	var.b <- var.beta.hat[which, which]
-	var.log.r <- t(grad.log.r) %*% var.b %*% grad.log.r
-	if(norm) {
-		int <- exp(log.r + qnorm(q) * sqrt(var.log.r))
-		mu <- 1/(1 + exp( - B + matrix(qnorm(q), 2, 3, byrow = TRUE) * sqrt(diag(var.b))))
-	}
-	else {
-		int <- exp(log.r + qt(q, degf) * sqrt(var.log.r))
-		mu <- 1/(1 + exp( - B + matrix(qt(q, degf), 2, 3, byrow = TRUE) * sqrt(diag(var.b))))
-	}
-	dimnames(mu) <- list(names(coef(fit)), c('mu.hat','LL','UL'))
-	if(!pf)
-        names(int) <- c("RR", "LL", "UL")
-    else{
-        int <- 1 - int[c(1,3,2)]
-        names(int) <- c("PF", "LL", "UL")
-         }
-	return(rror$new(estimate = int, estimator = ifelse(pf, 'PF', 'RR'), mu = mu, rnd = rnd, alpha = alpha,
-		norm = norm, degf = degf))
-    # out <- list(estimate = int, estimator = ifelse(pf, 'PF', 'RR'), mu = mu, rnd = rnd, alpha = alpha, norm = norm, degf = degf)
-    # class(out) <- 'rror'
-	# return(out)
+  if(!is.null(fit)){
+    beta.hat <- coef(fit)
+    var.beta.hat <- summary(fit)$cov.sc
+    if(is.null(degf)) degf <- summary(fit)$df.resid
+  }
+  q <- c(0.5, alpha/2, 1 - alpha/2)
+  B <- beta.hat[which]
+  b1 <- B[1]
+  b2 <- B[2]
+  m1 <- 1/(1 + exp(-b1))
+  m2 <- 1/(1 + exp(-b2))
+  log.r <- log(1 + exp(-b1)) - log(1 + exp(-b2))
+  grad.log.r <- c(-exp(-b1) * m1, exp(-b2) * m2)
+  var.b <- var.beta.hat[which, which]
+  var.log.r <- t(grad.log.r) %*% var.b %*% grad.log.r
+  if(norm) {
+    int <- exp(log.r + qnorm(q) * sqrt(var.log.r))
+    mu <- 1/(1 + exp(-B + matrix(qnorm(q), 2, 3, byrow = TRUE) * sqrt(diag(var.b))))
+  }
+  else {
+    int <- exp(log.r + qt(q, degf) * sqrt(var.log.r))
+    mu <- 1/(1 + exp(-B + matrix(qt(q, degf), 2, 3, byrow = TRUE) * sqrt(diag(var.b))))
+  }
+  dimnames(mu) <- list(names(coef(fit)), c('mu.hat','LL','UL'))
+  if(!pf)
+    names(int) <- c("RR", "LL", "UL")
+  else{
+    int <- 1 - int[c(1,3,2)]
+    names(int) <- c("PF", "LL", "UL")
+  }
+  return(rror$new(estimate = int, estimator = ifelse(pf, 'PF', 'RR'), mu = mu, rnd = rnd, alpha = alpha,
+                  norm = norm, degf = degf))
+  # out <- list(estimate = int, estimator = ifelse(pf, 'PF', 'RR'), mu = mu, rnd = rnd, alpha = alpha, norm = norm, degf = degf)
+  # class(out) <- 'rror'
+  # return(out)
 }

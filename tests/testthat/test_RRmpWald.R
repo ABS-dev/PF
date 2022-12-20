@@ -14,7 +14,7 @@ test_that("examples work", {
   expect_identical(ex1$estimator, "PF")
   expect_identical(ex1$compare, c('vac', 'con'))
   expect_identical(ex1$alpha, 0.05)
-  expect_equal(ex1$multvec, thismultvec )
+  expect_equal(ex1$multvec, thismultvec)
 
   thistable <- New %>%
     tidyr::spread(tx, pos) %>%

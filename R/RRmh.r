@@ -116,7 +116,7 @@ RRmh <- function(formula = NULL, data = NULL, compare = c('vac', 'con'), Y, alph
   rr.est <- numer / denom
 
   # variance of log RR (Greenland & Robins, eq. 13)
-  numer <- ((n1vec * n2vec) * (x1vec + x2vec) - (x1vec * x2vec) * nk )/nk^2
+  numer <- ((n1vec * n2vec) * (x1vec + x2vec) - (x1vec * x2vec) * nk) / nk^2
   rk <- x1vec * n2vec / nk
   sk <- x2vec * n1vec / nk
   denom <- sum(rk) * sum(sk)
