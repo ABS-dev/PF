@@ -6,11 +6,7 @@
 \alias{PF-package}
 \title{PF: Prevented fraction}
 \description{
-Functions related to PF (prevented fraction). Calculate incidence
-    density ratio, confidence interval, and Rao-Scott weights of PF by multiple
-    methods. See http://goo.gl/eJ6Rxi for definition of PF. 
-    No endorsement, claim, or warranty is implied for this package. It is made 
-    available for investigational or pedagogical use only.
+Functions related to PF (prevented fraction). Calculate incidence density ratio, confidence interval, and Rao-Scott weights of PF by multiple methods. See http://goo.gl/eJ6Rxi for definition of PF. No endorsement, claim, or warranty is implied for this package. It is made available for investigational or pedagogical use only.
 }
 \seealso{
 Useful links:

@@ -1,37 +1,45 @@
 #' @title RR exact CI, OTSST method.
-#' @description Estimates confidence interval for the risk ratio or prevented fraction, exact method based on the
-#' score statistic (inverts one two-sided test).
-#' @details Estimates confidence intervals based on the score statistic that are 'exact' in the sense of accounting for discreteness.
-#' The score statistic is used to select tail area tables, and the binomial probability is estimated over the tail area
-#' by taking the maximum over the nuisance parameter. Algorithm is a simple step search.
-#' \cr \cr The data may also be a matrix. In that case \code{y} would be entered as \cr
-#' \code{matrix(c(y1, n1 - y1, y2, n2 - y2), 2, 2, byrow = TRUE)}.
-#' @param y Data vector c(y1, n1, y2, n2) where y are the positives,
-#' n are the total, and group 1 is compared to group 2 (control or reference).
-#' @param compare Text vector stating the factor levels: compare[1] is the 
-#' vaccinate group to which compare[2] (control or reference) is compared.
+#' @description Estimates confidence interval for the risk ratio or prevented
+#'   fraction, exact method based on the score statistic (inverts one two-sided
+#'   test).
+#' @details Estimates confidence intervals based on the score statistic that are
+#'   'exact' in the sense of accounting for discreteness. The score statistic is
+#'   used to select tail area tables, and the binomial probability is estimated
+#'   over the tail area by taking the maximum over the nuisance parameter.
+#'   Algorithm is a simple step search. \cr \cr The data may also be a matrix.
+#'   In that case \code{y} would be entered as \cr \code{matrix(c(y1, n1 - y1,
+#'   y2, n2 - y2), 2, 2, byrow = TRUE)}.
+#' @param y Data vector c(y1, n1, y2, n2) where y are the positives, n are the
+#'   total, and group 1 is compared to group 2 (control or reference).
+#' @param compare Text vector stating the factor levels: compare[1] is the
+#'   vaccinate group to which compare[2] (control or reference) is compared.
 #' @param data data.frame containing variables of the formula.
-#' @param formula  Formula of the form cbind(y, n) ~ x, where y is the number 
-#' positive, n is the group size, x is a factor with two levels of treatment.
+#' @param formula  Formula of the form cbind(y, n) ~ x, where y is the number
+#'   positive, n is the group size, x is a factor with two levels of treatment.
 #' @param alpha Complement of the confidence level.
 #' @param pf Estimate \emph{RR} or its complement \emph{PF}?
 #' @param trace.it Verbose tracking of the iterations?
 #' @param iter.max Maximum number of iterations
 #' @param converge Convergence criterion
-#' @param rnd Number of digits for rounding. Affects display only, not estimates.
+#' @param rnd Number of digits for rounding. Affects display only, not
+#'   estimates.
 #' @param stepstart starting interval for step search
-#' @param nuisance.points number of points over which to evaluate nuisance parameter
-#' @param gamma parameter for Berger-Boos correction (restricts range of nuisance parameter evaluation)
+#' @param nuisance.points number of points over which to evaluate nuisance
+#'   parameter
+#' @param gamma parameter for Berger-Boos correction (restricts range of
+#'   nuisance parameter evaluation)
 #' @return An object of class \code{\link{rr1}} with the following fields: \cr
-#'  \item{estimate}{vector with point and interval estimate}
-#'  \item{estimator}{either \code{"PF"} or \code{"RR"}}
-#'  \item{y}{data.frame with "y1", "n1", "y2", "n2" values. }
-#'  \item{rnd}{how many digits to round the display}
-#'  \item{alpha}{complement of confidence level}
+#'   \item{estimate}{vector with point and interval estimate}
+#'   \item{estimator}{either \code{"PF"} or \code{"RR"}} \item{y}{data.frame
+#'   with "y1", "n1", "y2", "n2" values. } \item{rnd}{how many digits to round
+#'   the display} \item{alpha}{complement of confidence level}
 #' @export
-#' @references Koopman PAR, 1984. Confidence intervals for the ratio of two binomial proportions. \emph{Biometrics} 40:513-517.
-#' \cr Agresti A, Min Y, 2001.  On small-sample confidence intervals for parameters in discrete distribution. \emph{Biometrics} 57: 963-971.
-#' \cr Berger RL, Boos DD, 1994. P values maximized over a confidence set for the nuisance parameter. \emph{Journal of the American Statistical Association} 89:214-220.
+#' @references Koopman PAR, 1984. Confidence intervals for the ratio of two
+#'   binomial proportions. \emph{Biometrics} 40:513-517. \cr Agresti A, Min Y,
+#'   2001.  On small-sample confidence intervals for parameters in discrete
+#'   distribution. \emph{Biometrics} 57: 963-971. \cr Berger RL, Boos DD, 1994.
+#'   P values maximized over a confidence set for the nuisance parameter.
+#'   \emph{Journal of the American Statistical Association} 89:214-220.
 #' @author \link{PF-package}
 #' @seealso \code{\link{RRtosst}, \link{rr1}}.
 #'
@@ -56,25 +64,26 @@
 #'
 #' #    PF     LL     UL
 #' # 0.6111 0.0148 0.8519
-#' 
+#'
 #' require(dplyr)
 #' data1 <- data.frame(group = rep(c("treated", "control"), each = 2),
 #'   y = c(1, 3, 7, 5),
-#'   n = c(12, 12, 14, 14), 
+#'   n = c(12, 12, 14, 14),
 #'   cage = rep(paste('cage', 1:2), 2))
-#' 
+#'
 #' data2 <- data1 %>%
 #'   group_by(group) %>%
 #'   summarize(sum_y = sum(y),
 #'     sum_n = sum(n))
-#' RRotsst(data = data2, formula =  cbind(sum_y, sum_n) ~ group, 
+#' RRotsst(data = data2, formula =  cbind(sum_y, sum_n) ~ group,
 #'    compare = c("treated", "control"))
-#'    
-#' # PF 
+#'
+#' # PF
 #' # 95% interval estimates
-#' # 
-#' # PF     LL     UL 
-#' # 0.6111 0.0148 0.8519 
+#' #
+#' # PF     LL     UL
+#' # 0.6111 0.0148 0.8519
+
 ##-----------------------------------------------
 ## RRotsst
 ##-----------------------------------------------
@@ -97,7 +106,7 @@ RRotsst <-
     # Score statistic used to select tail area tables
     # Binomial probability estimated over the tail area
     #  by taking the maximum over the nuisance parameter
-    
+
     # Written 9/17/07 by Siev
     # Functions called by rrcix():
     #		.rr.score.asymp - gets asymptotic interval for starting value of upper bound
@@ -105,60 +114,60 @@ RRotsst <-
     #				(if want to eliminate calling this function would have to search down from r.max)
     #		binci - gets Clopper-Pearson intervals for Berger-Boos method
     #			included here now, but may be moved to another package
-    
+
     ###########################################
     ## internal helper function
-    ###########################################   
+    ###########################################
     binci <- function(y,
       n,
       alpha = .05,
-      show.warnings = F) {
+      show.warnings = FALSE) {
       w <- 1 * show.warnings - 1
       options(warn = w)
-      
+
       p <- y / n
       cpl <- ifelse(y > 0, qbeta(alpha / 2, y, n - y + 1), 0)
       cpu <- ifelse(y < n, qbeta(1 - alpha / 2, y + 1, n - y), 1)
       out <- cbind(y, n, p, cpl, cpu)
       dimnames(out) <-
         list(names(y), c('y', 'n', 'p.hat', 'cp low', 'cp high'))
-      
+
       options(warn = 0)
       return(out)
     }
     ## END internal helpers
     ####
-    
+
     ###########################################
     ## Error handling for input options
     ## - y can be matrix or vector (expects formula and data to be NULL)
     ## - if formula is specified, data is required (expects y is null)
     ###########################################
     .check_3input_cases_freq(data = data, formula = formula, y = y)
-    
+
     ## END error handling
     ####
-    
+
     ###########################################
     ## Data reshaping
     ## - y can be matrix or vector (expects formula and data to be NULL)
     ## - if formula is specified, data is required (expects y is null)
     ###########################################
     if (is.null(y)) {
-      
+
       #extract from data+formula to vector c(y1, n1, y2, n2)
       #y1n1 from vaccinate group
       #y2n2 from control group
       y <- .extract_freqvec(formula, data, compare)
-      
+
     } else if (is.matrix(y)) {
-    # Data entry y=c(x2,n2,x1,n1) Vaccinates First (order same but 
+    # Data entry y=c(x2,n2,x1,n1) Vaccinates First (order same but
     # subscripts reversed)
     # data vector
       y <- c(t(cbind(y[, 1], apply(y, 1, sum))))
     # NOTE: the subscripts are reversed compared to the other functions
     }
-    
+
     x2 <- y[1] ## vacc
     n2 <- y[2] ## vacc
     x1 <- y[3] ## control
@@ -166,13 +175,13 @@ RRotsst <-
     p1 <- x1 / n1
     p2 <- x2 / n2
     rho.mle <- p2 / p1
-    
+
     # itemize all possible tables in omega (17.26)
     Y <- data.frame(y1 = rep(0:n1, (n2 + 1)), y2 = rep(0:n2, rep(n1 + 1, n2 +
         1)))
     observed <- (1:nrow(Y))[Y[, 1] == x1 & Y[, 2] == x2]
     Y$C <- choose(n1, Y$y1) * choose(n2, Y$y2)
-    
+
     # score statistic - with pi.tilde by quadratic formula
     scst <- function(rho, y1, n1, y2, n2) {
       pih1 <- y1 / n1  # unrestricted MLE of current data
@@ -193,8 +202,8 @@ RRotsst <-
       }
       return(sc)
     }
-    
-    
+
+
     # get Clopper-Pearson intervals for Berger-Boos method
     cp <- binci(c(x1, x2), c(n1, n2), alpha = gamma)[, c('cp low', 'cp high')]
     L1 <- cp[1, 1]
@@ -203,7 +212,7 @@ RRotsst <-
     U2 <- cp[2, 2]
     r.min <- L2 / U1
     r.max <- U2 / L1
-    
+
     if (rho.mle == 0)
       low <- 0
     else{
@@ -257,14 +266,14 @@ RRotsst <-
         }
       } # end repeat
     } # end else
-    
+
     # search for upper endpoint upward from just below asymptotic
     # rather than downward from r.max
     # get asymptotic interval for starting
     ci.asymp <-
       .rr.score.asymp(c(x2, n2, x1, n1)) # koopman version (slightly narrower interval than mn)
     high <- ci.asymp[3] * .9
-    
+
     iter <- 0
     step <- stepstart
     repeat {
@@ -312,7 +321,7 @@ RRotsst <-
         high <- high - step * 2
       }
     } # end repeat
-    
+
     int <- c(rho.hat = rho.mle,
       low = low,
       high = high)

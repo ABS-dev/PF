@@ -4,8 +4,15 @@
 \alias{IDRsc}
 \title{IDR confidence interval.}
 \usage{
-IDRsc(y = NULL, data = NULL, formula = NULL, compare = c("con",
-  "vac"), alpha = 0.05, pf = TRUE, rnd = 3)
+IDRsc(
+  y = NULL,
+  data = NULL,
+  formula = NULL,
+  compare = c("con", "vac"),
+  alpha = 0.05,
+  pf = TRUE,
+  rnd = 3
+)
 }
 \arguments{
 \item{y}{Data vector c(y1, n1, y2, n2) where y are the positives, 

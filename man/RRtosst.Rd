@@ -4,10 +4,21 @@
 \alias{RRtosst}
 \title{RR exact CI, TOSST method.}
 \usage{
-RRtosst(y = NULL, formula = NULL, data = NULL, compare = c("vac",
-  "con"), alpha = 0.05, pf = TRUE, stepstart = 0.1, iter.max = 36,
-  converge = 1e-06, rnd = 3, trace.it = FALSE,
-  nuisance.points = 120, gamma = 1e-06)
+RRtosst(
+  y = NULL,
+  formula = NULL,
+  data = NULL,
+  compare = c("vac", "con"),
+  alpha = 0.05,
+  pf = TRUE,
+  stepstart = 0.1,
+  iter.max = 36,
+  converge = 1e-06,
+  rnd = 3,
+  trace.it = FALSE,
+  nuisance.points = 120,
+  gamma = 1e-06
+)
 }
 \arguments{
 \item{y}{Data vector c(y1, n1, y2, n2) where y are the positives,n are the 

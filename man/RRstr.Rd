@@ -4,9 +4,20 @@
 \alias{RRstr}
 \title{Gart-Nam method, CI for common RR over strata or clusters.}
 \usage{
-RRstr(formula = NULL, data = NULL, compare = c("vac", "con"), Y,
-  alpha = 0.05, pf = TRUE, trace.it = FALSE, iter.max = 24,
-  converge = 1e-06, rnd = 3, multiplier = 0.7, divider = 1.1)
+RRstr(
+  formula = NULL,
+  data = NULL,
+  compare = c("vac", "con"),
+  Y,
+  alpha = 0.05,
+  pf = TRUE,
+  trace.it = FALSE,
+  iter.max = 24,
+  converge = 1e-06,
+  rnd = 3,
+  multiplier = 0.7,
+  divider = 1.1
+)
 }
 \arguments{
 \item{formula}{Formula of the form \code{cbind(y, n) ~ x + cluster(w)}, where y is the number positive, n is the group size, x is a factor with two levels of treatment, and w is a factor indicating the clusters.}

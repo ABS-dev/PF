@@ -4,9 +4,18 @@
 \alias{RRsc}
 \title{RR score based asymptotic CI.}
 \usage{
-RRsc(y = NULL, data = NULL, formula = NULL, compare = c("vac",
-  "con"), alpha = 0.05, pf = TRUE, trace.it = FALSE, iter.max = 18,
-  converge = 1e-06, rnd = 3)
+RRsc(
+  y = NULL,
+  data = NULL,
+  formula = NULL,
+  compare = c("vac", "con"),
+  alpha = 0.05,
+  pf = TRUE,
+  trace.it = FALSE,
+  iter.max = 18,
+  converge = 1e-06,
+  rnd = 3
+)
 }
 \arguments{
 \item{y}{Data vector c(y1, n1, y2, n2) where y are the positives,  n are the 

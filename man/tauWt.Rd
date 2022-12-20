@@ -4,8 +4,14 @@
 \alias{tauWt}
 \title{Binomial dispersion: intra-cluster correlation parameter.}
 \usage{
-tauWt(fit, subset.factor = NULL, fit.only = TRUE, iter.max = 12,
-  converge = 1e-06, trace.it = FALSE)
+tauWt(
+  fit,
+  subset.factor = NULL,
+  fit.only = TRUE,
+  iter.max = 12,
+  converge = 1e-06,
+  trace.it = FALSE
+)
 }
 \arguments{
 \item{fit}{A \code{\link{glm}} object.}

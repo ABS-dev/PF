@@ -4,8 +4,15 @@
 \alias{RRmh}
 \title{Mantel-Haenszel method, CI for common RR over strata or clusters with sparse data.}
 \usage{
-RRmh(formula = NULL, data = NULL, compare = c("vac", "con"), Y,
-  alpha = 0.05, pf = TRUE, rnd = 3)
+RRmh(
+  formula = NULL,
+  data = NULL,
+  compare = c("vac", "con"),
+  Y,
+  alpha = 0.05,
+  pf = TRUE,
+  rnd = 3
+)
 }
 \arguments{
 \item{formula}{Formula of the form \code{cbind(y, n) ~ x + cluster(w)}, where \code{y} is the number positive, \code{n} is the group 

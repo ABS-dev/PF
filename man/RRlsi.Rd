@@ -4,10 +4,22 @@
 \alias{RRlsi}
 \title{RR likelihood support interval.}
 \usage{
-RRlsi(y = NULL, formula = NULL, data = NULL, compare = c("vac",
-  "con"), alpha = 0.05, k = 8, use.alpha = FALSE, pf = TRUE,
-  iter.max = 50, converge = 1e-06, rnd = 3, start = NULL,
-  track = FALSE, full.track = FALSE)
+RRlsi(
+  y = NULL,
+  formula = NULL,
+  data = NULL,
+  compare = c("vac", "con"),
+  alpha = 0.05,
+  k = 8,
+  use.alpha = FALSE,
+  pf = TRUE,
+  iter.max = 50,
+  converge = 1e-06,
+  rnd = 3,
+  start = NULL,
+  track = FALSE,
+  full.track = FALSE
+)
 }
 \arguments{
 \item{y}{Data vector c(y1, n1, y2, n2) where y are the positives, n are the 

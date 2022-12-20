@@ -3,9 +3,9 @@
 
 
 
-### this function is used in RRstr and RRmh 
+### this function is used in RRstr and RRmh
 # @title Convert data.frame and formula to a matrix
-# @description This function converts a subset of columns in \emph{data} as 
+# @description This function converts a subset of columns in \emph{data} as
 # specified by \emph{formula} into a matrix
 # @param formula the formula to use. of format cbind(y, n) ~ tx + cluster(clus)
 # @param compare what to compare (length == 2)
@@ -27,7 +27,7 @@
 	} else if(length(compare) < 2){
 		stop('matricize: argument compare must have at least two elements')
 	}
-	
+
 	# 1/18/2012 - added error checking for formula argument. mcv
 	# goal: ensure that formula is of meaningful format. if formula is incorrect,
 	#      the accessors to A will not work. A better solution would be to access
@@ -38,12 +38,12 @@
 		if(is.na(pmatch('cbind', strsplit(as.character(formula), '~')[[2]]))){
 			stop('matricize: left side of formula argument must be of format cbind(y, n)')
 		}
-		
-		if(length(strsplit(strsplit(as.character(formula), '~')[[3]], '+', fixed = T)[[1]]) != 2){
+
+		if(length(strsplit(strsplit(as.character(formula), '~')[[3]], '+', fixed = TRUE)[[1]]) != 2){
 			stop('matricize: right side of formula argument must be of format tx + cluster(clus)')
 		}
 	}
-	
+
   cluster <- function(x){return(x)}
 	environment(cluster) <- parent.env(environment())
 
@@ -53,13 +53,13 @@
 
 	A <- data.frame(A[, 1], A[, 2:3]) # for easier subscripting
   A <- A[order(A[, 4], A[, 3]), ]
-  
+
   counts <- ddply(A, names(A)[4], nrow)
   rmclus <- counts[counts$V1 != 2, 1]
   if(length(rmclus) > 0){
-    message(paste('.matricize: Cluster group(s):', paste(rmclus, collapse = ', ', 
-                                                       sep = ''), 
-      ' does not have both comparison treatment levels. Removing from analysis.', 
+    message(paste('.matricize: Cluster group(s):', paste(rmclus, collapse = ', ',
+                                                       sep = ''),
+      ' does not have both comparison treatment levels. Removing from analysis.',
                 collapse = '', sep = ''))
     A <- droplevels(A[!A[,4] %in% rmclus, ])
   }

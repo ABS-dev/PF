@@ -4,8 +4,17 @@
 \alias{RRor}
 \title{RR estimate from logistic regression.}
 \usage{
-RRor(fit = NULL, beta.hat = NULL, var.beta.hat = NULL, degf = NULL,
-  which = c(1, 2), pf = T, norm = F, alpha = 0.05, rnd = 3)
+RRor(
+  fit = NULL,
+  beta.hat = NULL,
+  var.beta.hat = NULL,
+  degf = NULL,
+  which = c(1, 2),
+  pf = T,
+  norm = F,
+  alpha = 0.05,
+  rnd = 3
+)
 }
 \arguments{
 \item{fit}{A \code{\link{glm}} object.}
