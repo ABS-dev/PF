@@ -77,9 +77,9 @@ RRstr(cbind(y, n) ~ tx + cluster(clus), Table6 , compare = c('a', 'b'), pf = FAL
 
 # Test of homogeneity across clusters
 
-# stat     0.954 
-# df       3 
-# p        0.812 
+# stat     0.954
+# df       3
+# p        0.812
 
 #  RR estimates
 

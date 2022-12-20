@@ -40,7 +40,7 @@ NA
 #' \item{tx}{treatment 'a' or 'b'}
 #' \item{clus}{cluster ID}
 #' }
-#' @references Table 1 from Gart (1985) 
+#' @references Table 1 from Gart (1985)
 #' @keywords datasets
 NA
 
@@ -92,13 +92,18 @@ NA
 #' @name rat
 #' @title rat dataset
 #' @description rat dataset
-#' @format a data.frame with 32 observations of the following 3 variables, no NAs
+#' @format a data.frame with 32 observations of the following 3 variables, no
+#'   NAs
+#'
 #' \describe{
-#' \item{y}{number positive}
-#' \item{n}{total number}
-#' \item{group}{treatment group: 'control' or 'treated'}
-#' }
+#'
+#'   \item{y}{number positive}
+#'
+#'   \item{n}{total number}
+#'
+#'   \item{group}{treatment group: 'control' or 'treated'}
+#'
+#'   }
 #' @references Weil's rat data (Table 1 of Rao and Scott)
 #' @keywords datasets
 NA
-
