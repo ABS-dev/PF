@@ -65,7 +65,7 @@
 ##--------------------------------------------------------------------
 RRstr <- function(formula = NULL, data = NULL, compare = c('vac', 'con'), Y, alpha = 0.05,
                   pf = TRUE, trace.it = FALSE, iter.max = 24, converge = 1e-6, rnd = 3, multiplier = 0.7,
-                  divider = 1.1){
+                  divider = 1.1) {
 
   # define internal functions:
   #  u.p, zi.phi, zis.phi, root, rr.opt, matricize
@@ -73,7 +73,7 @@ RRstr <- function(formula = NULL, data = NULL, compare = c('vac', 'con'), Y, alp
   u.p <- function(p1, p2, n1, n2)
     (1 - p1)/(n1 * p1) + (1 - p2)/(n2 * p2)
 
-  zi.phi <- function(phi, Y, u.p, root, za){
+  zi.phi <- function(phi, Y, u.p, root, za) {
     # for score interval in RRstr
     zi <- ui <- 0
     for (i in 1:nrow(Y)) {
@@ -95,7 +95,7 @@ RRstr <- function(formula = NULL, data = NULL, compare = c('vac', 'con'), Y, alp
     return(zi/sqrt(ui))
   }
 
-  zis.phi <- function(phi, Y, u.p, root, za){
+  zis.phi <- function(phi, Y, u.p, root, za) {
     # for skewness-corrected interval in RRstr
     zi <- ui <- gi <- 0
     for (i in 1:nrow(Y)) {
@@ -123,7 +123,7 @@ RRstr <- function(formula = NULL, data = NULL, compare = c('vac', 'con'), Y, alp
     return(zi/sqrt(ui) - (gi * (za^2 - 1))/(6 * ui^1.5))
   }
 
-  root <- function(y1, y2, n1, n2, phi){
+  root <- function(y1, y2, n1, n2, phi) {
     # in RRstr
     a <- phi * (n1 + n2)
     b <-  -(phi * (y2 + n1) + y1 + n2)
@@ -138,7 +138,7 @@ RRstr <- function(formula = NULL, data = NULL, compare = c('vac', 'con'), Y, alp
     return(c(r1, r2))
   }
 
-  rr.opt <- function(z.phi, phi,za, divider, trace.it, u.p, root){
+  rr.opt <- function(z.phi, phi,za, divider, trace.it, u.p, root) {
     # optimizer function for RRstr
     zz <- c(z.phi(phi[1], Y, u.p, root, za), z.phi(phi[2], Y, u.p, root, za))
     if (abs(za - zz[1]) > abs(za - zz[2]))  phi <- rev(phi)

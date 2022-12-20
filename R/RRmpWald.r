@@ -72,7 +72,7 @@
 #' #    PF    LL    UL 
 #' # 0.550 0.183 0.752 
 RRmpWald <- function(formula = NULL, data = NULL, compare = c('vac', 'con'), 
-	affected = 1, x, alpha = 0.05, pf = TRUE, tdist = TRUE, df = NULL, rnd = 3){
+	affected = 1, x, alpha = 0.05, pf = TRUE, tdist = TRUE, df = NULL, rnd = 3) {
 	# CI for RR with matched pairs, based on asymptotic normality of log(RR)
 	#  and multinomial variance
 	# Data entry:

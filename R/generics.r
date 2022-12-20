@@ -5,7 +5,7 @@
 #' @rdname print.PF
 #' @export
 #' @method print rr1
-print.rr1 <- function(x,...){
+print.rr1 <- function(x,...) {
 	num.dig <- options()$digits
     options(digits = x$rnd)
 	conf <- paste(100*(1 - x$alpha), '%', sep = '')
@@ -19,15 +19,15 @@ print.rr1 <- function(x,...){
     }
 	
 
-setMethod('show', 'rr1', function(object){print(object)})
+setMethod('show', 'rr1', function(object) {print(object)})
 
 #' @rdname print.PF
 #' @method print rror
 #' @export
-print.rror <- function(x,...){
+print.rror <- function(x,...) {
     num.dig <- options()$digits
     options(digits = x$rnd)
-	if(x$norm){
+	if(x$norm) {
 		conf <- paste(100 * (1 - x$alpha), "% gaussian intervals\n", sep = "")
 	} else {
 		conf <- paste(100 * (1 - x$alpha), "% t intervals on ", x$degf, " df\n", sep = "")
@@ -44,14 +44,14 @@ print.rror <- function(x,...){
 	
 
 
-setMethod('show', 'rror', function(object){print(object)})
+setMethod('show', 'rror', function(object) {print(object)})
 
 
 
 #' @rdname print.PF
 #' @method print rrsi
 #' @export
-print.rrsi <- function(x,...){
+print.rrsi <- function(x,...) {
 
 	num.dig <- options()$digits
 	options(digits = x$rnd)
@@ -69,12 +69,12 @@ print.rrsi <- function(x,...){
 }
 
 
-setMethod('show', 'rrsi', function(object){print(object)})
+setMethod('show', 'rrsi', function(object) {print(object)})
 
 #' @rdname print.PF
 #' @method print rrmp
 #' @export
-print.rrmp <- function(x,...){
+print.rrmp <- function(x,...) {
 	num.dig <- options()$digits
     options(digits = x$rnd)
 	conf <- paste(100 * (1 - x$alpha), '%', sep = '')
@@ -88,13 +88,13 @@ print.rrmp <- function(x,...){
 }
 
 
-setMethod('show', 'rrmp', function(object){print(object)})
+setMethod('show', 'rrmp', function(object) {print(object)})
 
 
 #' @rdname print.PF
 #' @method print rrsc
 #' @export
-print.rrsc <- function(x,...){
+print.rrsc <- function(x,...) {
     num.dig <- options()$digits
     options(digits = x$rnd)
 	conf <- paste(100 * (1 - x$alpha), '%', sep = '')
@@ -108,23 +108,23 @@ print.rrsc <- function(x,...){
     }
 	
 
-setMethod('show', 'rrsc', function(object){print(object)})
+setMethod('show', 'rrsc', function(object) {print(object)})
 
 
 
 #' @rdname print.PF
 #' @method print rrstr
 #' @export
-print.rrstr <- function(x,...){
+print.rrstr <- function(x,...) {
      num.dig <- options()$digits
     options(digits = x$rnd)
     mle <- x$estimate['mle', 1]
-    if(mle == 0 | mle == 1){
+    if(mle == 0 | mle == 1) {
         cat("\nHomogeneity test not possible because MLE = ", mle, "\n")
     } else {
 		cat("\nTest of homogeneity across clusters\n")
         cat("\nstat\t", x$hom$stat, "\ndf\t", x$hom$df, "\np\t", x$hom$p, "\n")
-        if(x$hom$p <= x$alpha){
+        if(x$hom$p <= x$alpha) {
             cat("\n\tHeterogeneity may be present\n")
         }
 	}
@@ -138,4 +138,4 @@ print.rrstr <- function(x,...){
 }
 	
 
-setMethod('show', 'rrstr', function(object){print(object)})
+setMethod('show', 'rrstr', function(object) {print(object)})

@@ -1,8 +1,8 @@
 ## used by RRmpWald
-.twoby <- function(formula, data, compare, affected){
+.twoby <- function(formula, data, compare, affected) {
   cluster <- function(x) {return(x)}
   this.call <- match.call()
-  drop.levels <- function(x){
+  drop.levels <- function(x) {
     for (j in 1:ncol(x)) {
       if (is.factor(x[, j])) {
         x[, j] <- factor(as.character(x[, j]))
@@ -28,7 +28,7 @@
   # order table
   xtable <- xtable[c('af', 'un'), c('af', 'un')] 
   names(dimnames(xtable)) <- compare
-  dimnames(xtable) <- lapply(dimnames(xtable), function(x){ifelse(x == 'af', 
+  dimnames(xtable) <- lapply(dimnames(xtable), function(x) {ifelse(x == 'af', 
     'pos', 'neg')})
   freqvec <- c(xtable)
 

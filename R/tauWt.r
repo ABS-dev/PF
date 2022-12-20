@@ -41,9 +41,9 @@
 #' #
 # binomial family only
 # any link
-tauWt <- function(fit,subset.factor=NULL, fit.only = TRUE, iter.max = 12, converge = 1e-6, trace.it = FALSE){
+tauWt <- function(fit,subset.factor=NULL, fit.only = TRUE, iter.max = 12, converge = 1e-6, trace.it = FALSE) {
 	# define functions Tau and tauOptim
-	Tau <- function(fit, x, n, tau.hat, iter){
+	Tau <- function(fit, x, n, tau.hat, iter) {
 		pcs <- sum(resid(fit, type = "pearson")^2)
 		degf <- summary(fit)$df.resid
 		mu.hat <- fit$fitted
@@ -62,7 +62,7 @@ tauWt <- function(fit,subset.factor=NULL, fit.only = TRUE, iter.max = 12, conver
 		return(tau.new)
 		}
 
-	tauOptim <- function(fit, x, n){
+	tauOptim <- function(fit, x, n) {
 		tau.hat <- 0
 		w <- rep(1, length(n))
 		pcs <- sum(resid(fit, type = "pearson")^2)
@@ -95,7 +95,7 @@ tauWt <- function(fit,subset.factor=NULL, fit.only = TRUE, iter.max = 12, conver
 	y <- yovern * n
 	nminusy <- n - y
 
-	if(is.null(subset.factor)){
+	if(is.null(subset.factor)) {
 		wTau <- tauOptim(fit, x, n)
 		w <- wTau$w
 		tau.hat <- wTau$tau.hat
@@ -105,7 +105,7 @@ tauWt <- function(fit,subset.factor=NULL, fit.only = TRUE, iter.max = 12, conver
 		tau.hat <- rep(NA, length(levels(subset.factor)))
 		names(tau.hat) <- levels(subset.factor)
 		flink <- fit$family$link ##
-		for(lev in levels(subset.factor)){
+		for(lev in levels(subset.factor)) {
 			if(trace.it) cat('\n',lev,sep='')
 			subdat <- data.frame(
 				yi = y[subset.factor==lev],

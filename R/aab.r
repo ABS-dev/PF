@@ -16,15 +16,15 @@
 # and each unique(clus) is a row}
 # }
 # @seealso \code{\link{RRmh}, \link{RRstr}}
-.matricize <- function(formula, data, compare = compare){
+.matricize <- function(formula, data, compare = compare) {
 
 	# 1/18/2012 - added error checking for compare argument. mcv
 	# goal: avoid the two following scenarios
 	#     if length(compare) < 2: cannot check levels(x) later
 	#     if length(compare) > 2: only look at first two compare elements - notify user
-	if(length(compare) > 2){
+	if(length(compare) > 2) {
 		warning('matricize: length(compare) > 2; only first two elements used')
-	} else if(length(compare) < 2){
+	} else if(length(compare) < 2) {
 		stop('matricize: argument compare must have at least two elements')
 	}
 
@@ -32,19 +32,19 @@
 	# goal: ensure that formula is of meaningful format. if formula is incorrect,
 	#      the accessors to A will not work. A better solution would be to access
 	# 	   via names.
-	if(length(all.vars(formula)) != 4){
+	if(length(all.vars(formula)) != 4) {
 		stop('matricize: formula argument must be of format cbind(y, n) ~ tx + cluster(clus)')
 	} else {
-		if(is.na(pmatch('cbind', strsplit(as.character(formula), '~')[[2]]))){
+		if(is.na(pmatch('cbind', strsplit(as.character(formula), '~')[[2]]))) {
 			stop('matricize: left side of formula argument must be of format cbind(y, n)')
 		}
 
-		if(length(strsplit(strsplit(as.character(formula), '~')[[3]], '+', fixed = TRUE)[[1]]) != 2){
+		if(length(strsplit(strsplit(as.character(formula), '~')[[3]], '+', fixed = TRUE)[[1]]) != 2) {
 			stop('matricize: right side of formula argument must be of format tx + cluster(clus)')
 		}
 	}
 
-  cluster <- function(x){return(x)}
+  cluster <- function(x) {return(x)}
 	environment(cluster) <- parent.env(environment())
 
 	Terms <- terms(formula, data = data)
@@ -56,7 +56,7 @@
 
   counts <- ddply(A, names(A)[4], nrow)
   rmclus <- counts[counts$V1 != 2, 1]
-  if(length(rmclus) > 0){
+  if(length(rmclus) > 0) {
     message(paste('.matricize: Cluster group(s):', paste(rmclus, collapse = ', ',
                                                        sep = ''),
       ' does not have both comparison treatment levels. Removing from analysis.',
@@ -66,7 +66,7 @@
   y <- A[, 1]
   n <- A[, 2]
   x <- as.factor(A[, 3])
-  if(!any(levels(x) == compare[1]) | !any(levels(x) == compare[2])){
+  if(!any(levels(x) == compare[1]) | !any(levels(x) == compare[2])) {
 		stop('matricize: What is being compared?')
 	}
   clus <- A[, 4]

@@ -71,8 +71,8 @@
 ## RRor
 ##-----------------------------------------------
 
-RRor <- function(fit=NULL, beta.hat=NULL, var.beta.hat=NULL, degf=NULL, which = c(1, 2), pf = TRUE, norm = FALSE, alpha = 0.05, rnd=3){
-  if(!is.null(fit)){
+RRor <- function(fit=NULL, beta.hat=NULL, var.beta.hat=NULL, degf=NULL, which = c(1, 2), pf = TRUE, norm = FALSE, alpha = 0.05, rnd=3) {
+  if(!is.null(fit)) {
     beta.hat <- coef(fit)
     var.beta.hat <- summary(fit)$cov.sc
     if(is.null(degf)) degf <- summary(fit)$df.resid
