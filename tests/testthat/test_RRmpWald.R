@@ -2,17 +2,20 @@ context("RRmpWald")
 
 test_that("examples work", {
   # warning will go away once issue #5 is resolved
-  expect_warning(ex1 <- RRmpWald(pos ~ tx + cluster(cage), New, compare = c('vac', 'con')))
-  thismultvec <- data.frame(vac = rep(c('pos', 'neg'), 2),
-                            con = rep(c('pos', 'neg'), each = 2), Freq = c(7, 13, 2, 4))
-  thismultvec$vac  <- factor(thismultvec$vac, levels = c('pos', 'neg'))
-  thismultvec$con  <- factor(thismultvec$con, levels = c('pos', 'neg'))
+  expect_warning(ex1 <- RRmpWald(pos ~ tx + cluster(cage),
+                                 New,
+                                 compare = c("vac", "con")))
+  thismultvec <- data.frame(vac = rep(c("pos", "neg"), 2),
+                            con = rep(c("pos", "neg"), each = 2),
+                            Freq = c(7, 13, 2, 4))
+  thismultvec$vac  <- factor(thismultvec$vac, levels = c("pos", "neg"))
+  thismultvec$con  <- factor(thismultvec$con, levels = c("pos", "neg"))
 
   expect_identical(ex1$estimate %>% signif(ex1$rnd) %>% unname,
                    c(0.550, 0.183, 0.752))
   expect_identical(names(ex1$estimate), c("PF", "LL", "UL"))
   expect_identical(ex1$estimator, "PF")
-  expect_identical(ex1$compare, c('vac', 'con'))
+  expect_identical(ex1$compare, c("vac", "con"))
   expect_identical(ex1$alpha, 0.05)
   expect_equal(ex1$multvec, thismultvec)
 
