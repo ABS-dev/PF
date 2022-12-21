@@ -1,43 +1,61 @@
 #' @title Gart-Nam method, CI for common RR over strata or clusters.
-#' @description Estimates confidence intervals for the risk ratio or prevented fraction from clustered or stratified data.
-#' @details Uses the DUD algorithm to estimate confidence intervals by the method of Gart.
-#' @param formula Formula of the form \code{cbind(y, n) ~ x + cluster(w)}, where y is the number positive, n is the group size, x is a factor with two levels of treatment, and w is a factor indicating the clusters.
+#' @description Estimates confidence intervals for the risk ratio or prevented
+#'   fraction from clustered or stratified data.
+#' @details Uses the DUD algorithm to estimate confidence intervals by the
+#'   method of Gart.
+#' @param formula Formula of the form \code{cbind(y, n) ~ x + cluster(w)}, where
+#'   y is the number positive, n is the group size, x is a factor with two
+#'   levels of treatment, and w is a factor indicating the clusters.
 #' @param data data.frame containing variables of formula
-#' @param compare Text vector stating the factor levels: compare[1] is the control or reference group to which compare[2] is compared
-#' @param Y Matrix of data. Each row is a stratum or cluster. The columns are y2, n2, y1, n1. If data entered by formula and dataframe, Y is generated automatically.
+#' @param compare Text vector stating the factor levels: compare[1] is the
+#'   control or reference group to which compare[2] is compared
+#' @param Y Matrix of data. Each row is a stratum or cluster. The columns are
+#'   y2, n2, y1, n1. If data entered by formula and dataframe, Y is generated
+#'   automatically.
 #' @param pf Estimate \emph{RR} or its complement \emph{PF}?
-#' @param alpha Size of the homogeneity test and complement of the confidence level.
+#' @param alpha Size of the homogeneity test and complement of the confidence
+#'   level.
 #' @param trace.it verbose tracking of the iterations?
 #' @param iter.max Maximum number of iterations
 #' @param converge Convergence criterion
-#' @param rnd Number of digits for rounding. Affects display only, not estimates.
+#' @param rnd Number of digits for rounding. Affects display only, not
+#'   estimates.
 #' @param multiplier internal control parameter for algorithm
 #' @param divider internal control parameter for algorithm
 #' @return A \code{\link{rrstr}} object with the following fields:
-#'  \item{estimate}{matrix of point and interval estimates - starting value, MLE, and skewness corrected}
-#'  \item{hom}{list of homogeneity statistic, p-value, and degrees of freedom, or error message if appropriate.}
-#'  \item{estimator}{either \code{"PF"} or \code{"RR"}}
-#'  \item{y}{data.frame of restructured input}
-#'  \item{compare}{groups compared}
-#'  \item{rnd}{how many digits to round the display}
-#'  \item{alpha}{size of test; complement of confidence level}
+#'   \item{estimate}{matrix of point and interval estimates - starting value,
+#'   MLE, and skewness corrected} \item{hom}{list of homogeneity statistic,
+#'   p-value, and degrees of freedom, or error message if appropriate.}
+#'   \item{estimator}{either \code{"PF"} or \code{"RR"}} \item{y}{data.frame of
+#'   restructured input} \item{compare}{groups compared} \item{rnd}{how many
+#'   digits to round the display} \item{alpha}{size of test; complement of
+#'   confidence level}
 #' @export
-#' @note Vignette \emph{Examples for Stratified Designs} forthcoming with more examples.
-#' @references Gart JJ, 1985. Approximate tests and interval estimation of the common relative risk in the combination of \eqn{2 x 2} tables. \emph{Biometrika} 72:673-677.
-#' \cr Gart JJ, Nam J, 1988. Approximate interval estimation of the ratio of binomial parameters: a review and corrections for skewness. \emph{Biometrics} 44:323-338.
-#' \cr Ralston ML, Jennrich RI, 1978. DUD, A Derivative-Free Algorithm for Nonlinear Least Squares. \emph{Technometrics} 20:7-14.
+#' @note Vignette \emph{Examples for Stratified Designs} forthcoming with more
+#'   examples.
+#' @references Gart JJ, 1985. Approximate tests and interval estimation of the
+#'   common relative risk in the combination of \eqn{2 x 2} tables.
+#'   \emph{Biometrika} 72:673-677. \cr Gart JJ, Nam J, 1988. Approximate
+#'   interval estimation of the ratio of binomial parameters: a review and
+#'   corrections for skewness. \emph{Biometrics} 44:323-338. \cr Ralston ML,
+#'   Jennrich RI, 1978. DUD, A Derivative-Free Algorithm for Nonlinear Least
+#'   Squares. \emph{Technometrics} 20:7-14.
 #' @author \link{PF-package}
-#' @note Call to this function may be one of two formats: (1) specify \code{data} and \code{formula} or (2) as a matrix \code{Y} \cr \cr
-#' \code{RRstr(formula, data, compare = c('b','a'), pf = TRUE, alpha = 0.05, trace.it = FALSE,} \cr
-#' {iter.max = 24, converge = 1e-6, rnd = 3, multiplier = 0.7, divider = 1.1)} \cr \cr
-#' \code{RRstr(Y, compare = c('b','a'), pf = TRUE, alpha = 0.05, trace.it = FALSE, iter.max = 24,} \cr
-#' \code{converge = 1e-6, rnd = 3, multiplier = 0.7, divider = 1.1)}
+#' @note Call to this function may be one of two formats: (1) specify
+#'   \code{data} and \code{formula} or (2) as a matrix \code{Y} \cr \cr
+#'   \code{RRstr(formula, data, compare = c('b','a'), pf = TRUE, alpha = 0.05,
+#'   trace.it = FALSE,} \cr {iter.max = 24, converge = 1e-6, rnd = 3, multiplier
+#'   = 0.7, divider = 1.1)} \cr \cr \code{RRstr(Y, compare = c('b','a'), pf =
+#'   TRUE, alpha = 0.05, trace.it = FALSE, iter.max = 24,} \cr \code{converge =
+#'   1e-6, rnd = 3, multiplier = 0.7, divider = 1.1)}
 #' @seealso \code{\link{rrstr}}
 #' @examples
 #' ## Table 1 from Gart (1985)
 #' ##  as data frame
 #' ## "b" is control group
-#' RRstr(cbind(y, n) ~ tx + cluster(clus), Table6 , compare = c('a', 'b'), pf = FALSE)
+#' RRstr(cbind(y, n) ~ tx + cluster(clus),
+#'       Table6,
+#'       compare = c('a', 'b'), pf = FALSE)
 #'
 #' # Test of homogeneity across clusters
 #'
@@ -60,9 +78,6 @@
 #' tx = rep(c('a', 'b'), 4),
 #' clus = rep(paste('Row', 1:4, sep = ''), each = 2))
 #'
-##--------------------------------------------------------------------
-## RRstr function
-##--------------------------------------------------------------------
 RRstr <- function(formula = NULL, data = NULL, compare = c('vac', 'con'), Y, alpha = 0.05,
                   pf = TRUE, trace.it = FALSE, iter.max = 24, converge = 1e-6, rnd = 3, multiplier = 0.7,
                   divider = 1.1) {
@@ -70,8 +85,9 @@ RRstr <- function(formula = NULL, data = NULL, compare = c('vac', 'con'), Y, alp
   # define internal functions:
   #  u.p, zi.phi, zis.phi, root, rr.opt, matricize
 
-  u.p <- function(p1, p2, n1, n2)
+  u.p <- function(p1, p2, n1, n2) {
     (1 - p1)/(n1 * p1) + (1 - p2)/(n2 * p2)
+  }
 
   zi.phi <- function(phi, Y, u.p, root, za) {
     # for score interval in RRstr

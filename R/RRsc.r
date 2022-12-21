@@ -97,15 +97,15 @@
 ## RRsc function
 ##-------------------------------
 RRsc <- function(y = NULL,
-  data = NULL,
-  formula = NULL,
-  compare = c('vac', 'con'),
-  alpha = 0.05,
-  pf = TRUE,
-  trace.it = FALSE,
-  iter.max = 18,
-  converge = 1e-6,
-  rnd = 3) {
+                 data = NULL,
+                 formula = NULL,
+                 compare = c('vac', 'con'),
+                 alpha = 0.05,
+                 pf = TRUE,
+                 trace.it = FALSE,
+                 iter.max = 18,
+                 converge = 1e-6,
+                 rnd = 3) {
 
   ###########################################
   ## Error handling for input options
@@ -279,19 +279,17 @@ RRsc <- function(y = NULL,
 
   # which ends to estimate
   score.start <- rep(NA, 2)
-  if (x1 > 0 & x2 > 0)
+  if (x1 > 0 & x2 > 0) {
     which <- 1:2
-  else if (x1 == 0) {
+  } else if (x1 == 0) {
     score.start[1] <- 0
     which <- 2
-  }
-  else if (x2 == 0) {
+  } else if (x2 == 0) {
     score.start[2] <- Inf
     which <- 1
-  }
-  else
+  } else {
     break('Are you kidding?')
-
+  }
   # MN method
   score <- score.start
   for (k in which) {
@@ -359,9 +357,9 @@ RRsc <- function(y = NULL,
     cat("\n\n")
 
   int <- cbind(rep(int["point", 1], 5), int[-1, ])
-  if (!pf)
+  if (!pf) {
     dimnames(int)[[2]] <- c("RR", "LL", "UL")
-  else{
+  } else {
     int <- 1 - int[, c(1, 3, 2)]
     dimnames(int)[[2]] <- c("PF", "LL", "UL")
   }

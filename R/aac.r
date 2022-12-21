@@ -1,6 +1,8 @@
 ## used by RRmpWald
 .twoby <- function(formula, data, compare, affected) {
-  cluster <- function(x) {return(x)}
+  cluster <- function(x) {
+    return(x)
+  }
   this.call <- match.call()
   drop.levels <- function(x) {
     for (j in 1:ncol(x)) {
@@ -21,19 +23,21 @@
   for (i in 1:2) {
     tbl[,i] <- ifelse(tbl[,i] == affected, 'af', 'un')
   }
-  
+
   # compare[2] is control
   # compare[1] is vaccinate
   xtable <- table(tbl[,compare[1]], tbl[,compare[2]])
   # order table
-  xtable <- xtable[c('af', 'un'), c('af', 'un')] 
+  xtable <- xtable[c('af', 'un'), c('af', 'un')]
   names(dimnames(xtable)) <- compare
-  dimnames(xtable) <- lapply(dimnames(xtable), function(x) {ifelse(x == 'af', 
-    'pos', 'neg')})
+  dimnames(xtable) <- lapply(dimnames(xtable), function(x) {
+    ifelse(x == 'af', 'pos', 'neg')
+  })
   freqvec <- c(xtable)
 
-  names(freqvec) <- paste(rep(dimnames(xtable)[[1]], 2), rep(dimnames(xtable)[[2]], 
-    c(2, 2)))
+  names(freqvec) <- paste(rep(dimnames(xtable)[[1]], 2),
+                          rep(dimnames(xtable)[[2]], c(2, 2)))
   multvec <- as.data.frame(xtable)
-  return(list(xtable = matrix(xtable, 2, 2), freqvec = freqvec, multvec = multvec))
+  return(list(xtable = matrix(xtable, 2, 2),
+              freqvec = freqvec, multvec = multvec))
 }

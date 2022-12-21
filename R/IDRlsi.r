@@ -1,44 +1,57 @@
 #' @title IDR likelihood support interval.
-#' @description Estimates likelihood support interval for the incidence density ratio or prevented fraction based on it.
-#' @details Estimates likelihood support interval for the incidence density ratio based on orthogonal factoring of reparameterized likelihood.
-#' The incidence density is the number of cases per subject-time; its distribution is assumed Poisson.
-#' \cr \cr Likelihood support intervals are usually formed based on the desired likelihood ratio, often 1/8 or 1/32.
-#' Under some conditions the log likelihood ratio
-#' may follow the chi square distribution. If so,
+#' @description Estimates likelihood support interval for the incidence density
+#'   ratio or prevented fraction based on it.
+#' @details Estimates likelihood support interval for the incidence density
+#'   ratio based on orthogonal factoring of reparameterized likelihood. The
+#'   incidence density is the number of cases per subject-time; its distribution
+#'   is assumed Poisson. \cr \cr Likelihood support intervals are usually formed
+#'   based on the desired likelihood ratio, often 1/8 or 1/32. Under some
+#'   conditions the log likelihood ratio may follow the chi square distribution.
+#'   If so,
+
 ##  Latex version not good
 ## then \eqn{\alpha=1-{{F}_{{{\chi }^{2}}}}\left( 2\log (k),1 \right)}.
-#' then \eqn{\alpha=1-F(2log(k),1)}, where \eqn{F} is a chi-square CDF.
-#' \code{RRsc()} will make the conversion from \eqn{\alpha}
-#' to \emph{k} if \code{use.alpha = TRUE}.
-#' \cr \cr The data may also be a matrix. In that case \code{y} would be entered as \cr
-#' \code{matrix(c(y1, n1 - y1, y2, n2 - y2), 2, 2, byrow = TRUE)}.
-#' @param y Data vector c(y1, n1, y2, n2) where y are the positives, n are the total,
-#' and group 1 is compared to group 2 (control or reference).
-#' @param compare  Text vector stating the factor levels: compare[1] is the
-#' vaccinate group to which compare[2] (control or reference) is compared.
-#' @param data data.frame containing variables of the formula.
-#' @param formula  Formula of the form cbind(y, n) ~ x, where y is the number
-#' positive, n is the group size, x is a factor with two levels of treatment.#'
-#' @param k Likelihood ratio criterion.
-#' @param alpha Complement of the confidence level.
-#' @param use.alpha Base choice of k on its relationship to alpha?
-#' @param pf Estimate \emph{IDR} or its complement \emph{PF}?
-#' @param trace.it Verbose tracking of the iterations?
-#' @param iter.max Maximum number of iterations
-#' @param converge Convergence criterion
-#' @param rnd Number of digits for rounding. Affects display only, not estimates.
-#' @param start describe here.
-#' @return A \code{\link{rrsi}} object with the following elements.
+
+#'then \eqn{\alpha=1-F(2log(k),1)}, where \eqn{F} is a chi-square CDF.
+#'\code{RRsc()} will make the conversion from \eqn{\alpha} to \emph{k} if
+#'\code{use.alpha = TRUE}. \cr \cr The data may also be a matrix. In that case
+#'\code{y} would be entered as \cr \code{matrix(c(y1, n1 - y1, y2, n2 - y2), 2,
+#'2, byrow = TRUE)}.
+#'@param y Data vector c(y1, n1, y2, n2) where y are the positives, n are the
+#'  total, and group 1 is compared to group 2 (control or reference).
+#'@param compare  Text vector stating the factor levels: compare[1] is the
+#'  vaccinate group to which compare[2] (control or reference) is compared.
+#'@param data data.frame containing variables of the formula.
+#'@param formula  Formula of the form cbind(y, n) ~ x, where y is the number
+#'  positive, n is the group size, x is a factor with two levels of treatment.#'
+#'@param k Likelihood ratio criterion.
+#'@param alpha Complement of the confidence level.
+#'@param use.alpha Base choice of k on its relationship to alpha?
+#'@param pf Estimate \emph{IDR} or its complement \emph{PF}?
+#'@param trace.it Verbose tracking of the iterations?
+#'@param iter.max Maximum number of iterations
+#'@param converge Convergence criterion
+#'@param rnd Number of digits for rounding. Affects display only, not estimates.
+#'@param start describe here.
+#'@return A \code{\link{rrsi}} object with the following elements.
+#'
 #'  \item{estimate}{vector with point and interval estimate}
+#'
 #'  \item{estimator}{either \emph{PF} or \emph{IDR}}
+#'
 #'  \item{y}{data.frame with "y1", "n1", "y2", "n2" values.}
-#'	\item{k}{Likelihood ratio criterion}
+#'
+#'  \item{k}{Likelihood ratio criterion}
+#'
 #'  \item{rnd}{how many digits to round the display}
+#'
 #'  \item{alpha}{complement of confidence level}
-#' @references Royall R. \emph{Statistical Evidence: A Likelihood Paradigm}. Chapman & Hall, Boca Raton, 1997. Section 7.2.
-#' @author \link{PF-package}
-#' @seealso \code{\link{IDRsc}}
-#' @export
+#'
+#'@references Royall R. \emph{Statistical Evidence: A Likelihood Paradigm}.
+#'  Chapman & Hall, Boca Raton, 1997. Section 7.2.
+#'@author \link{PF-package}
+#'@seealso \code{\link{IDRsc}}
+#'@export
 #' @examples
 #' # Both examples represent the same observation, with data entry by vector
 #' # and matrix notation.
@@ -105,10 +118,6 @@
 #' # IDR
 #' #  IDR   LL   UL
 #' # 2.61 1.26 5.88
-##---------------------------------------
-## IDRlsi
-##---------------------------------------
-
 IDRlsi <-
   function(y = NULL,
            formula = NULL,
@@ -139,8 +148,8 @@ IDRlsi <-
     ## internal helper function
     ###########################################
 
-    # support interval based on factoring orthogonal parameterization (Royall, p. 152)
-    # Coded 1999
+    # support interval based on factoring orthogonal parameterization (Royall,
+    # p. 152) Coded 1999
     L <- function(y, r) {
       y1 <- y[1]
       h1 <- y[2]
@@ -230,9 +239,9 @@ IDRlsi <-
       si[i] <- t3
     }
     int <- c(r.hat, si)
-    if (!pf)
+    if (!pf) {
       names(int) <- c("IDR", "LL", "UL")
-    else{
+    } else {
       int <- 1 - int[c(1, 3, 2)]
       names(int) <- c("PF.IDR", "LL", "UL")
     }

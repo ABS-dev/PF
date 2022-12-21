@@ -90,18 +90,18 @@
 
 RRotsst <-
   function(y = NULL,
-    data = NULL,
-    formula = NULL,
-    compare = c("vac", "con"),
-    alpha = 0.05,
-    pf = TRUE,
-    stepstart = .1,
-    iter.max = 36,
-    converge = 1e-6,
-    rnd = 3,
-    trace.it = FALSE,
-    nuisance.points = 120,
-    gamma = 1e-6) {
+           data = NULL,
+           formula = NULL,
+           compare = c("vac", "con"),
+           alpha = 0.05,
+           pf = TRUE,
+           stepstart = .1,
+           iter.max = 36,
+           converge = 1e-6,
+           rnd = 3,
+           trace.it = FALSE,
+           nuisance.points = 120,
+           gamma = 1e-6) {
     # Estimates exact confidence interval by the OTSST method
     # Score statistic used to select tail area tables
     # Binomial probability estimated over the tail area
@@ -119,9 +119,9 @@ RRotsst <-
     ## internal helper function
     ###########################################
     binci <- function(y,
-      n,
-      alpha = .05,
-      show.warnings = FALSE) {
+                      n,
+                      alpha = .05,
+                      show.warnings = FALSE) {
       w <- 1 * show.warnings - 1
       options(warn = w)
 
@@ -161,11 +161,11 @@ RRotsst <-
       y <- .extract_freqvec(formula, data, compare)
 
     } else if (is.matrix(y)) {
-    # Data entry y=c(x2,n2,x1,n1) Vaccinates First (order same but
-    # subscripts reversed)
-    # data vector
+      # Data entry y=c(x2,n2,x1,n1) Vaccinates First (order same but
+      # subscripts reversed)
+      # data vector
       y <- c(t(cbind(y[, 1], apply(y, 1, sum))))
-    # NOTE: the subscripts are reversed compared to the other functions
+      # NOTE: the subscripts are reversed compared to the other functions
     }
 
     x2 <- y[1] ## vacc
@@ -178,7 +178,7 @@ RRotsst <-
 
     # itemize all possible tables in omega (17.26)
     Y <- data.frame(y1 = rep(0:n1, (n2 + 1)), y2 = rep(0:n2, rep(n1 + 1, n2 +
-        1)))
+                                                                   1)))
     observed <- (1:nrow(Y))[Y[, 1] == x1 & Y[, 2] == x2]
     Y$C <- choose(n1, Y$y1) * choose(n2, Y$y2)
 
@@ -188,9 +188,9 @@ RRotsst <-
       pih2 <- y2 / n2
       if (y1 == 0 & y2 == 0)
         sc <- 0
-      else if (y2 == n2)
+      else if (y2 == n2) {
         sc <- 0
-      else {
+      } else {
         A <- rho * (n1 + n2)
         B <- -(rho * (y1 + n2) + y2 + n1)
         C <- y1 + y2
@@ -198,7 +198,7 @@ RRotsst <-
         pit2 <- rho * pit1
         sc <-
           (pih2 - rho * pih1) / sqrt(rho ^ 2 * pit1 * (1 - pit1) / n1 + pit2 * (1 -
-              pit2) / n2)
+                                                                                  pit2) / n2)
       }
       return(sc)
     }
@@ -213,9 +213,9 @@ RRotsst <-
     r.min <- L2 / U1
     r.max <- U2 / L1
 
-    if (rho.mle == 0)
+    if (rho.mle == 0) {
       low <- 0
-    else{
+    } else {
       # search for lower endpoint
       iter <- 0
       step <- stepstart
@@ -242,8 +242,8 @@ RRotsst <-
           seq(0, min(1 / low, 1), length = nuisance.points) # simple method 17.138
         if (sum(pn > 1) > 0) {
           cat('\nIteration',
-            iter,
-            'nuisance parameter outside parameter space\n')
+              iter,
+              'nuisance parameter outside parameter space\n')
           next
         }
         fy <- rep(NA, nuisance.points)
@@ -252,7 +252,7 @@ RRotsst <-
           fy[i] <-
             sum(
               q.set$C * pni ^ q.set$y1 * (1 - pni) ^ q.set$n1y1 * (low * pni) ^ q.set$y2 * (1 -
-                  low * pni) ^ q.set$n2y2
+                                                                                              low * pni) ^ q.set$n2y2
             )
         }
         max.fy <- max(fy)
@@ -298,18 +298,16 @@ RRotsst <-
         seq(0, min(1 / high, 1), length = nuisance.points) # simple method 17.138
       if (sum(pn > 1) > 0) {
         cat('\nIteration',
-          iter,
-          'nuisance parameter outside parameter space\n')
+            iter,
+            'nuisance parameter outside parameter space\n')
         next
       }
       fy <- rep(NA, nuisance.points)
       for (i in 1:nuisance.points) {
         pni <- pn[i]
         fy[i] <-
-          sum(
-            p.set$C * pni ^ p.set$y1 * (1 - pni) ^ p.set$n1y1 * (high * pni) ^ p.set$y2 * (1 -
-                high * pni) ^ p.set$n2y2
-          )
+          sum(p.set$C * pni^p.set$y1 * (1 - pni)^p.set$n1y1 *
+                (high * pni)^p.set$y2 *  (1 - high * pni)^p.set$n2y2)
       }
       max.fy <- max(fy)
       if (trace.it)
@@ -323,11 +321,11 @@ RRotsst <-
     } # end repeat
 
     int <- c(rho.hat = rho.mle,
-      low = low,
-      high = high)
-    if (!pf)
+             low = low,
+             high = high)
+    if (!pf) {
       names(int) <- c("RR", "LL", "UL")
-    else{
+    } else {
       int <- 1 - int[c(1, 3, 2)]
       names(int) <- c("PF", "LL", "UL")
     }

@@ -62,7 +62,9 @@
 #' ##  as data frame
 #'
 #' # tx group "b" is control
-#' RRmh(cbind(y,n) ~ tx + cluster(clus), Table6, compare = c('a', 'b'), pf = FALSE)
+#' RRmh(cbind(y,n) ~ tx + cluster(clus),
+#'      Table6,
+#'      compare = c('a', 'b'), pf = FALSE)
 #'
 #' # RR
 #' # 95% interval estimates
@@ -80,19 +82,23 @@
 #' #   RR   LL   UL
 #' # 2.67 1.37 5.23
 
-##########################################################################################
+################################################################################
 #
 # Mantel-Haenszel estimate of common risk ratio for K 2x2 tables.
 # First draft 5 March 2010.  Updated 11 March 2010, 5 Nov 2010.
-# Revised 28 Dec 2010 to bring input/output format consistent with David Siev's RRstr().
-# Note that unlike earlier versions, this version does not check the data types and dimensions
-# of the inputs.
+# Revised 28 Dec 2010 to bring input/output format consistent with David Siev's
+# RRstr(). Note that unlike earlier versions, this version does not check the
+# data types and dimensions of the inputs.
 #
-##########################################################################################
+################################################################################
 
-RRmh <- function(formula = NULL, data = NULL, compare = c('vac', 'con'), Y, alpha = 0.05,
-                 pf = TRUE, rnd = 3)
-{
+RRmh <- function(formula = NULL,
+                 data = NULL,
+                 compare = c('vac', 'con'),
+                 Y,
+                 alpha = 0.05,
+                 pf = TRUE,
+                 rnd = 3) {
   # convert data to matrix
   if (!is.null(formula) & !is.null(data)) {
     Y <- .matricize(formula = formula, data = data, compare = compare)$Y

@@ -72,10 +72,10 @@
 ##-----------------------------------------------
 
 RRor <- function(fit=NULL, beta.hat=NULL, var.beta.hat=NULL, degf=NULL, which = c(1, 2), pf = TRUE, norm = FALSE, alpha = 0.05, rnd=3) {
-  if(!is.null(fit)) {
+ if (!is.null(fit)) {
     beta.hat <- coef(fit)
     var.beta.hat <- summary(fit)$cov.sc
-    if(is.null(degf)) degf <- summary(fit)$df.resid
+   if (is.null(degf)) degf <- summary(fit)$df.resid
   }
   q <- c(0.5, alpha/2, 1 - alpha/2)
   B <- beta.hat[which]
@@ -87,18 +87,17 @@ RRor <- function(fit=NULL, beta.hat=NULL, var.beta.hat=NULL, degf=NULL, which = 
   grad.log.r <- c(-exp(-b1) * m1, exp(-b2) * m2)
   var.b <- var.beta.hat[which, which]
   var.log.r <- t(grad.log.r) %*% var.b %*% grad.log.r
-  if(norm) {
+ if (norm) {
     int <- exp(log.r + qnorm(q) * sqrt(var.log.r))
     mu <- 1/(1 + exp(-B + matrix(qnorm(q), 2, 3, byrow = TRUE) * sqrt(diag(var.b))))
-  }
-  else {
+  } else {
     int <- exp(log.r + qt(q, degf) * sqrt(var.log.r))
     mu <- 1/(1 + exp(-B + matrix(qt(q, degf), 2, 3, byrow = TRUE) * sqrt(diag(var.b))))
   }
   dimnames(mu) <- list(names(coef(fit)), c('mu.hat','LL','UL'))
-  if(!pf)
+ if (!pf) {
     names(int) <- c("RR", "LL", "UL")
-  else{
+  } else {
     int <- 1 - int[c(1,3,2)]
     names(int) <- c("PF", "LL", "UL")
   }

@@ -1,15 +1,15 @@
 context("RRstr")
 
 test_that("examples work", {
-  Table6$tx <- factor(Table6$tx, labels = c('vac', 'con'))
-  ex1 <- RRstr(cbind(y,n) ~ tx + cluster(clus), Table6 ,
+  Table6$tx <- factor(Table6$tx, labels = c("vac", "con"))
+  ex1 <- RRstr(cbind(y, n) ~ tx + cluster(clus), Table6,
                pf = FALSE)
   thisestimate <- matrix(c(2.66090262285731, 1.36795706588105, 5.17589546114057,
                            2.65200433797186, 1.39144872390597, 5.03137233509942,
                            2.65200433797186, 1.3107358581469, 5.07721615622715),
                          nrow = 3, ncol = 3, byrow = TRUE)
   rownames(thisestimate) <- c("starting", "mle", "skew corr")
-  colnames(thisestimate) <- c('RR', 'LL', 'UL')
+  colnames(thisestimate) <- c("RR", "LL", "UL")
   thisy <- data.frame(y1 = c(4, 2, 4, 1),
                       n1 = c(16, 16, 18, 15),
                       y2 = c(5, 3, 10, 3),
