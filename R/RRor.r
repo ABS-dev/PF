@@ -96,7 +96,7 @@ RRor <- function(fit = NULL, beta.hat = NULL, var.beta.hat = NULL,
     int <- exp(log.r + qt(q, degf) * sqrt(var.log.r))
     mu <- 1 / (1 + exp(-B + matrix(qt(q, degf), 2, 3, byrow = TRUE) * sqrt(diag(var.b))))
   }
-  dimnames(mu) <- list(names(coef(fit)), c("mu.hat","LL","UL"))
+  dimnames(mu) <- list(names(coef(fit)), c("mu.hat", "LL", "UL"))
   if (!pf) {
     names(int) <- c("RR", "LL", "UL")
   } else {

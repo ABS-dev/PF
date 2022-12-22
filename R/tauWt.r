@@ -118,11 +118,11 @@ tauWt <- function(fit,
         yi = y[subset.factor == lev],
         nminusyi = nminusy[subset.factor == lev]
       )
-      subfit <- glm(cbind(yi,nminusyi) ~ 1,
+      subfit <- glm(cbind(yi, nminusyi) ~ 1,
                     binomial(link = flink),
                     data = subdat)
       nobs <- sum(subset.factor == lev)
-      xi <- matrix(1,nobs, 1)
+      xi <- matrix(1, nobs, 1)
       wTau <- tauOptim(subfit, xi, n[subset.factor == lev])
       w[subset.factor == lev] <- wTau$w
       tau.hat[lev] <- wTau$tau.hat

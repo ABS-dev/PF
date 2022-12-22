@@ -154,7 +154,7 @@ RRstr <- function(formula = NULL, data = NULL, compare = c("vac", "con"), Y, alp
     return(c(r1, r2))
   }
 
-  rr.opt <- function(z.phi, phi,za, divider, trace.it, u.p, root) {
+  rr.opt <- function(z.phi, phi, za, divider, trace.it, u.p, root) {
     # optimizer function for RRstr
     zz <- c(z.phi(phi[1], Y, u.p, root, za), z.phi(phi[2], Y, u.p, root, za))
     if (abs(za - zz[1]) > abs(za - zz[2]))  phi <- rev(phi)
@@ -247,7 +247,7 @@ RRstr <- function(formula = NULL, data = NULL, compare = c("vac", "con"), Y, alp
   # and test for heterogeneity
   if (Phi == 0 || Phi == 1) {
     Phi.ML <- Phi
-    hom <- paste("MLE = ",Phi.ML,", Homogeneity test not possible", sep = "")
+    hom <- paste("MLE = ", Phi.ML, ", Homogeneity test not possible", sep = "")
   } else {
     za <-  0
     phi <- c(Phi, multiplier * Phi)
@@ -280,7 +280,7 @@ RRstr <- function(formula = NULL, data = NULL, compare = c("vac", "con"), Y, alp
 
   # Skewness-corrected intervals
   for (k in which) {
-    if (trace.it) cat("\nSkewness-corrected", switch(k,"lower","upper"))
+    if (trace.it) cat("\nSkewness-corrected", switch(k, "lower", "upper"))
     za <-  -zv[k]
     phi <- c(int[1, k], multiplier * int[1, k])
     phi.new <- rr.opt(z.phi = zis.phi, phi = phi, za = za, divider = divider,

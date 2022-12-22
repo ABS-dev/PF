@@ -161,7 +161,7 @@ RRotsst <-
       y <- .extract_freqvec(formula, data, compare)
 
     } else if (is.matrix(y)) {
-      # Data entry y=c(x2, n2,x1, n1) Vaccinates First (order same but
+      # Data entry y=c(x2, n2, x1, n1) Vaccinates First (order same but
       # subscripts reversed)
       # data vector
       y <- c(t(cbind(y[, 1], apply(y, 1, sum))))

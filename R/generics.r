@@ -12,7 +12,7 @@ print.rr1 <- function(x, ...) {
   cat("\n")
   estimate <- x$estimate
   cat(x$estimator, "\n")
-  cat(conf,"interval estimates\n\n")
+  cat(conf, "interval estimates\n\n")
   print(estimate)
   cat("\n")
   options(digits = num.dig)
@@ -111,7 +111,7 @@ print.rrsc <- function(x, ...) {
   cat("\n")
   estimate <- x$estimate[3:5, ]
   cat(x$estimator, "\n")
-  cat(conf,"interval estimates\n\n")
+  cat(conf, "interval estimates\n\n")
   print(estimate)
   cat("\n")
   options(digits = num.dig)

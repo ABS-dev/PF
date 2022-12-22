@@ -156,7 +156,7 @@ RRtosst <-
       y <- .extract_freqvec(formula, data, compare)
 
     } else if (is.matrix(y)) {
-      # Data entry y=c(x2, n2,x1, n1) Vaccinates First (order same but subscripts reversed)
+      # Data entry y=c(x2, n2, x1, n1) Vaccinates First (order same but subscripts reversed)
       # data vector
       y <- c(t(cbind(y[, 1], apply(y, 1, sum))))
       # NOTE: the subscripts are reversed compared to the other functions
@@ -362,7 +362,7 @@ RRtosst <-
     # code taken from RRsc()
     # choice of either Koopman (mn=F)
     # or Miettinenen-Nurminen (mn=T)
-    # Data entry y=c(x2, n2,x1, n1) Vaccinates First
+    # Data entry y=c(x2, n2, x1, n1) Vaccinates First
 
     u.p <- function(p1, p2, n1, n2) {
       (1. - p1) / (n1 * p1) + (1. - p2) / (n2 * p2)
