@@ -69,7 +69,7 @@
                   paste(rmclus, collapse = ", ", sep = ""),
                   " does not have both comparison treatment levels. Removing from analysis.",
                   collapse = "", sep = ""))
-    A <- droplevels(A[!A[,4] %in% rmclus, ])
+    A <- droplevels(A[!A[, 4] %in% rmclus, ])
   }
   y <- A[, 1]
   n <- A[, 2]

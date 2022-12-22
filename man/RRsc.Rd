@@ -18,7 +18,7 @@ RRsc(
 )
 }
 \arguments{
-\item{y}{Data vector c(y1, n1, y2, n2) where y are the positives,  n are the
+\item{y}{Data vector c(y1, n1, y2, n2) where y are the positives, n are the
 total, and group 1 is compared to group 2 (control or reference group).}
 
 \item{data}{data.frame containing variables of formula.}
@@ -81,7 +81,7 @@ RRsc(y_vector)
 # skew corr    0.611 0.0380 0.876
 
 y_matrix <- matrix(c(4, 20, 12, 16), 2, 2, byrow = TRUE)
-#       [,1] [,2]
+#       [, 1] [, 2]
 # [1,]    4   20
 # [2,]   12   16
 

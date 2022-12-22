@@ -7,8 +7,8 @@
 #'   likelihood ratio, often 1/8 or 1/32. Under some conditions the log
 #'   likelihood ratio may follow the chi square distribution. If so,
 #  Latex version not good
-# then \eqn{\alpha=1-{{F}_{{{\chi }^{2}}}}\left( 2\log (k),1 \right)}.
-#' then \eqn{\alpha=1-F(2log(k),1)}, where \eqn{F} is a chi-square CDF.
+# then \eqn{\alpha=1-{{F}_{{{\chi }^{2}}}}\left( 2\log (k), 1 \right)}.
+#' then \eqn{\alpha=1-F(2log(k), 1)}, where \eqn{F} is a chi-square CDF.
 #' \code{RRlsi()} will make the conversion from \eqn{\alpha} to \emph{k} if
 #' \code{use.alpha = TRUE}. \cr \cr The data may also be a matrix. In that case
 #' \code{y} would be entered as \cr \code{matrix(c(y1, n1-y1, y2, n2-y2), 2, 2,
@@ -69,7 +69,7 @@
 #'
 #' y_matrix <- matrix(c(4, 20, 12, 16), 2, 2, byrow = TRUE)
 #' y_matrix
-#' #      [,1] [,2]
+#' #      [, 1] [, 2]
 #' # [1,]    4   20
 #' # [2,]   12   16
 #'
@@ -132,8 +132,8 @@ RRlsi <-
     .check_3input_cases_freq(data = data, formula = formula, y = y)
 
     # 9/14/07
-    # alpha to k: k=exp(qchisq(1-alpha,1)/2)
-    # k to alpha: alpha=1-pchisq(log(k)*2,1)
+    # alpha to k: k=exp(qchisq(1-alpha, 1)/2)
+    # k to alpha: alpha=1-pchisq(log(k)*2, 1)
     if (use.alpha)
       k <- exp(qchisq(1 - alpha, 1) / 2)
     else

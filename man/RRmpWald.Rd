@@ -72,7 +72,7 @@ Call to this function may be one of two formats: (1) specify \code{data} and
 \code{RRmpWald(formula, data, compare = c('vac', 'con'), affected = 1,
 alpha = 0.05,} \cr
 \code{pf = TRUE, tdist = TRUE, df = NULL, rnd = 3)} \cr \cr
-\code{RRmpWald(x, compare = c('vac', 'con'), affected = 1, alpha = 0,05,} \cr
+\code{RRmpWald(x, compare = c('vac', 'con'), affected = 1, alpha = 0, 05,} \cr
 \code{pf = TRUE, tdist = TRUE, df = NULL, rnd = 3)}
 }
 \examples{

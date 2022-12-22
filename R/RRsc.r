@@ -12,7 +12,7 @@
 #'   retrieved from the returned object using \code{RRsc()$estimate}. \cr \cr
 #'   The data may also be a matrix. In that case \code{y} would be entered as
 #'   \cr \code{matrix(c(y1, n1-y1, y2, n2-y2), 2, 2, byrow = TRUE)}.
-#' @param y Data vector c(y1, n1, y2, n2) where y are the positives,  n are the
+#' @param y Data vector c(y1, n1, y2, n2) where y are the positives, n are the
 #'   total, and group 1 is compared to group 2 (control or reference group).
 #' @param formula Formula of the form cbind(y, n) ~ x, where y is the number
 #'   positive, n is the group size, x is a factor with two levels of treatment.
@@ -59,7 +59,7 @@
 #' # skew corr    0.611 0.0380 0.876
 #'
 #' y_matrix <- matrix(c(4, 20, 12, 16), 2, 2, byrow = TRUE)
-#' #       [,1] [,2]
+#' #       [, 1] [, 2]
 #' # [1,]    4   20
 #' # [2,]   12   16
 #'

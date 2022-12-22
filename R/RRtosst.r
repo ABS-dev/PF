@@ -57,7 +57,7 @@
 #' # 0.611 0.012 0.902
 #'
 #' y_matrix <- matrix(c(4, 20, 12, 16), 2, 2, byrow = TRUE)
-#' #      [,1] [,2]
+#' #      [, 1] [, 2]
 #' # [1,]    4   20
 #' # [2,]   12   16
 #'
@@ -458,5 +458,5 @@ RRtosst <-
 # End asymptotic score method
 #------------------------------------------------------
 
-# .rr.score.asymp(c(0,18,16,19),mn=F)
-# .rr.score.asymp(c(0,18,16,19),mn=T)
+# .rr.score.asymp(c(0, 18, 16, 19),mn=F)
+# .rr.score.asymp(c(0, 18, 16, 19),mn=T)

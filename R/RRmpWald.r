@@ -39,7 +39,7 @@
 #' \code{RRmpWald(formula, data, compare = c('vac', 'con'), affected = 1,
 #' alpha = 0.05,} \cr
 #' \code{pf = TRUE, tdist = TRUE, df = NULL, rnd = 3)} \cr \cr
-#' \code{RRmpWald(x, compare = c('vac', 'con'), affected = 1, alpha = 0,05,} \cr
+#' \code{RRmpWald(x, compare = c('vac', 'con'), affected = 1, alpha = 0, 05,} \cr
 #' \code{pf = TRUE, tdist = TRUE, df = NULL, rnd = 3)}
 #' @examples
 #' RRmpWald(pos ~ tx + cluster(cage), New, compare = c('vac', 'con'))
@@ -78,7 +78,7 @@ RRmpWald <- function(formula = NULL, data = NULL, compare = c("vac", "con"),
   # Data entry:
   #  formula of the form response ~ treatment + cluster(clustername)
   #  then it will convert data to matrix and vector
-  #  if entered as vector (x=) it must be ordered by vac/con pairs: c(11,01,10,00)
+  #  if entered as vector (x=) it must be ordered by vac/con pairs: c(11, 01, 10, 00)
   multvec <- NULL
   if (!is.null(formula) && !is.null(data)) {
     Xx <- .twoby(formula = formula, data = data, compare = compare,
