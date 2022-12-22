@@ -8,7 +8,7 @@
 print.rr1 <- function(x,...) {
   num.dig <- options()$digits
   options(digits = x$rnd)
-  conf <- paste(100*(1 - x$alpha), "%", sep = "")
+  conf <- paste(100 * (1 - x$alpha), "%", sep = "")
   cat("\n")
   estimate <- x$estimate
   cat(x$estimator,"\n")

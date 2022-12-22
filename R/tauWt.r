@@ -74,7 +74,7 @@ tauWt <- function(fit,subset.factor=NULL, fit.only = TRUE, iter.max = 12, conver
       if (iter > iter.max)
         break
       tau.hat <- Tau(fit, x, n, tau.hat, iter)
-      w <- 1/(1 + tau.hat * (n - 1))
+      w <- 1 / (1 + tau.hat * (n - 1))
       fit <- update(fit, weights = w, maxit = iter.max/2)
       pcs <- sum(resid(fit, type = "pearson")^2)
       if (trace.it) cat("\nCycle", iter, "   tau.hat =", tau.hat, "PCS =", pcs, "deviance =", round(fit$deviance, 3))
@@ -104,7 +104,7 @@ tauWt <- function(fit,subset.factor=NULL, fit.only = TRUE, iter.max = 12, conver
     tau.hat <- rep(NA, length(levels(subset.factor)))
     names(tau.hat) <- levels(subset.factor)
     flink <- fit$family$link ##
-    for(lev in levels(subset.factor)) {
+    for (lev in levels(subset.factor)) {
       if (trace.it) cat("\n",lev,sep="")
       subdat <- data.frame(
         yi = y[subset.factor==lev],

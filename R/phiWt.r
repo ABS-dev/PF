@@ -53,7 +53,7 @@ phiWt <- function(fit,subset.factor=NULL,fit.only = TRUE, show.warns = FALSE) {
     w <- rep(1 / summary(update(fit,family=newfamily))$disp,length(y))
   } else {
     w <- rep(NA, length(y))
-    for(lev in levels(subset.factor)) {
+    for (lev in levels(subset.factor)) {
       xi <- rep(1,sum(subset.factor==lev))
       yi <- y[subset.factor==lev]
       mi <- m[subset.factor==lev]

@@ -86,7 +86,7 @@ RRstr <- function(formula = NULL, data = NULL, compare = c("vac", "con"), Y, alp
   #  u.p, zi.phi, zis.phi, root, rr.opt, matricize
 
   u.p <- function(p1, p2, n1, n2) {
-    (1 - p1)/(n1 * p1) + (1 - p2)/(n2 * p2)
+    (1 - p1) / (n1 * p1) + (1 - p2) / (n2 * p2)
   }
 
   zi.phi <- function(phi, Y, u.p, root, za) {
@@ -101,12 +101,12 @@ RRstr <- function(formula = NULL, data = NULL, compare = c("vac", "con"), Y, alp
       p1 <- p2 * phi
       u <- u.p(p1, p2, n1, n2)
       u[u < 0] <- NA
-      zz <- ((y1 - n1 * p1)/(1 - p1))
+      zz <- ((y1 - n1 * p1) / (1 - p1))
       z <- zz * sqrt(u)
       zd <- abs(z - za)
       zd[is.na(zd)] <- 2 * zd[!is.na(zd)]
       zi <- zi + unique(zz[zd == min(zd)])
-      ui <- ui + 1/unique(u[zd == min(zd)])
+      ui <- ui + 1 / unique(u[zd == min(zd)])
     }
     return(zi/sqrt(ui))
   }
@@ -125,18 +125,18 @@ RRstr <- function(formula = NULL, data = NULL, compare = c("vac", "con"), Y, alp
       q2 <- 1 - p2
       u <- u.p(p1, p2, n1, n2)
       u[u < 0] <- NA
-      zz <- ((y1 - n1 * p1)/(1 - p1))
+      zz <- ((y1 - n1 * p1) / (1 - p1))
       z.ph <- zz * sqrt(u)
-      g <- (q1 * (q1 - p1))/(n1 * p1)^2 - (q2 * (q2 - p2))/(n2 * p2)^2
+      g <- (q1 * (q1 - p1)) / (n1 * p1)^2 - (q2 * (q2 - p2)) / (n2 * p2)^2
       g.ph <- g/u^1.5
-      z.s <- z.ph - (g.ph * (za^2 - 1))/6
+      z.s <- z.ph - (g.ph * (za^2 - 1)) / 6
       zd <- abs(z.s - za)
       zd[is.na(zd)] <- 2 * zd[!is.na(zd)]
       zi <- zi + unique(zz[zd == min(zd)])
       ui <- ui + 1/unique(u[zd == min(zd)])
       gi <- gi + unique(g[zd == min(zd)])/unique(u[zd == min(zd)])^3
     }
-    return(zi/sqrt(ui) - (gi * (za^2 - 1))/(6 * ui^1.5))
+    return(zi/sqrt(ui) - (gi * (za^2 - 1)) / (6 * ui^1.5))
   }
 
   root <- function(y1, y2, n1, n2, phi) {
@@ -145,8 +145,8 @@ RRstr <- function(formula = NULL, data = NULL, compare = c("vac", "con"), Y, alp
     b <-  -(phi * (y2 + n1) + y1 + n2)
     cc <- y1 + y2
     det <- sqrt(b^2 - 4 * a * cc)
-    r1 <- (-b + det)/(2 * a)
-    r2 <- (-b - det)/(2 * a)
+    r1 <- (-b + det) / (2 * a)
+    r2 <- (-b - det) / (2 * a)
     r1 <- round(r1, 8) ## round for comparison
     r2 <- round(r2, 8) ##
     if (r1 < 0 || r1 > 1) r1 <- r2
@@ -174,7 +174,7 @@ RRstr <- function(formula = NULL, data = NULL, compare = c("vac", "con"), Y, alp
         if (trace.it) cat("Step adjustment =", 1/f, "\n")
       }
 
-      phi <- exp(log(phi.old) + log(phi.new/phi.old) * ((za - z.old)/(z.new - z.old)))
+      phi <- exp(log(phi.old) + log(phi.new / phi.old) * ((za - z.old) / (z.new - z.old)))
       phi.old <- phi.new
       z.old <- z.new
       phi.new <- phi
@@ -203,7 +203,7 @@ RRstr <- function(formula = NULL, data = NULL, compare = c("vac", "con"), Y, alp
   rownames(Y) <- paste("Row", 1:nrow(Y), sep = "")
   colnames(Y) <- c("y1", "n1", "y2", "n2")
   # save data and empirical Rs
-  Y <- cbind(Y, R.obs = (Y[, 1]/Y[, 2])/(Y[, 3]/Y[, 4]))
+  Y <- cbind(Y, R.obs = (Y[, 1] / Y[, 2]) / (Y[, 3]/Y[, 4]))
 
   zv <- qnorm(c(alpha / 2, 1 - alpha / 2))
   numer <- denom <- uu <- 0

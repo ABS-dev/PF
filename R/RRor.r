@@ -77,22 +77,22 @@ RRor <- function(fit=NULL, beta.hat=NULL, var.beta.hat=NULL, degf=NULL, which = 
     var.beta.hat <- summary(fit)$cov.sc
     if (is.null(degf)) degf <- summary(fit)$df.resid
   }
-  q <- c(0.5, alpha/2, 1 - alpha/2)
+  q <- c(0.5, alpha / 2, 1 - alpha/2)
   B <- beta.hat[which]
   b1 <- B[1]
   b2 <- B[2]
-  m1 <- 1/(1 + exp(-b1))
-  m2 <- 1/(1 + exp(-b2))
+  m1 <- 1 / (1 + exp(-b1))
+  m2 <- 1 / (1 + exp(-b2))
   log.r <- log(1 + exp(-b1)) - log(1 + exp(-b2))
   grad.log.r <- c(-exp(-b1) * m1, exp(-b2) * m2)
   var.b <- var.beta.hat[which, which]
   var.log.r <- t(grad.log.r) %*% var.b %*% grad.log.r
   if (norm) {
     int <- exp(log.r + qnorm(q) * sqrt(var.log.r))
-    mu <- 1/(1 + exp(-B + matrix(qnorm(q), 2, 3, byrow = TRUE) * sqrt(diag(var.b))))
+    mu <- 1 / (1 + exp(-B + matrix(qnorm(q), 2, 3, byrow = TRUE) * sqrt(diag(var.b))))
   } else {
     int <- exp(log.r + qt(q, degf) * sqrt(var.log.r))
-    mu <- 1/(1 + exp(-B + matrix(qt(q, degf), 2, 3, byrow = TRUE) * sqrt(diag(var.b))))
+    mu <- 1 / (1 + exp(-B + matrix(qt(q, degf), 2, 3, byrow = TRUE) * sqrt(diag(var.b))))
   }
   dimnames(mu) <- list(names(coef(fit)), c("mu.hat","LL","UL"))
   if (!pf) {
