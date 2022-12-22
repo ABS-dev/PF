@@ -179,7 +179,7 @@ RRtosst <-
     scst <- function(rho, y1, n1, y2, n2) {
       pih1 <- y1 / n1 # unrestricted MLE of current data
       pih2 <- y2 / n2
-      if (y1 == 0 & y2 == 0) {
+      if (y1 == 0 && y2 == 0) {
         sc <- 0
       } else if (y2 == n2) {
         sc <- 0
@@ -412,10 +412,10 @@ RRtosst <-
     # Score method
     score <- rep(0., length(zv))
     for (k in 1.:length(zv)) {
-      if (k == 1. & x1 == 0.)
+      if (k == 1. && x1 == 0.)
         score[k] <- 0.
       else
-        if (k == 2. & x2 == 0.) {
+        if (k == 2. && x2 == 0.) {
           score[k] <- Inf
         } else {
           phi <- c(starting[k], 0.9 * starting[k])

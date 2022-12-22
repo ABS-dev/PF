@@ -131,7 +131,7 @@ print.rrstr <- function(x,...) {
   num.dig <- options()$digits
   options(digits = x$rnd)
   mle <- x$estimate["mle", 1]
-  if (mle == 0 | mle == 1) {
+  if (mle == 0 || mle == 1) {
     cat("\nHomogeneity test not possible because MLE = ", mle, "\n")
   } else {
     cat("\nTest of homogeneity across clusters\n")

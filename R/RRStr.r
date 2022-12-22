@@ -197,7 +197,7 @@ RRstr <- function(formula = NULL, data = NULL, compare = c("vac", "con"), Y, alp
 
   # convert to matrix
 
-  if (!is.null(formula) & !is.null(data)) {
+  if (!is.null(formula) && !is.null(data)) {
     Y <- .matricize(formula = formula, data = data, compare = compare)$Y
   }
   rownames(Y) <- paste("Row", 1:nrow(Y), sep = "")
@@ -245,7 +245,7 @@ RRstr <- function(formula = NULL, data = NULL, compare = c("vac", "con"), Y, alp
   #---------------------------------------
   # get MLE of R
   # and test for heterogeneity
-  if (Phi == 0 | Phi == 1) {
+  if (Phi == 0 || Phi == 1) {
     Phi.ML <- Phi
     hom <- paste("MLE = ",Phi.ML,", Homogeneity test not possible", sep = "")
   } else {

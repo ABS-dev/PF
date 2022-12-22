@@ -74,7 +74,7 @@
   y <- A[, 1]
   n <- A[, 2]
   x <- as.factor(A[, 3])
-  if (!any(levels(x) == compare[1]) | !any(levels(x) == compare[2])) {
+  if (!any(levels(x) == compare[1]) || !any(levels(x) == compare[2])) {
     stop("matricize: What is being compared?")
   }
   clus <- A[, 4]

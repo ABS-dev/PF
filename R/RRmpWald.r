@@ -80,7 +80,7 @@ RRmpWald <- function(formula = NULL, data = NULL, compare = c("vac", "con"),
   #  then it will convert data to matrix and vector
   #  if entered as vector (x=) it must be ordered by vac/con pairs: c(11,01,10,00)
   multvec <- NULL
-  if (!is.null(formula) & !is.null(data)) {
+  if (!is.null(formula) && !is.null(data)) {
     Xx <- .twoby(formula = formula, data = data, compare = compare,
                  affected = affected)
     xtable <- Xx$xtable

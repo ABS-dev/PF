@@ -279,7 +279,7 @@ RRsc <- function(y = NULL,
 
   # which ends to estimate
   score.start <- rep(NA, 2)
-  if (x1 > 0 & x2 > 0) {
+  if (x1 > 0 && x2 > 0) {
     which <- 1:2
   } else if (x1 == 0) {
     score.start[1] <- 0

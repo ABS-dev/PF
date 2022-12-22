@@ -186,7 +186,7 @@ RRotsst <-
     scst <- function(rho, y1, n1, y2, n2) {
       pih1 <- y1 / n1  # unrestricted MLE of current data
       pih2 <- y2 / n2
-      if (y1 == 0 & y2 == 0)
+      if (y1 == 0 && y2 == 0)
         sc <- 0
       else if (y2 == n2) {
         sc <- 0
