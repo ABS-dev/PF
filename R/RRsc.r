@@ -99,7 +99,7 @@
 RRsc <- function(y = NULL,
                  data = NULL,
                  formula = NULL,
-                 compare = c('vac', 'con'),
+                 compare = c("vac", "con"),
                  alpha = 0.05,
                  pf = TRUE,
                  trace.it = FALSE,
@@ -196,7 +196,7 @@ RRsc <- function(y = NULL,
     phi.old <- phi[2]
     z.old <- z.phi(phi.old, x1, x2, n1, n2, u.p, root, za, MN)
     if (trace.it)
-      cat('\n\nR start', phi, '\n')
+      cat("\n\nR start", phi, "\n")
     iter <- 0
     repeat {
       iter <- iter + 1
@@ -213,7 +213,7 @@ RRsc <- function(y = NULL,
         break
       if (iter == iter.max) {
         # no convergence
-        cat('\nIteration limit reached without convergence\n')
+        cat("\nIteration limit reached without convergence\n")
         break
       }
     } # end repeat
@@ -288,13 +288,13 @@ RRsc <- function(y = NULL,
     score.start[2] <- Inf
     which <- 1
   } else {
-    break('Are you kidding?')
+    break("Are you kidding?")
   }
   # MN method
   score <- score.start
   for (k in which) {
     if (trace.it)
-      cat('\nMN', switch(k, 'lower', 'upper'))
+      cat("\nMN", switch(k, "lower", "upper"))
     za <-  -zv[k]
     phi <- c(int["0.5 method", k], 0.9 * int["0.5 method", k])
     phi.new <-
@@ -315,7 +315,7 @@ RRsc <- function(y = NULL,
   score <- score.start
   for (k in which) {
     if (trace.it)
-      cat('\nScore', switch(k, 'lower', 'upper'))
+      cat("\nScore", switch(k, "lower", "upper"))
     za <-  -zv[k]
     phi <- c(int["0.5 method", k], 0.9 * int["0.5 method", k])
     phi.new <-
@@ -336,7 +336,7 @@ RRsc <- function(y = NULL,
   score <- score.start
   for (k in which) {
     if (trace.it)
-      cat('\nSkew corr', switch(k, 'lower', 'upper'))
+      cat("\nSkew corr", switch(k, "lower", "upper"))
     za <-  -zv[k]
     phi <- c(int["0.5 method", k], 0.9 * int["0.5 method", k])
     phi.new <-
@@ -367,7 +367,7 @@ RRsc <- function(y = NULL,
   names(y) <- c("y1", "n1", "y2", "n2")
   return(rrsc$new(
     estimate = int,
-    estimator = ifelse(pf, 'PF', 'RR'),
+    estimator = ifelse(pf, "PF", "RR"),
     y = y,
     rnd = rnd,
     alpha = alpha

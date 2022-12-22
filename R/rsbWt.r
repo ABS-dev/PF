@@ -34,8 +34,8 @@
 ## rsbWt uses rsb to refit model
 ##-------------------------------
 rsbWt <- function(fit = NULL,
-  subset.factor = NULL,
-  fit.only = TRUE) {
+                  subset.factor = NULL,
+                  fit.only = TRUE) {
   fit <- update(fit, x = TRUE, y = TRUE)
   x <- fit$x
   yovern <- fit$y
@@ -44,7 +44,7 @@ rsbWt <- function(fit = NULL,
     n <- rep(1, length(fit$y))
   y <- yovern * n
   if (is.null(subset.factor))
-    subset.factor <- factor(rep('all', length(y)))
+    subset.factor <- factor(rep("all", length(y)))
   rsbdw <- rsb(y, n, id = subset.factor)
   w <- rsbdw$w
   d <- rsbdw$d
@@ -96,17 +96,17 @@ rsb <- function(y = NULL, n = NULL, formula = NULL, data = NULL, id = NULL) {
     sumdata <- data %>%
       ungroup %>%
       select(vars[1:3])
-    colnames(sumdata) <- c('y', 'n', 'id')
+    colnames(sumdata) <- c("y", "n", "id")
     y <- sumdata$y
     n <- sumdata$n
     id <- sumdata$id
   } else if (!(is.null(y) & is.null(n)) & is.null(formula) & is.null(data)) {
     ## case when y and n is input
     if (is.null(id)) {
-      id <- rep('all', length(y))
+      id <- rep("all", length(y))
     }
   } else {
-    stop("Cannot parse input. If 'y' & 'n' are provided, 'formula' & 'data' must be NULL and vice-versa.")
+    stop("Cannot parse input. If \"y\" & \"n\" are provided, \"formula\" & \"data\" must be NULL and vice-versa.")
   }
 
   # Rao-Scott design effect weights

@@ -54,7 +54,7 @@ tauWt <- function(fit,subset.factor=NULL, fit.only = TRUE, iter.max = 12, conver
     v <- n * mu.hat * (1 - mu.hat)
     wvd <- w * (1 - w * v * d)
     denominator <- sum((n-1) * wvd)
-   if (iter==1)
+    if (iter==1)
       numerator <- pcs - degf
     else
       numerator <- pcs - sum(wvd)
@@ -68,21 +68,21 @@ tauWt <- function(fit,subset.factor=NULL, fit.only = TRUE, iter.max = 12, conver
     pcs <- sum(resid(fit, type = "pearson")^2)
     df <- fit$df.residual
     iter <- 0
-   if (trace.it) cat("\nCycle", iter, "   tau.hat =", tau.hat, "PCS =", pcs, "deviance =", fit$deviance)
+    if (trace.it) cat("\nCycle", iter, "   tau.hat =", tau.hat, "PCS =", pcs, "deviance =", fit$deviance)
     repeat {
       iter <- iter + 1
-     if (iter > iter.max)
+      if (iter > iter.max)
         break
       tau.hat <- Tau(fit, x, n, tau.hat, iter)
       w <- 1/(1 + tau.hat * (n - 1))
       fit <- update(fit, weights = w, maxit = iter.max/2)
       pcs <- sum(resid(fit, type = "pearson")^2)
-     if (trace.it) cat("\nCycle", iter, "   tau.hat =", tau.hat, "PCS =", pcs, "deviance =", round(fit$deviance, 3))
-     if (pcs < (df + converge))
-       if (iter > 1)
+      if (trace.it) cat("\nCycle", iter, "   tau.hat =", tau.hat, "PCS =", pcs, "deviance =", round(fit$deviance, 3))
+      if (pcs < (df + converge))
+        if (iter > 1)
           break
     }
-   if (trace.it) cat("\ntau =", tau.hat, "\n")
+    if (trace.it) cat("\ntau =", tau.hat, "\n")
     return(list(w=w,tau.hat=tau.hat))
   }
 
@@ -90,7 +90,7 @@ tauWt <- function(fit,subset.factor=NULL, fit.only = TRUE, iter.max = 12, conver
   x <- fit$x
   yovern <- fit$y
   n <- fit$prior.weights
- if (is.null(n))
+  if (is.null(n))
     n <- rep(1, length(fit$y))
   y <- yovern * n
   nminusy <- n - y
@@ -105,7 +105,7 @@ tauWt <- function(fit,subset.factor=NULL, fit.only = TRUE, iter.max = 12, conver
     names(tau.hat) <- levels(subset.factor)
     flink <- fit$family$link ##
     for(lev in levels(subset.factor)) {
-     if (trace.it) cat('\n',lev,sep='')
+      if (trace.it) cat("\n",lev,sep="")
       subdat <- data.frame(
         yi = y[subset.factor==lev],
         nminusyi = nminusy[subset.factor==lev]

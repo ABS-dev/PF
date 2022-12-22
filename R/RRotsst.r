@@ -130,7 +130,7 @@ RRotsst <-
       cpu <- ifelse(y < n, qbeta(1 - alpha / 2, y + 1, n - y), 1)
       out <- cbind(y, n, p, cpl, cpu)
       dimnames(out) <-
-        list(names(y), c('y', 'n', 'p.hat', 'cp low', 'cp high'))
+        list(names(y), c("y", "n", "p.hat", "cp low", "cp high"))
 
       options(warn = 0)
       return(out)
@@ -205,7 +205,7 @@ RRotsst <-
 
 
     # get Clopper-Pearson intervals for Berger-Boos method
-    cp <- binci(c(x1, x2), c(n1, n2), alpha = gamma)[, c('cp low', 'cp high')]
+    cp <- binci(c(x1, x2), c(n1, n2), alpha = gamma)[, c("cp low", "cp high")]
     L1 <- cp[1, 1]
     U1 <- cp[1, 2]
     L2 <- cp[2, 1]
@@ -241,9 +241,9 @@ RRotsst <-
           pn <-
           seq(0, min(1 / low, 1), length = nuisance.points) # simple method 17.138
         if (sum(pn > 1) > 0) {
-          cat('\nIteration',
+          cat("\nIteration",
               iter,
-              'nuisance parameter outside parameter space\n')
+              "nuisance parameter outside parameter space\n")
           next
         }
         fy <- rep(NA, nuisance.points)
@@ -257,7 +257,7 @@ RRotsst <-
         }
         max.fy <- max(fy)
         if (trace.it)
-          cat('\nIteration', iter, 'rho.low', low, 'tail', max.fy, '\n')
+          cat("\nIteration", iter, "rho.low", low, "tail", max.fy, "\n")
         if (abs(max.fy - (alpha - gamma / 2)) < converge)
           break
         if (max.fy > (alpha - gamma / 2)) {
@@ -297,9 +297,9 @@ RRotsst <-
         pn <-
         seq(0, min(1 / high, 1), length = nuisance.points) # simple method 17.138
       if (sum(pn > 1) > 0) {
-        cat('\nIteration',
+        cat("\nIteration",
             iter,
-            'nuisance parameter outside parameter space\n')
+            "nuisance parameter outside parameter space\n")
         next
       }
       fy <- rep(NA, nuisance.points)
@@ -311,7 +311,7 @@ RRotsst <-
       }
       max.fy <- max(fy)
       if (trace.it)
-        cat('\nIteration', iter, 'rho.high', high, 'tail', max.fy, '\n')
+        cat("\nIteration", iter, "rho.high", high, "tail", max.fy, "\n")
       if (abs(max.fy - (alpha - gamma / 2)) < converge)
         break
       if (max.fy < (alpha - gamma / 2)) {
@@ -330,10 +330,10 @@ RRotsst <-
       names(int) <- c("PF", "LL", "UL")
     }
     y <- as.data.frame(t(y))
-    names(y) <- c('y1', 'n1', 'y2', 'n2')
+    names(y) <- c("y1", "n1", "y2", "n2")
     return(rr1$new(
       estimate = int,
-      estimator = ifelse(pf, 'PF', 'RR'),
+      estimator = ifelse(pf, "PF", "RR"),
       y = y,
       rnd = rnd,
       alpha = alpha

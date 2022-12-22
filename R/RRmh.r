@@ -94,7 +94,7 @@
 
 RRmh <- function(formula = NULL,
                  data = NULL,
-                 compare = c('vac', 'con'),
+                 compare = c("vac", "con"),
                  Y,
                  alpha = 0.05,
                  pf = TRUE,
@@ -103,7 +103,7 @@ RRmh <- function(formula = NULL,
   if (!is.null(formula) & !is.null(data)) {
     Y <- .matricize(formula = formula, data = data, compare = compare)$Y
   }
-  colnames(Y) <- c('y1', 'n1', 'y2', 'n2')
+  colnames(Y) <- c("y1", "n1", "y2", "n2")
   rownames(Y) <- paste("Row", 1:nrow(Y), sep = "")
   # save data and empirical Rs
   Y <- cbind(Y, R.obs = (Y[, 1]/Y[, 2])/(Y[, 3]/Y[, 4]))
@@ -141,6 +141,6 @@ RRmh <- function(formula = NULL,
     names(int) <- c("PF", "LL", "UL")
   }
 
-  return(rr1$new(estimate = int, estimator = ifelse(pf, 'PF', 'RR'),
+  return(rr1$new(estimate = int, estimator = ifelse(pf, "PF", "RR"),
                  y = as.data.frame(Y), rnd = rnd, alpha = alpha))
 }

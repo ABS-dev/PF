@@ -78,7 +78,7 @@
 #' tx = rep(c('a', 'b'), 4),
 #' clus = rep(paste('Row', 1:4, sep = ''), each = 2))
 #'
-RRstr <- function(formula = NULL, data = NULL, compare = c('vac', 'con'), Y, alpha = 0.05,
+RRstr <- function(formula = NULL, data = NULL, compare = c("vac", "con"), Y, alpha = 0.05,
                   pf = TRUE, trace.it = FALSE, iter.max = 24, converge = 1e-6, rnd = 3, multiplier = 0.7,
                   divider = 1.1) {
 
@@ -161,7 +161,7 @@ RRstr <- function(formula = NULL, data = NULL, compare = c('vac', 'con'), Y, alp
     phi.new <- phi[1]
     phi.old <- phi[2]
     z.old <- z.phi(phi.old, Y, u.p, root, za)
-    if (trace.it) cat('\n\nR start', phi, '\n')
+    if (trace.it) cat("\n\nR start", phi, "\n")
     iter <- 0
     repeat {
       iter <- iter + 1
@@ -171,7 +171,7 @@ RRstr <- function(formula = NULL, data = NULL, compare = c('vac', 'con'), Y, alp
         phi.new <- phi.old + (phi.new - phi.old) / f
         z.new <- z.phi(phi.new, Y, u.p, root, za)
         f <- f * (1/divider)
-        if (trace.it) cat('Step adjustment =', 1/f, '\n')
+        if (trace.it) cat("Step adjustment =", 1/f, "\n")
       }
 
       phi <- exp(log(phi.old) + log(phi.new/phi.old) * ((za - z.old)/(z.new - z.old)))
@@ -183,7 +183,7 @@ RRstr <- function(formula = NULL, data = NULL, compare = c('vac', 'con'), Y, alp
         cat("iteration", iter, "  z", z.new, "phi", phi.new, "\n")
       if (abs(za - z.new) < converge) break
       if (iter == iter.max) { # no convergence
-        cat('\nIteration limit reached without convergence\n')
+        cat("\nIteration limit reached without convergence\n")
         break
       }
     } # end repeat
@@ -200,7 +200,7 @@ RRstr <- function(formula = NULL, data = NULL, compare = c('vac', 'con'), Y, alp
   if (!is.null(formula) & !is.null(data)) {
     Y <- .matricize(formula = formula, data = data, compare = compare)$Y
   }
-  rownames(Y) <- paste("Row", 1:nrow(Y), sep = '')
+  rownames(Y) <- paste("Row", 1:nrow(Y), sep = "")
   colnames(Y) <- c("y1", "n1", "y2", "n2")
   # save data and empirical Rs
   Y <- cbind(Y, R.obs = (Y[, 1]/Y[, 2])/(Y[, 3]/Y[, 4]))
@@ -247,11 +247,11 @@ RRstr <- function(formula = NULL, data = NULL, compare = c('vac', 'con'), Y, alp
   # and test for heterogeneity
   if (Phi == 0 | Phi == 1) {
     Phi.ML <- Phi
-    hom <- paste('MLE = ',Phi.ML,', Homogeneity test not possible', sep = '')
+    hom <- paste("MLE = ",Phi.ML,", Homogeneity test not possible", sep = "")
   } else {
     za <-  0
     phi <- c(Phi, multiplier * Phi)
-    if (trace.it) cat('\nMLE')
+    if (trace.it) cat("\nMLE")
     phi.new <- rr.opt(z.phi = zi.phi, phi = phi, za = za, divider = divider,
                       trace.it = trace.it, u.p = u.p, root = root)
     Phi.ML <- phi.new
@@ -269,7 +269,7 @@ RRstr <- function(formula = NULL, data = NULL, compare = c('vac', 'con'), Y, alp
 
   # Score intervals
   for (k in which) {
-    if (trace.it) cat('\nScore',switch(k, 'lower', 'upper'))
+    if (trace.it) cat("\nScore",switch(k, "lower", "upper"))
     za <-  -zv[k]
     phi <- c(int[k], multiplier * int[k])
     phi.new <- rr.opt(z.phi = zi.phi, phi = phi, za = za, divider = divider,
@@ -280,7 +280,7 @@ RRstr <- function(formula = NULL, data = NULL, compare = c('vac', 'con'), Y, alp
 
   # Skewness-corrected intervals
   for (k in which) {
-    if (trace.it) cat('\nSkewness-corrected',switch(k,'lower','upper'))
+    if (trace.it) cat("\nSkewness-corrected",switch(k,"lower","upper"))
     za <-  -zv[k]
     phi <- c(int[1, k], multiplier * int[1, k])
     phi.new <- rr.opt(z.phi = zis.phi, phi = phi, za = za, divider = divider,
@@ -297,6 +297,6 @@ RRstr <- function(formula = NULL, data = NULL, compare = c('vac', 'con'), Y, alp
     int <- 1 - int[, c(1, 3, 2)]
     dimnames(int) <- list(c("starting", "mle", "skew corr"), c("PF", "LL", "UL"))
   }
-  return(rrstr$new(estimate = int, hom = hom, estimator = ifelse(pf, 'PF', 'RR'),
+  return(rrstr$new(estimate = int, hom = hom, estimator = ifelse(pf, "PF", "RR"),
                    y = as.data.frame(Y), compare = compare, rnd = rnd, alpha = alpha))
 }

@@ -14,8 +14,10 @@ setClassUnion("listORchar", c("list", "character"))
 #' @seealso \code{\link{rr1}, \link{rrsi}, \link{rrsc}, \link{rrstr}}
 #' @export
 #' @author \link{PF-package}
-pf <- setRefClass('pf', fields = list(estimator = 'character', rnd = 'numeric',
-                                      alpha = 'numeric'))
+pf <- setRefClass("pf",
+                  fields = list(estimator = "character",
+                                rnd = "numeric",
+                                alpha = "numeric"))
 
 
 #' @title Data class rr1
@@ -34,8 +36,10 @@ pf <- setRefClass('pf', fields = list(estimator = 'character', rnd = 'numeric',
 #' @seealso \code{\link{IDRsc}, \link{RRotsst}, \link{RRtosst}}
 #' @exportClass rr1
 #' @author \link{PF-package}
-rr1 <- setRefClass('rr1', contains = 'pf', fields = list(estimate = 'numeric',
-                                                         y = 'data.frame'))
+rr1 <- setRefClass("rr1",
+                   contains = "pf",
+                   fields = list(estimate = "numeric",
+                                 y = "data.frame"))
 
 #' @title Data class rror
 # @name rror-class
@@ -56,8 +60,11 @@ rr1 <- setRefClass('rr1', contains = 'pf', fields = list(estimate = 'numeric',
 #' @seealso \code{\link{RRor}}
 #' @export
 #' @author \link{PF-package}
-rror <- setRefClass('rror', contains = 'rr1', fields = list(norm = 'logical',
-                                                            degf = 'numeric', mu = 'matrix'))
+rror <- setRefClass("rror",
+                    contains = "rr1",
+                    fields = list(norm = "logical",
+                                  degf = "numeric",
+                                  mu = "matrix"))
 
 #' @title Data class rrsi
 #' @description data class rrsi
@@ -76,8 +83,11 @@ rror <- setRefClass('rror', contains = 'rr1', fields = list(norm = 'logical',
 #' @seealso \code{\link{IDRlsi}, \link{RRlsi}}
 #' @export
 #' @author \link{PF-package}
-rrsi <- setRefClass('rrsi', contains = 'pf', fields = list(y = 'data.frame', k =
-                                                             'numeric', estimate = 'numeric'))
+rrsi <- setRefClass("rrsi",
+                    contains = "pf",
+                    fields = list(y = "data.frame",
+                                  k = "numeric",
+                                  estimate = "numeric"))
 
 #' @title Data class rrmp
 #' @description data class rrmp
@@ -97,8 +107,10 @@ rrsi <- setRefClass('rrsi', contains = 'pf', fields = list(y = 'data.frame', k =
 #' @seealso \code{\link{RRmpWald}}
 #' @export
 #' @author \link{PF-package}
-rrmp <- setRefClass('rrmp', contains = 'rr1', fields = list(compare = 'character',
-                                                            multvec = 'data.frame'))
+rrmp <- setRefClass("rrmp",
+                    contains = "rr1",
+                    fields = list(compare = "character",
+                                  multvec = "data.frame"))
 
 #' @title Data class rrsc
 #' @description data class rrsc
@@ -114,8 +126,10 @@ rrmp <- setRefClass('rrmp', contains = 'rr1', fields = list(compare = 'character
 #' @seealso \code{\link{RRsc}}
 #' @export
 #' @author \link{PF-package}
-rrsc <- setRefClass('rrsc', contains = 'pf', fields = list(estimate = 'matrix',
-                                                           y = 'data.frame'))
+rrsc <- setRefClass("rrsc",
+                    contains = "pf",
+                    fields = list(estimate = "matrix",
+                                  y = "data.frame"))
 
 #' @title Data class rrstr
 #' @description data class rrstr
@@ -143,9 +157,9 @@ rrsc <- setRefClass('rrsc', contains = 'pf', fields = list(estimate = 'matrix',
 #' @seealso \code{\link{RRstr}}
 #' @export
 #' @author \link{PF-package}
-rrstr <- setRefClass('rrstr',
-                     contains = 'pf',
-                     fields = list(estimate = 'matrix',
-                                   hom = 'listORchar',
-                                   y = 'data.frame',
-                                   compare = 'character'))
+rrstr <- setRefClass("rrstr",
+                     contains = "pf",
+                     fields = list(estimate = "matrix",
+                                   hom = "listORchar",
+                                   y = "data.frame",
+                                   compare = "character"))

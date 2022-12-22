@@ -212,19 +212,19 @@ RRlsi <-
         iter <- iter + 1
         t3 <- t2 + (t2 - t1) * (end - Q2) / (Q2 - Q1)
         if (track)
-          cat('\niter', iter, 'r.hat', t2, 'LR', exp(Q2 - ll.max), '\n')
+          cat("\niter", iter, "r.hat", t2, "LR", exp(Q2 - ll.max), "\n")
         if (full.track)
-          cat('t321',
+          cat("t321",
               t3,
               t2,
               t1,
-              '321',
+              "321",
               ll(y, t3),
               Q2,
               Q1,
-              'converge',
+              "converge",
               abs(t3 - t2) / t2,
-              '\n')
+              "\n")
         if (iter > 1)
           if (abs((t3 - t2) / t2) < converge)
             break
@@ -249,7 +249,7 @@ RRlsi <-
     names(y) <- c("y1", "n1", "y2", "n2")
     return(rrsi$new(
       estimate = int,
-      estimator = ifelse(pf, 'PF', 'RR'),
+      estimator = ifelse(pf, "PF", "RR"),
       y = y,
       rnd = rnd,
       k = k,

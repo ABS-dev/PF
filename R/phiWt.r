@@ -39,17 +39,17 @@ phiWt <- function(fit,subset.factor=NULL,fit.only = TRUE, show.warns = FALSE) {
   # old family either binomial or poisson
   # newfamily is quasibinomial or quasipoisson
   options.warn <- options()$warn
- if (!show.warns) options(warn = -1) # deprecated warning
+  if (!show.warns) options(warn = -1) # deprecated warning
   fit <- update(fit, x = TRUE, y = TRUE)
   x <- fit$x
   y <- fit$y
   m <- fit$prior.weights
   oldfamily <- fit$family$family
-  newfamily.name <- paste('quasi',oldfamily,sep='') # works for binomial or poisson
+  newfamily.name <- paste("quasi",oldfamily,sep="") # works for binomial or poisson
   link <- fit$family$link
   newfamily <- get(newfamily.name)(link=link)
- if (is.null(subset.factor)) {
-    subset.factor <- factor(rep('all',length(y)))
+  if (is.null(subset.factor)) {
+    subset.factor <- factor(rep("all",length(y)))
     w <- rep(1 / summary(update(fit,family=newfamily))$disp,length(y))
   } else {
     w <- rep(NA, length(y))
@@ -60,11 +60,11 @@ phiWt <- function(fit,subset.factor=NULL,fit.only = TRUE, show.warns = FALSE) {
       w[subset.factor==lev] <- 1/summary(glm(yi~xi-1,family=newfamily,weights=mi))$disp
     }
   }
-  comment(w) <- paste(newfamily.name,'family,',link,'link, subsets:',paste(levels(subset.factor),collapse=', '))
+  comment(w) <- paste(newfamily.name,"family,",link,"link, subsets:",paste(levels(subset.factor),collapse=", "))
   options(warn=options.warn)
   newfit <- update(fit,weights = w)
   phi <- 1 / tapply(w, subset.factor, unique)
- if (fit.only) out <- newfit
+  if (fit.only) out <- newfit
   else out <- list(fit = newfit, weights = w, phi = phi)
   return(out)
 }
