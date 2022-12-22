@@ -80,8 +80,8 @@ IDRsc(y_vector, pf = FALSE)
 y_matrix <- matrix(c(26, 178, 10, 195), 2, 2, byrow = TRUE)
 y_matrix
 #      [, 1] [, 2]
-# [1,]   26  178
-# [2,]   10  195
+# [1, ]   26  178
+# [2, ]   10  195
 
 IDRsc(y_matrix, pf = FALSE)
 

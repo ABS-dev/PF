@@ -21,7 +21,7 @@ RRtosst(
 )
 }
 \arguments{
-\item{y}{Data vector c(y1, n1, y2, n2) where y are the positives,n are the
+\item{y}{Data vector c(y1, n1, y2, n2) where y are the positives, n are the
 total, and group 1 is compared to group 2 (control or reference group).}
 
 \item{formula}{Formula of the form cbind(y, n) ~ x, where y is the number
@@ -89,8 +89,8 @@ RRtosst(y_vector)
 
 y_matrix <- matrix(c(4, 20, 12, 16), 2, 2, byrow = TRUE)
 #      [, 1] [, 2]
-# [1,]    4   20
-# [2,]   12   16
+# [1, ]    4   20
+# [2, ]   12   16
 
 RRtosst(y_matrix)
 

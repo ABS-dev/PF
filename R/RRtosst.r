@@ -9,7 +9,7 @@
 #'   maximum over the nuisance parameter. Algorithm is a simple step search. \cr
 #'   \cr The data may also be a matrix. In that case \code{y} would be entered
 #'   as \cr \code{matrix(c(y1, n1-y1, y2, n2-y2), 2, 2, byrow = TRUE)}.
-#' @param y Data vector c(y1, n1, y2, n2) where y are the positives,n are the
+#' @param y Data vector c(y1, n1, y2, n2) where y are the positives, n are the
 #'   total, and group 1 is compared to group 2 (control or reference group).
 #' @param formula Formula of the form cbind(y, n) ~ x, where y is the number
 #'   positive, n is the group size, x is a factor with two levels of treatment.
@@ -58,8 +58,8 @@
 #'
 #' y_matrix <- matrix(c(4, 20, 12, 16), 2, 2, byrow = TRUE)
 #' #      [, 1] [, 2]
-#' # [1,]    4   20
-#' # [2,]   12   16
+#' # [1, ]    4   20
+#' # [2, ]   12   16
 #'
 #' RRtosst(y_matrix)
 #'
@@ -156,7 +156,7 @@ RRtosst <-
       y <- .extract_freqvec(formula, data, compare)
 
     } else if (is.matrix(y)) {
-      # Data entry y=c(x2,n2,x1,n1) Vaccinates First (order same but subscripts reversed)
+      # Data entry y=c(x2, n2,x1, n1) Vaccinates First (order same but subscripts reversed)
       # data vector
       y <- c(t(cbind(y[, 1], apply(y, 1, sum))))
       # NOTE: the subscripts are reversed compared to the other functions
@@ -362,7 +362,7 @@ RRtosst <-
     # code taken from RRsc()
     # choice of either Koopman (mn=F)
     # or Miettinenen-Nurminen (mn=T)
-    # Data entry y=c(x2,n2,x1,n1) Vaccinates First
+    # Data entry y=c(x2, n2,x1, n1) Vaccinates First
 
     u.p <- function(p1, p2, n1, n2) {
       (1. - p1) / (n1 * p1) + (1. - p2) / (n2 * p2)

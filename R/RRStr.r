@@ -269,7 +269,7 @@ RRstr <- function(formula = NULL, data = NULL, compare = c("vac", "con"), Y, alp
 
   # Score intervals
   for (k in which) {
-    if (trace.it) cat("\nScore",switch(k, "lower", "upper"))
+    if (trace.it) cat("\nScore", switch(k, "lower", "upper"))
     za <-  -zv[k]
     phi <- c(int[k], multiplier * int[k])
     phi.new <- rr.opt(z.phi = zi.phi, phi = phi, za = za, divider = divider,
@@ -280,7 +280,7 @@ RRstr <- function(formula = NULL, data = NULL, compare = c("vac", "con"), Y, alp
 
   # Skewness-corrected intervals
   for (k in which) {
-    if (trace.it) cat("\nSkewness-corrected",switch(k,"lower","upper"))
+    if (trace.it) cat("\nSkewness-corrected", switch(k,"lower","upper"))
     za <-  -zv[k]
     phi <- c(int[1, k], multiplier * int[1, k])
     phi.new <- rr.opt(z.phi = zis.phi, phi = phi, za = za, divider = divider,

@@ -60,8 +60,8 @@
 #'
 #' y_matrix <- matrix(c(4, 20, 12, 16), 2, 2, byrow = TRUE)
 #' #       [, 1] [, 2]
-#' # [1,]    4   20
-#' # [2,]   12   16
+#' # [1, ]    4   20
+#' # [2, ]   12   16
 #'
 #' RRsc(y_matrix)
 #'
@@ -259,7 +259,7 @@ RRsc <- function(y = NULL,
   z.al2 <- qnorm(al2)
   z.ah2 <- qnorm(1 - al2)
   zv <- c(z.al2, z.ah2)
-  int["point",] <- rep((x1 / n1) / (x2 / n2), 2)
+  int["point", ] <- rep((x1 / n1) / (x2 / n2), 2)
   p1 <- x1 / n1
 
   # log method
@@ -267,7 +267,7 @@ RRsc <- function(y = NULL,
   phi <- p1 / p2
   v <- sqrt(u.p(p1, p2, n1, n2))
   intv <- exp(v * zv + logb(phi))
-  int["log method",] <- intv
+  int["log method", ] <- intv
 
   # 0.5 log method
   p1 <- (x1 + 0.5) / (n1 + 0.5)
@@ -275,7 +275,7 @@ RRsc <- function(y = NULL,
   phi <- p1 / p2
   v <- sqrt(u.p(p1, p2, (n1 + 0.5), (n2 + 0.5)))
   intv <- exp(v * zv + logb(phi))
-  int["0.5 method",] <- intv
+  int["0.5 method", ] <- intv
 
   # which ends to estimate
   score.start <- rep(NA, 2)
@@ -309,7 +309,7 @@ RRsc <- function(y = NULL,
       )
     score[k] <- phi.new
   }
-  int["MN method",] <- score
+  int["MN method", ] <- score
 
   # Koopman score method
   score <- score.start
@@ -330,7 +330,7 @@ RRsc <- function(y = NULL,
       )
     score[k] <- phi.new
   }
-  int["score method",] <- score
+  int["score method", ] <- score
 
   # skewness correction
   score <- score.start
@@ -351,7 +351,7 @@ RRsc <- function(y = NULL,
       )
     score[k] <- phi.new
   }
-  int["skew corr",] <- score
+  int["skew corr", ] <- score
 
   if (trace.it)
     cat("\n\n")

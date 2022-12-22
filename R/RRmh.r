@@ -62,7 +62,7 @@
 #' ##  as data frame
 #'
 #' # tx group "b" is control
-#' RRmh(cbind(y,n) ~ tx + cluster(clus),
+#' RRmh(cbind(y, n) ~ tx + cluster(clus),
 #'      Table6,
 #'      compare = c('a', 'b'), pf = FALSE)
 #'

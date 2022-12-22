@@ -104,8 +104,8 @@ RRlsi(y_vector)
 y_matrix <- matrix(c(4, 20, 12, 16), 2, 2, byrow = TRUE)
 y_matrix
 #      [, 1] [, 2]
-# [1,]    4   20
-# [2,]   12   16
+# [1, ]    4   20
+# [2, ]   12   16
 
 RRlsi(y_matrix)
 

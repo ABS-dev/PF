@@ -5,13 +5,13 @@
 #' @rdname print.PF
 #' @export
 #' @method print rr1
-print.rr1 <- function(x,...) {
+print.rr1 <- function(x, ...) {
   num.dig <- options()$digits
   options(digits = x$rnd)
   conf <- paste(100 * (1 - x$alpha), "%", sep = "")
   cat("\n")
   estimate <- x$estimate
-  cat(x$estimator,"\n")
+  cat(x$estimator, "\n")
   cat(conf,"interval estimates\n\n")
   print(estimate)
   cat("\n")
@@ -26,7 +26,7 @@ setMethod("show", "rr1", function(object) {
 #' @rdname print.PF
 #' @method print rror
 #' @export
-print.rror <- function(x,...) {
+print.rror <- function(x, ...) {
   num.dig <- options()$digits
   options(digits = x$rnd)
   if (x$norm) {
@@ -39,7 +39,7 @@ print.rror <- function(x,...) {
   cat("\n")
   cat(conf)
   cat("\n")
-  cat(x$estimator,"\n")
+  cat(x$estimator, "\n")
   print(x$estimate)
   cat("\n")
   print(x$mu)
@@ -57,18 +57,18 @@ setMethod("show", "rror", function(object) {
 #' @rdname print.PF
 #' @method print rrsi
 #' @export
-print.rrsi <- function(x,...) {
+print.rrsi <- function(x, ...) {
 
   num.dig <- options()$digits
   options(digits = x$rnd)
-  support <- paste("1/",round(x$k, x$rnd), " likelihood support interval for ",
+  support <- paste("1/", round(x$k, x$rnd), " likelihood support interval for ",
                    x$estimator, sep = "")
   conf <- paste(round(100 * (1 - x$alpha), x$rnd), "%", sep = "")
   cat("\n")
-  cat(support,"\n")
+  cat(support, "\n")
   cat("\ncorresponds to", conf, "confidence\n  (under certain assumptions)\n")
   cat("\n")
-  cat(x$estimator,"\n")
+  cat(x$estimator, "\n")
   print(x$estimate)
   cat("\n")
   options(digits = num.dig)
@@ -82,7 +82,7 @@ setMethod("show", "rrsi", function(object) {
 #' @rdname print.PF
 #' @method print rrmp
 #' @export
-print.rrmp <- function(x,...) {
+print.rrmp <- function(x, ...) {
   num.dig <- options()$digits
   options(digits = x$rnd)
   conf <- paste(100 * (1 - x$alpha), "%", sep = "")
@@ -104,7 +104,7 @@ setMethod("show", "rrmp", function(object) {
 #' @rdname print.PF
 #' @method print rrsc
 #' @export
-print.rrsc <- function(x,...) {
+print.rrsc <- function(x, ...) {
   num.dig <- options()$digits
   options(digits = x$rnd)
   conf <- paste(100 * (1 - x$alpha), "%", sep = "")
@@ -127,7 +127,7 @@ setMethod("show", "rrsc", function(object) {
 #' @rdname print.PF
 #' @method print rrstr
 #' @export
-print.rrstr <- function(x,...) {
+print.rrstr <- function(x, ...) {
   num.dig <- options()$digits
   options(digits = x$rnd)
   mle <- x$estimate["mle", 1]

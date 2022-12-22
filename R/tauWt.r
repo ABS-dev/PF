@@ -128,7 +128,7 @@ tauWt <- function(fit,
       tau.hat[lev] <- wTau$tau.hat
     }
   }
-  newfit <- update(fit,weights = w)
+  newfit <- update(fit, weights = w)
   if (fit.only) {
     out <- newfit
   } else  {
