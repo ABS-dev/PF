@@ -256,7 +256,12 @@ IDRlsi <-
       k = k,
       alpha = alpha
     ))
-    # out <- list(estimate = int, estimator = ifelse(pf, "PF_IDR", "IDR"), y = y, rnd = rnd, k=k, alpha = alpha)
+    # out <- list(estimate = int,
+    #             estimator = ifelse(pf, "PF_IDR", "IDR"),
+    #             y = y,
+    #             rnd = rnd,
+    #             k = k,
+    #             alpha = alpha)
     # class(out) <- "rrsi"
     # return(out)
   }

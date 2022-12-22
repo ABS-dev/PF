@@ -47,7 +47,8 @@
 
   if (nrow(data) > 2) {
     message("'y' and 'n' values will be summed by ",
-            paste(compare, sep = "", collapse = " and "), " designation in data",
+            paste(compare, sep = "", collapse = " and "),
+            " designation in data",
             "column ", vars[3])
   }
   sumdata <- data %>%

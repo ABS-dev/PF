@@ -90,7 +90,7 @@ rsbWt <- function(fit = NULL,
 #-------------------------------
 rsb <- function(y = NULL, n = NULL, formula = NULL, data = NULL, id = NULL) {
 
-  if (is.null(y) & is.null(n) & !(is.null(formula) & is.null(data))) {
+  if (is.null(y) && is.null(n) && !(is.null(formula) && is.null(data))) {
     ## case when formula and data is input
     vars <- all.vars(formula)
     sumdata <- data %>%
@@ -100,13 +100,14 @@ rsb <- function(y = NULL, n = NULL, formula = NULL, data = NULL, id = NULL) {
     y <- sumdata$y
     n <- sumdata$n
     id <- sumdata$id
-  } else if (!(is.null(y) & is.null(n)) & is.null(formula) & is.null(data)) {
+  } else if (!(is.null(y) && is.null(n)) && is.null(formula) && is.null(data)) {
     ## case when y and n is input
     if (is.null(id)) {
       id <- rep("all", length(y))
     }
   } else {
-    stop("Cannot parse input. If \"y\" & \"n\" are provided, \"formula\" & \"data\" must be NULL and vice-versa.")
+    stop("Cannot parse input. If \"y\" & \"n\" are provided, ",
+         "\"formula\" & \"data\" must be NULL and vice-versa.")
   }
 
   # Rao-Scott design effect weights

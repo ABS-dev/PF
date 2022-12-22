@@ -5,7 +5,7 @@
   }
   this.call <- match.call()
   drop.levels <- function(x) {
-    for (j in 1:ncol(x)) {
+    for (j in seq_len(ncol(x))) {
       if (is.factor(x[, j])) {
         x[, j] <- factor(as.character(x[, j]))
       }
@@ -21,12 +21,12 @@
   clusters <- A[, 3] # attr(Terms, "term.labels")[2], grouping variable w
   tbl <- table(clusters, dat, group)[, 2, 1:2]
   for (i in 1:2) {
-    tbl[,i] <- ifelse(tbl[,i] == affected, "af", "un")
+    tbl[, i] <- ifelse(tbl[, i] == affected, "af", "un")
   }
 
   # compare[2] is control
   # compare[1] is vaccinate
-  xtable <- table(tbl[,compare[1]], tbl[,compare[2]])
+  xtable <- table(tbl[, compare[1]], tbl[, compare[2]])
   # order table
   xtable <- xtable[c("af", "un"), c("af", "un")]
   names(dimnames(xtable)) <- compare

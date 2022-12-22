@@ -100,16 +100,16 @@ RRmh <- function(formula = NULL,
                  pf = TRUE,
                  rnd = 3) {
   # convert data to matrix
-  if (!is.null(formula) & !is.null(data)) {
+  if (!is.null(formula) && !is.null(data)) {
     Y <- .matricize(formula = formula, data = data, compare = compare)$Y
   }
   colnames(Y) <- c("y1", "n1", "y2", "n2")
-  rownames(Y) <- paste("Row", 1:nrow(Y), sep = "")
+  rownames(Y) <- paste("Row", seq_len(nrow(Y)), sep = "")
   # save data and empirical Rs
-  Y <- cbind(Y, R.obs = (Y[, 1]/Y[, 2])/(Y[, 3]/Y[, 4]))
+  Y <- cbind(Y, R.obs = (Y[, 1] / Y[, 2]) / (Y[, 3] / Y[, 4]))
 
   ### Innards of the algorithm
-  zcrit <- qnorm(1 - alpha/2)
+  zcrit <- qnorm(1 - alpha / 2)
   x1vec <- Y[, 1] # vac
   n1vec <- Y[, 2] # vac
   x2vec <- Y[, 3] # con or ref
