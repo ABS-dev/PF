@@ -108,7 +108,7 @@ RRstr <- function(formula = NULL, data = NULL, compare = c("vac", "con"), Y, alp
       zi <- zi + unique(zz[zd == min(zd)])
       ui <- ui + 1 / unique(u[zd == min(zd)])
     }
-    return(zi/sqrt(ui))
+    return(zi / sqrt(ui))
   }
 
   zis.phi <- function(phi, Y, u.p, root, za) {
@@ -128,15 +128,15 @@ RRstr <- function(formula = NULL, data = NULL, compare = c("vac", "con"), Y, alp
       zz <- ((y1 - n1 * p1) / (1 - p1))
       z.ph <- zz * sqrt(u)
       g <- (q1 * (q1 - p1)) / (n1 * p1)^2 - (q2 * (q2 - p2)) / (n2 * p2)^2
-      g.ph <- g/u^1.5
+      g.ph <- g / u^1.5
       z.s <- z.ph - (g.ph * (za^2 - 1)) / 6
       zd <- abs(z.s - za)
       zd[is.na(zd)] <- 2 * zd[!is.na(zd)]
       zi <- zi + unique(zz[zd == min(zd)])
-      ui <- ui + 1/unique(u[zd == min(zd)])
-      gi <- gi + unique(g[zd == min(zd)])/unique(u[zd == min(zd)])^3
+      ui <- ui + 1 / unique(u[zd == min(zd)])
+      gi <- gi + unique(g[zd == min(zd)]) / unique(u[zd == min(zd)])^3
     }
-    return(zi/sqrt(ui) - (gi * (za^2 - 1)) / (6 * ui^1.5))
+    return(zi / sqrt(ui) - (gi * (za^2 - 1)) / (6 * ui^1.5))
   }
 
   root <- function(y1, y2, n1, n2, phi) {
@@ -170,8 +170,8 @@ RRstr <- function(formula = NULL, data = NULL, compare = c("vac", "con"), Y, alp
       while (is.na(z.new)) {
         phi.new <- phi.old + (phi.new - phi.old) / f
         z.new <- z.phi(phi.new, Y, u.p, root, za)
-        f <- f * (1/divider)
-        if (trace.it) cat("Step adjustment =", 1/f, "\n")
+        f <- f * (1 / divider)
+        if (trace.it) cat("Step adjustment =", 1 / f, "\n")
       }
 
       phi <- exp(log(phi.old) + log(phi.new / phi.old) * ((za - z.old) / (z.new - z.old)))
@@ -203,7 +203,7 @@ RRstr <- function(formula = NULL, data = NULL, compare = c("vac", "con"), Y, alp
   rownames(Y) <- paste("Row", 1:nrow(Y), sep = "")
   colnames(Y) <- c("y1", "n1", "y2", "n2")
   # save data and empirical Rs
-  Y <- cbind(Y, R.obs = (Y[, 1] / Y[, 2]) / (Y[, 3]/Y[, 4]))
+  Y <- cbind(Y, R.obs = (Y[, 1] / Y[, 2]) / (Y[, 3] / Y[, 4]))
 
   zv <- qnorm(c(alpha / 2, 1 - alpha / 2))
   numer <- denom <- uu <- 0
@@ -214,14 +214,14 @@ RRstr <- function(formula = NULL, data = NULL, compare = c("vac", "con"), Y, alp
     n2 <- Y[i, 4]
     p1 <- y1 / n1
     p2 <- y2 / n2
-    numer <- numer + (n2 * y1)/max((n1 + n2 - y1 - y2), 1) # added max
-    denom <- denom + (n1 * y2)/max((n1 + n2 - y1 - y2), 1) #
+    numer <- numer + (n2 * y1) / max((n1 + n2 - y1 - y2), 1) # added max
+    denom <- denom + (n1 * y2) / max((n1 + n2 - y1 - y2), 1) #
     uu <- uu + ifelse(u.p(p1, p2, n1, n2) > 0, 1 / u.p(p1, p2, n1, n2), 0)
   } # end for i
 
-  phi <- Phi <- numer/denom
+  phi <- Phi <- numer / denom
   v <- sqrt(uu)
-  int <- sort(exp(log(phi) + (log(phi) * zv)/v))
+  int <- sort(exp(log(phi) + (log(phi) * zv) / v))
   int[int < 0] <- 0
 
   # if all zeros or ones estimate only one end of interval

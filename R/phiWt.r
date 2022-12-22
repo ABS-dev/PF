@@ -32,7 +32,10 @@
 #' # txcon  0.768 0.95 0.367
 #' # txvac  0.400 0.78 0.111
 #' #
-phiWt <- function(fit,subset.factor=NULL,fit.only = TRUE, show.warns = FALSE) {
+phiWt <- function(fit,
+                  subset.factor = NULL,
+                  fit.only = TRUE,
+                  show.warns = FALSE) {
   # Estimates weights = 1 / phi by MME
   # where phi = dispersion parameter such that
   #  var(y) = n * phi * mu * (1-mu)
@@ -45,23 +48,27 @@ phiWt <- function(fit,subset.factor=NULL,fit.only = TRUE, show.warns = FALSE) {
   y <- fit$y
   m <- fit$prior.weights
   oldfamily <- fit$family$family
-  newfamily.name <- paste("quasi",oldfamily,sep="") # works for binomial or poisson
+  # works for binomial or poisson
+  newfamily.name <- paste("quasi", oldfamily, sep = "")
   link <- fit$family$link
-  newfamily <- get(newfamily.name)(link=link)
+  newfamily <- get(newfamily.name)(link = link)
   if (is.null(subset.factor)) {
     subset.factor <- factor(rep("all",length(y)))
-    w <- rep(1 / summary(update(fit,family=newfamily))$disp,length(y))
+    w <- rep(1 / summary(update(fit, family = newfamily))$disp, length(y))
   } else {
     w <- rep(NA, length(y))
     for (lev in levels(subset.factor)) {
-      xi <- rep(1,sum(subset.factor==lev))
-      yi <- y[subset.factor==lev]
-      mi <- m[subset.factor==lev]
-      w[subset.factor==lev] <- 1/summary(glm(yi~xi-1,family=newfamily,weights=mi))$disp
+      xi <- rep(1,sum(subset.factor == lev))
+      yi <- y[subset.factor == lev]
+      mi <- m[subset.factor == lev]
+      w[subset.factor == lev] <- 1 / summary(glm(yi ~ xi - 1,
+                                                 family = newfamily,
+                                                 weights = mi))$disp
     }
   }
-  comment(w) <- paste(newfamily.name,"family,",link,"link, subsets:",paste(levels(subset.factor),collapse=", "))
-  options(warn=options.warn)
+  comment(w) <- paste(newfamily.name, "family,", link, "link, subsets:",
+                      paste(levels(subset.factor), collapse = ", "))
+  options(warn = options.warn)
   newfit <- update(fit,weights = w)
   phi <- 1 / tapply(w, subset.factor, unique)
   if (fit.only) out <- newfit

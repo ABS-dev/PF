@@ -109,7 +109,7 @@ RRmpWald <- function(formula = NULL, data = NULL, compare = c("vac", "con"),
 
 
   N <- sum(x)
-  p <- x/N
+  p <- x / N
   V <- (diag(p) - t(t(p)) %*% t(p)) / N
   p1 <- p[1] + p[2]
   p2 <- p[1] + p[3]
