@@ -11,16 +11,27 @@ data class rror
 
 \section{Fields}{
 
-\itemize{
-\item[\code{estimate}]{  vector with point and interval estimate}
-\item[\code{estimator}]{  either \code{"PF"} or \code{"IDR"}}
-\item[\code{y}]{  data vector}
-\item[\code{rnd}]{  how many digits to round display}
-\item[\code{alpha}]{  complement of c.i.}
-\item[\code{norm}]{  logical indicating Gaussian or t interval}
-\item[\code{degf}]{  degrees of freedom}
-\item[\code{mu}]{  matrix with rows giving probability estimates for each of the groups}
-}
+
+  \itemize{
+
+  \item[\code{estimate}]{  vector with point and interval estimate}
+
+  \item[\code{estimator}]{  either \code{"PF"} or \code{"IDR"}}
+
+  \item[\code{y}]{  data vector}
+
+  \item[\code{rnd}]{  how many digits to round display}
+
+  \item[\code{alpha}]{  complement of c.i.}
+
+  \item[\code{norm}]{  logical indicating Gaussian or t interval}
+
+  \item[\code{degf}]{  degrees of freedom}
+
+  \item[\code{mu}]{  matrix with rows giving probability estimates for each
+  of the groups}
+
+  }
 }
 
 \seealso{

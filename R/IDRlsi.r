@@ -156,7 +156,7 @@ IDRlsi <-
       y2 <- y[3]
       h2 <- y[4]
       h <- h1 / h2
-      Lk <- (r * h) ^ y1 / (1 + r * h) ^ (y1 + y2)
+      Lk <- (r * h)^y1 / (1 + r * h)^(y1 + y2)
       return(Lk)
     }
 

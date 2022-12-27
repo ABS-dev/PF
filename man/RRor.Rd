@@ -96,7 +96,8 @@ RRor(phiWt(bird.fit))
 }
 \seealso{
 \code{\link{rror}, \link{phiWt}, \link{tauWt}}
- \href{https://www.aphis.usda.gov/animal_health/vet_biologics/publications/STATWI0007.pdf}{StatWI007}
+ \href{https://www.aphis.usda.gov/animal_health/
+ vet_biologics/publications/STATWI0007.pdf}{StatWI007}
  for more examples
 }
 \author{

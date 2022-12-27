@@ -150,10 +150,10 @@ RRsc <- function(y = NULL,
     u <- u.p(p1, p2, n1, n2)
     u[u < 0] <- NA
     z.ph <- ((x1 - n1 * p1) / (1 - p1)) * sqrt(u)
-    g <- (q1 * (q1 - p1)) / (n1 * p1) ^ 2 - (q2 * (q2 - p2)) / (n2 * p2) ^
+    g <- (q1 * (q1 - p1)) / (n1 * p1)^2 - (q2 * (q2 - p2)) / (n2 * p2) ^
       2
-    g.ph <- g / u ^ 1.5
-    z.s <- z.ph - (g.ph * (za ^ 2 - 1)) / 6
+    g.ph <- g / u^1.5
+    z.s <- z.ph - (g.ph * (za^2 - 1)) / 6
     zd <- abs(z.s - za)
     zd[is.na(zd)] <- 2 * zd[!is.na(zd)]
     return(unique(z.s[zd == min(zd)]))
@@ -164,7 +164,7 @@ RRsc <- function(y = NULL,
     a <- phi * (n1 + n2)
     b <-  -(phi * (x2 + n1) + x1 + n2)
     cc <- x1 + x2
-    det <- sqrt(b ^ 2 - 4 * a * cc)
+    det <- sqrt(b^2 - 4 * a * cc)
     r1 <- (-b + det) / (2 * a)
     r2 <- (-b - det) / (2 * a)
     if (r1 == 0)
@@ -203,7 +203,8 @@ RRsc <- function(y = NULL,
       z.new <-
         z.phi(phi.new, x1, x2, n1, n2, u.p, root, za, MN)
       phi <-
-        exp(log(phi.old) + log(phi.new / phi.old) * ((za - z.old) / (z.new - z.old)))
+        exp(log(phi.old) + log(phi.new / phi.old) *
+              ((za - z.old) / (z.new - z.old)))
       phi.old <- phi.new
       z.old <- z.new
       phi.new <- phi

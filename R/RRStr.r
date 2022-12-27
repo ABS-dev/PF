@@ -78,9 +78,9 @@
 #' tx = rep(c('a', 'b'), 4),
 #' clus = rep(paste('Row', 1:4, sep = ''), each = 2))
 #'
-RRstr <- function(formula = NULL, data = NULL, compare = c("vac", "con"), Y, alpha = 0.05,
-                  pf = TRUE, trace.it = FALSE, iter.max = 24, converge = 1e-6, rnd = 3, multiplier = 0.7,
-                  divider = 1.1) {
+RRstr <- function(formula = NULL, data = NULL, compare = c("vac", "con"), Y,
+                  alpha = 0.05, pf = TRUE, trace.it = FALSE, iter.max = 24,
+                  converge = 1e-6, rnd = 3, multiplier = 0.7, divider = 1.1) {
 
   # define internal functions:
   #  u.p, zi.phi, zis.phi, root, rr.opt, matricize
@@ -174,7 +174,8 @@ RRstr <- function(formula = NULL, data = NULL, compare = c("vac", "con"), Y, alp
         if (trace.it) cat("Step adjustment =", 1 / f, "\n")
       }
 
-      phi <- exp(log(phi.old) + log(phi.new / phi.old) * ((za - z.old) / (z.new - z.old)))
+      phi <- exp(log(phi.old) + log(phi.new / phi.old) *
+                   ((za - z.old) / (z.new - z.old)))
       phi.old <- phi.new
       z.old <- z.new
       phi.new <- phi
@@ -292,11 +293,15 @@ RRstr <- function(formula = NULL, data = NULL, compare = c("vac", "con"), Y, alp
   int <- cbind(c(Phi, rep(Phi.ML, nrow(int) - 1)), int)
   if (trace.it) cat("\n\n")
   if (!pf) {
-    dimnames(int) <- list(c("starting", "mle", "skew corr"), c("RR", "LL", "UL"))
+    dimnames(int) <- list(c("starting", "mle", "skew corr"),
+                          c("RR", "LL", "UL"))
   } else {
     int <- 1 - int[, c(1, 3, 2)]
-    dimnames(int) <- list(c("starting", "mle", "skew corr"), c("PF", "LL", "UL"))
+    dimnames(int) <- list(c("starting", "mle", "skew corr"),
+                          c("PF", "LL", "UL"))
   }
-  return(rrstr$new(estimate = int, hom = hom, estimator = ifelse(pf, "PF", "RR"),
-                   y = as.data.frame(Y), compare = compare, rnd = rnd, alpha = alpha))
+  return(rrstr$new(estimate = int, hom = hom,
+                   estimator = ifelse(pf, "PF", "RR"),
+                   y = as.data.frame(Y), compare = compare,
+                   rnd = rnd, alpha = alpha))
 }

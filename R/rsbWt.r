@@ -119,7 +119,7 @@ rsb <- function(y = NULL, n = NULL, formula = NULL, data = NULL, id = NULL) {
   m.i <- c(table(id))
   p.i <- y.i / n.i
   r.ij <- y - n * p.i[tapply(y, id)]
-  v.i <- (tapply(r.ij ^ 2, id, sum) * m.i) / ((m.i - 1) * n.i ^ 2)
+  v.i <- (tapply(r.ij^2, id, sum) * m.i) / ((m.i - 1) * n.i^2)
   d.i <- (n.i * v.i) / (p.i * (1 - p.i))
   w <- 1 / d.i[tapply(y, id)]
   # y.tilde <- y * w

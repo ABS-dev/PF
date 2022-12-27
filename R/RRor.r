@@ -38,7 +38,8 @@
 #'  = TRUE, rnd = 3)} \cr \cr \code{RRor(beta.hat, var.beta.hat, degf, pf =
 #'  TRUE, alpha = 0.05, which = c(1, 2), norm = TRUE, rnd = 3)}
 #'@seealso \code{\link{rror}, \link{phiWt}, \link{tauWt}}
-#'  \href{https://www.aphis.usda.gov/animal_health/vet_biologics/publications/STATWI0007.pdf}{StatWI007}
+#'  \href{https://www.aphis.usda.gov/animal_health/
+#'  vet_biologics/publications/STATWI0007.pdf}{StatWI007}
 #'  for more examples
 #' @examples
 #' bird.fit <- glm(cbind(y, n - y) ~ tx - 1, binomial, bird)
@@ -91,10 +92,12 @@ RRor <- function(fit = NULL, beta.hat = NULL, var.beta.hat = NULL,
   var.log.r <- t(grad.log.r) %*% var.b %*% grad.log.r
   if (norm) {
     int <- exp(log.r + qnorm(q) * sqrt(var.log.r))
-    mu <- 1 / (1 + exp(-B + matrix(qnorm(q), 2, 3, byrow = TRUE) * sqrt(diag(var.b))))
+    mu <- 1 / (1 + exp(-B + matrix(qnorm(q), 2, 3, byrow = TRUE) *
+                         sqrt(diag(var.b))))
   } else {
     int <- exp(log.r + qt(q, degf) * sqrt(var.log.r))
-    mu <- 1 / (1 + exp(-B + matrix(qt(q, degf), 2, 3, byrow = TRUE) * sqrt(diag(var.b))))
+    mu <- 1 / (1 + exp(-B + matrix(qt(q, degf), 2, 3, byrow = TRUE) *
+                         sqrt(diag(var.b))))
   }
   dimnames(mu) <- list(names(coef(fit)), c("mu.hat", "LL", "UL"))
   if (!pf) {
@@ -103,9 +106,11 @@ RRor <- function(fit = NULL, beta.hat = NULL, var.beta.hat = NULL,
     int <- 1 - int[c(1, 3, 2)]
     names(int) <- c("PF", "LL", "UL")
   }
-  return(rror$new(estimate = int, estimator = ifelse(pf, "PF", "RR"), mu = mu, rnd = rnd, alpha = alpha,
+  return(rror$new(estimate = int, estimator = ifelse(pf, "PF", "RR"),
+                  mu = mu, rnd = rnd, alpha = alpha,
                   norm = norm, degf = degf))
-  # out <- list(estimate = int, estimator = ifelse(pf, "PF", "RR"), mu = mu, rnd = rnd, alpha = alpha, norm = norm, degf = degf)
+  # out <- list(estimate = int, estimator = ifelse(pf, "PF", "RR"),
+  #             mu = mu, rnd = rnd, alpha = alpha, norm = norm, degf = degf)
   # class(out) <- "rror"
   # return(out)
 }

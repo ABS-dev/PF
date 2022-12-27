@@ -42,21 +42,31 @@ rr1 <- setRefClass("rr1",
                                  y = "data.frame"))
 
 #' @title Data class rror
-# @name rror-class
 #' @description data class rror
 #' @aliases rror
 #' @rdname rrorclass
 #' @section Fields:
-#' \itemize{
-#' \item[\code{estimate}]{  vector with point and interval estimate}
-#' \item[\code{estimator}]{  either \code{"PF"} or \code{"IDR"}}
-#' \item[\code{y}]{  data vector}
-#' \item[\code{rnd}]{  how many digits to round display}
-#' \item[\code{alpha}]{  complement of c.i.}
-#' \item[\code{norm}]{  logical indicating Gaussian or t interval}
-#' \item[\code{degf}]{  degrees of freedom}
-#' \item[\code{mu}]{  matrix with rows giving probability estimates for each of the groups}
-#' }
+#'
+#'   \itemize{
+#'
+#'   \item[\code{estimate}]{  vector with point and interval estimate}
+#'
+#'   \item[\code{estimator}]{  either \code{"PF"} or \code{"IDR"}}
+#'
+#'   \item[\code{y}]{  data vector}
+#'
+#'   \item[\code{rnd}]{  how many digits to round display}
+#'
+#'   \item[\code{alpha}]{  complement of c.i.}
+#'
+#'   \item[\code{norm}]{  logical indicating Gaussian or t interval}
+#'
+#'   \item[\code{degf}]{  degrees of freedom}
+#'
+#'   \item[\code{mu}]{  matrix with rows giving probability estimates for each
+#'   of the groups}
+#'
+#'   }
 #' @seealso \code{\link{RRor}}
 #' @export
 #' @author \link{PF-package}
@@ -68,19 +78,28 @@ rror <- setRefClass("rror",
 
 #' @title Data class rrsi
 #' @description data class rrsi
-# @name rrsi-class
 #' @aliases rrsi
 #' @rdname rrsi
 #' @section Fields:
+#'
 #' \itemize{
+#'
 #' \item[\code{y}]{ data.frame with restructured input}
+#'
 #' \item[\code{k}]{  likelihood ratio criterion}
+#'
 #' \item[\code{rnd}]{  digits to round display}
+#'
 #' \item[\code{alpha}]{  complement of c.i.}
+#'
 #' \item[\code{estimate}]{  vector with point and interval estimate}
+#'
 #' \item[\code{estimator}]{  either \code{"PF"} or \code{"IDR"}}
+#'
 #' }
+#'
 #' @seealso \code{\link{IDRlsi}, \link{RRlsi}}
+#'
 #' @export
 #' @author \link{PF-package}
 rrsi <- setRefClass("rrsi",
@@ -91,19 +110,28 @@ rrsi <- setRefClass("rrsi",
 
 #' @title Data class rrmp
 #' @description data class rrmp
-# @name rrmp-class
 #' @aliases rrmp
 #' @rdname rrmp
 #' @section Fields:
-#' \itemize{
-#' \item[\code{estimate}]{  vector with point and interval estimate}
-#' \item[\code{estimator}]{  either \code{"PF"} or \code{"IDR"}}
-#' \item[\code{y}]{  data vector}
-#' \item[\code{rnd}]{  how many digits to round display}
-#' \item[\code{alpha}]{  complement of c.i.}
-#' \item[\code{compare}]{  text vector, same as input}
-#' \item[\code{multvec}]{  data.frame showing the multinomial representation of the data}
-#' }
+#'
+#'   \itemize{
+#'
+#'   \item[\code{estimate}]{  vector with point and interval estimate}
+#'
+#'   \item[\code{estimator}]{  either \code{"PF"} or \code{"IDR"}}
+#'
+#'   \item[\code{y}]{  data vector}
+#'
+#'   \item[\code{rnd}]{  how many digits to round display}
+#'
+#'   \item[\code{alpha}]{  complement of c.i.}
+#'
+#'   \item[\code{compare}]{  text vector, same as input}
+#'
+#'   \item[\code{multvec}]{  data.frame showing the multinomial representation
+#'   of the data}
+#'
+#'   }
 #' @seealso \code{\link{RRmpWald}}
 #' @export
 #' @author \link{PF-package}

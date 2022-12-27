@@ -9,10 +9,10 @@
 #'   \ \pm \ \ \frac{z_{\alpha /2}^{2}}{2{{y}_{1}}{{y}_{2}}}\sqrt{{{y}_{\bullet
 #'   }}\left( {{y}_{\bullet }}z_{\alpha /2}^{2}+4{{y}_{1}}{{y}_{2}} \right)}
 #'   \right\} }{(See
-#'   \hyperref{https://www.aphis.usda.gov/animal_health/vet_biologics/publications/STATWI0007.pdf}{USDA
-#'   CVB StatWI0007} for the formula.)} \cr \cr The data may also be a matrix.
-#'   In that case \code{y} would be entered as \cr \code{matrix(c(y1, n1 - y1,
-#'   y2, n2 - y2), 2, 2, byrow = TRUE)}.
+#'   \hyperref{https://www.aphis.usda.gov/animal_health/vet_biologics/
+#'   publications/STATWI0007.pdf}{USDA CVB StatWI0007} for the formula.)} \cr
+#'   \cr The data may also be a matrix. In that case \code{y} would be entered
+#'   as \cr \code{matrix(c(y1, n1 - y1, y2, n2 - y2), 2, 2, byrow = TRUE)}.
 #' @param y Data vector c(y1, n1, y2, n2) where y are the positives, n are the
 #'   total, and group 1 is compared to group 2 (control or reference).
 #' @param formula Formula of the form cbind(y, n) ~ x, where y is the number
@@ -131,9 +131,9 @@ IDRsc <- function(y = NULL,
   z <- qnorm(1. - alpha / 2.)
   idr.hat <- (y1 * s2) / (y2 * s1)
   det <-
-    (z * sqrt(y.dot * (y.dot * z ^ 2. + 4. * y1 * y2))) / (2. * y1 * y2)
+    (z * sqrt(y.dot * (y.dot * z^2. + 4. * y1 * y2))) / (2. * y1 * y2)
   det <- c(-det, det)
-  ci <- idr.hat * (1. + (z ^ 2. * (1. / y1 + 1. / y2)) / 2. + det)
+  ci <- idr.hat * (1. + (z^2. * (1. / y1 + 1. / y2)) / 2. + det)
   int <- c(idr.hat, ci)
   if (!pf) {
     names(int) <- c("IDR", "LL", "UL")

@@ -168,7 +168,7 @@ RRlsi <-
       a <- R * (n1 + n2)
       b <-  -(R * (y2 + n1) + y1 + n2)
       cc <- y1 + y2
-      det <- sqrt(b ^ 2 - 4. * a * cc)
+      det <- sqrt(b^2 - 4. * a * cc)
       p2 <- (-b - det) / (2 * a)
       p1 <- p2 * R
       if (p2 < 1e-4)

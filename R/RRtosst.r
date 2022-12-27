@@ -114,16 +114,19 @@ RRtosst <-
 
 
 
-    # Estimates exact confidence interval by the TOSST method
-    # Score statistic used to select tail area tables
-    # Binomial probability estimated over the tail area
-    #  by taking the maximum over the nuisance parameter
+    # Estimates exact confidence interval by the TOSST method Score statistic
+    # used to select tail area tables Binomial probability estimated over the
+    # tail area by taking the maximum over the nuisance parameter
 
     # Written 9/17/07 by Siev
     # Functions called by rrcix():
-    #		.rr.score.asymp - gets asymptotic interval for starting value of upper bound
-    #			found in this file below
-    #				(if want to eliminate calling this function would have to search down from r.max)
+    #
+    #		.rr.score.asymp - gets asymptotic interval for starting value of upper
+    #			bound found in this file below
+    #
+    #				(if want to eliminate calling this function would have to search
+    #        down from r.max)
+    #
     #		binci - gets Clopper-Pearson intervals for Berger-Boos method
     #			included here now, but may be moved to another package
 
@@ -156,8 +159,8 @@ RRtosst <-
       y <- .extract_freqvec(formula, data, compare)
 
     } else if (is.matrix(y)) {
-      # Data entry y=c(x2, n2, x1, n1) Vaccinates First (order same but subscripts reversed)
-      # data vector
+      # Data entry y=c(x2, n2, x1, n1) Vaccinates First (order same but
+      # subscripts reversed) data vector
       y <- c(t(cbind(y[, 1], apply(y, 1, sum))))
       # NOTE: the subscripts are reversed compared to the other functions
     }
@@ -170,8 +173,8 @@ RRtosst <-
     rho.mle <- p2 / p1
 
     # itemize all possible tables in omega (17.26)
-    Y <- data.frame(y1 = rep(0:n1, (n2 + 1)), y2 = rep(0:n2, rep(n1 + 1, n2 +
-                                                                   1)))
+    Y <- data.frame(y1 = rep(0:n1, (n2 + 1)),
+                    y2 = rep(0:n2, rep(n1 + 1, n2 + 1)))
     observed <- (1:nrow(Y))[Y[, 1] == x1 & Y[, 2] == x2]
     Y$C <- choose(n1, Y$y1) * choose(n2, Y$y2)
 
@@ -187,11 +190,10 @@ RRtosst <-
         A <- rho * (n1 + n2)
         B <- -(rho * (y1 + n2) + y2 + n1)
         C <- y1 + y2
-        pit1 <- (-B - sqrt(B ^ 2 - 4 * A * C)) / (2 * A)
+        pit1 <- (-B - sqrt(B^2 - 4 * A * C)) / (2 * A)
         pit2 <- rho * pit1
-        sc <-
-          (pih2 - rho * pih1) / sqrt(rho ^ 2 * pit1 * (1 - pit1) / n1 + pit2 * (1 -
-                                                                                  pit2) / n2)
+        sc <- (pih2 - rho * pih1) /
+          sqrt(rho^2 * pit1 * (1 - pit1) / n1 + pit2 * (1 - pit2) / n2)
       }
       return(sc)
     }
@@ -211,7 +213,8 @@ RRtosst <-
       # search for lower endpoint
       iter <- 0
       step <- stepstart
-      low <- max(0.0001, r.min) # start above 0 (for quadratic formula)
+      # start above 0 (for quadratic formula)
+      low <- max(0.0001, r.min)
       repeat {
         iter <- iter + 1
         if (iter > iter.max)
@@ -227,11 +230,12 @@ RRtosst <-
         q.set$n1y1 <- n1 - q.set$y1
         q.set$n2y2 <- n2 - q.set$y2
         if (gamma > 0)
-          pn <-
-          seq(max(L1, L2 / low), min(U1, U2 / low), length = nuisance.points) # Berger-Boos method 17.164
+          # Berger-Boos method 17.164
+          pn <- seq(max(L1, L2 / low), min(U1, U2 / low),
+                    length = nuisance.points)
         else
-          pn <-
-          seq(0, min(1 / low, 1), length = nuisance.points) # simple method 17.138
+          # simple method 17.138
+          pn <- seq(0, min(1 / low, 1), length = nuisance.points)
         if (sum(pn > 1) > 0) {
           cat("\nIteration",
               iter,
@@ -243,8 +247,10 @@ RRtosst <-
           pni <- pn[i]
           fy[i] <-
             sum(
-              q.set$C * pni ^ q.set$y1 * (1 - pni) ^ q.set$n1y1 * (low * pni) ^ q.set$y2 * (1 -
-                                                                                              low * pni) ^ q.set$n2y2
+              q.set$C * pni^q.set$y1 *
+                (1 - pni)^q.set$n1y1 *
+                (low * pni)^q.set$y2 *
+                (1 - low * pni)^q.set$n2y2
             )
         }
         max.fy <- max(fy)
@@ -262,8 +268,8 @@ RRtosst <-
     # search for upper endpoint upward from just below asymptotic
     # rather than downward from r.max
     # get asymptotic interval for starting
-    ci.asymp <-
-      .rr.score.asymp(c(x2, n2, x1, n1)) # koopman version (slightly narrower interval than mn)
+    # koopman version (slightly narrower interval than mn)
+    ci.asymp <- .rr.score.asymp(c(x2, n2, x1, n1))
     high <- ci.asymp[3] * .9
 
     iter <- 0
@@ -283,11 +289,13 @@ RRtosst <-
       p.set$n1y1 <- n1 - p.set$y1
       p.set$n2y2 <- n2 - p.set$y2
       if (gamma > 0)
-        pn <-
-        seq(max(L1, L2 / high), min(U1, U2 / high), length = nuisance.points) # Berger-Boos method 17.164
+        # Berger-Boos method 17.164
+        pn <- seq(max(L1, L2 / high),
+                  min(U1, U2 / high),
+                  length = nuisance.points)
       else
-        pn <-
-        seq(0, min(1 / high, 1), length = nuisance.points) # simple method 17.138
+        # simple method 17.138
+        pn <- seq(0, min(1 / high, 1), length = nuisance.points)
       if (sum(pn > 1) > 0) {
         cat("\nIteration",
             iter,
@@ -299,8 +307,10 @@ RRtosst <-
         pni <- pn[i]
         fy[i] <-
           sum(
-            p.set$C * pni ^ p.set$y1 * (1 - pni) ^ p.set$n1y1 * (high * pni) ^ p.set$y2 * (1 -
-                                                                                             high * pni) ^ p.set$n2y2
+            p.set$C * pni^p.set$y1 *
+              (1 - pni)^p.set$n1y1 *
+              (high * pni)^p.set$y2 *
+              (1 - high * pni)^p.set$n2y2
           )
       }
       max.fy <- max(fy)
@@ -332,7 +342,8 @@ RRtosst <-
       rnd = rnd,
       alpha = alpha
     ))
-    # out <- list(estimate = int, estimator = ifelse(pf, "PF", "RR"), y = y, rnd = rnd, alpha = alpha)
+    # out <- list(estimate = int, estimator = ifelse(pf, "PF", "RR"),
+    #             y = y, rnd = rnd, alpha = alpha)
     # class(out) <- "rr1"
     # return(out)
   }
@@ -384,7 +395,7 @@ RRtosst <-
       a <- phi * (n1 + n2)
       b <-  -(phi * (x2 + n1) + x1 + n2)
       cc <- x1 + x2
-      det <- sqrt(b ^ 2. - 4. * a * cc)
+      det <- sqrt(b^2. - 4. * a * cc)
       rt <- (-b - det) / (2. * a)
       return(rt)
     }
@@ -441,7 +452,8 @@ RRtosst <-
               break
             z.old <- z.phi(phi.old, x1, x2, n1, n2, u.p, root, za, mn)
             phi <-
-              exp(logb(phi.old) + logb(phi.new / phi.old) * ((za - z.old) / (z.new - z.old)))
+              exp(logb(phi.old) + logb(phi.new / phi.old) *
+                    ((za - z.old) / (z.new - z.old)))
             phi.old <- phi.new
             phi.new <- phi
           }

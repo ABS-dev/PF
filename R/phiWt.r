@@ -1,5 +1,3 @@
-# @usage phiWt(fit, subset.factor = NULL, fit.only = T)
-
 #'@title Binomial dispersion parameter.
 #'@description MME estimate of dispersion parameter phi.
 #'@details Estimates binomial dispersion parameter \eqn{\phi} by the method of

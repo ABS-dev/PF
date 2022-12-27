@@ -59,10 +59,10 @@ The incidence density is the number of cases per subject-time; its
   \ \pm \ \ \frac{z_{\alpha /2}^{2}}{2{{y}_{1}}{{y}_{2}}}\sqrt{{{y}_{\bullet
   }}\left( {{y}_{\bullet }}z_{\alpha /2}^{2}+4{{y}_{1}}{{y}_{2}} \right)}
   \right\} }{(See
-  \hyperref{https://www.aphis.usda.gov/animal_health/vet_biologics/publications/STATWI0007.pdf}{USDA
-  CVB StatWI0007} for the formula.)} \cr \cr The data may also be a matrix.
-  In that case \code{y} would be entered as \cr \code{matrix(c(y1, n1 - y1,
-  y2, n2 - y2), 2, 2, byrow = TRUE)}.
+  \hyperref{https://www.aphis.usda.gov/animal_health/vet_biologics/
+  publications/STATWI0007.pdf}{USDA CVB StatWI0007} for the formula.)} \cr
+  \cr The data may also be a matrix. In that case \code{y} would be entered
+  as \cr \code{matrix(c(y1, n1 - y1, y2, n2 - y2), 2, 2, byrow = TRUE)}.
 }
 \examples{
 # All examples represent the same observation, with data entry by vector,
