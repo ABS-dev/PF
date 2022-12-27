@@ -38,8 +38,7 @@
 #'  = TRUE, rnd = 3)} \cr \cr \code{RRor(beta.hat, var.beta.hat, degf, pf =
 #'  TRUE, alpha = 0.05, which = c(1, 2), norm = TRUE, rnd = 3)}
 #'@seealso \code{\link{rror}, \link{phiWt}, \link{tauWt}}
-#'  \href{https://www.aphis.usda.gov/animal_health/
-#'  vet_biologics/publications/STATWI0007.pdf}{StatWI007}
+#'  \href{https://www.aphis.usda.gov/animal_health/vet_biologics/publications/STATWI0007.pdf}{StatWI007}
 #'  for more examples
 #' @examples
 #' bird.fit <- glm(cbind(y, n - y) ~ tx - 1, binomial, bird)
