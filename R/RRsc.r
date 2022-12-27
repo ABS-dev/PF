@@ -185,11 +185,8 @@ RRsc <- function(y = NULL,
   rr.opt <- function(z.phi, phi, za, trace.it, u.p, root, MN) {
     # optimizer function for RRsc
     # data from parent environment
-    zz <-
-      c(
-        z.phi(phi[1], x1, x2, n1, n2, u.p, root, za, MN),
-        z.phi(phi[2], x1, x2, n1, n2, u.p, root, za, MN)
-      )
+    zz <- c(z.phi(phi[1], x1, x2, n1, n2, u.p, root, za, MN),
+            z.phi(phi[2], x1, x2, n1, n2, u.p, root, za, MN))
     if (abs(za - zz[1]) > abs(za - zz[2]))
       phi <- rev(phi)
     phi.new <- phi[1]
@@ -289,7 +286,7 @@ RRsc <- function(y = NULL,
     score.start[2] <- Inf
     which <- 1
   } else {
-    break("Are you kidding?")
+    message("Are you kidding?")
   }
   # MN method
   score <- score.start
