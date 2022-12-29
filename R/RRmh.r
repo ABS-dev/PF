@@ -92,6 +92,7 @@
 #
 ################################################################################
 
+#' @importFrom stats qnorm
 RRmh <- function(formula = NULL,
                  data = NULL,
                  compare = c("vac", "con"),

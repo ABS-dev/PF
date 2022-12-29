@@ -1,3 +1,4 @@
+#' @importFrom methods setRefClass new setMethod
 setClassUnion("listORchar", c("list", "character"))
 
 #' @title Data class pf

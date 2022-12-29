@@ -41,6 +41,7 @@
 #' #
 # binomial family only
 # any link
+#' @importFrom stats binomial glm resid resid update update
 tauWt <- function(fit,
                   subset.factor = NULL,
                   fit.only = TRUE,

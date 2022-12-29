@@ -96,6 +96,7 @@
 ##-------------------------------
 ## RRsc function
 ##-------------------------------
+#' @importFrom stats qnorm
 RRsc <- function(y = NULL,
                  data = NULL,
                  formula = NULL,

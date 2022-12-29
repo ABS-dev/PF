@@ -95,6 +95,7 @@
 #-------------------------------
 # IDRsc
 #-------------------------------
+#' @importFrom stats qnorm
 IDRsc <- function(y = NULL,
                   data = NULL,
                   formula = NULL,

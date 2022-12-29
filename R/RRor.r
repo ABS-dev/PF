@@ -71,6 +71,7 @@
 ## RRor
 ##-----------------------------------------------
 
+#' @importFrom stats coef qnorm qt
 RRor <- function(fit = NULL, beta.hat = NULL, var.beta.hat = NULL,
                  degf = NULL, which = c(1, 2), pf = TRUE, norm = FALSE,
                  alpha = 0.05, rnd = 3) {

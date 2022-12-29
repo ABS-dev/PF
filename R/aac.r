@@ -1,4 +1,5 @@
 ## used by RRmpWald
+#' @importFrom stats model.frame terms
 .twoby <- function(formula, data, compare, affected) {
   cluster <- function(x) {
     return(x)

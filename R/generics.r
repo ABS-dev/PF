@@ -18,7 +18,6 @@ print.rr1 <- function(x, ...) {
   options(digits = num.dig)
 }
 
-
 setMethod("show", "rr1", function(object) {
   print(object)
 })

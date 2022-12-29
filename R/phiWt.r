@@ -30,6 +30,7 @@
 #' # txcon  0.768 0.95 0.367
 #' # txvac  0.400 0.78 0.111
 #' #
+#' @importFrom stats glm update
 phiWt <- function(fit,
                   subset.factor = NULL,
                   fit.only = TRUE,

@@ -91,211 +91,151 @@
 ## RRtosst function
 ##--------------------------------------------------------------------
 
-RRtosst <-
-  function(y = NULL,
-           formula = NULL,
-           data = NULL,
-           compare = c("vac", "con"),
-           alpha = 0.05,
-           pf = TRUE,
-           stepstart = .1,
-           iter.max = 36,
-           converge = 1e-6,
-           rnd = 3,
-           trace.it = FALSE,
-           nuisance.points = 120,
-           gamma = 1e-6) {
-    ###########################################
-    ## Error handling for input options
-    ## - y can be matrix or vector (expects formula and data to be NULL)
-    ## - if formula is specified, data is required (expects y is null)
-    ###########################################
-    .check_3input_cases_freq(data = data, formula = formula, y = y)
+#' @importFrom stats qbeta
+RRtosst <- function(y = NULL,
+                    formula = NULL,
+                    data = NULL,
+                    compare = c("vac", "con"),
+                    alpha = 0.05,
+                    pf = TRUE,
+                    stepstart = .1,
+                    iter.max = 36,
+                    converge = 1e-6,
+                    rnd = 3,
+                    trace.it = FALSE,
+                    nuisance.points = 120,
+                    gamma = 1e-6) {
+  ###########################################
+  ## Error handling for input options
+  ## - y can be matrix or vector (expects formula and data to be NULL)
+  ## - if formula is specified, data is required (expects y is null)
+  ###########################################
+  .check_3input_cases_freq(data = data, formula = formula, y = y)
 
 
 
-    # Estimates exact confidence interval by the TOSST method Score statistic
-    # used to select tail area tables Binomial probability estimated over the
-    # tail area by taking the maximum over the nuisance parameter
+  # Estimates exact confidence interval by the TOSST method Score statistic
+  # used to select tail area tables Binomial probability estimated over the
+  # tail area by taking the maximum over the nuisance parameter
 
-    # Written 9/17/07 by Siev
-    # Functions called by rrcix():
-    #
-    #		.rr.score.asymp - gets asymptotic interval for starting value of upper
-    #			bound found in this file below
-    #
-    #				(if want to eliminate calling this function would have to search
-    #        down from r.max)
-    #
-    #		binci - gets Clopper-Pearson intervals for Berger-Boos method
-    #			included here now, but may be moved to another package
+  # Written 9/17/07 by Siev
+  # Functions called by rrcix():
+  #
+  #		.rr.score.asymp - gets asymptotic interval for starting value of upper
+  #			bound found in this file below
+  #
+  #				(if want to eliminate calling this function would have to search
+  #        down from r.max)
+  #
+  #		binci - gets Clopper-Pearson intervals for Berger-Boos method
+  #			included here now, but may be moved to another package
 
-    binci <- function(y,
-                      n,
-                      alpha = .05,
-                      show.warnings = FALSE) {
-      w <- 1 * show.warnings - 1
-      options(warn = w)
+  binci <- function(y,
+                    n,
+                    alpha = .05,
+                    show.warnings = FALSE) {
+    w <- 1 * show.warnings - 1
+    options(warn = w)
 
-      p <- y / n
-      cpl <- ifelse(y > 0, qbeta(alpha / 2, y, n - y + 1), 0)
-      cpu <- ifelse(y < n, qbeta(1 - alpha / 2, y + 1, n - y), 1)
-      out <- cbind(y, n, p, cpl, cpu)
-      dimnames(out) <-
-        list(names(y), c("y", "n", "p.hat", "cp low", "cp high"))
+    p <- y / n
+    cpl <- ifelse(y > 0, qbeta(alpha / 2, y, n - y + 1), 0)
+    cpu <- ifelse(y < n, qbeta(1 - alpha / 2, y + 1, n - y), 1)
+    out <- cbind(y, n, p, cpl, cpu)
+    dimnames(out) <-
+      list(names(y), c("y", "n", "p.hat", "cp low", "cp high"))
 
-      options(warn = 0)
-      return(out)
-    }
+    options(warn = 0)
+    return(out)
+  }
 
-    ###########################################
-    ## Data reshaping
-    ## - y can be matrix or vector (expects formula and data to be NULL)
-    ## - if formula is specified, data is required (expects y is null)
-    ###########################################
+  ###########################################
+  ## Data reshaping
+  ## - y can be matrix or vector (expects formula and data to be NULL)
+  ## - if formula is specified, data is required (expects y is null)
+  ###########################################
 
-    if (is.null(y)) {
-      # extract from data+formula to vector c(y1, n1, y2, n2)
-      y <- .extract_freqvec(formula, data, compare)
+  if (is.null(y)) {
+    # extract from data+formula to vector c(y1, n1, y2, n2)
+    y <- .extract_freqvec(formula, data, compare)
 
-    } else if (is.matrix(y)) {
-      # Data entry y=c(x2, n2, x1, n1) Vaccinates First (order same but
-      # subscripts reversed) data vector
-      y <- c(t(cbind(y[, 1], apply(y, 1, sum))))
-      # NOTE: the subscripts are reversed compared to the other functions
-    }
-    x2 <- y[1] ## vacc
-    n2 <- y[2] ## vacc
-    x1 <- y[3] ## con
-    n1 <- y[4] ## con
-    p1 <- x1 / n1
-    p2 <- x2 / n2
-    rho.mle <- p2 / p1
+  } else if (is.matrix(y)) {
+    # Data entry y=c(x2, n2, x1, n1) Vaccinates First (order same but
+    # subscripts reversed) data vector
+    y <- c(t(cbind(y[, 1], apply(y, 1, sum))))
+    # NOTE: the subscripts are reversed compared to the other functions
+  }
+  x2 <- y[1] ## vacc
+  n2 <- y[2] ## vacc
+  x1 <- y[3] ## con
+  n1 <- y[4] ## con
+  p1 <- x1 / n1
+  p2 <- x2 / n2
+  rho.mle <- p2 / p1
 
-    # itemize all possible tables in omega (17.26)
-    Y <- data.frame(y1 = rep(0:n1, (n2 + 1)),
-                    y2 = rep(0:n2, rep(n1 + 1, n2 + 1)))
-    observed <- (1:nrow(Y))[Y[, 1] == x1 & Y[, 2] == x2]
-    Y$C <- choose(n1, Y$y1) * choose(n2, Y$y2)
+  # itemize all possible tables in omega (17.26)
+  Y <- data.frame(y1 = rep(0:n1, (n2 + 1)),
+                  y2 = rep(0:n2, rep(n1 + 1, n2 + 1)))
+  observed <- (1:nrow(Y))[Y[, 1] == x1 & Y[, 2] == x2]
+  Y$C <- choose(n1, Y$y1) * choose(n2, Y$y2)
 
-    # score statistic - with pi.tilde by quadratic formula
-    scst <- function(rho, y1, n1, y2, n2) {
-      pih1 <- y1 / n1 # unrestricted MLE of current data
-      pih2 <- y2 / n2
-      if (y1 == 0 && y2 == 0) {
-        sc <- 0
-      } else if (y2 == n2) {
-        sc <- 0
-      } else {
-        A <- rho * (n1 + n2)
-        B <- -(rho * (y1 + n2) + y2 + n1)
-        C <- y1 + y2
-        pit1 <- (-B - sqrt(B^2 - 4 * A * C)) / (2 * A)
-        pit2 <- rho * pit1
-        sc <- (pih2 - rho * pih1) /
-          sqrt(rho^2 * pit1 * (1 - pit1) / n1 + pit2 * (1 - pit2) / n2)
-      }
-      return(sc)
-    }
-
-    # get Clopper-Pearson intervals for Berger-Boos method
-    cp <- binci(c(x1, x2), c(n1, n2), alpha = gamma)[, c("cp low", "cp high")]
-    L1 <- cp[1, 1]
-    U1 <- cp[1, 2]
-    L2 <- cp[2, 1]
-    U2 <- cp[2, 2]
-    r.min <- L2 / U1
-    r.max <- U2 / L1
-
-    if (rho.mle == 0) {
-      low <- 0
+  # score statistic - with pi.tilde by quadratic formula
+  scst <- function(rho, y1, n1, y2, n2) {
+    pih1 <- y1 / n1 # unrestricted MLE of current data
+    pih2 <- y2 / n2
+    if (y1 == 0 && y2 == 0) {
+      sc <- 0
+    } else if (y2 == n2) {
+      sc <- 0
     } else {
-      # search for lower endpoint
-      iter <- 0
-      step <- stepstart
-      # start above 0 (for quadratic formula)
-      low <- max(0.0001, r.min)
-      repeat {
-        iter <- iter + 1
-        if (iter > iter.max)
-          break
-        if (iter > 1) {
-          old.low <- low
-          low <- low + step
-        }
-        scst.y <- rep(NA, nrow(Y))
-        for (i in 1:length(scst.y))
-          scst.y[i] <- scst(low, Y$y1[i], n1, Y$y2[i], n2)
-        q.set <- Y[scst.y >= scst.y[observed], ]
-        q.set$n1y1 <- n1 - q.set$y1
-        q.set$n2y2 <- n2 - q.set$y2
-        if (gamma > 0)
-          # Berger-Boos method 17.164
-          pn <- seq(max(L1, L2 / low), min(U1, U2 / low),
-                    length = nuisance.points)
-        else
-          # simple method 17.138
-          pn <- seq(0, min(1 / low, 1), length = nuisance.points)
-        if (sum(pn > 1) > 0) {
-          cat("\nIteration",
-              iter,
-              "nuisance parameter outside parameter space\n")
-          next
-        }
-        fy <- rep(NA, nuisance.points)
-        for (i in 1:nuisance.points) {
-          pni <- pn[i]
-          fy[i] <-
-            sum(
-              q.set$C * pni^q.set$y1 *
-                (1 - pni)^q.set$n1y1 *
-                (low * pni)^q.set$y2 *
-                (1 - low * pni)^q.set$n2y2
-            )
-        }
-        max.fy <- max(fy)
-        if (trace.it)
-          cat("\nIteration", iter, "rho.low", low, "tail", max.fy, "\n")
-        if (abs(max.fy - (alpha / 2 - gamma / 2)) < converge)
-          break
-        if (max.fy > (alpha / 2 - gamma / 2)) {
-          step <- step / 2
-          low <- low - step * 2
-        }
-      } # end repeat
-    } # end else
+      A <- rho * (n1 + n2)
+      B <- -(rho * (y1 + n2) + y2 + n1)
+      C <- y1 + y2
+      pit1 <- (-B - sqrt(B^2 - 4 * A * C)) / (2 * A)
+      pit2 <- rho * pit1
+      sc <- (pih2 - rho * pih1) /
+        sqrt(rho^2 * pit1 * (1 - pit1) / n1 + pit2 * (1 - pit2) / n2)
+    }
+    return(sc)
+  }
 
-    # search for upper endpoint upward from just below asymptotic
-    # rather than downward from r.max
-    # get asymptotic interval for starting
-    # koopman version (slightly narrower interval than mn)
-    ci.asymp <- .rr.score.asymp(c(x2, n2, x1, n1))
-    high <- ci.asymp[3] * .9
+  # get Clopper-Pearson intervals for Berger-Boos method
+  cp <- binci(c(x1, x2), c(n1, n2), alpha = gamma)[, c("cp low", "cp high")]
+  L1 <- cp[1, 1]
+  U1 <- cp[1, 2]
+  L2 <- cp[2, 1]
+  U2 <- cp[2, 2]
+  r.min <- L2 / U1
+  r.max <- U2 / L1
 
+  if (rho.mle == 0) {
+    low <- 0
+  } else {
+    # search for lower endpoint
     iter <- 0
     step <- stepstart
+    # start above 0 (for quadratic formula)
+    low <- max(0.0001, r.min)
     repeat {
       iter <- iter + 1
       if (iter > iter.max)
         break
       if (iter > 1) {
-        old.high <- high
-        high <- high + step
+        old.low <- low
+        low <- low + step
       }
       scst.y <- rep(NA, nrow(Y))
       for (i in 1:length(scst.y))
-        scst.y[i] <- scst(high, Y$y1[i], n1, Y$y2[i], n2)
-      p.set <- Y[scst.y <= scst.y[observed], ]
-      p.set$n1y1 <- n1 - p.set$y1
-      p.set$n2y2 <- n2 - p.set$y2
+        scst.y[i] <- scst(low, Y$y1[i], n1, Y$y2[i], n2)
+      q.set <- Y[scst.y >= scst.y[observed], ]
+      q.set$n1y1 <- n1 - q.set$y1
+      q.set$n2y2 <- n2 - q.set$y2
       if (gamma > 0)
         # Berger-Boos method 17.164
-        pn <- seq(max(L1, L2 / high),
-                  min(U1, U2 / high),
+        pn <- seq(max(L1, L2 / low), min(U1, U2 / low),
                   length = nuisance.points)
       else
         # simple method 17.138
-        pn <- seq(0, min(1 / high, 1), length = nuisance.points)
+        pn <- seq(0, min(1 / low, 1), length = nuisance.points)
       if (sum(pn > 1) > 0) {
         cat("\nIteration",
             iter,
@@ -307,46 +247,106 @@ RRtosst <-
         pni <- pn[i]
         fy[i] <-
           sum(
-            p.set$C * pni^p.set$y1 *
-              (1 - pni)^p.set$n1y1 *
-              (high * pni)^p.set$y2 *
-              (1 - high * pni)^p.set$n2y2
+            q.set$C * pni^q.set$y1 *
+              (1 - pni)^q.set$n1y1 *
+              (low * pni)^q.set$y2 *
+              (1 - low * pni)^q.set$n2y2
           )
       }
       max.fy <- max(fy)
       if (trace.it)
-        cat("\nIteration", iter, "rho.high", high, "tail", max.fy, "\n")
+        cat("\nIteration", iter, "rho.low", low, "tail", max.fy, "\n")
       if (abs(max.fy - (alpha / 2 - gamma / 2)) < converge)
         break
-      if (max.fy < (alpha / 2 - gamma / 2)) {
+      if (max.fy > (alpha / 2 - gamma / 2)) {
         step <- step / 2
-        high <- high - step * 2
+        low <- low - step * 2
       }
     } # end repeat
+  } # end else
 
-    int <- c(rho.hat = rho.mle,
-             low = low,
-             high = high)
-    if (!pf) {
-      names(int) <- c("RR", "LL", "UL")
-    } else {
-      int <- 1 - int[c(1, 3, 2)]
-      names(int) <- c("PF", "LL", "UL")
+  # search for upper endpoint upward from just below asymptotic
+  # rather than downward from r.max
+  # get asymptotic interval for starting
+  # koopman version (slightly narrower interval than mn)
+  ci.asymp <- .rr.score.asymp(c(x2, n2, x1, n1))
+  high <- ci.asymp[3] * .9
+
+  iter <- 0
+  step <- stepstart
+  repeat {
+    iter <- iter + 1
+    if (iter > iter.max)
+      break
+    if (iter > 1) {
+      old.high <- high
+      high <- high + step
     }
-    y <- as.data.frame(t(y))
-    names(y) <- c("y1", "n1", "y2", "n2")
-    return(rr1$new(
-      estimate = int,
-      estimator = ifelse(pf, "PF", "RR"),
-      y = y,
-      rnd = rnd,
-      alpha = alpha
-    ))
-    # out <- list(estimate = int, estimator = ifelse(pf, "PF", "RR"),
-    #             y = y, rnd = rnd, alpha = alpha)
-    # class(out) <- "rr1"
-    # return(out)
+    scst.y <- rep(NA, nrow(Y))
+    for (i in 1:length(scst.y))
+      scst.y[i] <- scst(high, Y$y1[i], n1, Y$y2[i], n2)
+    p.set <- Y[scst.y <= scst.y[observed], ]
+    p.set$n1y1 <- n1 - p.set$y1
+    p.set$n2y2 <- n2 - p.set$y2
+    if (gamma > 0)
+      # Berger-Boos method 17.164
+      pn <- seq(max(L1, L2 / high),
+                min(U1, U2 / high),
+                length = nuisance.points)
+    else
+      # simple method 17.138
+      pn <- seq(0, min(1 / high, 1), length = nuisance.points)
+    if (sum(pn > 1) > 0) {
+      cat("\nIteration",
+          iter,
+          "nuisance parameter outside parameter space\n")
+      next
+    }
+    fy <- rep(NA, nuisance.points)
+    for (i in 1:nuisance.points) {
+      pni <- pn[i]
+      fy[i] <-
+        sum(
+          p.set$C * pni^p.set$y1 *
+            (1 - pni)^p.set$n1y1 *
+            (high * pni)^p.set$y2 *
+            (1 - high * pni)^p.set$n2y2
+        )
+    }
+    max.fy <- max(fy)
+    if (trace.it)
+      cat("\nIteration", iter, "rho.high", high, "tail", max.fy, "\n")
+    if (abs(max.fy - (alpha / 2 - gamma / 2)) < converge)
+      break
+    if (max.fy < (alpha / 2 - gamma / 2)) {
+      step <- step / 2
+      high <- high - step * 2
+    }
+  } # end repeat
+
+  int <- c(rho.hat = rho.mle,
+           low = low,
+           high = high)
+  if (!pf) {
+    names(int) <- c("RR", "LL", "UL")
+  } else {
+    int <- 1 - int[c(1, 3, 2)]
+    names(int) <- c("PF", "LL", "UL")
   }
+  y <- as.data.frame(t(y))
+  names(y) <- c("y1", "n1", "y2", "n2")
+  return(rr1$new(
+    estimate = int,
+    estimator = ifelse(pf, "PF", "RR"),
+    y = y,
+    rnd = rnd,
+    alpha = alpha
+  ))
+  # out <- list(estimate = int, estimator = ifelse(pf, "PF", "RR"),
+  #             y = y, rnd = rnd, alpha = alpha)
+  # class(out) <- "rr1"
+  # return(out)
+}
 
 
 #-------------------------------------------------------
@@ -363,109 +363,109 @@ RRtosst <-
 #' @export
 #' @examples
 #' # none
-.rr.score.asymp <-
-  function(y,
-           alpha = 0.05,
-           iter.max = 18.,
-           converge = 0.0001,
-           mn = FALSE) {
-    # asymptotic score interval
-    # code taken from RRsc()
-    # choice of either Koopman (mn=F)
-    # or Miettinenen-Nurminen (mn=T)
-    # Data entry y=c(x2, n2, x1, n1) Vaccinates First
+#' @importFrom stats qnorm
+.rr.score.asymp <- function(y,
+                            alpha = 0.05,
+                            iter.max = 18.,
+                            converge = 0.0001,
+                            mn = FALSE) {
+  # asymptotic score interval
+  # code taken from RRsc()
+  # choice of either Koopman (mn=F)
+  # or Miettinenen-Nurminen (mn=T)
+  # Data entry y=c(x2, n2, x1, n1) Vaccinates First
 
-    u.p <- function(p1, p2, n1, n2) {
-      (1. - p1) / (n1 * p1) + (1. - p2) / (n2 * p2)
-    }
-
-    z.phi <- function(phi, x1, x2, n1, n2, u.p, root, za, MN = FALSE)	{
-      if (MN)
-        mn <- sqrt((n1 + n2 - 1.) / (n1 + n2))
-      else
-        mn <- 1.
-      p2 <- root(x1, x2, n1, n2, phi)
-      p1 <- p2 * phi
-      u <- u.p(p1, p2, n1, n2)
-      z <- ((x1 - n1 * p1) / (1. - p1)) * sqrt(u) * mn
-      return(z)
-    }
-
-    root <- function(x1, x2, n1, n2, phi) {
-      a <- phi * (n1 + n2)
-      b <-  -(phi * (x2 + n1) + x1 + n2)
-      cc <- x1 + x2
-      det <- sqrt(b^2. - 4. * a * cc)
-      rt <- (-b - det) / (2. * a)
-      return(rt)
-    }
-
-    al2 <- alpha / 2.
-    z.al2 <- qnorm(al2)
-    z.ah2 <- qnorm(1. - al2)
-    zv <- c(z.al2, z.ah2)
-    x1 <- y[1.]
-    n1 <- y[2.]
-    x2 <- y[3.]
-    n2 <- y[4.]
-    p1 <- x1 / n1
-    p2 <- x2 / n2
-    p1 <- x1 / n1
-    phi.mle <- p1 / p2
-
-    # 0.5 log method
-    p1 <- (x1 + 0.5) / (n1 + 0.5)
-    p2 <- (x2 + 0.5) / (n2 + 0.5)
-    phi <- p1 / p2
-    v <- sqrt(u.p(p1, p2, (n1 + 0.5), (n2 + 0.5)))
-    starting <- exp(v * zv + logb(phi))
-
-    # Score method
-    score <- rep(0., length(zv))
-    for (k in 1.:length(zv)) {
-      if (k == 1. && x1 == 0.)
-        score[k] <- 0.
-      else
-        if (k == 2. && x2 == 0.) {
-          score[k] <- Inf
-        } else {
-          phi <- c(starting[k], 0.9 * starting[k])
-          za <-  -zv[k]
-          zz <-
-            c(
-              z.phi(phi[1.], x1, x2, n1, n2, u.p, root, za, mn),
-              z.phi(phi[2.], x1, x2, n1, n2, u.p, root, za, mn)
-            )
-          if (abs(za - zz[1.]) > abs(za - zz[2.]))
-            phi <- rev(phi)
-          phi.new <- phi[1.]
-          phi.old <- phi[2.]
-          # cat("\n\n")
-          iter <- 0.
-          repeat {
-            iter <- iter + 1.
-            if (iter > iter.max)
-              break
-            z.new <- z.phi(phi.new, x1, x2, n1, n2, u.p, root, za, mn)
-            # cat("iteration", iter, "  z", z.new, "phi", phi.new, "\n")
-            if (abs(za - z.new) < converge)
-              break
-            z.old <- z.phi(phi.old, x1, x2, n1, n2, u.p, root, za, mn)
-            phi <-
-              exp(logb(phi.old) + logb(phi.new / phi.old) *
-                    ((za - z.old) / (z.new - z.old)))
-            phi.old <- phi.new
-            phi.new <- phi
-          }
-          score[k] <- phi.new
-        }
-    }
-    int <- c(phi.mle, score)
-
-    # cat("\n\n")
-    names(int) <- c("point", "LL", "UL")
-    return(int)
+  u.p <- function(p1, p2, n1, n2) {
+    (1. - p1) / (n1 * p1) + (1. - p2) / (n2 * p2)
   }
+
+  z.phi <- function(phi, x1, x2, n1, n2, u.p, root, za, MN = FALSE)	{
+    if (MN)
+      mn <- sqrt((n1 + n2 - 1.) / (n1 + n2))
+    else
+      mn <- 1.
+    p2 <- root(x1, x2, n1, n2, phi)
+    p1 <- p2 * phi
+    u <- u.p(p1, p2, n1, n2)
+    z <- ((x1 - n1 * p1) / (1. - p1)) * sqrt(u) * mn
+    return(z)
+  }
+
+  root <- function(x1, x2, n1, n2, phi) {
+    a <- phi * (n1 + n2)
+    b <-  -(phi * (x2 + n1) + x1 + n2)
+    cc <- x1 + x2
+    det <- sqrt(b^2. - 4. * a * cc)
+    rt <- (-b - det) / (2. * a)
+    return(rt)
+  }
+
+  al2 <- alpha / 2.
+  z.al2 <- qnorm(al2)
+  z.ah2 <- qnorm(1. - al2)
+  zv <- c(z.al2, z.ah2)
+  x1 <- y[1.]
+  n1 <- y[2.]
+  x2 <- y[3.]
+  n2 <- y[4.]
+  p1 <- x1 / n1
+  p2 <- x2 / n2
+  p1 <- x1 / n1
+  phi.mle <- p1 / p2
+
+  # 0.5 log method
+  p1 <- (x1 + 0.5) / (n1 + 0.5)
+  p2 <- (x2 + 0.5) / (n2 + 0.5)
+  phi <- p1 / p2
+  v <- sqrt(u.p(p1, p2, (n1 + 0.5), (n2 + 0.5)))
+  starting <- exp(v * zv + logb(phi))
+
+  # Score method
+  score <- rep(0., length(zv))
+  for (k in 1.:length(zv)) {
+    if (k == 1. && x1 == 0.)
+      score[k] <- 0.
+    else
+      if (k == 2. && x2 == 0.) {
+        score[k] <- Inf
+      } else {
+        phi <- c(starting[k], 0.9 * starting[k])
+        za <-  -zv[k]
+        zz <-
+          c(
+            z.phi(phi[1.], x1, x2, n1, n2, u.p, root, za, mn),
+            z.phi(phi[2.], x1, x2, n1, n2, u.p, root, za, mn)
+          )
+        if (abs(za - zz[1.]) > abs(za - zz[2.]))
+          phi <- rev(phi)
+        phi.new <- phi[1.]
+        phi.old <- phi[2.]
+        # cat("\n\n")
+        iter <- 0.
+        repeat {
+          iter <- iter + 1.
+          if (iter > iter.max)
+            break
+          z.new <- z.phi(phi.new, x1, x2, n1, n2, u.p, root, za, mn)
+          # cat("iteration", iter, "  z", z.new, "phi", phi.new, "\n")
+          if (abs(za - z.new) < converge)
+            break
+          z.old <- z.phi(phi.old, x1, x2, n1, n2, u.p, root, za, mn)
+          phi <-
+            exp(logb(phi.old) + logb(phi.new / phi.old) *
+                  ((za - z.old) / (z.new - z.old)))
+          phi.old <- phi.new
+          phi.new <- phi
+        }
+        score[k] <- phi.new
+      }
+  }
+  int <- c(phi.mle, score)
+
+  # cat("\n\n")
+  names(int) <- c("point", "LL", "UL")
+  return(int)
+}
 #------------------------------------------------------
 # End asymptotic score method
 #------------------------------------------------------

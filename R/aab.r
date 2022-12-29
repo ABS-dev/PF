@@ -17,6 +17,8 @@
 #'
 #'   }
 #' @seealso \code{\link{RRmh}, \link{RRstr}}
+#' @importFrom plyr ddply
+#' @importFrom stats model.frame terms
 #' @noRd
 .matricize <- function(formula, data, compare = compare) {
 

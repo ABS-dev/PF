@@ -33,6 +33,7 @@
 ##-------------------------------
 ## rsbWt uses rsb to refit model
 ##-------------------------------
+#' @importFrom stats update
 rsbWt <- function(fit = NULL,
                   subset.factor = NULL,
                   fit.only = TRUE) {
@@ -88,6 +89,7 @@ rsbWt <- function(fit = NULL,
 #-------------------------------
 # rsb returns d's and weights
 #-------------------------------
+#' @importFrom dplyr "%>%" select ungroup
 rsb <- function(y = NULL, n = NULL, formula = NULL, data = NULL, id = NULL) {
 
   if (is.null(y) && is.null(n) && !(is.null(formula) && is.null(data))) {

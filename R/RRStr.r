@@ -78,6 +78,7 @@
 #' tx = rep(c('a', 'b'), 4),
 #' clus = rep(paste('Row', 1:4, sep = ''), each = 2))
 #'
+#' @importFrom stats pchisq qnorm
 RRstr <- function(formula = NULL, data = NULL, compare = c("vac", "con"), Y,
                   alpha = 0.05, pf = TRUE, trace.it = FALSE, iter.max = 24,
                   converge = 1e-6, rnd = 3, multiplier = 0.7, divider = 1.1) {

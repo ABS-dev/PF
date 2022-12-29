@@ -82,6 +82,8 @@
 #' #
 #' #    PF    LL    UL
 #' # 0.550 0.183 0.752
+#' @importFrom dplyr "%>%"
+#' @importFrom stats qnorm qt
 RRmpWald <- function(formula = NULL, data = NULL, compare = c("vac", "con"),
                      affected = 1, x, alpha = 0.05, pf = TRUE, tdist = TRUE,
                      df = NULL, rnd = 3) {
