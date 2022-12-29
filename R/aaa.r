@@ -43,7 +43,6 @@
 # we intend to ignore the strafication and summarize by the control and
 # vaccinate groups
 #' @importFrom dplyr "%>%" group_by_at select summarize_at ungroup
-#' @importFrom rlang .data
 #' @importFrom stats filter
 .extract_freqvec <- function(formula, data, compare = c("vac", "con")) {
   vars <- all.vars(formula)
@@ -60,17 +59,7 @@
     group_by_at(vars[3]) %>%
     summarize_at(c(vars[1:2]), sum, na.rm = TRUE)
   colnames(sumdata) <- c("group", "y", "n")
-  out <- c(
-    ## vaccine
-    sumdata %>%
-      filter(.data$group == compare[1]) %>%
-      select(.data$y, .data$n) %>%
-      as.numeric,
-    ## control or reference
-    sumdata %>%
-      filter(.data$group == compare[2]) %>%
-      select(.data$y, .data$n) %>%
-      as.numeric)
-
+  out <- as.numeric(c(sumdata[sumdata$group == compare[1], c("y", "n")],
+                      sumdata[sumdata$group == compare[2], c("y", "n")]))
   return(out)
 }
