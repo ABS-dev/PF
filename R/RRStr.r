@@ -93,7 +93,7 @@ RRstr <- function(formula = NULL, data = NULL, compare = c("vac", "con"), Y,
   zi.phi <- function(phi, Y, u.p, root, za) {
     # for score interval in RRstr
     zi <- ui <- 0
-    for (i in 1:nrow(Y)) {
+    for (i in seq_len(nrow(Y))) {
       y1 <- Y[i, 1] # vac
       n1 <- Y[i, 2] # vac
       y2 <- Y[i, 3] # con or ref
@@ -115,7 +115,7 @@ RRstr <- function(formula = NULL, data = NULL, compare = c("vac", "con"), Y,
   zis.phi <- function(phi, Y, u.p, root, za) {
     # for skewness-corrected interval in RRstr
     zi <- ui <- gi <- 0
-    for (i in 1:nrow(Y)) {
+    for (i in seq_len(nrow(Y))) {
       y1 <- Y[i, 1]
       n1 <- Y[i, 2]
       y2 <- Y[i, 3]
@@ -202,14 +202,14 @@ RRstr <- function(formula = NULL, data = NULL, compare = c("vac", "con"), Y,
   if (!is.null(formula) && !is.null(data)) {
     Y <- .matricize(formula = formula, data = data, compare = compare)$Y
   }
-  rownames(Y) <- paste("Row", 1:nrow(Y), sep = "")
+  rownames(Y) <- paste("Row", seq_len(nrow(Y)), sep = "")
   colnames(Y) <- c("y1", "n1", "y2", "n2")
   # save data and empirical Rs
   Y <- cbind(Y, R.obs = (Y[, 1] / Y[, 2]) / (Y[, 3] / Y[, 4]))
 
   zv <- qnorm(c(alpha / 2, 1 - alpha / 2))
   numer <- denom <- uu <- 0
-  for (i in 1:nrow(Y)) {
+  for (i in seq_len(nrow(Y))) {
     y1 <- Y[i, 1]
     n1 <- Y[i, 2]
     y2 <- Y[i, 3]
@@ -259,7 +259,7 @@ RRstr <- function(formula = NULL, data = NULL, compare = c("vac", "con"), Y,
     Phi.ML <- phi.new
     # test for homogeneity of phi's
     test <- rep(0, nrow(Y))
-    for (i in 1:nrow(Y)) {
+    for (i in seq_len(nrow(Y))) {
       test[i] <- zi.phi(Phi.ML, t(as.matrix(Y[i, ])), u.p, root, za)^2
     }
     hom.test <- sum(test)

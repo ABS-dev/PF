@@ -175,7 +175,7 @@ RRtosst <- function(y = NULL,
   # itemize all possible tables in omega (17.26)
   Y <- data.frame(y1 = rep(0:n1, (n2 + 1)),
                   y2 = rep(0:n2, rep(n1 + 1, n2 + 1)))
-  observed <- (1:nrow(Y))[Y[, 1] == x1 & Y[, 2] == x2]
+  observed <- (seq_len(nrow(Y)))[Y[, 1] == x1 & Y[, 2] == x2]
   Y$C <- choose(n1, Y$y1) * choose(n2, Y$y2)
 
   # score statistic - with pi.tilde by quadratic formula
@@ -224,7 +224,7 @@ RRtosst <- function(y = NULL,
         low <- low + step
       }
       scst.y <- rep(NA, nrow(Y))
-      for (i in 1:length(scst.y))
+      for (i in seq_along(scst.y))
         scst.y[i] <- scst(low, Y$y1[i], n1, Y$y2[i], n2)
       q.set <- Y[scst.y >= scst.y[observed], ]
       q.set$n1y1 <- n1 - q.set$y1
@@ -283,7 +283,7 @@ RRtosst <- function(y = NULL,
       high <- high + step
     }
     scst.y <- rep(NA, nrow(Y))
-    for (i in 1:length(scst.y))
+    for (i in seq_along(scst.y))
       scst.y[i] <- scst(high, Y$y1[i], n1, Y$y2[i], n2)
     p.set <- Y[scst.y <= scst.y[observed], ]
     p.set$n1y1 <- n1 - p.set$y1
