@@ -18,6 +18,8 @@ print.rr1 <- function(x, ...) {
   options(digits = num.dig)
 }
 
+#' @importFrom methods setMethod
+
 setMethod("show", "rr1", function(object) {
   print(object)
 })
