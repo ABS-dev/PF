@@ -2,8 +2,8 @@
 #' @description Estimates confidence intervals for the risk ratio or prevented
 #'   fraction from matched pairs.
 #' @details Estimates confidence intervals for the risk ratio or prevented
-#'   fraction from matched pairs. The response is the tetranomial vector [11,
-#'   12, 21, 22], where the first index is the row and the the second index is
+#'   fraction from matched pairs. The response is the tetranomial vector `c(11,
+#'   12, 21, 22)`, where the first index is the row and the the second index is
 #'   the column when displayed as a 2x2 table. Wald type confidence intervals
 #'   are found by applying the delta method to the multinomial variance. This
 #'   method fails when there are no responders in one of the treatment groups.

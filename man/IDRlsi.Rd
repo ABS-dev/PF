@@ -47,36 +47,36 @@ positive, n is the group size, x is a factor with two levels of treatment.#'}
 
 \item{iter.max}{Maximum number of iterations}
 
-\item{compare}{Text vector stating the factor levels: compare[1] is the
-vaccinate group to which compare[2] (control or reference) is compared.}
+\item{compare}{Text vector stating the factor levels: compare\link{1} is the
+vaccinate group to which compare\link{2} (control or reference) is compared.}
 }
 \value{
 A \code{\link{rrsi}} object with the following elements.
 
- \item{estimate}{vector with point and interval estimate}
+\item{estimate}{vector with point and interval estimate}
 
- \item{estimator}{either \emph{PF} or \emph{IDR}}
+\item{estimator}{either \emph{PF} or \emph{IDR}}
 
- \item{y}{data.frame with "y1", "n1", "y2", "n2" values.}
+\item{y}{data.frame with "y1", "n1", "y2", "n2" values.}
 
- \item{k}{Likelihood ratio criterion}
+\item{k}{Likelihood ratio criterion}
 
- \item{rnd}{how many digits to round the display}
+\item{rnd}{how many digits to round the display}
 
- \item{alpha}{complement of confidence level}
+\item{alpha}{complement of confidence level}
 }
 \description{
 Estimates likelihood support interval for the incidence density
-  ratio or prevented fraction based on it.
+ratio or prevented fraction based on it.
 }
 \details{
 Estimates likelihood support interval for the incidence density
-  ratio based on orthogonal factoring of reparameterized likelihood. The
-  incidence density is the number of cases per subject-time; its distribution
-  is assumed Poisson. \cr \cr Likelihood support intervals are usually formed
-  based on the desired likelihood ratio, often 1/8 or 1/32. Under some
-  conditions the log likelihood ratio may follow the chi square distribution.
-  If so,
+ratio based on orthogonal factoring of reparameterized likelihood. The
+incidence density is the number of cases per subject-time; its distribution
+is assumed Poisson. \cr \cr Likelihood support intervals are usually formed
+based on the desired likelihood ratio, often 1/8 or 1/32. Under some
+conditions the log likelihood ratio may follow the chi square distribution.
+If so,
 then \eqn{\alpha=1-F(2log(k), 1)}, where \eqn{F} is a chi-square CDF.
 \code{RRsc()} will make the conversion from \eqn{\alpha} to \emph{k} if
 \code{use.alpha = TRUE}. \cr \cr The data may also be a matrix. In that case
@@ -152,7 +152,7 @@ IDRlsi(data = data2, formula = cbind(sum_y, sum_n) ~ group,
 }
 \references{
 Royall R. \emph{Statistical Evidence: A Likelihood Paradigm}.
- Chapman & Hall, Boca Raton, 1997. Section 7.2.
+Chapman & Hall, Boca Raton, 1997. Section 7.2.
 }
 \seealso{
 \code{\link{IDRsc}}

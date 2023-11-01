@@ -16,16 +16,16 @@ and phi estimates.}
 }
 \value{
 A list with the following elements. \item{fit}{the new model fit,
- updated by the estimated weights} \item{weights}{vector of weights}
- \item{d}{vector of \eqn{{d}_{i}}{d_i} estimates}
+updated by the estimated weights} \item{weights}{vector of weights}
+\item{d}{vector of \eqn{{d}_{i}}{d_i} estimates}
 }
 \description{
 Rao-Scott weighting of clustered binomial observations.
 }
 \details{
 Estimates the cluster design effect \eqn{{d}_{i}}{d_i} as the
- variance inflation due to clustering by the method of Rao and Scott.
- Observations are then weighted by the inverse of the \eqn{{d}_{i}}{d_i}.
+variance inflation due to clustering by the method of Rao and Scott.
+Observations are then weighted by the inverse of the \eqn{{d}_{i}}{d_i}.
 }
 \examples{
 birdm.fit <- glm(cbind(y,n-y)~tx-1,binomial,birdm)
@@ -44,7 +44,7 @@ RRor(rsbWt(birdm.fit))
 }
 \references{
 Rao JNK, Scott AJ, 1992. A simple method for the analysis of
- clustered binary data. \emph{Biometrics} 48:577-585.
+clustered binary data. \emph{Biometrics} 48:577-585.
 }
 \seealso{
 \code{\link{RRor}, \link{rsb}}.
