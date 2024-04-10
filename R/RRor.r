@@ -17,7 +17,7 @@
 #'  no intercept.
 #'@param degf Degrees of freedom.
 #'@param which Numeric vector indicating which parameters to compare, so that
-#'  \emph{RR} = compare[2]/compare[1]
+#'  `RR = compare[2]/compare[1]`
 #'@param pf Estimate \emph{RR} or its complement \emph{PF}?
 #'@param norm Estimate confidence interval using quantiles of Guassian rather
 #'  than t distribution quantiles?

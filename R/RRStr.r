@@ -7,8 +7,8 @@
 #'   y is the number positive, n is the group size, x is a factor with two
 #'   levels of treatment, and w is a factor indicating the clusters.
 #' @param data data.frame containing variables of formula
-#' @param compare Text vector stating the factor levels: compare[1] is the
-#'   control or reference group to which compare[2] is compared
+#' @param compare Text vector stating the factor levels: `compare[1]` is the
+#'   control or reference group to which `compare[2]` is compared
 #' @param Y Matrix of data. Each row is a stratum or cluster. The columns are
 #'   y2, n2, y1, n1. If data entered by formula and dataframe, Y is generated
 #'   automatically.

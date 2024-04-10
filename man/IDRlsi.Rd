@@ -47,8 +47,8 @@ positive, n is the group size, x is a factor with two levels of treatment.#'}
 
 \item{iter.max}{Maximum number of iterations}
 
-\item{compare}{Text vector stating the factor levels: compare\link{1} is the
-vaccinate group to which compare\link{2} (control or reference) is compared.}
+\item{compare}{Text vector stating the factor levels: \code{compare[1]} is the
+vaccinate group to which \code{compare[2]} (control or reference) is compared.}
 }
 \value{
 A \code{\link{rrsi}} object with the following elements.

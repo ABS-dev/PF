@@ -24,8 +24,8 @@ levels of treatment, and w identifies the pairs.}
 
 \item{data}{\code{data.frame} containing variables in formula}
 
-\item{compare}{Text vector stating the factor levels: compare\link{1} is the
-vaccinate group to which compare\link{2} (control or reference) is compared.}
+\item{compare}{Text vector stating the factor levels: \code{compare[1]} is the
+vaccinate group to which \code{compare[2]} (control or reference) is compared.}
 
 \item{affected}{Indicator for positive response}
 

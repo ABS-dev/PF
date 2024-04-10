@@ -13,8 +13,8 @@
 #'   factor with two levels of treatment, and \code{w} is a factor indicating
 #'   the clusters.
 #' @param data \code{data.frame} containing variables for formula
-#' @param compare Text vector stating the factor levels: compare[1] is the
-#'   vaccinate group to which compare[2] (control or reference) is compared.
+#' @param compare Text vector stating the factor levels: `compare[1]` is the
+#'   vaccinate group to which `compare[2]` (control or reference) is compared.
 #' @param Y Matrix of data, \eqn{K \times 4}{K x 4}. Each row is a stratum or
 #'   cluster. The columns are \eqn{y1, n1, y2, n2}, where the y's are the number
 #'   of positive in each group, and the n is the total in each group. Group 1

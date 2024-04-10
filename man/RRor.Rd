@@ -28,7 +28,7 @@ no intercept.}
 \item{degf}{Degrees of freedom.}
 
 \item{which}{Numeric vector indicating which parameters to compare, so that
-\emph{RR} = compare\link{2}/compare\link{1}}
+\code{RR = compare[2]/compare[1]}}
 
 \item{pf}{Estimate \emph{RR} or its complement \emph{PF}?}
 

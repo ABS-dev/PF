@@ -26,8 +26,8 @@ levels of treatment, and w is a factor indicating the clusters.}
 
 \item{data}{data.frame containing variables of formula}
 
-\item{compare}{Text vector stating the factor levels: compare\link{1} is the
-control or reference group to which compare\link{2} is compared}
+\item{compare}{Text vector stating the factor levels: \code{compare[1]} is the
+control or reference group to which \code{compare[2]} is compared}
 
 \item{Y}{Matrix of data. Each row is a stratum or cluster. The columns are
 y2, n2, y1, n1. If data entered by formula and dataframe, Y is generated

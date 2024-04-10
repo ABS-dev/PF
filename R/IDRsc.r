@@ -18,8 +18,8 @@
 #' @param formula Formula of the form cbind(y, n) ~ x, where y is the number
 #'   positive, n is the group size, x is a factor with two levels of treatment.
 #' @param data data.frame containing variables of formula.
-#' @param compare Text vector stating the factor levels: compare[1] is the
-#'   vaccinate group to which compare[2] (control or reference) is compared.
+#' @param compare Text vector stating the factor levels: `compare[1]` is the
+#'   vaccinate group to which `compare[2]` (control or reference) is compared.
 #' @param alpha Complement of the confidence level.
 #' @param pf Estimate \emph{IDR}, or its complement \emph{PF}?
 #' @param rnd Number of digits for rounding. Affects display only, not

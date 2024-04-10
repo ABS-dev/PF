@@ -22,16 +22,16 @@ RRlsi(
 )
 }
 \arguments{
-\item{y}{Data vector c(y1, n1, y2, n2) where y are the positives, n are the
-total, and group 1 is compared to group 2 (control or reference group).}
+\item{y}{Data vector \code{c(y1, n1, y2, n2)} where \code{y} are the positives, \code{n} are
+the total, and group 1 is compared to group 2 (control or reference group).}
 
-\item{formula}{Formula of the form cbind(y, n) ~ x, where y is the number
+\item{formula}{Formula of the form \code{cbind(y, n) ~ x}, where y is the number
 positive, n is the group size, x is a factor with two levels of treatment.}
 
 \item{data}{data.frame containing variables of formula.}
 
-\item{compare}{Text vector stating the factor levels: compare\link{1} is the
-vaccinate group to which compare\link{2} (control or reference) is compared.}
+\item{compare}{Text vector stating the factor levels: \code{compare[1]} is the
+vaccinate group to which \code{compare[2]} (control or reference) is compared.}
 
 \item{alpha}{Complement of the confidence level (see details).}
 

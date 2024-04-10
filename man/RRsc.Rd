@@ -23,11 +23,11 @@ total, and group 1 is compared to group 2 (control or reference group).}
 
 \item{data}{data.frame containing variables of formula.}
 
-\item{formula}{Formula of the form cbind(y, n) ~ x, where y is the number
+\item{formula}{Formula of the form \code{cbind(y, n) ~ x}, where y is the number
 positive, n is the group size, x is a factor with two levels of treatment.}
 
-\item{compare}{Text vector stating the factor levels: compare\link{1} is the
-vaccinate group to which compare\link{2} (control or reference) is compared.}
+\item{compare}{Text vector stating the factor levels: \code{compare[1]} is the
+vaccinate group to which \code{compare[2]} (control or reference) is compared.}
 
 \item{alpha}{Complement of the confidence level.}
 
