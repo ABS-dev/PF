@@ -21,16 +21,18 @@ okay_vars <- c("A", "B", "C", "L", "N", "Q", "R", "V", "Y", "L1", "L2",
                "z.al2", "z.new", "z.old", "z.phi", "IDRlsi", "Phi.ML",
                "V.beta", "ll.max", "mu.hat", "p.test", "rr.est", "rr.opt",
                "scst.y", "zi.phi", "RRotsst", "RRtosst", "df.test", "idr.hat",
-               "num.dig", "old.low", "phi.mle", "phi.new", "phi.old", "rho.mle",
-               "tau.hat", "tau.new", "varlogR", "zis.phi", "zsc.phi", "zsk.phi",
-               "RRmpWald", "beta.hat", "bird.fit", "ci.asymp", "fit.only",
-               "gradlogR", "hom.test", "iter.max", "old.high", "rr.ci.hi",
-               "rr.ci.lo", "tauOptim", "trace.it", "Table6$tx", "birdm.fit",
-               "this.call", "use.alpha", "var.log.r", "full.track", "grad.log.r",
-               "p.set$n1y1", "p.set$n2y2", "q.set$n1y1", "q.set$n2y2",
-               "show.warns", "var.log.rr", "drop.levels", "score.start",
-               "options.warn", "var.beta.hat", "show.warnings", "newfamily.name",
-               ".rr.score.asymp", "nuisance.points")
+               "num.dig", "old.low", "phi.mle", "phi.new", "phi.old",
+               "rho.mle", "tau.hat", "tau.new", "varlogR", "zis.phi", "zsc.phi",
+               "zsk.phi", "RRmpWald", "beta.hat", "bird.fit", "ci.asymp",
+               "fit.only", "gradlogR", "hom.test", "iter.max", "old.high",
+               "rr.ci.hi", "rr.ci.lo", "tauOptim", "trace.it", "Table6$tx",
+               "birdm.fit", "this.call", "use.alpha", "var.log.r", "full.track",
+               "grad.log.r", "p.set$n1y1", "p.set$n2y2", "q.set$n1y1",
+               "q.set$n2y2", "show.warns", "var.log.rr", "drop.levels",
+               "score.start", "options.warn", "var.beta.hat", "show.warnings",
+               "newfamily.name", ".rr.score.asymp", "nuisance.points")
+
+okay_vars <- c()
 
 ## Change This Value ##
 # Determine whose files should be linted.  Change the number in the [.]
