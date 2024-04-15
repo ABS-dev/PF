@@ -11,44 +11,26 @@ path <- getwd()
 linter <- N <- NULL
 
 # Variables that don't follow stylistic guidelines, which we are not changing.
-okay_vars <- c("UA",
-               "RP",
-               "plateID",
-               "3PL",
-               "checkSerialTest",
-               "serialID",
-               "HTML",
-               "displayPlateLayout",
-               "flattened2Stacked",
-               "stacked2Stacked",
-               "getComparisons",
-               "Nminus1",
-               "getMinus1comparisons",
-               "expandComparisons",
-               "importELISA",
-               "_idx",
-               "_tmp",
-               "RelPot",
-               "setLinearValidity",
-               "setLinearBestComp",
-               "setLayDilutionFactor",
-               "setLayReference",
-               "setLayPositiveControl",
-               "setLayNegativeControl",
-               "setLayBlank",
-               "setLaySerial",
-               "setLayNPS",
-               "setLayNA",
-               "setLayRole",
-               "resetLayRoles",
-               "countLayRoles",
-               "ID",
-               "initLogis_USP",
-               "SSlogis_USP",
-               "mCall",
-               "tieBreaker",
-               ".plateID",
-               "\\._.*")
+okay_vars <- c("A", "B", "C", "L", "N", "Q", "R", "V", "Y", "L1", "L2",
+               "Lk", "MN", "Q1", "Q2", "U1", "U2", "Xx", "Y1", "Y2", "Phi",
+               "Tau", "Y$C", "d.i", "m.i", "n.i", "p.i", "u.p", "v.i", "y.i",
+               "z.s", "RRmh", "RRor", "RRsc", "ci.d", "g.ph", "logR", "r.ij",
+               "varR", "wTau", "z.ph", "IDRsc", "RRlsi", "RRstr", "Terms",
+               "V.eta", "ci.dl", "gradR", "p.set", "phiWt", "q.set", "r.hat",
+               "r.max", "r.min", "rsbWt", "tauWt", "var.b", "y.dot", "z.ah2",
+               "z.al2", "z.new", "z.old", "z.phi", "IDRlsi", "Phi.ML",
+               "V.beta", "ll.max", "mu.hat", "p.test", "rr.est", "rr.opt",
+               "scst.y", "zi.phi", "RRotsst", "RRtosst", "df.test", "idr.hat",
+               "num.dig", "old.low", "phi.mle", "phi.new", "phi.old", "rho.mle",
+               "tau.hat", "tau.new", "varlogR", "zis.phi", "zsc.phi", "zsk.phi",
+               "RRmpWald", "beta.hat", "bird.fit", "ci.asymp", "fit.only",
+               "gradlogR", "hom.test", "iter.max", "old.high", "rr.ci.hi",
+               "rr.ci.lo", "tauOptim", "trace.it", "Table6$tx", "birdm.fit",
+               "this.call", "use.alpha", "var.log.r", "full.track", "grad.log.r",
+               "p.set$n1y1", "p.set$n2y2", "q.set$n1y1", "q.set$n2y2",
+               "show.warns", "var.log.rr", "drop.levels", "score.start",
+               "options.warn", "var.beta.hat", "show.warnings", "newfamily.name",
+               ".rr.score.asymp", "nuisance.points")
 
 ## Change This Value ##
 # Determine whose files should be linted.  Change the number in the [.]
@@ -72,7 +54,7 @@ tmp <- codeDiagnostics::lint_package_extended(
 
 # Send results to Markers screen
 if (length(tmp) == 0) {
-  message("Sucess!  No lintr issues!")  
+  message("Sucess!  No lintr issues!")
 } else {
   tmp
 }
