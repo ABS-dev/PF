@@ -1,7 +1,7 @@
 Package: PF
 Type: Package
 Title: Prevented fraction
-Version: 9.6.5
+Version: 9.6.6
 Date: 2024-04-17
 Authors@R: c(
   person(given   = "CVB Statistics", email = "CVB.Data.Help@usda.gov", role = c("cre", "fmo")),
@@ -56,4 +56,4 @@ Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
 Config/build/clean-inst-doc: FALSE
-VignetteBuilder: knitr
+VignetteBuilder: R.rsp
