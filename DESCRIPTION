@@ -1,7 +1,7 @@
 Package: PF
 Type: Package
 Title: Prevented fraction
-Version: 9.6.4
+Version: 9.6.5
 Date: 2024-04-17
 Authors@R: c(
   person(given   = "CVB Statistics", email = "CVB.Data.Help@usda.gov", role = c("cre", "fmo")),
