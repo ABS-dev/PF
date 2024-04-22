@@ -14,7 +14,7 @@ test_that("examples work", {
 
 
   expect_s4_class(ex1, "rr1")
-  expect_identical(ex1$estimate %>% signif(ex1$rnd) %>% unname,
+  expect_identical(ex1$estimate |> signif(ex1$rnd) |> unname(),
                    c(2.67, 1.37, 5.23))
   expect_identical(ex1$estimator, "RR")
   expect_equal(ex1$y, thisy, tolerance = 0.0002)

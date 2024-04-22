@@ -8,20 +8,20 @@ test_that("examples work", {
     x = quote(TRUE), y = quote(TRUE))
 
   expect_identical(ex1$call, thiscall)
-  expect_equal(coefficients(ex1) %>%
-      unname %>%
+  expect_equal(coefficients(ex1) |>
+      unname() |>
       signif(3), c(1.2, -0.405))
-  expect_equal(ex1$deviance %>% signif(3), 2.52)
-  expect_equal(ex1$null.deviance %>% signif(3), 5.48)
-  expect_equal(ex1$aic %>% signif(3), 9.21)
+  expect_equal(ex1$deviance |> signif(3), 2.52)
+  expect_equal(ex1$null.deviance |> signif(3), 5.48)
+  expect_equal(ex1$aic |> signif(3), 9.21)
 
   ex2 <- rsbWt(birdm.fit, subset.factor = birdm$tx)
   expect_identical(ex2$call, thiscall)
-  expect_equal(coefficients(ex2) %>%
-      unname %>%
+  expect_equal(coefficients(ex2) |>
+      unname() |>
       signif(3), c(1.2, -0.405))
-  expect_equal(ex2$deviance %>% signif(3), 4.53)
-  expect_equal(ex2$null.deviance %>% signif(3), 8.56)
-  expect_equal(ex2$aic %>% signif(3), 13.6)
+  expect_equal(ex2$deviance |> signif(3), 4.53)
+  expect_equal(ex2$null.deviance |> signif(3), 8.56)
+  expect_equal(ex2$aic |> signif(3), 13.6)
 
   })

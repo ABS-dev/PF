@@ -10,7 +10,7 @@ test_that("examples work", {
   rownames(thismu) <- c("txcon", "txvac")
 
   expect_s4_class(ex1, "rror")
-  expect_equal(ex1$estimate %>% signif(ex1$rnd) %>% unname,
+  expect_equal(ex1$estimate |> signif(ex1$rnd) |> unname(),
     c(0.5, -0.583, 0.842))
   expect_identical(ex1$estimator, "PF")
   expect_equal(ex1$mu, thismu, tolerance = 0.00002)

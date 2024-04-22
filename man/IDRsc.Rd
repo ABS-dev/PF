@@ -96,8 +96,8 @@ data1 <- data.frame(group = rep(c("treated", "control"), each = 5),
             n = c(rep(41, 4), 40, rep(41, 5)),
             y = c(4, 5, 7, 6, 4, 1, 3, 3, 2, 1),
             cage = rep(paste('cage', 1:5), 2))
-data2 <- data1 \%>\%
-  group_by(group) \%>\%
+data2 <- data1 |>
+  group_by(group) |>
   summarize(sum_y = sum(y),
   sum_n = sum(n))
 IDRsc(data = data2, formula =  cbind(sum_y, sum_n) ~ group,

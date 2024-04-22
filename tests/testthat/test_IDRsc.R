@@ -6,10 +6,10 @@ test_that("examples work", {
   expect_s4_class(ex1, "rr1")
   expect_identical(ex1$estimator, "IDR")
   expect_equal(ex1$alpha, 0.05, tolerance = 0.00005)
-  expect_identical(ex1$y %>% as.numeric, y1)
+  expect_identical(ex1$y |> as.numeric(), y1)
   expect_identical(names(ex1$estimate), c("IDR", "LL", "UL"))
-  expect_equal(ex1$estimate %>%
-                 unname %>%
+  expect_equal(ex1$estimate |>
+                 unname() |>
                  signif(ex1$rnd), c(2.61, 1.28, 5.34))
 
   y2 <- matrix(c(26, 178, 10, 195), 2, 2, byrow = TRUE)
@@ -19,11 +19,11 @@ test_that("examples work", {
   expect_identical(ex2$alpha, ex1$alpha)
   expect_identical(ex2$y, ex1$y)
   expect_identical(names(ex2$estimate), names(ex1$estimate))
-  expect_equal(ex2$estimate %>%
-                 unname %>%
+  expect_equal(ex2$estimate |>
+                 unname() |>
                  signif(ex1$rnd),
-               ex1$estimate %>%
-                 unname %>%
+               ex1$estimate |>
+                 unname() |>
                  signif(ex1$rnd))
 
   ## not noted in help file
@@ -38,8 +38,8 @@ test_that("examples work", {
                compare = c("treated", "control"), pf = FALSE)
   expect_equal(ex1, ex3)
 
-  data2 <- data1 %>%
-    dplyr::group_by(group) %>%
+  data2 <- data1 |>
+    dplyr::group_by(group) |>
     dplyr::summarize(sum_y = sum(y),
               sum_n = sum(n))
   ex4 <- IDRsc(data = data2, formula =  cbind(sum_y, sum_n) ~ group,

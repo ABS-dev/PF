@@ -89,14 +89,14 @@ rsbWt <- function(fit = NULL,
 #-------------------------------
 # rsb returns d's and weights
 #-------------------------------
-#' @importFrom dplyr "%>%" select ungroup
+#' @importFrom dplyr select ungroup
 rsb <- function(y = NULL, n = NULL, formula = NULL, data = NULL, id = NULL) {
 
   if (is.null(y) && is.null(n) && !(is.null(formula) && is.null(data))) {
     ## case when formula and data is input
     vars <- all.vars(formula)
-    sumdata <- data %>%
-      ungroup %>%
+    sumdata <- data |>
+      ungroup() |>
       select(vars[1:3])
     colnames(sumdata) <- c("y", "n", "id")
     y <- sumdata$y
