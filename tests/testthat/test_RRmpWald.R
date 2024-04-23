@@ -20,8 +20,8 @@ test_that("examples work", {
   expect_equal(ex1$multvec, thismultvec)
 
   thistable <- New |>
-    tidyr::spread(tx, pos) |>
-    dplyr::mutate(vac = factor(vac, levels = 1:0),
+    spread(tx, pos) |>
+    mutate(vac = factor(vac, levels = 1:0),
                   con = factor(con, levels = 1:0)) |>
     with(table(vac, con))
   # warning will go away once issue #5 is resolved
