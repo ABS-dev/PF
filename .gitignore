@@ -1,6 +1,6 @@
-*-Ex.R
 *.Rdata
 *.rdata
 *.Rhistory
 *.Ruserdata
 .Rproj.user
+docs
