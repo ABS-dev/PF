@@ -1,0 +1,166 @@
+{
+  "version": 1,
+  "locale": "en_US",
+  "platform": "4.3.2",
+  "metadata": {
+    "appmode": "static",
+    "primary_rmd": null,
+    "primary_html": "index.html",
+    "content_category": "site",
+    "has_parameters": false
+  },
+  "packages": null,
+  "files": {
+    "404.html": {
+      "checksum": "9fc810ce79e2f06ad11464392972d058"
+    },
+    "authors.html": {
+      "checksum": "35f8c99a56ca74b66f971cdf1cac09a0"
+    },
+    "deps/bootstrap-5.2.2/bootstrap.bundle.min.js": {
+      "checksum": "d2b0d31f74e62440ea1a557f126d0c64"
+    },
+    "deps/bootstrap-5.2.2/bootstrap.bundle.min.js.map": {
+      "checksum": "458916405b5ef70e2e5ee10e85b09acb"
+    },
+    "deps/bootstrap-5.2.2/bootstrap.min.css": {
+      "checksum": "c2d21862999ca0dea73bc04af237a1a0"
+    },
+    "deps/data-deps.txt": {
+      "checksum": "be1e8f6884e833c9b4dfa05681edbcc4"
+    },
+    "deps/jquery-3.6.0/jquery-3.6.0.js": {
+      "checksum": "2849239b95f5a9a2aea3f6ed9420bb88"
+    },
+    "deps/jquery-3.6.0/jquery-3.6.0.min.js": {
+      "checksum": "8fb8fee4fcc3cc86ff6c724154c49c42"
+    },
+    "deps/jquery-3.6.0/jquery-3.6.0.min.map": {
+      "checksum": "6efc5d663aaacac2024153fa0d4bafcd"
+    },
+    "index.html": {
+      "checksum": "29912df1a686a305bee97b90241a0b15"
+    },
+    "LICENSE-text.html": {
+      "checksum": "6538e8f3baab5cc2b7ba30f1810cc35c"
+    },
+    "link.svg": {
+      "checksum": "4759f31f8a585e9af173fc579d730265"
+    },
+    "pkgdown.js": {
+      "checksum": "9c627b6b2c41322b8f362fac07a2ae5a"
+    },
+    "pkgdown.yml": {
+      "checksum": "d42dec29db331338c1e754848f3bfa0f"
+    },
+    "reference/bird.html": {
+      "checksum": "739ad12f9341fa3658518c7174783b07"
+    },
+    "reference/birdm.html": {
+      "checksum": "27b1c64ee5427e053b5fdebc4003fbd5"
+    },
+    "reference/dfSet1.html": {
+      "checksum": "c4ae8d859f5c6b512d9f259d70ea12bd"
+    },
+    "reference/dfTable6.html": {
+      "checksum": "57500cf2fd09bd804b72d4b18dc15451"
+    },
+    "reference/dot-rr.score.asymp.html": {
+      "checksum": "f225773f661f5b452b9b1278fd44cc7b"
+    },
+    "reference/IDRlsi.html": {
+      "checksum": "1dde4cce11aae68833c18cc8ccc02f15"
+    },
+    "reference/IDRsc.html": {
+      "checksum": "5fce8b0ce9a33f00b28d43c99aa4bff9"
+    },
+    "reference/index.html": {
+      "checksum": "5229ea4043816c3c07e6ba9c66a2d868"
+    },
+    "reference/New.html": {
+      "checksum": "f1bd27cc3eee901cf03620626c1b53dc"
+    },
+    "reference/PF-package.html": {
+      "checksum": "a1ea5660ca0b8cafcab9d7860b1ecef9"
+    },
+    "reference/pf.html": {
+      "checksum": "07388c298fd6cd49037a5e2b333ed163"
+    },
+    "reference/phiWt.html": {
+      "checksum": "263174818316df816435b29961269bd9"
+    },
+    "reference/print.PF.html": {
+      "checksum": "d55deff3bb594b2e0cffeba3b28917f9"
+    },
+    "reference/rat.html": {
+      "checksum": "9b708798fb4c1fa071708997f4bc8327"
+    },
+    "reference/Rplot001.png": {
+      "checksum": "9b7a75eb2a0170ac2c15ab46a66f862b"
+    },
+    "reference/rr1-class.html": {
+      "checksum": "98c3fbb7f481216591ee45d094fa336b"
+    },
+    "reference/RRlsi.html": {
+      "checksum": "3cef2b3a19939ef1915d4ea7cabdfa25"
+    },
+    "reference/RRmh.html": {
+      "checksum": "eb98ecc11cd7711b86ef1f3e325f50c2"
+    },
+    "reference/rrmp.html": {
+      "checksum": "6b559b7a57da60b03ba14db14935b3c9"
+    },
+    "reference/RRmpWald.html": {
+      "checksum": "cc0a8e58b2c04e121d31c9e32f3bc8dd"
+    },
+    "reference/RRor.html": {
+      "checksum": "09575e633dfd861b18158acd0f55ba4b"
+    },
+    "reference/rrorclass.html": {
+      "checksum": "f9ca8bbeea1e4affd0b0782a5ab26c0f"
+    },
+    "reference/RRotsst.html": {
+      "checksum": "f175d05357136c4b656ba42fc8de3d5a"
+    },
+    "reference/RRsc.html": {
+      "checksum": "1d9d4f8682974abb7cee234e5bc074b0"
+    },
+    "reference/rrscclass.html": {
+      "checksum": "2c6e53831bf2215482aa714176c2b69b"
+    },
+    "reference/rrsi.html": {
+      "checksum": "15a0c70d80d416418e2f150cf3096b24"
+    },
+    "reference/RRstr.html": {
+      "checksum": "1a90bf580c0691d558d5ba41fed9604a"
+    },
+    "reference/rrstrclass.html": {
+      "checksum": "ac5f8c0a9e445d4c096deaea97a1021a"
+    },
+    "reference/RRtosst.html": {
+      "checksum": "fbf955f1d3bb0f47c8f9008af3905f78"
+    },
+    "reference/rsb.html": {
+      "checksum": "42f824bf602319da2eb0266266341e8d"
+    },
+    "reference/rsbWt.html": {
+      "checksum": "019a72f381fd442f20df9d4d56031adc"
+    },
+    "reference/set1.html": {
+      "checksum": "5a9886328e7e9f44b52ed85a9d1a79ab"
+    },
+    "reference/table6.html": {
+      "checksum": "05e77156de794786d6a5cd9c2e949931"
+    },
+    "reference/tauWt.html": {
+      "checksum": "c77ab97676733d7c00f5074b8a72f62c"
+    },
+    "search.json": {
+      "checksum": "aa2c904710072abadc67b161342f8841"
+    },
+    "sitemap.xml": {
+      "checksum": "5d5132353305d0033043a5f4d4c16621"
+    }
+  },
+  "users": null
+}
