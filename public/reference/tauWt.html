@@ -23,6 +23,12 @@ correlation)."><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/li
       <ul class="navbar-nav me-auto"><li class="active nav-item">
   <a class="nav-link" href="../reference/index.html">Reference</a>
 </li>
+<li class="nav-item dropdown">
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+    <a class="dropdown-item" href="../articles/PFVignette.html">PF Vignette</a>
+  </div>
+</li>
       </ul><form class="form-inline my-2 my-lg-0" role="search">
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off"></form>
 
@@ -132,8 +138,7 @@ method. <em>Biometrika</em> 61:439-447.</p>
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">birdm.fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">y</span>,<span class="va">n</span><span class="op">-</span><span class="va">y</span><span class="op">)</span><span class="op">~</span><span class="va">tx</span><span class="op">-</span><span class="fl">1</span>, <span class="va">binomial</span>, <span class="va">birdm</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="RRor.html">RRor</a></span><span class="op">(</span><span class="fu">tauWt</span><span class="op">(</span><span class="va">birdm.fit</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Recycling array of length 1 in vector-array arithmetic is deprecated.</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span>   Use c() or as.vector() instead.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 95% t intervals on 4 df</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>

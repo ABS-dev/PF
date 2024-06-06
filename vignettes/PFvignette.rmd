@@ -8,10 +8,6 @@ output:
     number_sections: true
 bibliography: PF.bib
 biblio-style: asa
-vignette: >
-  %\VignetteIndexEntry{PFVignette}
-  %\VignetteEngine{knitr::rmarkdown}
-  \usepackage[utf8]{inputenc}
 ---
 
 # Introduction

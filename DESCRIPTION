@@ -24,8 +24,8 @@ Imports:
     methods,
     plyr,
     dplyr,
+    tidyr
 Suggests:
-    tidyr,
     magrittr,
     testthat,
     knitr,

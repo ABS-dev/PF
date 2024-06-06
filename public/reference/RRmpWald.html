@@ -23,6 +23,12 @@ fraction from matched pairs."><!-- mathjax --><script src="https://cdnjs.cloudfl
       <ul class="navbar-nav me-auto"><li class="active nav-item">
   <a class="nav-link" href="../reference/index.html">Reference</a>
 </li>
+<li class="nav-item dropdown">
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+    <a class="dropdown-item" href="../articles/PFVignette.html">PF Vignette</a>
+  </div>
+</li>
       </ul><form class="form-inline my-2 my-lg-0" role="search">
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off"></form>
 
@@ -171,8 +177,6 @@ formats: (1) specify <code>data</code> and <code>formula</code> or (2) as a vect
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">RRmpWald</span><span class="op">(</span><span class="va">pos</span> <span class="op">~</span> <span class="va">tx</span> <span class="op">+</span> <span class="fu">cluster</span><span class="op">(</span><span class="va">cage</span><span class="op">)</span>, <span class="va">New</span>, compare <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'vac'</span>, <span class="st">'con'</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Recycling array of length 1 in vector-array arithmetic is deprecated.</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span>   Use c() or as.vector() instead.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> PF </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 95% interval estimates</span>
@@ -208,8 +212,6 @@ formats: (1) specify <code>data</code> and <code>formula</code> or (2) as a vect
 <span class="r-in"><span><span class="co"># [1]  7 13  2  4</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">RRmpWald</span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html" class="external-link">as.vector</a></span><span class="op">(</span><span class="va">thistable</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Recycling array of length 1 in vector-array arithmetic is deprecated.</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span>   Use c() or as.vector() instead.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> PF </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 95% interval estimates</span>
