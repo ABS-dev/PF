@@ -83,3 +83,4 @@ for (fp in pdf) {
 
 files <- dir(path_0, pattern = "(html|pdf)$")
 file.copy(file.path(path_0, files), file.path(path_2, files))
+
