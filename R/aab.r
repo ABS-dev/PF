@@ -21,7 +21,6 @@
 #' @importFrom stats model.frame terms
 #' @noRd
 .matricize <- function(formula, data, compare = compare) {
-
   # 1/18/2012 - added error checking for compare argument. mcv goal: avoid the
   # two following scenarios
   #
@@ -80,6 +79,7 @@
   y <- A[, 1]
   n <- A[, 2]
   x <- as.factor(A[, 3])
+
   if (!any(levels(x) == compare[1]) || !any(levels(x) == compare[2])) {
     stop("matricize: What is being compared?")
   }
