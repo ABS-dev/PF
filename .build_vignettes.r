@@ -3,8 +3,9 @@
 # 3. Roll version forward, install, but do not push
 # 4. Install
 # 5. Run this script
-# 6. Update tags and push
-# 7. Push new version
+# 6. Update tags
+# 7. Update pkgdown
+# 8. Push new version
 
 library(data.table)
 library(stringr)
@@ -83,3 +84,4 @@ for (fp in pdf) {
 
 files <- dir(path_0, pattern = "(html|pdf)$")
 file.copy(file.path(path_0, files), file.path(path_2, files))
+
