@@ -102,7 +102,8 @@ RRor <- function(fit = NULL, beta.hat = NULL, var.beta.hat = NULL,
   log.r <- log(1 + exp(-b1)) - log(1 + exp(-b2))
   grad.log.r <- c(-exp(-b1) * m1, exp(-b2) * m2)
   var.b <- var.beta.hat[which, which]
-  var.log.r <- t(grad.log.r) %*% var.b %*% grad.log.r
+  var.log.r <- as.numeric(t(grad.log.r) %*% var.b %*% grad.log.r)
+  print(dim(var.log.r))
   if (norm) {
     int <- exp(log.r + qnorm(q) * sqrt(var.log.r))
     mu <- 1 / (1 + exp(-B + matrix(qnorm(q), 2, 3, byrow = TRUE) *

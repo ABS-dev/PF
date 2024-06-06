@@ -132,8 +132,8 @@ RRmpWald <- function(formula = NULL, data = NULL, compare = c("vac", "con"),
   gradR <- c((p[2] - p[3]) / p1^2, -p2 / p1^2, 1 / p1, 0)
   logR <- log(p2) - log(p1)
   gradlogR <- c(1 / p2 - 1 / p1, -1 / p1, 1 / p2, 0)
-  varR <- t(gradR) %*% V %*% t(t(gradR))
-  varlogR <- t(gradlogR) %*% V %*% t(t(gradlogR))
+  varR <- as.numeric(t(gradR) %*% V %*% t(t(gradR)))
+  varlogR <- as.numeric(t(gradlogR) %*% V %*% t(t(gradlogR)))
 
   if (tdist) {
     if (is.null(df))	df <- N - 2

@@ -1,3 +1,9 @@
+# These are needed for tests, but I'm not sure where to put them
+
+#' @importFrom tidyr spread
+#' @importFrom dplyr summarize mutate group_by
+
+
 
 # error checking for use in functions where y can either be a
 # frequency vector of length 4 or a 2x2 matrix.
