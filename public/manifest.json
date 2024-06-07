@@ -12,16 +12,34 @@
   "packages": null,
   "files": {
     "404.html": {
-      "checksum": "1e58b803f1e128fa39c98fdb66e14e49"
+      "checksum": "f92c88535b38b458c8dc23681ff5b92f"
+    },
+    "apple-touch-icon-120x120.png": {
+      "checksum": "a15774c216241ffedc70bf06020bad40"
+    },
+    "apple-touch-icon-152x152.png": {
+      "checksum": "9df8ee591ebfa6bb1bfcc41a0c3af699"
+    },
+    "apple-touch-icon-180x180.png": {
+      "checksum": "032291e8aa6737f804a64589e473f515"
+    },
+    "apple-touch-icon-60x60.png": {
+      "checksum": "99012c1cba5a223ab7f1afb1e8209edd"
+    },
+    "apple-touch-icon-76x76.png": {
+      "checksum": "8a8f97b456a2fab3ea3a088a4d2099a4"
+    },
+    "apple-touch-icon.png": {
+      "checksum": "2573a1e0ea6d883b8a4c3f2ed116d702"
     },
     "articles/index.html": {
-      "checksum": "da178dae04b23d04a12af532613f4c94"
+      "checksum": "32c4ca323af4a099f12ed7288119763b"
     },
     "articles/PFVignette.html": {
-      "checksum": "e425d3ef1fa34950a085ae8cd9b3bdd6"
+      "checksum": "c722f08df590220e68555206d0068eec"
     },
     "authors.html": {
-      "checksum": "d8d5daff36e9ddcd1ce2b10d3b7669b9"
+      "checksum": "9cea7de84f2328ac4b267431f88efab8"
     },
     "deps/bootstrap-5.2.2/bootstrap.bundle.min.js": {
       "checksum": "d2b0d31f74e62440ea1a557f126d0c64"
@@ -44,125 +62,140 @@
     "deps/jquery-3.6.0/jquery-3.6.0.min.map": {
       "checksum": "6efc5d663aaacac2024153fa0d4bafcd"
     },
+    "favicon-16x16.png": {
+      "checksum": "3b8a22f9e73fe07bb443607f93a7749d"
+    },
+    "favicon-32x32.png": {
+      "checksum": "a55627965a98ede69ee186e84105fbd3"
+    },
+    "favicon.ico": {
+      "checksum": "13b425dd0374ac60927f96307668dbfc"
+    },
     "index.html": {
-      "checksum": "f67af657522920f8777471a20b3c0219"
+      "checksum": "6897c7443ae20594e9330ebde70eb219"
     },
     "LICENSE-text.html": {
-      "checksum": "58cc5a1df18ac2faf7b682ed734c97a6"
+      "checksum": "1f5eeb7388a375696c15d0253ef1923b"
     },
     "link.svg": {
       "checksum": "4759f31f8a585e9af173fc579d730265"
+    },
+    "logo.png": {
+      "checksum": "3eec07c4a7ffe7b9108a9a2354d203e3"
     },
     "pkgdown.js": {
       "checksum": "9c627b6b2c41322b8f362fac07a2ae5a"
     },
     "pkgdown.yml": {
-      "checksum": "6892ab11a294675d690db7491c3802d7"
+      "checksum": "47862b8fe843c600bfc7541b6b778ed5"
     },
     "reference/bird.html": {
-      "checksum": "1974e432edd8eb4abe897a1da19dadf2"
+      "checksum": "fdad1bab75a3f5b3fe5f7417090afef6"
     },
     "reference/birdm.html": {
-      "checksum": "11e8d4949efab9ee0147dfe79c51619b"
+      "checksum": "1e6208435a387f18ea9bbadf8dbd6147"
     },
     "reference/dfSet1.html": {
-      "checksum": "07e5b5295858639e4292d3d7f75adf37"
+      "checksum": "ed56a95bcf3f15d5f1562180f5614583"
     },
     "reference/dfTable6.html": {
-      "checksum": "d90dc18b73061f5c86e162ca9a0a27b0"
+      "checksum": "f473b7d9847665d25053b174878c6643"
     },
     "reference/dot-rr.score.asymp.html": {
-      "checksum": "af778f4c273c85482f256f7730351540"
+      "checksum": "c777c47e1f6f2ae50c5c333af3ed8aef"
+    },
+    "reference/figures/logo.png": {
+      "checksum": "3eec07c4a7ffe7b9108a9a2354d203e3"
     },
     "reference/IDRlsi.html": {
-      "checksum": "89683b66c20d4785428bf17c48e4fbbd"
+      "checksum": "9f5acbd1c58012c64e05c70eea4cbe0f"
     },
     "reference/IDRsc.html": {
-      "checksum": "c3e45c695acfcf83135029ca7994fb47"
+      "checksum": "b098099d911718304f6bdfb654ecda93"
     },
     "reference/index.html": {
-      "checksum": "bff4a176187439f491c06d3a84ed498e"
+      "checksum": "1dae2b80abb6436f74ed79ea8ccbc9fc"
     },
     "reference/New.html": {
-      "checksum": "632568e50a3a05b95a005466eb64a5bc"
+      "checksum": "96e81c453d1d98c5fe05e57c4d6bdcd5"
     },
     "reference/PF-package.html": {
-      "checksum": "1f4e3dc78a293937fc91cb3a5530e542"
+      "checksum": "252202ec62415e0ba09b389fc1a4dfa4"
     },
     "reference/pf.html": {
-      "checksum": "333994687a49a5852681e977c06e2c08"
+      "checksum": "4622e01abd4dbd0841d03f87e2fa7bff"
     },
     "reference/phiWt.html": {
-      "checksum": "8cbf12e36b94eacab6e53c9b92b5475e"
+      "checksum": "6f3ba4f28c8a5d534d69bb6a8c9619eb"
     },
     "reference/print.PF.html": {
-      "checksum": "7c6d1bb5ce497b44eac007976348ce94"
+      "checksum": "54ccd7f4d5b794a2e13ad7040bc003b2"
     },
     "reference/rat.html": {
-      "checksum": "1e284d39be6c43d0ec4459a18472f195"
+      "checksum": "29e5d4eefe4938b548031e4aa9c4e805"
     },
     "reference/Rplot001.png": {
       "checksum": "9b7a75eb2a0170ac2c15ab46a66f862b"
     },
     "reference/rr1-class.html": {
-      "checksum": "5cec06d5b81c1e655abb2ac76f1d0db3"
+      "checksum": "9c4a320504daac1a07c260508693ed45"
     },
     "reference/RRlsi.html": {
-      "checksum": "9970c149a46e20296347b9a5012ed5d7"
+      "checksum": "bf49c4ecbea74e427ca8d655fb359d22"
     },
     "reference/RRmh.html": {
-      "checksum": "0ac9cf744356afe6971f61f282de2b86"
+      "checksum": "016b37d4c79c18b78cb6bd9922da25a0"
     },
     "reference/rrmp.html": {
-      "checksum": "dc13a9234a22217fa5a988bcdbd689c7"
+      "checksum": "b189122219385d2da3366df9d14eb504"
     },
     "reference/RRmpWald.html": {
-      "checksum": "7eefa71692a1a682ddd11720641345e1"
+      "checksum": "ce05dce09a7041ab0f365b49a01df0d9"
     },
     "reference/RRor.html": {
-      "checksum": "3cb365e387a4b5e50532947426d743c5"
+      "checksum": "2194d67e5a63bdfae13b525556b8b4ee"
     },
     "reference/rrorclass.html": {
-      "checksum": "c135585fef6078cdea178be467ef56a8"
+      "checksum": "e9f7790443655b69fc04f669c68987f9"
     },
     "reference/RRotsst.html": {
-      "checksum": "90af28f5100098e11f349252e24ee975"
+      "checksum": "c39d98132c5e0adf9b10deb4a3d3e45c"
     },
     "reference/RRsc.html": {
-      "checksum": "492e1b337ae65e6a4384b1d97c5e57ac"
+      "checksum": "6dba210a7f9e57c1426c82a753a259d9"
     },
     "reference/rrscclass.html": {
-      "checksum": "85ce1642d2872ef0f9b90589b4d58d42"
+      "checksum": "956f7e74c12597e5fcbd7511c66bf675"
     },
     "reference/rrsi.html": {
-      "checksum": "c153412f52fecb714c2f705f66a4280d"
+      "checksum": "81f6bcd92258a9dfa71624ed115b5a7a"
     },
     "reference/RRstr.html": {
-      "checksum": "61aaad45421d29f67ba71b5fae7d6b43"
+      "checksum": "9df28236774539d5062936493b674417"
     },
     "reference/rrstrclass.html": {
-      "checksum": "f2be4f59c873beca74b84699d9fae919"
+      "checksum": "19ed8cade228dae0afefa287c3c1fbab"
     },
     "reference/RRtosst.html": {
-      "checksum": "7994b3b29efb8bdd4bc532e988afc724"
+      "checksum": "7980817d6bdad65725b863cadc406411"
     },
     "reference/rsb.html": {
-      "checksum": "f75c9086eb605c1ec138e8146573b4a7"
+      "checksum": "f428408ac25e4b3a74d4a8165a2e556c"
     },
     "reference/rsbWt.html": {
-      "checksum": "a28c8cba5dde8d0517ec550807b5e37f"
+      "checksum": "96da10a909bf3d5583d4a33beb493437"
     },
     "reference/set1.html": {
-      "checksum": "9a1fd1f8dcbcd76b9ea988e4982aa8dc"
+      "checksum": "510161f0dcee32fb7e827a4ab1c8f133"
     },
     "reference/table6.html": {
-      "checksum": "01a63632d4f1188173149b8193da66b1"
+      "checksum": "eb000fdb65c87ab725b68a7a210e05df"
     },
     "reference/tauWt.html": {
-      "checksum": "bcdbcb1e08d1223bf817f0b5c8b31cdd"
+      "checksum": "c82b5eb225c8148fd50c2d0225eb2d1b"
     },
     "search.json": {
-      "checksum": "54c1201466aa617ddc3fa4ed90993b07"
+      "checksum": "1c0d3098fa6c2ca9a6df471237008515"
     },
     "sitemap.xml": {
       "checksum": "d53488f1f34b57eeb6b33f498914cf5b"

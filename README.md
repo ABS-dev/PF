@@ -1,4 +1,6 @@
-PF - Prevented Fraction
+# PF - Prevented Fraction <img src="man/figures/logo.png" align="right" />
+
+
 ==
 
 
