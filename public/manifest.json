@@ -15,28 +15,205 @@
       "checksum": "f92c88535b38b458c8dc23681ff5b92f"
     },
     "apple-touch-icon-120x120.png": {
-      "checksum": "a15774c216241ffedc70bf06020bad40"
+      "checksum": "8aeea9d8425d95c6e6bb207ae218718e"
     },
     "apple-touch-icon-152x152.png": {
-      "checksum": "9df8ee591ebfa6bb1bfcc41a0c3af699"
+      "checksum": "d6771fb533ba7442ace64f4b69caacd4"
     },
     "apple-touch-icon-180x180.png": {
-      "checksum": "032291e8aa6737f804a64589e473f515"
+      "checksum": "d9d3d773fc4d5362fe8cd3bd72547a74"
     },
     "apple-touch-icon-60x60.png": {
-      "checksum": "99012c1cba5a223ab7f1afb1e8209edd"
+      "checksum": "3a329e326978d41de347779589c999e6"
     },
     "apple-touch-icon-76x76.png": {
-      "checksum": "8a8f97b456a2fab3ea3a088a4d2099a4"
+      "checksum": "66287d5161d8d0cdcd02ca8d16b8465b"
     },
     "apple-touch-icon.png": {
-      "checksum": "2573a1e0ea6d883b8a4c3f2ed116d702"
+      "checksum": "63597082c037b9ce59f76f533dcbd5b4"
     },
     "articles/index.html": {
       "checksum": "32c4ca323af4a099f12ed7288119763b"
     },
     "articles/PFVignette.html": {
-      "checksum": "c722f08df590220e68555206d0068eec"
+      "checksum": "61517df8185faa1c961ddf8e0221e5f6"
+    },
+    "articles/PFVignette_files/bootstrap-3.3.5/css/bootstrap-theme.css": {
+      "checksum": "659231dde1c53bd14bbcffa1456df892"
+    },
+    "articles/PFVignette_files/bootstrap-3.3.5/css/bootstrap-theme.css.map": {
+      "checksum": "ca7ee393ea214c018d316eee3acc7f39"
+    },
+    "articles/PFVignette_files/bootstrap-3.3.5/css/bootstrap-theme.min.css": {
+      "checksum": "bf3499da1c31113720e9e395691730ba"
+    },
+    "articles/PFVignette_files/bootstrap-3.3.5/css/bootstrap.css": {
+      "checksum": "4f159defb2641645834d0138a185a0e5"
+    },
+    "articles/PFVignette_files/bootstrap-3.3.5/css/bootstrap.css.map": {
+      "checksum": "ea1c5719baebc520c82606bf36408d4d"
+    },
+    "articles/PFVignette_files/bootstrap-3.3.5/css/bootstrap.min.css": {
+      "checksum": "aa3db69dbd9b05d8dfd439d464d02969"
+    },
+    "articles/PFVignette_files/bootstrap-3.3.5/css/cerulean.min.css": {
+      "checksum": "1d2c43758806d7f185143edbdb17e7e0"
+    },
+    "articles/PFVignette_files/bootstrap-3.3.5/css/cosmo.min.css": {
+      "checksum": "0ec01aa9d795cf2def140724344d668e"
+    },
+    "articles/PFVignette_files/bootstrap-3.3.5/css/darkly.min.css": {
+      "checksum": "37284cfd42bd0561fa4a337bbc7390cf"
+    },
+    "articles/PFVignette_files/bootstrap-3.3.5/css/flatly.min.css": {
+      "checksum": "04d98cd29a49176152a183ba608020f2"
+    },
+    "articles/PFVignette_files/bootstrap-3.3.5/css/fonts/Lato.ttf": {
+      "checksum": "c45152a20fcaa8ae5d5611e947399dcc"
+    },
+    "articles/PFVignette_files/bootstrap-3.3.5/css/fonts/LatoBold.ttf": {
+      "checksum": "a30435e0c5edc583b1f3552e48068e69"
+    },
+    "articles/PFVignette_files/bootstrap-3.3.5/css/fonts/LatoItalic.ttf": {
+      "checksum": "4ffd11cfd26127dbd8c716fddeffa1e0"
+    },
+    "articles/PFVignette_files/bootstrap-3.3.5/css/fonts/NewsCycle.ttf": {
+      "checksum": "9e3bb4acbffda54ebe710e081be3626d"
+    },
+    "articles/PFVignette_files/bootstrap-3.3.5/css/fonts/NewsCycleBold.ttf": {
+      "checksum": "d754ba196153cfeef847cf2a68b68a0a"
+    },
+    "articles/PFVignette_files/bootstrap-3.3.5/css/fonts/OpenSans.ttf": {
+      "checksum": "56edff6cd9c40bf507851c7af6d724ba"
+    },
+    "articles/PFVignette_files/bootstrap-3.3.5/css/fonts/OpenSansBold.ttf": {
+      "checksum": "68b46e7ec5ff26f8c5948686ef0795e9"
+    },
+    "articles/PFVignette_files/bootstrap-3.3.5/css/fonts/OpenSansBoldItalic.ttf": {
+      "checksum": "5e1cdd683bb56d6e69d5338e1c33dd79"
+    },
+    "articles/PFVignette_files/bootstrap-3.3.5/css/fonts/OpenSansItalic.ttf": {
+      "checksum": "9e5e2bc48802a75eb9f0d954f3d4e45b"
+    },
+    "articles/PFVignette_files/bootstrap-3.3.5/css/fonts/OpenSansLight.ttf": {
+      "checksum": "a957943fff1355620393d35cb3d6c7d1"
+    },
+    "articles/PFVignette_files/bootstrap-3.3.5/css/fonts/OpenSansLightItalic.ttf": {
+      "checksum": "147ab98830dc2ba625dfcab85ca069dd"
+    },
+    "articles/PFVignette_files/bootstrap-3.3.5/css/fonts/Raleway.ttf": {
+      "checksum": "f1f45bc019ec18a7705714b3478e6b1d"
+    },
+    "articles/PFVignette_files/bootstrap-3.3.5/css/fonts/RalewayBold.ttf": {
+      "checksum": "9adbc922343f1b4b4b62b8bf85225e2c"
+    },
+    "articles/PFVignette_files/bootstrap-3.3.5/css/fonts/Roboto.ttf": {
+      "checksum": "38861cba61c66739c1452c3a71e39852"
+    },
+    "articles/PFVignette_files/bootstrap-3.3.5/css/fonts/RobotoBold.ttf": {
+      "checksum": "ad97d029a11d8b39692037e753d23d1f"
+    },
+    "articles/PFVignette_files/bootstrap-3.3.5/css/fonts/RobotoLight.ttf": {
+      "checksum": "634f53eb79efa455a9e9d85d608b3447"
+    },
+    "articles/PFVignette_files/bootstrap-3.3.5/css/fonts/RobotoMedium.ttf": {
+      "checksum": "88f29ea5a372d06f521395134f62ab91"
+    },
+    "articles/PFVignette_files/bootstrap-3.3.5/css/fonts/SourceSansPro.ttf": {
+      "checksum": "f2d83436dcf3f53375518292e917643c"
+    },
+    "articles/PFVignette_files/bootstrap-3.3.5/css/fonts/SourceSansProBold.ttf": {
+      "checksum": "206f41ff7cdb7df5dbfeda33c847b793"
+    },
+    "articles/PFVignette_files/bootstrap-3.3.5/css/fonts/SourceSansProItalic.ttf": {
+      "checksum": "b5a02317c3d2de0275cfd1efef086f6f"
+    },
+    "articles/PFVignette_files/bootstrap-3.3.5/css/fonts/SourceSansProLight.ttf": {
+      "checksum": "6a9d4d28a117a8364376de2f17ee5ff9"
+    },
+    "articles/PFVignette_files/bootstrap-3.3.5/css/fonts/Ubuntu.ttf": {
+      "checksum": "725b5e2f8b7e0bfac66edad5c2291b86"
+    },
+    "articles/PFVignette_files/bootstrap-3.3.5/css/journal.min.css": {
+      "checksum": "301b69d57caada69fa1091c07a3da5ed"
+    },
+    "articles/PFVignette_files/bootstrap-3.3.5/css/lumen.min.css": {
+      "checksum": "cc8777d594a028bcd9d2b5181f445a2f"
+    },
+    "articles/PFVignette_files/bootstrap-3.3.5/css/paper.min.css": {
+      "checksum": "82ed16ec394450ee8165044db775d810"
+    },
+    "articles/PFVignette_files/bootstrap-3.3.5/css/readable.min.css": {
+      "checksum": "5a3dd680e4bc9fecfbe73b6fb6053df2"
+    },
+    "articles/PFVignette_files/bootstrap-3.3.5/css/sandstone.min.css": {
+      "checksum": "bd322f2bb56fd796f9b25a4d8143e32a"
+    },
+    "articles/PFVignette_files/bootstrap-3.3.5/css/simplex.min.css": {
+      "checksum": "4e852706d1a055001b1b261bb278f1c3"
+    },
+    "articles/PFVignette_files/bootstrap-3.3.5/css/spacelab.min.css": {
+      "checksum": "fdc6659ea67a4f2eb3c2ea705fa7638e"
+    },
+    "articles/PFVignette_files/bootstrap-3.3.5/css/united.min.css": {
+      "checksum": "5481733846a5b753f5968693089b4130"
+    },
+    "articles/PFVignette_files/bootstrap-3.3.5/css/yeti.min.css": {
+      "checksum": "1f4bfa38bc583e334ba1a749fd6e0d23"
+    },
+    "articles/PFVignette_files/bootstrap-3.3.5/fonts/glyphicons-halflings-regular.eot": {
+      "checksum": "f4769f9bdb7466be65088239c12046d1"
+    },
+    "articles/PFVignette_files/bootstrap-3.3.5/fonts/glyphicons-halflings-regular.svg": {
+      "checksum": "89889688147bd7575d6327160d64e760"
+    },
+    "articles/PFVignette_files/bootstrap-3.3.5/fonts/glyphicons-halflings-regular.ttf": {
+      "checksum": "e18bbf611f2a2e43afc071aa2f4e1512"
+    },
+    "articles/PFVignette_files/bootstrap-3.3.5/fonts/glyphicons-halflings-regular.woff": {
+      "checksum": "fa2772327f55d8198301fdb8bcfc8158"
+    },
+    "articles/PFVignette_files/bootstrap-3.3.5/fonts/glyphicons-halflings-regular.woff2": {
+      "checksum": "448c34a56d699c29117adc64c43affeb"
+    },
+    "articles/PFVignette_files/bootstrap-3.3.5/js/bootstrap.js": {
+      "checksum": "8015042d0b4ac125867af5b096b175ce"
+    },
+    "articles/PFVignette_files/bootstrap-3.3.5/js/bootstrap.min.js": {
+      "checksum": "4becdc9104623e891fbb9d38bba01be4"
+    },
+    "articles/PFVignette_files/bootstrap-3.3.5/js/npm.js": {
+      "checksum": "ccb7f3909e30b1eb8f65a24393c6e12b"
+    },
+    "articles/PFVignette_files/bootstrap-3.3.5/shim/html5shiv.min.js": {
+      "checksum": "ae8fceae0e07d55b5cfaa9af6bc43a6d"
+    },
+    "articles/PFVignette_files/bootstrap-3.3.5/shim/respond.min.js": {
+      "checksum": "506fe393e9f296d14b63733c0aff6205"
+    },
+    "articles/PFVignette_files/header-attrs-2.25/header-attrs.js": {
+      "checksum": "9c32b58ed5fd8fe2efbd5bd7023cdef0"
+    },
+    "articles/PFVignette_files/jquery-3.6.0/jquery-3.6.0.js": {
+      "checksum": "2849239b95f5a9a2aea3f6ed9420bb88"
+    },
+    "articles/PFVignette_files/jquery-3.6.0/jquery-3.6.0.min.js": {
+      "checksum": "8fb8fee4fcc3cc86ff6c724154c49c42"
+    },
+    "articles/PFVignette_files/jquery-3.6.0/jquery-3.6.0.min.map": {
+      "checksum": "6efc5d663aaacac2024153fa0d4bafcd"
+    },
+    "articles/PFVignette_files/navigation-1.1/codefolding-lua.css": {
+      "checksum": "95d3ae34c98020f6dc4927d5ff7a350b"
+    },
+    "articles/PFVignette_files/navigation-1.1/codefolding.js": {
+      "checksum": "07c6a0ca1aa0bb9afa3c4f1487d4ee9f"
+    },
+    "articles/PFVignette_files/navigation-1.1/sourceembed.js": {
+      "checksum": "a1a9d728fbf33ed607aa465e6e8a42ba"
+    },
+    "articles/PFVignette_files/navigation-1.1/tabsets.js": {
+      "checksum": "3838523138b4d71acb5ea1c5c45ecc00"
     },
     "authors.html": {
       "checksum": "9cea7de84f2328ac4b267431f88efab8"
@@ -63,16 +240,16 @@
       "checksum": "6efc5d663aaacac2024153fa0d4bafcd"
     },
     "favicon-16x16.png": {
-      "checksum": "3b8a22f9e73fe07bb443607f93a7749d"
+      "checksum": "c09ec96e46df1499381e5616278beae0"
     },
     "favicon-32x32.png": {
-      "checksum": "a55627965a98ede69ee186e84105fbd3"
+      "checksum": "0c9285c5b93b5a0bbad3b64c16b2423e"
     },
     "favicon.ico": {
-      "checksum": "13b425dd0374ac60927f96307668dbfc"
+      "checksum": "7e5e9b66cf83a07ce01d11f5405b0674"
     },
     "index.html": {
-      "checksum": "6897c7443ae20594e9330ebde70eb219"
+      "checksum": "0db02e1d777964d64e58ccff11d57f75"
     },
     "LICENSE-text.html": {
       "checksum": "1f5eeb7388a375696c15d0253ef1923b"
@@ -81,13 +258,13 @@
       "checksum": "4759f31f8a585e9af173fc579d730265"
     },
     "logo.png": {
-      "checksum": "3eec07c4a7ffe7b9108a9a2354d203e3"
+      "checksum": "e5fb4928dbe8cff0f792d4dda86167ac"
     },
     "pkgdown.js": {
       "checksum": "9c627b6b2c41322b8f362fac07a2ae5a"
     },
     "pkgdown.yml": {
-      "checksum": "47862b8fe843c600bfc7541b6b778ed5"
+      "checksum": "ffe7a339538d5a0302b4b7acc049308f"
     },
     "reference/bird.html": {
       "checksum": "fdad1bab75a3f5b3fe5f7417090afef6"
@@ -105,7 +282,7 @@
       "checksum": "c777c47e1f6f2ae50c5c333af3ed8aef"
     },
     "reference/figures/logo.png": {
-      "checksum": "3eec07c4a7ffe7b9108a9a2354d203e3"
+      "checksum": "e5fb4928dbe8cff0f792d4dda86167ac"
     },
     "reference/IDRlsi.html": {
       "checksum": "9f5acbd1c58012c64e05c70eea4cbe0f"
@@ -120,7 +297,7 @@
       "checksum": "96e81c453d1d98c5fe05e57c4d6bdcd5"
     },
     "reference/PF-package.html": {
-      "checksum": "252202ec62415e0ba09b389fc1a4dfa4"
+      "checksum": "106b7c80f3a1304cbd1d60646dac4870"
     },
     "reference/pf.html": {
       "checksum": "4622e01abd4dbd0841d03f87e2fa7bff"
@@ -195,7 +372,7 @@
       "checksum": "c82b5eb225c8148fd50c2d0225eb2d1b"
     },
     "search.json": {
-      "checksum": "1c0d3098fa6c2ca9a6df471237008515"
+      "checksum": "0d04d8e326c54f1545242faa92d5ef04"
     },
     "sitemap.xml": {
       "checksum": "d53488f1f34b57eeb6b33f498914cf5b"

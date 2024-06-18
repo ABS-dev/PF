@@ -1,9 +1,6 @@
 # PF - Prevented Fraction <img src="man/figures/logo.png" align="right" />
 
 
-==
-
-
 ### To install or update PF:
 
 From **within R**
