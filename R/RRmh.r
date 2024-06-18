@@ -135,11 +135,11 @@ RRmh <- function(formula = NULL,
   radius <- exp(zcrit * sqrt(var.log.rr))
   int <- c(rr.est, rr.est / radius, rr.est * radius)
 
-  if (!pf) {
-    names(int) <- c("RR", "LL", "UL")
-  } else {
+  if (pf) {
     int <- 1 - int[c(1, 3, 2)]
     names(int) <- c("PF", "LL", "UL")
+  } else {
+    names(int) <- c("RR", "LL", "UL")
   }
 
   return(rr1$new(estimate = int, estimator = ifelse(pf, "PF", "RR"),

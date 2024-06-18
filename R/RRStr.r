@@ -90,6 +90,21 @@ RRstr <- function(formula = NULL, data = NULL, compare = c("vac", "con"), Y,
     (1 - p1) / (n1 * p1) + (1 - p2) / (n2 * p2)
   }
 
+  root <- function(y1, y2, n1, n2, phi) {
+    # in RRstr
+    a <- phi * (n1 + n2)
+    b <-  -(phi * (y2 + n1) + y1 + n2)
+    cc <- y1 + y2
+    det <- sqrt(b^2 - 4 * a * cc)
+    r1 <- (-b + det) / (2 * a)
+    r2 <- (-b - det) / (2 * a)
+    r1 <- round(r1, 8) ## round for comparison
+    r2 <- round(r2, 8) ##
+    if (r1 < 0 || r1 > 1) r1 <- r2
+    if (r2 < 0 || r2 > 1) r2 <- r1
+    return(c(r1, r2))
+  }
+
   zi.phi <- function(phi, Y, u.p, root, za) {
     # for score interval in RRstr
     zi <- ui <- 0
@@ -138,21 +153,6 @@ RRstr <- function(formula = NULL, data = NULL, compare = c("vac", "con"), Y,
       gi <- gi + unique(g[zd == min(zd)]) / unique(u[zd == min(zd)])^3
     }
     return(zi / sqrt(ui) - (gi * (za^2 - 1)) / (6 * ui^1.5))
-  }
-
-  root <- function(y1, y2, n1, n2, phi) {
-    # in RRstr
-    a <- phi * (n1 + n2)
-    b <-  -(phi * (y2 + n1) + y1 + n2)
-    cc <- y1 + y2
-    det <- sqrt(b^2 - 4 * a * cc)
-    r1 <- (-b + det) / (2 * a)
-    r2 <- (-b - det) / (2 * a)
-    r1 <- round(r1, 8) ## round for comparison
-    r2 <- round(r2, 8) ##
-    if (r1 < 0 || r1 > 1) r1 <- r2
-    if (r2 < 0 || r2 > 1) r2 <- r1
-    return(c(r1, r2))
   }
 
   rr.opt <- function(z.phi, phi, za, divider, trace.it, u.p, root) {
