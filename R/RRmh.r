@@ -106,8 +106,6 @@ RRmh <- function(formula = NULL,
   }
   colnames(Y) <- c("y1", "n1", "y2", "n2")
   rownames(Y) <- paste("Row", seq_len(nrow(Y)), sep = "")
-  # save data and empirical Rs
-  Y <- cbind(Y, R.obs = (Y[, 1] / Y[, 2]) / (Y[, 3] / Y[, 4]))
 
   ### Innards of the algorithm
   zcrit <- qnorm(1 - alpha / 2)
@@ -115,25 +113,27 @@ RRmh <- function(formula = NULL,
   n1vec <- Y[, 2] # vac
   x2vec <- Y[, 3] # con or ref
   n2vec <- Y[, 4] # con or ref
+  R.obs <- (x1vec / n1vec) / (x2vec / n2vec)
   nk <- n1vec + n2vec
-
-  # Point estimate (Greenland & Robins, eq. 4.  Lachin, eq. 4.17)
-  numer <- sum(x1vec * n2vec / (nk))
-  denom <- sum(x2vec * n1vec / (nk))
-  rr.est <- numer / denom
-
-  # variance of log RR (Greenland & Robins, eq. 13)
-  numer <- ((n1vec * n2vec) * (x1vec + x2vec) - (x1vec * x2vec) * nk) / nk^2
   rk <- x1vec * n2vec / nk
   sk <- x2vec * n1vec / nk
-  denom <- sum(rk) * sum(sk)
-  var.log.rr <- sum(numer) / denom
+  sum_rk <- sum(rk)
+  sum_sk <- sum(sk)
+
+  # save data and empirical Rs
+  Y <- cbind(Y, R.obs)
+
+  # Point estimate (Greenland & Robins, eq. 4.  Lachin, eq. 4.17)
+  rr.est <- sum_rk / sum_sk
+
+  # variance of log RR (Greenland & Robins, eq. 13)
+  numer <- sum((n1vec * rk + n2vec * sk - x1vec * x2vec) / nk)
+  denom <- sum_rk * sum_sk
+  var.log.rr <- numer / denom
 
   # Confidence limits
-  rr.ci.lo <- exp(log(rr.est) - zcrit * sqrt(var.log.rr))
-  rr.ci.hi <- exp(log(rr.est) + zcrit * sqrt(var.log.rr))
-
-  int <- c(rr.est, rr.ci.lo, rr.ci.hi)
+  radius <- exp(zcrit * sqrt(var.log.rr))
+  int <- c(rr.est, rr.est / radius, rr.est * radius)
 
   if (!pf) {
     names(int) <- c("RR", "LL", "UL")
