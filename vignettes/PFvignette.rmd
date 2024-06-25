@@ -39,7 +39,7 @@ Interval estimates are returned for three estimators. The score method was origi
 
 ```{r}
 require(PF)
-RRsc(c(4,24,12,28))
+RRsc(c(4, 24, 12, 28))
 ```
 
 Starting estimates for the algorithm are obtained by the modified Katz method (log method with 0.5 added to each cell). 
@@ -56,8 +56,8 @@ by the Berger-Boos correction [@BB94].
 [@AM01] discuss the properties and relative benefits of the two approaches. The price of exactnesss is conservatism, due to the discreteness of the binomial distribution [@AA01]. This means that the actual coverage of the confidence interval does not exactly conform to the nominal coverage, but it will not be less than it. (See also [@AA03].) Both functions use a simple step search algorithm. 
 
 ```{r}
-RRotsst(c(4,24,12,28))
-RRtosst(c(4,24,12,28))
+RRotsst(c(4, 24, 12, 28))
+RRtosst(c(4, 24, 12, 28))
 ```
 
 # Stratified designs
@@ -73,7 +73,8 @@ Methods for estimating a common *RR* from stratified or clustered designs depend
 Data may be input two ways, either using a formula and data frame, or as a matrix.
 
 ```{r} 
-RRstr(cbind(y,n) ~ tx + cluster(clus), Table6 , compare = c("a", "b"), pf = F)
+RRstr(cbind(y, n) ~ tx + cluster(clus), Table6,
+      compare = c("a", "b"), pf = FALSE)
 # Data matrix input:
 # RRstr(Y = table6, pf = F)
 ```
@@ -91,7 +92,8 @@ Additional discussion may be found in Section 4.3.1 [@Lachin00], [@LSKK05], and 
 bias for sparse data [@GR85].  It should be avoided.].
 
 ```{r} 
-RRmh(cbind(y,n) ~ tx + cluster(clus), Table6 , compare = c("a", "b"), pf = F)
+RRmh(cbind(y, n) ~ tx + cluster(clus), Table6, 
+     compare = c("a", "b"), pf = FALSE)
 # Data matrix input:
 # RRmh(Y = table6, pf = F)
 ```
@@ -107,7 +109,7 @@ For a fuller set of examples, see the vignette *Examples for Stratified Designs*
 Intervals may be estimated from logistic regression models with `RRor()`. It takes the fit of a `glm()` object and estimates the intervals by the delta method.
 
 ```{r}
-bird.fit <- glm(cbind(y,n-y) ~ tx - 1, binomial, bird)
+bird.fit <- glm(cbind(y, n - y) ~ tx - 1, binomial, bird)
 RRor(bird.fit)
 ```
 
@@ -125,7 +127,7 @@ This form of the dispersion parameter has $a(\varphi)=\varphi$, and $\varphi$ is
 Note that $\varphi$ is the same estimator as may be obtained by the `quasibinomial` family in `glm()` which is, in fact, what is used by `phiWt()` to reweight the original fit:
 
 ```{r}
-phiWt(bird.fit, fit.only = F)$phi
+phiWt(bird.fit, fit.only = FALSE)$phi
 summary(update(bird.fit, family = quasibinomial))$disp
 ```
 
@@ -163,7 +165,7 @@ In this example the `tauWt()` estimates are the same as the `phiWt()` estimates.
 
 ```{r}
 # different cluster sizes, same cluster fractions
-birdm.fit <- glm(cbind(y,n-y) ~ tx - 1, binomial, birdm)
+birdm.fit <- glm(cbind(y, n - y) ~ tx - 1, binomial, birdm)
 RRor(tauWt(birdm.fit, subset.factor = birdm$tx))
 ```
 
@@ -174,14 +176,14 @@ In the output below, `w` represents $1/a(\hat{\varphi })\;$ and `nw` is $n/a(\ha
 
 ```{r}
 # Compare phi and tau weights
-#  
-phi.wts <- phiWt(birdm.fit,fit.only = F, subset.factor = birdm$tx)$weights
-tau.wts <- tauWt(birdm.fit,fit.only = F, subset.factor = birdm$tx)$weights
-w <- cbind(w.phi  = phi.wts, 
+#
+phi.wts <- phiWt(birdm.fit, fit.only = FALSE, subset.factor = birdm$tx)$weights
+tau.wts <- tauWt(birdm.fit, fit.only = FALSE, subset.factor = birdm$tx)$weights
+w <- cbind(w.phi  = phi.wts,
            w.tau  = tau.wts,
            nw.phi = phi.wts * birdm$n,
-		       nw.tau = tau.wts * birdm$n)
-print(cbind(birdm[,c(3, 1, 2)], round(w, 2)), row.names = F)
+           nw.tau = tau.wts * birdm$n)
+print(cbind(birdm[, c(3, 1, 2)], round(w, 2)), row.names = FALSE)
 ```
 
 Look at the last two rows. Note that the `nw.phi` are directly proportional to `n` within treatment group, while the `nw.tau` are not. With intra-cluster correlation, increasing cluster size does not give a corresponding increase in information.
@@ -207,8 +209,8 @@ Likelihood support intervals are usually formed based on the desired likelihood 
 
 
 ```{r} 
-RRlsi(c(4,24,12,28))
-RRlsi(c(4,24,12,28), use.alpha = T)
+RRlsi(c(4, 24, 12, 28))
+RRlsi(c(4, 24, 12, 28), use.alpha = TRUE)
 ```
 
 # Incidence ratio
@@ -221,7 +223,7 @@ The incidence is the number of cases per subject-time. Its distribution is assum
 \[IDR=\widehat{IDR}\left\{ 1+\left( \frac{1}{{{y}_{1}}}+\frac{1}{{{y}_{2}}} \right)\frac{z_{\alpha /2}^{2}}{2}\ \ \pm \ \ \frac{z_{\alpha /2}^{2}}{2{{y}_{1}}{{y}_{2}}}\sqrt{{{y}_{\bullet }}\left( {{y}_{\bullet }}z_{\alpha /2}^{2}+4{{y}_{1}}{{y}_{2}} \right)} \right\}\]
 
 ```{r}
-IDRsc(c(26,204,10,205), pf = F)
+IDRsc(c(26, 204, 10, 205), pf = FALSE)
 ```
 
 ## Likelihood method
@@ -232,8 +234,8 @@ Likelihood support intervals are usually formed based on the desired likelihood 
 
 
 ```{r} 
-IDRlsi(c(26,204,10,205), pf = F)
-IDRlsi(c(26,204,10,205), pf = F, use.alpha = T)
+IDRlsi(c(26, 204, 10, 205), pf = FALSE)
+IDRlsi(c(26, 204, 10, 205), pf = FALSE, use.alpha = TRUE)
 ```
 
 <!-- \bibliographystyle{asa} -->
