@@ -58,7 +58,7 @@ A \link{rrsi} object with the following elements.
 \item{\code{estimator}}{either \emph{PF} or \emph{IDR}}
 \item{\code{y}}{data.frame with "y1", "n1", "y2", "n2" values.}
 \item{\code{k}}{Likelihood ratio criterion}
-\item{\code{rnd}}{how many digits to round the display}#'
+\item{\code{rnd}}{how many digits to round the display}
 \item{\code{alpha}}{complement of confidence level}
 }
 }

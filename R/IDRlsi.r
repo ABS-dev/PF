@@ -42,7 +42,7 @@
 #'   \item{`estimator`}{either *PF* or *IDR*}
 #'   \item{`y`}{data.frame with "y1", "n1", "y2", "n2" values.}
 #'   \item{`k`}{Likelihood ratio criterion}
-#'   \item{`rnd`}{how many digits to round the display}#'
+#'   \item{`rnd`}{how many digits to round the display}
 #'   \item{`alpha`}{complement of confidence level}
 #' }
 #' @references Royall R. *Statistical Evidence: A Likelihood Paradigm*.
