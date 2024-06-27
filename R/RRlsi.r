@@ -1,18 +1,23 @@
 #' @title RR likelihood support interval.
 #' @description likelihood support interval for the risk ratio or prevented
 #'   fraction by the likelihood profile.
-#' @details Estimates a likelihood support interval for \emph{RR} or \emph{PF}
-#'   by the profile likelihood method using the DUD algorithm. \cr \cr
+#' @details Estimates a likelihood support interval for *RR* or *PF*
+#'   by the profile likelihood method using the DUD algorithm.
+#'
 #'   Likelihood support intervals are usually formed based on the desired
 #'   likelihood ratio, often 1/8 or 1/32. Under some conditions the log
 #'   likelihood ratio may follow the chi square distribution. If so,
+
 #  Latex version not good
 # then \eqn{\alpha=1-{{F}_{{{\chi }^{2}}}}\left( 2\log (k), 1 \right)}.
-#' then \eqn{\alpha=1-F(2log(k), 1)}, where \eqn{F} is a chi-square CDF.
-#' \code{RRlsi()} will make the conversion from \eqn{\alpha} to \emph{k} if
-#' \code{use.alpha = TRUE}. \cr \cr The data may also be a matrix. In that case
-#' \code{y} would be entered as \cr \code{matrix(c(y1, n1-y1, y2, n2-y2), 2, 2,
-#' byrow = TRUE)}.
+
+#' then \eqn{\alpha=1-F(2log(k), 1)}, where \eqn{F} is a chi-square CDF. if
+#' `use.alpha = TRUE`,  `RRlsi()` will make the conversion from \eqn{\alpha} to
+#' \eqn{k}
+#'
+#' The data may also be a matrix. In that case `Y` would be entered as
+#'
+#' `matrix(c(y1, n1-y1, y2, n2-y2), 2, 2, byrow = TRUE)`.
 #' @param y Data vector `c(y1, n1, y2, n2)` where `y` are the positives, `n` are
 #'   the total, and group 1 is compared to group 2 (control or reference group).
 #' @param formula Formula of the form `cbind(y, n) ~ x`, where y is the number
@@ -23,7 +28,7 @@
 #' @param k Likelihood ratio criterion.
 #' @param alpha Complement of the confidence level (see details).
 #' @param use.alpha Base choice of k on its relationship to alpha?
-#' @param pf Estimate \emph{RR} or its complement \emph{PF}?
+#' @param pf Estimate *RR* or its complement *PF*?
 #' @param iter.max Maximum number of iterations
 #' @param converge Convergence criterion
 #' @param rnd Number of digits for rounding. Affects display onlyRR, not
@@ -31,26 +36,22 @@
 #' @param start Optional starting value.
 #' @param track Verbose tracking of the iterations?
 #' @param full.track Verbose tracking of the iterations?
-#' @return An object of class \code{\link{rrsi}} with the following fields: \cr
-#'
-#'   \item{estimate}{matrix of point and interval estimates - see details}
-#'
-#'   \item{estimator}{either \code{"PF"} or \code{"RR"}}
-#'
-#'   \item{y}{data.frame with "y1", "n1", "y2", "n2" values. }
-#'
-#'   \item{rnd}{how many digits to round the display}
-#'
-#'   \item{k}{likelihood ratio criterion}
-#'
-#'   \item{alpha}{complement of confidence level}
-#'
+#' @return An object of class [rrsi] with the following fields:
+#' \describe{
+#'   \item{`estimate`}{matrix of point and interval estimates - see details}
+#'   \item{`estimator`}{either `"PF"` or `"RR"`}
+#'   \item{`y`}{data.frame with "y1", "n1", "y2", "n2" values. }
+#'   \item{`rnd`}{how many digits to round the display}
+#'   \item{`k`}{likelihood ratio criterion}
+#'   \item{`alpha`}{complement of confidence level}
+#' }
 #' @export
-#' @references Royall R. \emph{Statistical Evidence: A Likelihood Paradigm}.
-#'   Chapman & Hall, Boca Raton, 1997.  Section 7.6 \cr Ralston ML, Jennrich RI,
-#'   1978. DUD, A Derivative-Free Algorithm for Nonlinear Least Squares.
-#'   \emph{Technometrics} 20:7-14.
-#' @author \link{PF-package}
+#' @references Royall R. *Statistical Evidence: A Likelihood Paradigm*. Chapman
+#'   & Hall, Boca Raton, 1997.  Section 7.6
+#'
+#'   Ralston ML, Jennrich RI, 1978. DUD, A Derivative-Free Algorithm for
+#'   Nonlinear Least Squares. *Technometrics* 20:7-14.
+#' @author [PF-package]
 #' @examples
 #' # All examples represent the same observation, with data entry by vector,
 #' # matrix, and formula+data notation.

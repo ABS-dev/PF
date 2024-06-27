@@ -8,7 +8,7 @@
 #'   \eqn{RR={{{\mu}}_{2}}/{{{\mu}}_{1}}}{RR=muhat_2/muhat_1}, where
 #'   \eqn{{\mu}_{i}}{muhat_i} are the estimated probabilities from the model.
 #'
-#' @param fit A \code{\link{glm}} object.
+#' @param fit A [glm] object.
 #'
 #' @param beta.hat Parameters estimates from a logistic regression with no
 #'   intercept.
@@ -21,7 +21,7 @@
 #' @param which Numeric vector indicating which parameters to compare, so that
 #'   `RR = compare[2]/compare[1]`
 #'
-#' @param pf Estimate \emph{RR} or its complement \emph{PF}?
+#' @param pf Estimate *RR* or its complement *PF*?
 #'
 #' @param norm Estimate confidence interval using quantiles of Guassian rather
 #'
@@ -31,25 +31,31 @@
 #' @param rnd Number of digits for rounding. Affects display only, not
 #'   estimates.
 #'
-#' @return A \code{\link{rror}} object with the following fields.
-#'   \item{estimate}{vector with point and interval estimate}
-#'   \item{estimator}{either \emph{PF} or \emph{RR}} \item{mu}{matrix with rows
-#'   giving probability estimates for each of the groups} \item{rnd}{how many
-#'   digits to round the display} \item{alpha}{complement of confidence level}
-#'   \item{norm}{logical indicating Gaussian or t interval} \item{degf}{degrees
-#'   of freedom}
-#'
+#' @return A [rror] object with the following fields.
+#' \describe{
+#'   \item{`estimate`}{vector with point and interval estimate}
+#'   \item{`estimator`}{either *PF* or *RR*}
+#'   \item{`mu`}{matrix with rows giving probability estimates for each of the
+#'   groups}
+#'   \item{`rnd`}{how many digits to round the display}
+#'   \item{`alpha`}{complement of confidence level}
+#'   \item{`norm`}{logical indicating Gaussian or t interval}
+#'   \item{`degf`}{degrees of freedom}
+#' }
 #' @export
 #'
-#' @author \link{PF-package}
+#' @author [PF-package]
 #'
-#' @note Call to this function may be one of two formats: (1) specify \code{fit}
-#'   or (2) \code{beta.hat}, \code{var.beta.hat}, \code{degf}
-#'   \code{RRor(fit, degf = NULL, pf = TRUE, alpha = 0.05, which = c(1, 2), norm
-#'   = TRUE, rnd = 3)} \cr \cr \code{RRor(beta.hat, var.beta.hat, degf, pf =
-#'   TRUE, alpha = 0.05, which = c(1, 2), norm = TRUE, rnd = 3)}
+#' @note Call to this function may be one of two formats: (1) specify `fit` or
+#'   (2) `beta.hat`, `var.beta.hat`, `degf`
 #'
-#' @seealso \link{rror}, \link{phiWt}, \link{tauWt}
+#'   `RRor(fit, degf = NULL, pf = TRUE, alpha = 0.05, which = c(1, 2), norm =
+#'   TRUE, rnd = 3)`
+#'
+#'   `RRor(beta.hat, var.beta.hat, degf, pf = TRUE, alpha = 0.05, which = c(1,
+#'   2), norm = TRUE, rnd = 3)`
+#'
+#' @seealso [rror], [phiWt], [tauWt]
 #'   \href{https://www.aphis.usda.gov/animal_health/vet_biologics/publications/STATWI0007.pdf}{StatWI007}
 #'   for more examples
 #'

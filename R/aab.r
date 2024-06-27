@@ -3,20 +3,17 @@
 ### this function is used in RRstr and RRmh
 
 #' @title Convert data.frame and formula to a matrix
-#' @description This function converts a subset of columns in \emph{data} as
-#'   specified by \emph{formula} into a matrix
+#' @description This function converts a subset of columns in `data` as
+#'   specified by `formula` into a matrix
 #' @param formula the formula to use. of format cbind(y, n) ~ tx + cluster(clus)
 #' @param compare what to compare (length == 2)
-#' @return list of: \itemize{
-#'
-#'   \item{\code{A: }}{A data.frame containing only the variables of
-#'   \emph{formula}}
-#'
-#'   \item{\code{Y: }}{a matrix where each compare element is the set of columns
-#'   (y, n) and each unique(clus) is a row}
-#'
+#' @return list of:
+#' \describe{
+#'   \item{`A`}{A data.frame containing only the variables of `formula`}
+#'   \item{`Y`}{a matrix where each compare element is the set of columns
+#'   `(y, n)` and each `unique(clus)` is a row}
 #'   }
-#' @seealso \code{\link{RRmh}, \link{RRstr}}
+#' @seealso [RRmh], [RRstr]
 #' @importFrom plyr ddply
 #' @importFrom stats model.frame terms
 #' @noRd

@@ -7,15 +7,10 @@
 \format{
 a data.frame with 8 observations of the following 4 variables, no NAs
 \describe{
-
-\item{y}{number positive}
-
-\item{n}{total number in group \code{tx} x \code{clus}}
-
-\item{tx}{treatment 'a' or 'b'}
-
-\item{clus}{cluster ID}
-
+\item{\code{y}}{number positive}
+\item{\code{n}}{total number in group \code{tx} x \code{clus}}
+\item{\code{tx}}{treatment 'a' or 'b'}
+\item{\code{clus}}{cluster ID}
 }
 }
 \description{

@@ -11,15 +11,15 @@ data class pf
 
 \section{Fields}{
 
-\itemize{
-\item[\code{estimator}]{  either \code{"PF"} or \code{"IDR"}}
-\item[\code{rnd}]{  how many digits to round display}
-\item[\code{alpha}]{  complement of c.i.}
+\describe{
+\item{\code{estimator}}{  either \code{"PF"} or \code{"IDR"}}
+\item{\code{rnd}}{  how many digits to round display}
+\item{\code{alpha}}{  complement of c.i.}
 }
 }
 
 \seealso{
-\code{\link{rr1}, \link{rrsi}, \link{rrsc}, \link{rrstr}}
+\link{rr1}, \link{rrsi}, \link{rrsc}, \link{rrstr}
 }
 \author{
 \link{PF-package}

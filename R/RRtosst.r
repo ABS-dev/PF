@@ -6,9 +6,11 @@
 #'   'exact' in the sense of accounting for discreteness. Inverts two one-sided
 #'   score tests. The score statistic is used to select tail area tables, and
 #'   the binomial probability is estimated over the tail area by taking the
-#'   maximum over the nuisance parameter. Algorithm is a simple step search. \cr
-#'   \cr The data may also be a matrix. In that case \code{y} would be entered
-#'   as \cr \code{matrix(c(y1, n1-y1, y2, n2-y2), 2, 2, byrow = TRUE)}.
+#'   maximum over the nuisance parameter. Algorithm is a simple step search.
+#'
+#'   The data may also be a matrix. In that case `Y` would be entered as
+#'
+#'   `matrix(c(y1, n1-y1, y2, n2-y2), 2, 2, byrow = TRUE)`.
 #' @param y Data vector c(y1, n1, y2, n2) where y are the positives, n are the
 #'   total, and group 1 is compared to group 2 (control or reference group).
 #' @param formula Formula of the form `cbind(y, n) ~ x`, where y is the number
@@ -17,7 +19,7 @@
 #' @param compare Text vector stating the factor levels: `compare[1]` is the
 #'   vaccinate group to which `compare[2]` (control or reference) is compared.
 #' @param alpha Complement of the confidence level.
-#' @param pf Estimate \emph{RR} or its complement \emph{PF}?
+#' @param pf Estimate *RR* or its complement *PF*?
 #' @param trace.it Verbose tracking of the iterations?
 #' @param iter.max Maximum number of iterations
 #' @param converge Convergence criterion
@@ -28,20 +30,26 @@
 #'   parameter
 #' @param gamma parameter for Berger-Boos correction (restricts range of
 #'   nuisance parameter evaluation)
-#' @return A \code{\link{rr1}} object with the following fields.
-#'   \item{estimate}{vector with point and interval estimate}
-#'   \item{estimator}{either \code{"PF"} or \code{"RR"}} \item{y}{data.frame
-#'   with "y1", "n1", "y2", "n2" values. } \item{rnd}{how many digits to round
-#'   the display} \item{alpha}{complement of confidence level}
+#' @return A [rr1] object with the following fields.
+#' \describe{
+#'   \item{`estimate`}{vector with point and interval estimate}
+#'   \item{`estimator`}{either `"PF"` or `"RR"`}
+#'   \item{`y`}{data.frame with "y1", "n1", "y2", "n2" values. }
+#'   \item{`rnd`}{how many digits to round the display}
+#'   \item{`alpha`}{complement of confidence level}
+#' }
 #' @export
 #' @references Koopman PAR, 1984. Confidence intervals for the ratio of two
-#'   binomial proportions. \emph{Biometrics} 40:513-517. \cr Agresti A, Min Y,
-#'   2001.  On small-sample confidence intervals for parameters in discrete
-#'   distribution. \emph{Biometrics} 57: 963-971. \cr Berger RL, Boos DD, 1994.
-#'   P values maximized over a confidence set for the nuisance parameter.
-#'   \emph{Journal of the American Statistical Association} 89:214-220.
-#' @author \link{PF-package}
-#' @seealso \code{\link{RRotsst}, \link{rr1}}
+#'   binomial proportions. *Biometrics* 40:513-517.
+#'
+#'   Agresti A, Min Y, 2001.  On small-sample confidence intervals for
+#'   parameters in discrete distribution. *Biometrics* 57: 963-971.
+#'
+#'   Berger RL, Boos DD, 1994. P values maximized over a confidence set for the
+#'   nuisance parameter. *Journal of the American Statistical Association*
+#'   89:214-220.
+#' @author [PF-package]
+#' @seealso [RRotsst], [rr1]
 #'
 #' @examples
 #' # Both examples represent the same observation, with data entry by vector

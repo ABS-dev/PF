@@ -1,20 +1,24 @@
-#'@title Rao-Scott weighting.
-#'@description Rao-Scott weighting of clustered binomial observations.
-#'@details Estimates the cluster design effect \eqn{{d}_{i}}{d_i} as the
-#'  variance inflation due to clustering by the method of Rao and Scott.
-#'  Observations are then weighted by the inverse of the \eqn{{d}_{i}}{d_i}.
-#'@param fit A \code{\link{glm}} object.
-#'@param subset.factor Factor for estimating the weights by subset.
-#'@param fit.only Return only the new fit? If FALSE, also returns the weights
-#'  and phi estimates.
-#'@return A list with the following elements. \item{fit}{the new model fit,
-#'  updated by the estimated weights} \item{weights}{vector of weights}
-#'  \item{d}{vector of \eqn{{d}_{i}}{d_i} estimates}
-#'@export
-#'@references Rao JNK, Scott AJ, 1992. A simple method for the analysis of
-#'  clustered binary data. \emph{Biometrics} 48:577-585.
-#'@author \link{PF-package}
-#'@seealso \code{\link{RRor}, \link{rsb}}.
+#' @title Rao-Scott weighting.
+#' @description Rao-Scott weighting of clustered binomial observations.
+#' @details Estimates the cluster design effect \eqn{{d}_{i}}{d_i} as the
+#'   variance inflation due to clustering by the method of Rao and Scott.
+#'   Observations are then weighted by the inverse of the \eqn{{d}_{i}}{d_i}.
+#' @param fit A [glm] object.
+#' @param subset.factor Factor for estimating the weights by subset.
+#' @param fit.only Return only the new fit? If FALSE, also returns the weights
+#'   and phi estimates.
+#' @return A list with the following elements.
+#' \describe{
+#'  \item{`fit`}{the new model fit, updated by the estimated weights}
+#'  \item{`weights`}{vector of weights}
+#'  \item{`d`}{vector of \eqn{{d}_{i}}{d_i} estimates}
+#' }
+#'
+#' @export
+#' @references Rao JNK, Scott AJ, 1992. A simple method for the analysis of
+#'   clustered binary data. *Biometrics* 48:577-585.
+#' @author [PF-package]
+#' @seealso [RRor], [rsb].
 #' @examples
 #' birdm.fit <- glm(cbind(y,n-y)~tx-1,binomial,birdm)
 #' RRor(rsbWt(birdm.fit))
@@ -57,26 +61,28 @@ rsbWt <- function(fit = NULL,
   return(out)
 }
 
-#'@title Rao-Scott weights.
-#'@details Estimates the cluster design effect \eqn{{d}_{i}}{d_i} as the
-#'  variance inflation due to clustering by the method of Rao and Scott.
-#'  \code{rsb} estimates the \eqn{{d}_{i}}{d_i} for use by \code{rsbWt} or other
-#'  functions.
-#'@description Rao-Scott weights.
-#'@param y vector of number positive.
-#'@param n vector of total number.
-#'@param id vector of factor for estimating the weights by subset.
-#'@param data data.frame containing variables of formula.
-#'@param formula Formula of the form cbind(y, n) ~ id, where y is the number
-#'  positive, n is the total number, id is a factor for estimating the weights
-#'  by subset.
-#'@return A list with the following elements. \item{w}{vector of weights}
-#'  \item{d}{vector of \eqn{{d}_{i}}{d_i} estimates}
-#'@export
-#'@references Rao JNK, Scott AJ, 1992. A simple method for the analysis of
-#'  clustered binary data. \emph{Biometrics} 48:577-585.
-#'@author \link{PF-package}
-#'@seealso \code{\link{rsbWt}}.
+#' @title Rao-Scott weights.
+#' @details Estimates the cluster design effect \eqn{{d}_{i}}{d_i} as the
+#'   variance inflation due to clustering by the method of Rao and Scott. `rsb`
+#'   estimates the \eqn{{d}_{i}}{d_i} for use by `rsbWt` or other functions.
+#' @description Rao-Scott weights.
+#' @param y vector of number positive.
+#' @param n vector of total number.
+#' @param id vector of factor for estimating the weights by subset.
+#' @param data data.frame containing variables of formula.
+#' @param formula Formula of the form cbind(y, n) ~ id, where y is the number
+#'   positive, n is the total number, id is a factor for estimating the weights
+#'   by subset.
+#' @return A list with the following elements.
+#' \describe{
+#'   \item{`w`}{vector of weights}
+#'   \item{`d`}{vector of \eqn{{d}_{i}}{d_i} estimates}
+#' }
+#' @export
+#' @references Rao JNK, Scott AJ, 1992. A simple method for the analysis of
+#'   clustered binary data. *Biometrics* 48:577-585.
+#' @author [PF-package]
+#' @seealso [rsbWt].
 #' @examples
 #' # Weil's rat data (Table 1 of Rao and Scott)
 #' rsb(rat$y, rat$n, id = rat$group)$d

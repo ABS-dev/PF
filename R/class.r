@@ -7,14 +7,14 @@ setClassUnion("listORchar", c("list", "character"))
 #' @aliases pf
 #' @rdname pf
 #' @section Fields:
-#' \itemize{
-#' \item[\code{estimator}]{  either \code{"PF"} or \code{"IDR"}}
-#' \item[\code{rnd}]{  how many digits to round display}
-#' \item[\code{alpha}]{  complement of c.i.}
+#' \describe{
+#'   \item{`estimator`}{  either `"PF"` or `"IDR"`}
+#'   \item{`rnd`}{  how many digits to round display}
+#'   \item{`alpha`}{  complement of c.i.}
 #' }
-#' @seealso \code{\link{rr1}, \link{rrsi}, \link{rrsc}, \link{rrstr}}
+#' @seealso [rr1], [rrsi], [rrsc], [rrstr]
 #' @export
-#' @author \link{PF-package}
+#' @author [PF-package]
 pf <- setRefClass("pf",
                   fields = list(estimator = "character",
                                 rnd = "numeric",
@@ -27,16 +27,16 @@ pf <- setRefClass("pf",
 #' @name rr1-class
 #' @rdname rr1-class
 #' @section Fields:
-#' \itemize{
-#' \item[\code{estimate}]{  vector with point and interval estimate}
-#' \item[\code{estimator}]{  either \code{"PF"} or \code{"IDR"}}
-#' \item[\code{y}]{data.frame with restructured input}
-#' \item[\code{rnd}]{how many digits to round display}
-#' \item[\code{alpha}]{complement of c.i.}
+#' \describe{
+#'   \item{`estimate`}{  vector with point and interval estimate}
+#'   \item{`estimator`}{  either `"PF"` or `"IDR"`}
+#'   \item{`Y`}{data.frame with restructured input}
+#'   \item{`rnd`}{how many digits to round display}
+#'   \item{`alpha`}{complement of c.i.}
 #' }
-#' @seealso \code{\link{IDRsc}, \link{RRotsst}, \link{RRtosst}}
+#' @seealso [IDRsc], [RRotsst], [RRtosst]
 #' @exportClass rr1
-#' @author \link{PF-package}
+#' @author [PF-package]
 rr1 <- setRefClass("rr1",
                    contains = "pf",
                    fields = list(estimate = "numeric",
@@ -47,30 +47,20 @@ rr1 <- setRefClass("rr1",
 #' @aliases rror
 #' @rdname rrorclass
 #' @section Fields:
-#'
-#'   \itemize{
-#'
-#'   \item[\code{estimate}]{  vector with point and interval estimate}
-#'
-#'   \item[\code{estimator}]{  either \code{"PF"} or \code{"IDR"}}
-#'
-#'   \item[\code{y}]{  data vector}
-#'
-#'   \item[\code{rnd}]{  how many digits to round display}
-#'
-#'   \item[\code{alpha}]{  complement of c.i.}
-#'
-#'   \item[\code{norm}]{  logical indicating Gaussian or t interval}
-#'
-#'   \item[\code{degf}]{  degrees of freedom}
-#'
-#'   \item[\code{mu}]{  matrix with rows giving probability estimates for each
+#'   \describe{
+#'   \item{`estimate`}{  vector with point and interval estimate}
+#'   \item{`estimator`}{  either `"PF"` or `"IDR"`}
+#'   \item{`Y`}{  data vector}
+#'   \item{`rnd`}{  how many digits to round display}
+#'   \item{`alpha`}{  complement of c.i.}
+#'   \item{`norm`}{  logical indicating Gaussian or t interval}
+#'   \item{`degf`}{  degrees of freedom}
+#'   \item{`mu`}{  matrix with rows giving probability estimates for each
 #'   of the groups}
-#'
 #'   }
-#' @seealso \code{\link{RRor}}
+#' @seealso [RRor]
 #' @export
-#' @author \link{PF-package}
+#' @author [PF-package]
 rror <- setRefClass("rror",
                     contains = "rr1",
                     fields = list(norm = "logical",
@@ -83,26 +73,19 @@ rror <- setRefClass("rror",
 #' @rdname rrsi
 #' @section Fields:
 #'
-#' \itemize{
-#'
-#' \item[\code{y}]{ data.frame with restructured input}
-#'
-#' \item[\code{k}]{  likelihood ratio criterion}
-#'
-#' \item[\code{rnd}]{  digits to round display}
-#'
-#' \item[\code{alpha}]{  complement of c.i.}
-#'
-#' \item[\code{estimate}]{  vector with point and interval estimate}
-#'
-#' \item[\code{estimator}]{  either \code{"PF"} or \code{"IDR"}}
-#'
+#' \describe{
+#'   \item{`Y`}{ data.frame with restructured input}
+#'   \item{`k`}{  likelihood ratio criterion}
+#'   \item{`rnd`}{  digits to round display}
+#'   \item{`alpha`}{  complement of c.i.}
+#'   \item{`estimate`}{  vector with point and interval estimate}
+#'   \item{`estimator`}{  either `"PF"` or `"IDR"`}
 #' }
 #'
-#' @seealso \code{\link{IDRlsi}, \link{RRlsi}}
+#' @seealso [IDRlsi], [RRlsi]
 #'
 #' @export
-#' @author \link{PF-package}
+#' @author [PF-package]
 rrsi <- setRefClass("rrsi",
                     contains = "pf",
                     fields = list(y = "data.frame",
@@ -115,27 +98,20 @@ rrsi <- setRefClass("rrsi",
 #' @rdname rrmp
 #' @section Fields:
 #'
-#'   \itemize{
-#'
-#'   \item[\code{estimate}]{  vector with point and interval estimate}
-#'
-#'   \item[\code{estimator}]{  either \code{"PF"} or \code{"IDR"}}
-#'
-#'   \item[\code{y}]{  data vector}
-#'
-#'   \item[\code{rnd}]{  how many digits to round display}
-#'
-#'   \item[\code{alpha}]{  complement of c.i.}
-#'
-#'   \item[\code{compare}]{  text vector, same as input}
-#'
-#'   \item[\code{multvec}]{  data.frame showing the multinomial representation
+#'   \describe{
+#'   \item{`estimate`}{  vector with point and interval estimate}
+#'   \item{`estimator`}{  either `"PF"` or `"IDR"`}
+#'   \item{`Y`}{  data vector}
+#'   \item{`rnd`}{  how many digits to round display}
+#'   \item{`alpha`}{  complement of c.i.}
+#'   \item{`compare`}{  text vector, same as input}
+#'   \item{`multvec`}{  data.frame showing the multinomial representation
 #'   of the data}
 #'
 #'   }
-#' @seealso \code{\link{RRmpWald}}
+#' @seealso [RRmpWald]
 #' @export
-#' @author \link{PF-package}
+#' @author [PF-package]
 rrmp <- setRefClass("rrmp",
                     contains = "rr1",
                     fields = list(compare = "character",
@@ -145,16 +121,16 @@ rrmp <- setRefClass("rrmp",
 #' @description data class rrsc
 #' @rdname rrscclass
 #' @section Fields:
-#' \itemize{
-#' \item[\code{estimate}]{  vector with point and interval estimate}
-#' \item[\code{rnd}]{  how many digits to round display}
-#' \item[\code{alpha}]{  complement of c.i.}
-#' \item[\code{estimator}]{  either \code{"PF"} or \code{"RR"}}
-#' \item[\code{y}]{ data.frame with restructured input}
+#' \describe{
+#'   \item{`estimate`}{  vector with point and interval estimate}
+#'   \item{`rnd`}{  how many digits to round display}
+#'   \item{`alpha`}{  complement of c.i.}
+#'   \item{`estimator`}{  either `"PF"` or `"RR"`}
+#'   \item{`Y`}{ data.frame with restructured input}
 #' }
-#' @seealso \code{\link{RRsc}}
+#' @seealso [rrsc]
 #' @export
-#' @author \link{PF-package}
+#' @author [PF-package]
 rrsc <- setRefClass("rrsc",
                     contains = "pf",
                     fields = list(estimate = "matrix",
@@ -164,28 +140,22 @@ rrsc <- setRefClass("rrsc",
 #' @description data class rrstr
 #' @aliases rrstr
 #' @rdname rrstrclass
-#' @section Fields: \itemize{
-#'
-#'   \item[\code{estimate}]{  vector with point and interval estimate}
-#'
-#'   \item[\code{rnd}]{  how many digits to round display}
-#'
-#'   \item[\code{alpha}]{  complement of c.i.}
-#'
-#'   \item[\code{estimator}]{  either \code{"PF"} or \code{"RR"}}
-#'
-#'   \item[\code{hom}]{list of homogeneity statistic, p-value, and degrees of
-#'   freedom. If \code{Phi == 0 | Phi == 1}, homogeneity test is not possible
+#' @section Fields:
+#' \describe{
+#'   \item{`estimate`}{  vector with point and interval estimate}
+#'   \item{`rnd`}{  how many digits to round display}
+#'   \item{`alpha`}{  complement of c.i.}
+#'   \item{`estimator`}{  either `"PF"` or `"RR"`}
+#'   \item{`hom`}{list of homogeneity statistic, p-value, and degrees of
+#'   freedom. If `Phi == 0 | Phi == 1`, homogeneity test is not possible
 #'   and error message displays}
-#'
-#'   \item[\code{y}]{data.frame of restructured input}
-#'
-#'   \item[\code{compare}]{  groups compared}
+#'   \item{`Y`}{data.frame of restructured input}
+#'   \item{`compare`}{  groups compared}
 #'
 #'   }
-#' @seealso \code{\link{RRstr}}
+#' @seealso [rrstr]
 #' @export
-#' @author \link{PF-package}
+#' @author [PF-package]
 rrstr <- setRefClass("rrstr",
                      contains = "pf",
                      fields = list(estimate = "matrix",
