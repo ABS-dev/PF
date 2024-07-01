@@ -51,10 +51,11 @@ prevented fraction based on it.
 The incidence density is the number of cases per subject-time; its
 distribution is assumed Poisson. \code{IDRsc} estimates a confidence interval
 for the incidence density ratio using Siev's formula based on the
-Poisson score statistic. \eqn{ IDR=\widehat{IDR}\left\{ 1+\left(
-  \frac{1}{{{y}_{1}}}+\frac{1}{{{y}_{2}}} \right)\frac{z_{\alpha /2}^{2}}{2}\
-  \ \pm \ \ \frac{z_{\alpha /2}^{2}}{2{{y}_{1}}{{y}_{2}}}\sqrt{{{y}_{\bullet
-  }}\left( {{y}_{\bullet }}z_{\alpha /2}^{2}+4{{y}_{1}}{{y}_{2}} \right)}
+Poisson score statistic. \eqn{ IDR = \widehat{IDR}\left\{ 1 + \left(
+  \frac{1}{{{y}_{1}}} + \frac{1}{{{y}_{2}}}
+  \right)\frac{z_{\alpha / 2}^{2}}{2}\
+  \ \pm \ \ \frac{z_{\alpha / 2}^{2}}{2{{y}_{1}}{{y}_{2}}}\sqrt{{{y}_{\bullet
+  }}\left( {{y}_{\bullet }}z_{\alpha / 2}^{2} + 4{{y}_{1}}{{y}_{2}} \right)}
   \right\} }{(See
   \hyperref{https://www.aphis.usda.gov/animal_health/vet_biologics/
   publications/STATWI0007.pdf}{USDA CVB StatWI0007} for the formula.)}
@@ -94,7 +95,7 @@ require(dplyr)
 data1 <- data.frame(group = rep(c("treated", "control"), each = 5),
             n = c(rep(41, 4), 40, rep(41, 5)),
             y = c(4, 5, 7, 6, 4, 1, 3, 3, 2, 1),
-            cage = rep(paste('cage', 1:5), 2))
+            cage = rep(paste("cage", 1:5), 2))
 data2 <- data1 |>
   group_by(group) |>
   summarize(sum_y = sum(y),
@@ -113,8 +114,8 @@ Siev D, 1994. Estimating vaccine efficacy in prospective studies.
 \emph{Preventive Veterinary Medicine} 20:279-296, Appendix 1.
 
 Graham PL, Mengersen K, Morton AP, 2003. Confidence limits for the ratio of
-two rates based on likelihood scores:non-iterative method \emph{Statistics
-in Medicine} 22:2071-2083.
+two rates based on likelihood scores:non-iterative method \emph{Statistics in
+Medicine} 22:2071-2083.
 
 Siev D, 2004. Letter to the editor. \emph{Statistics in Medicine} 23:693.
 (Typographical error in formula: replace the two final minus signs with

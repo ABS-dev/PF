@@ -70,7 +70,7 @@ Vignette \emph{Examples for Stratified Designs} forthcoming with more examples.
 Call to this function may be one of two formats: (1) specify \code{data} and
 \code{formula} or (2) as a matrix \code{Y}
 
-\code{RRmh(formula, data, compare = c('b','a'), pf = TRUE, alpha = 0.05, rnd = 3)}
+\code{RRmh(formula, data, compare = c("b", "a"), pf = TRUE, alpha = 0.05, rnd = 3)}
 
 \code{RRmh(Y, pf = TRUE, alpha = 0.05, rnd = 3)}
 }
@@ -82,7 +82,7 @@ Call to this function may be one of two formats: (1) specify \code{data} and
 # tx group "b" is control
 RRmh(cbind(y, n) ~ tx + cluster(clus),
      Table6,
-     compare = c('a', 'b'), pf = FALSE)
+     compare = c("a", "b"), pf = FALSE)
 
 # RR
 # 95\% interval estimates
@@ -103,7 +103,7 @@ RRmh(Y = table6, pf = FALSE)
 \references{
 Mantel N, Haenszel W, 1959.  Statistical aspects of the analysis
 of data from retrospective studies of disease. \emph{Journal of the National
-Cancer Institute} 22:  719-748.
+Cancer Institute} 22:719-748.
 
 Greenland S, Robins JM, 1985.  Estimation of a common effect parameter from
 sparse follow-up data. \emph{Biometrics}  41:  55-68.  Errata, 45: 1323-1324.

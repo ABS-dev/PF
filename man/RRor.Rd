@@ -28,7 +28,7 @@ with no intercept.}
 \item{degf}{Degrees of freedom.}
 
 \item{which}{Numeric vector indicating which parameters to compare, so that
-\code{RR = compare[2]/compare[1]}}
+\code{RR = compare[2] / compare[1]}}
 
 \item{pf}{Estimate \emph{RR} or its complement \emph{PF}?}
 
@@ -62,7 +62,7 @@ fraction from a logistic regression model.
 Estimates confidence intervals using the delta method on parameters
 from a generalized linear model with logit link.
 
-\eqn{RR={{{\mu}}_{2}}/{{{\mu}}_{1}}}{RR=muhat_2/muhat_1}, where
+\eqn{RR = {{{\mu}}_{2}} / {{{\mu}}_{1}}}{RR = muhat_2 / muhat_1}, where
 \eqn{{\mu}_{i}}{muhat_i} are the estimated probabilities from the model.
 }
 \note{

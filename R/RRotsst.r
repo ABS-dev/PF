@@ -77,7 +77,7 @@
 #' data1 <- data.frame(group = rep(c("treated", "control"), each = 2),
 #'   y = c(1, 3, 7, 5),
 #'   n = c(12, 12, 14, 14),
-#'   cage = rep(paste('cage', 1:2), 2))
+#'   cage = rep(paste("cage", 1:2), 2))
 #'
 #' data2 <- data1 |>
 #'   group_by(group) |>
@@ -173,7 +173,7 @@ RRotsst <- function(y = NULL,
     y <- .extract_freqvec(formula, data, compare)
 
   } else if (is.matrix(y)) {
-    # Data entry y=c(x2, n2, x1, n1) Vaccinates First (order same but
+    # Data entry y = c(x2, n2, x1, n1) Vaccinates First (order same but
     # subscripts reversed)
     # data vector
     y <- c(t(cbind(y[, 1], apply(y, 1, sum))))

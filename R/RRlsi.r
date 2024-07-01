@@ -5,13 +5,13 @@
 #'   by the profile likelihood method using the DUD algorithm.
 #'
 #'   Likelihood support intervals are usually formed based on the desired
-#'   likelihood ratio, often 1/8 or 1/32. Under some conditions the log
+#'   likelihood ratio, often 1 / 8 or 1 / 32. Under some conditions the log
 #'   likelihood ratio may follow the chi square distribution. If so,
 
 #  Latex version not good
-# then \eqn{\alpha=1-{{F}_{{{\chi }^{2}}}}\left( 2\log (k), 1 \right)}.
+# then \eqn{\alpha = 1 - {{F}_{{{\chi }^{2}}}} \ left( 2 \ log (k), 1 \right)}.
 
-#' then \eqn{\alpha=1-F(2log(k), 1)}, where \eqn{F} is a chi-square CDF. if
+#' then \eqn{\alpha = 1 - F(2log(k), 1)}, where \eqn{F} is a chi-square CDF. if
 #' `use.alpha = TRUE`,  `RRlsi()` will make the conversion from \eqn{\alpha} to
 #' \eqn{k}
 #'
@@ -59,7 +59,7 @@
 #' y_vector <- c(4, 24, 12, 28)
 #' RRlsi(y_vector)
 #'
-#' # 1/8 likelihood support interval for PF
+#' # 1 / 8 likelihood support interval for PF
 #'
 #' # corresponds to 95.858% confidence
 #' #   (under certain assumptions)
@@ -76,7 +76,7 @@
 #'
 #' RRlsi(y_matrix)
 #'
-#' # 1/8 likelihood support interval for PF
+#' # 1 / 8 likelihood support interval for PF
 #'
 #' # corresponds to 95.858% confidence
 #' #   (under certain assumptions)
@@ -89,7 +89,7 @@
 #' data1 <- data.frame(group = rep(c("treated", "control"), each = 2),
 #'   y = c(1, 3, 7, 5),
 #'   n = c(12, 12, 14, 14),
-#'   cage = rep(paste('cage', 1:2), 2))
+#'   cage = rep(paste("cage", 1:2), 2))
 #'
 #' data2 <- data1 |>
 #'   group_by(group) |>
@@ -98,7 +98,7 @@
 #' RRlsi(data = data2, formula =  cbind(sum_y, sum_n) ~ group,
 #'    compare = c("treated", "control"))
 #'
-#' # 1/8 likelihood support interval for PF
+#' # 1 / 8 likelihood support interval for PF
 #' #
 #' # corresponds to 95.858% confidence
 #' # (under certain assumptions)
@@ -133,8 +133,8 @@ RRlsi <- function(y = NULL,
   .check_3input_cases_freq(data = data, formula = formula, y = y)
 
   # 9/14/07
-  # alpha to k: k=exp(qchisq(1-alpha, 1)/2)
-  # k to alpha: alpha=1-pchisq(log(k)*2, 1)
+  # alpha to k: k = exp(qchisq(1 - alpha, 1) / 2)
+  # k to alpha: alpha = 1 - pchisq(log(k) * 2, 1)
   if (use.alpha)
     k <- exp(qchisq(1 - alpha, 1) / 2)
   else

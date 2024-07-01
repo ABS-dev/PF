@@ -13,7 +13,7 @@ NAs
 
 \item{n}{total number}
 
-\item{group}{treatment group: 'control' or 'treated'}
+\item{group}{treatment group: "control" or "treated"}
 
 }
 }

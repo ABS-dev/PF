@@ -81,7 +81,7 @@
 #' data1 <- data.frame(group = rep(c("treated", "control"), each = 2),
 #'   y = c(1, 3, 7, 5),
 #'   n = c(12, 12, 14, 14),
-#'   cage = rep(paste('cage', 1:2), 2))
+#'   cage = rep(paste("cage", 1:2), 2))
 #' data2 <- data1 |>
 #'   group_by(group) |>
 #'   summarize(sum_y = sum(y),
@@ -167,7 +167,7 @@ RRtosst <- function(y = NULL,
     y <- .extract_freqvec(formula, data, compare)
 
   } else if (is.matrix(y)) {
-    # Data entry y=c(x2, n2, x1, n1) Vaccinates First (order same but
+    # Data entry y = c(x2, n2, x1, n1) Vaccinates First (order same but
     # subscripts reversed) data vector
     y <- c(t(cbind(y[, 1], apply(y, 1, sum))))
     # NOTE: the subscripts are reversed compared to the other functions
@@ -379,9 +379,9 @@ RRtosst <- function(y = NULL,
                             mn = FALSE) {
   # asymptotic score interval
   # code taken from RRsc()
-  # choice of either Koopman (mn=F)
-  # or Miettinenen-Nurminen (mn=T)
-  # Data entry y=c(x2, n2, x1, n1) Vaccinates First
+  # choice of either Koopman (mn = FALSE)
+  # or Miettinenen-Nurminen (mn = TRUE)
+  # Data entry y = c(x2, n2, x1, n1) Vaccinates First
 
   u.p <- function(p1, p2, n1, n2) {
     (1. - p1) / (n1 * p1) + (1. - p2) / (n2 * p2)
@@ -478,5 +478,5 @@ RRtosst <- function(y = NULL,
 # End asymptotic score method
 #------------------------------------------------------
 
-# .rr.score.asymp(c(0, 18, 16, 19),mn=F)
-# .rr.score.asymp(c(0, 18, 16, 19),mn=T)
+# .rr.score.asymp(c(0, 18, 16, 19), mn = FALSE)
+# .rr.score.asymp(c(0, 18, 16, 19), mn = TRUE)

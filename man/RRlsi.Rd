@@ -74,9 +74,9 @@ Estimates a likelihood support interval for \emph{RR} or \emph{PF}
 by the profile likelihood method using the DUD algorithm.
 
 Likelihood support intervals are usually formed based on the desired
-likelihood ratio, often 1/8 or 1/32. Under some conditions the log
+likelihood ratio, often 1 / 8 or 1 / 32. Under some conditions the log
 likelihood ratio may follow the chi square distribution. If so,
-then \eqn{\alpha=1-F(2log(k), 1)}, where \eqn{F} is a chi-square CDF. if
+then \eqn{\alpha = 1 - F(2log(k), 1)}, where \eqn{F} is a chi-square CDF. if
 \code{use.alpha = TRUE},  \code{RRlsi()} will make the conversion from \eqn{\alpha} to
 \eqn{k}
 
@@ -91,7 +91,7 @@ The data may also be a matrix. In that case \code{Y} would be entered as
 y_vector <- c(4, 24, 12, 28)
 RRlsi(y_vector)
 
-# 1/8 likelihood support interval for PF
+# 1 / 8 likelihood support interval for PF
 
 # corresponds to 95.858\% confidence
 #   (under certain assumptions)
@@ -108,7 +108,7 @@ y_matrix
 
 RRlsi(y_matrix)
 
-# 1/8 likelihood support interval for PF
+# 1 / 8 likelihood support interval for PF
 
 # corresponds to 95.858\% confidence
 #   (under certain assumptions)
@@ -121,7 +121,7 @@ require(dplyr)
 data1 <- data.frame(group = rep(c("treated", "control"), each = 2),
   y = c(1, 3, 7, 5),
   n = c(12, 12, 14, 14),
-  cage = rep(paste('cage', 1:2), 2))
+  cage = rep(paste("cage", 1:2), 2))
 
 data2 <- data1 |>
   group_by(group) |>
@@ -130,7 +130,7 @@ data2 <- data1 |>
 RRlsi(data = data2, formula =  cbind(sum_y, sum_n) ~ group,
    compare = c("treated", "control"))
 
-# 1/8 likelihood support interval for PF
+# 1 / 8 likelihood support interval for PF
 #
 # corresponds to 95.858\% confidence
 # (under certain assumptions)

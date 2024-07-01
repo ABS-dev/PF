@@ -6,7 +6,7 @@
 #'   NAs
 #' \describe{
 #'   \item{`cage`}{cage ID. 1 - 26}
-#'   \item{`tx`}{treatment. one of 'con' or 'vac'}
+#'   \item{`tx`}{treatment. one of "con" or "vac"}
 #'   \item{`pos`}{numeric indicator of positive response. 0 = FALSE or 1 = TRUE}
 #'   }
 #' @references We need some references
@@ -22,7 +22,7 @@ NA
 #' \describe{
 #'   \item{`y`}{number positive}
 #'   \item{`n`}{total number in group `tx` x `clus`}
-#'   \item{`tx`}{treatment 'vac' or 'con'}
+#'   \item{`tx`}{treatment "vac" or "con"}
 #'   \item{`clus`}{cluster ID}
 #' }
 #' @references We need some references
@@ -38,7 +38,7 @@ NA
 #' \describe{
 #'   \item{`y`}{number positive}
 #'   \item{`n`}{total number in group `tx` x `clus`}
-#'   \item{`tx`}{treatment 'a' or 'b'}
+#'   \item{`tx`}{treatment "a" or "b"}
 #'   \item{`clus`}{cluster ID}
 #' }
 #' @references Table 1 from Gart (1985)
@@ -53,7 +53,7 @@ NA
 #' \describe{
 #'   \item{`y`}{number positive}
 #'   \item{`n`}{total number in group `tx` x `all`}
-#'   \item{`tx`}{treatment 'vac' or 'con'}
+#'   \item{`tx`}{treatment "vac" or "con"}
 #'   \item{`all`}{all?}
 #' }
 #' @references we need some references
@@ -68,7 +68,7 @@ NA
 #' \describe{
 #'   \item{`y`}{number positive}
 #'   \item{`n`}{total number in group `tx` x `all`}
-#'   \item{`tx`}{treatment 'vac' or 'con'}
+#'   \item{`tx`}{treatment "vac" or "con"}
 #'   \item{`all`}{all?}
 #' }
 #' @references we need some references
@@ -102,7 +102,7 @@ NA
 #'
 #'   \item{n}{total number}
 #'
-#'   \item{group}{treatment group: 'control' or 'treated'}
+#'   \item{group}{treatment group: "control" or "treated"}
 #'
 #'   }
 #' @references Weil's rat data (Table 1 of Rao and Scott)

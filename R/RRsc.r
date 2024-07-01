@@ -6,7 +6,7 @@
 #'   statistic. The score method was introduced by Koopman (1984). Gart and
 #'   Nam's modification (1988) includes a skewness correction. The method of
 #'   Miettinen and Nurminen (1985) is a version made slightly more conservative
-#'   than Koopman's by including a factor of \eqn{(N-1)/N}. The starting
+#'   than Koopman's by including a factor of \eqn{(N - 1) / N}. The starting
 #'   estimate for the DUD algorithm is obtained by the modified Katz method (log
 #'   method with 0.5 added to each cell). Both forms of the Katz estimate may be
 #'   retrieved from the returned object using `RRsc()$estimate`.
@@ -86,7 +86,7 @@
 #' data1 <- data.frame(group = rep(c("treated", "control"), each = 2),
 #'   y = c(1, 3, 7, 5),
 #'   n = c(12, 12, 14, 14),
-#'   cage = rep(paste('cage', 1:2), 2))
+#'   cage = rep(paste("cage", 1:2), 2))
 #'
 #' data2 <- data1 |>
 #'   group_by(group) |>

@@ -43,12 +43,12 @@ MME estimates of binomial dispersion parameter tau
 \details{
 Estimates binomial dispersion parameter \eqn{\tau} by the method of
 moments. Iteratively refits the model by the Williams procedure, weighting
-the observations by \eqn{1/\phi_{ij}}{1/\phi_ij}, where
-\eqn{\phi_{ij}=1+\tau_j(n_{ij}-1)}{\phi_ij=1+\tau_j(n_ij - 1)}, \eqn{j}
-indexes the subsets, and \eqn{i} indexes the observations.
+the observations by \eqn{1 / \phi_{ij}}{1 / \phi_ij}, where
+\eqn{\phi_{ij} = 1 + \tau_j(n_{ij} - 1)}{\phi_ij = 1 + \tau_j(n_ij - 1)},
+\eqn{j} indexes the subsets, and \eqn{i} indexes the observations.
 }
 \examples{
-birdm.fit <- glm(cbind(y,n-y)~tx-1, binomial, birdm)
+birdm.fit <- glm(cbind(y, n - y) ~ tx - 1, binomial, birdm)
 RRor(tauWt(birdm.fit))
 
 # 95\% t intervals on 4 df

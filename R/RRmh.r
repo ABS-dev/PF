@@ -41,13 +41,13 @@
 #'   Call to this function may be one of two formats: (1) specify `data` and
 #'   `formula` or (2) as a matrix `Y`
 #'
-#'   `RRmh(formula, data, compare = c('b','a'), pf = TRUE, alpha = 0.05, rnd =
+#'   `RRmh(formula, data, compare = c("b", "a"), pf = TRUE, alpha = 0.05, rnd =
 #'   3)`
 #'
 #'   `RRmh(Y, pf = TRUE, alpha = 0.05, rnd = 3)`
 #' @references Mantel N, Haenszel W, 1959.  Statistical aspects of the analysis
 #'   of data from retrospective studies of disease. *Journal of the National
-#'   Cancer Institute* 22:  719-748.
+#'   Cancer Institute* 22:719-748.
 #'
 #'   Greenland S, Robins JM, 1985.  Estimation of a common effect parameter from
 #'   sparse follow-up data. *Biometrics*  41:  55-68.  Errata, 45: 1323-1324.
@@ -68,7 +68,7 @@
 #' # tx group "b" is control
 #' RRmh(cbind(y, n) ~ tx + cluster(clus),
 #'      Table6,
-#'      compare = c('a', 'b'), pf = FALSE)
+#'      compare = c("a", "b"), pf = FALSE)
 #'
 #' # RR
 #' # 95% interval estimates

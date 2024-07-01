@@ -7,13 +7,13 @@
 #'   is assumed Poisson.
 #'
 #'   Likelihood support intervals are usually formed based on the desired
-#'   likelihood ratio, often 1/8 or 1/32. Under some conditions the log
+#'   likelihood ratio, often 1 / 8 or 1 / 32. Under some conditions the log
 #'   likelihood ratio may follow the chi square distribution. If so,
 
 ##  Latex version not good
-## then \eqn{\alpha=1-{{F}_{{{\chi }^{2}}}}\left( 2\log (k), 1 \right)}.
+## then \eqn{\alpha = 1 - {{F}_{{{\chi }^{2}}}} \left( 2\log (k), 1 \right)}.
 
-#' then \eqn{\alpha=1-F(2log(k), 1)}, where \eqn{F} is a chi-square CDF. if
+#' then \eqn{\alpha = 1 - F(2log(k), 1)}, where \eqn{F} is a chi-square CDF. if
 #' `use.alpha = TRUE``RRsc()` will make the conversion from \eqn{\alpha} to
 #' \eqn{k} .
 #'
@@ -57,7 +57,7 @@
 #' y_vector <- c(26, 204, 10, 205)
 #' IDRlsi(y_vector, pf = FALSE)
 #'
-#' # 1/8 likelihood support interval for IDR
+#' # 1 / 8 likelihood support interval for IDR
 #'
 #' # corresponds to 95.858% confidence
 #' #   (under certain assumptions)
@@ -74,7 +74,7 @@
 #'
 #' IDRlsi(y_matrix, pf = FALSE)
 #'
-#' # 1/8 likelihood support interval for IDR
+#' # 1 / 8 likelihood support interval for IDR
 #'
 #' # corresponds to 95.858% confidence
 #' #   (under certain assumptions)
@@ -86,11 +86,11 @@
 #' data1 <- data.frame(group = rep(c("treated", "control"), each = 5),
 #'              n = c(rep(41, 4), 40, rep(41, 5)),
 #'              y = c(4, 5, 7, 6, 4, 1, 3, 3, 2, 1),
-#'              cage = rep(paste('cage', 1:5), 2))
+#'              cage = rep(paste("cage", 1:5), 2))
 #' IDRlsi(data = data1, formula = cbind(y, n) ~ group,
 #'                compare = c("treated", "control"), pf = FALSE)
 #'
-#' # 1/8 likelihood support interval for IDR
+#' # 1 / 8 likelihood support interval for IDR
 #'
 #' # corresponds to 95.858% confidence
 #' #   (under certain assumptions)
@@ -108,7 +108,7 @@
 #' IDRlsi(data = data2, formula = cbind(sum_y, sum_n) ~ group,
 #'                compare = c("treated", "control"), pf = FALSE)
 #'
-#' # 1/8 likelihood support interval for IDR
+#' # 1 / 8 likelihood support interval for IDR
 #'
 #' # corresponds to 95.858% confidence
 #' #   (under certain assumptions)

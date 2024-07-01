@@ -52,11 +52,11 @@
 #'   `formula` or (2) as a matrix `Y`
 #'
 #'
-#'   `RRstr(formula, data, compare = c('b','a'), pf = TRUE, alpha = 0.05,
+#'   `RRstr(formula, data, compare = c("b", "a"), pf = TRUE, alpha = 0.05,
 #'   trace.it = FALSE, iter.max = 24, converge = 1e-6, rnd = 3, multiplier =
 #'   0.7, divider = 1.1)`
 #'
-#'   `RRstr(Y, compare = c('b','a'), pf = TRUE, alpha = 0.05, trace.it = FALSE,
+#'   `RRstr(Y, compare = c("b", "a"), pf = TRUE, alpha = 0.05, trace.it = FALSE,
 #'   iter.max = 24, converge = 1e-6, rnd = 3, multiplier = 0.7, divider = 1.1)`
 #' @seealso [rrstr]
 #' @examples
@@ -65,7 +65,7 @@
 #' ## "b" is control group
 #' RRstr(cbind(y, n) ~ tx + cluster(clus),
 #'       Table6,
-#'       compare = c('a', 'b'), pf = FALSE)
+#'       compare = c("a", "b"), pf = FALSE)
 #'
 #' # Test of homogeneity across clusters
 #'
@@ -85,8 +85,8 @@
 #'
 #' tst <- data.frame(y = c(0, 2, 0, 4, 0, 3, 0, 7),
 #' n = rep(10, 8),
-#' tx = rep(c('a', 'b'), 4),
-#' clus = rep(paste('Row', 1:4, sep = ''), each = 2))
+#' tx = rep(c("a", "b"), 4),
+#' clus = rep(paste("Row", 1:4, sep = ""), each = 2))
 #'
 #' @importFrom stats pchisq qnorm
 RRstr <- function(formula = NULL, data = NULL, compare = c("vac", "con"), Y,

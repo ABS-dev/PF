@@ -48,13 +48,13 @@
 #'   Call to this function may be one of two formats: (1) specify `data` and
 #'   `formula` or (2) as a vector `x`
 #'
-#'   `RRmpWald(formula, data, compare = c('vac', 'con'), affected = 1, alpha =
+#'   `RRmpWald(formula, data, compare = c("vac", "con"), affected = 1, alpha =
 #'   0.05, pf = TRUE, tdist = TRUE, df = NULL, rnd = 3)`
 #'
-#'   `RRmpWald(x, compare = c('vac', 'con'), affected = 1, alpha = 0, 05, pf =
+#'   `RRmpWald(x, compare = c("vac", "con"), affected = 1, alpha = 0, 05, pf =
 #'   TRUE, tdist = TRUE, df = NULL, rnd = 3)`
 #' @examples
-#' RRmpWald(pos ~ tx + cluster(cage), New, compare = c('vac', 'con'))
+#' RRmpWald(pos ~ tx + cluster(cage), New, compare = c("vac", "con"))
 #'
 #' # PF
 #' # 95% interval estimates
@@ -93,7 +93,7 @@ RRmpWald <- function(formula = NULL, data = NULL, compare = c("vac", "con"),
   # Data entry:
   #
   # formula of the form response ~ treatment + cluster(clustername) then it will
-  # convert data to matrix and vector if entered as vector (x=) it must be
+  # convert data to matrix and vector if entered as vector (x =) it must be
   # ordered by vac/con pairs: c(11, 01, 10, 00)
   multvec <- NULL
   if (!is.null(formula) && !is.null(data)) {

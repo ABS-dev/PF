@@ -5,7 +5,7 @@
 #'   from a generalized linear model with logit link.
 #'
 #'
-#'   \eqn{RR={{{\mu}}_{2}}/{{{\mu}}_{1}}}{RR=muhat_2/muhat_1}, where
+#'   \eqn{RR = {{{\mu}}_{2}} / {{{\mu}}_{1}}}{RR = muhat_2 / muhat_1}, where
 #'   \eqn{{\mu}_{i}}{muhat_i} are the estimated probabilities from the model.
 #'
 #' @param fit A [glm] object.
@@ -19,7 +19,7 @@
 #' @param degf Degrees of freedom.
 #'
 #' @param which Numeric vector indicating which parameters to compare, so that
-#'   `RR = compare[2]/compare[1]`
+#'   `RR = compare[2] / compare[1]`
 #'
 #' @param pf Estimate *RR* or its complement *PF*?
 #'

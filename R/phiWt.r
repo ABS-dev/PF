@@ -20,7 +20,7 @@
 #' @author [PF-package]
 #' @seealso [tauWt], [RRor].
 #' @examples
-#' birdm.fit <- glm(cbind(y, n - y)~tx-1, binomial, birdm)
+#' birdm.fit <- glm(cbind(y, n - y) ~ tx-1, binomial, birdm)
 #' RRor(phiWt(birdm.fit))
 #' #
 #' # 95% t intervals on 4 df

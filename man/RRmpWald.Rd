@@ -81,12 +81,12 @@ in the CVBmisc package.
 Call to this function may be one of two formats: (1) specify \code{data} and
 \code{formula} or (2) as a vector \code{x}
 
-\code{RRmpWald(formula, data, compare = c('vac', 'con'), affected = 1, alpha = 0.05, pf = TRUE, tdist = TRUE, df = NULL, rnd = 3)}
+\code{RRmpWald(formula, data, compare = c("vac", "con"), affected = 1, alpha = 0.05, pf = TRUE, tdist = TRUE, df = NULL, rnd = 3)}
 
-\code{RRmpWald(x, compare = c('vac', 'con'), affected = 1, alpha = 0, 05, pf = TRUE, tdist = TRUE, df = NULL, rnd = 3)}
+\code{RRmpWald(x, compare = c("vac", "con"), affected = 1, alpha = 0, 05, pf = TRUE, tdist = TRUE, df = NULL, rnd = 3)}
 }
 \examples{
-RRmpWald(pos ~ tx + cluster(cage), New, compare = c('vac', 'con'))
+RRmpWald(pos ~ tx + cluster(cage), New, compare = c("vac", "con"))
 
 # PF
 # 95\% interval estimates
