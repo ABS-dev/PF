@@ -132,7 +132,7 @@ RRlsi <- function(y = NULL,
   ###########################################
   .check_3input_cases_freq(data = data, formula = formula, y = y)
 
-  # 9/14/07
+  # date upated 9/14/07
   # alpha to k: k = exp(qchisq(1 - alpha, 1) / 2)
   # k to alpha: alpha = 1 - pchisq(log(k) * 2, 1)
   if (use.alpha)
@@ -204,16 +204,16 @@ RRlsi <- function(y = NULL,
     Q <- c(ll(y, start[1, i]), ll(y, start[2, i]))
     Q <- Q[rev(order(abs(Q - end)))]
     tt <- start[rev(order(abs(Q - end))), i]
-    Q2 <- Q[2]
-    Q1 <- Q[1]
+    q2 <- Q[2]
+    q1 <- Q[1]
     t2 <- tt[2]
     t1 <- tt[1]
     iter <- 0
     repeat {
       iter <- iter + 1
-      t3 <- t2 + (t2 - t1) * (end - Q2) / (Q2 - Q1)
+      t3 <- t2 + (t2 - t1) * (end - q2) / (q2 - q1)
       if (track)
-        cat("\niter", iter, "r.hat", t2, "LR", exp(Q2 - ll.max), "\n")
+        cat("\niter", iter, "r.hat", t2, "LR", exp(q2 - ll.max), "\n")
       if (full.track)
         cat("t321",
             t3,
@@ -221,8 +221,8 @@ RRlsi <- function(y = NULL,
             t1,
             "321",
             ll(y, t3),
-            Q2,
-            Q1,
+            q2,
+            q1,
             "converge",
             abs(t3 - t2) / t2,
             "\n")
@@ -231,8 +231,8 @@ RRlsi <- function(y = NULL,
           break
       t1 <- t2
       t2 <- t3
-      Q1 <- Q2
-      Q2 <- ll(y, t3)
+      q1 <- q2
+      q2 <- ll(y, t3)
       if (iter > iter.max)
         break
     }

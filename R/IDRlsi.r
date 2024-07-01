@@ -200,8 +200,8 @@ IDRlsi <- function(y = NULL,
     Q <- c(L(y, start[1, i]), L(y, start[2, i]))
     Q <- Q[rev(order(abs(Q - end)))]
     tt <- start[rev(order(abs(Q - end))), i]
-    Q2 <- Q[2]
-    Q1 <- Q[1]
+    q2 <- Q[2]
+    q1 <- Q[1]
     t2 <- tt[2]
     t1 <- tt[1]
     iter <- 0
@@ -210,7 +210,7 @@ IDRlsi <- function(y = NULL,
       if (trace.it) {
         cat("iter", iter, "\t")
       }
-      t3 <- t2 + (t2 - t1) * (end - Q2) / (Q2 - Q1)
+      t3 <- t2 + (t2 - t1) * (end - q2) / (q2 - q1)
       if (trace.it) {
         cat("t321",
             t3,
@@ -218,8 +218,8 @@ IDRlsi <- function(y = NULL,
             t1,
             "321",
             L(y, t3),
-            Q2,
-            Q1,
+            q2,
+            q1,
             "converge",
             abs(t3 - t2) / t2,
             "\n")
@@ -229,8 +229,8 @@ IDRlsi <- function(y = NULL,
           break
       t1 <- t2
       t2 <- t3
-      Q1 <- Q2
-      Q2 <- L(y, t3)
+      q1 <- q2
+      q2 <- L(y, t3)
       if (iter > iter.max)
         break
     }
@@ -254,12 +254,4 @@ IDRlsi <- function(y = NULL,
     k = k,
     alpha = alpha
   ))
-  # out <- list(estimate = int,
-  #             estimator = ifelse(pf, "PF_IDR", "IDR"),
-  #             y = y,
-  #             rnd = rnd,
-  #             k = k,
-  #             alpha = alpha)
-  # class(out) <- "rrsi"
-  # return(out)
 }

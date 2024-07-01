@@ -73,8 +73,6 @@
                   collapse = "", sep = ""))
     A <- droplevels(A[!A[, 4] %in% rmclus, ])
   }
-  y <- A[, 1]
-  n <- A[, 2]
   x <- as.factor(A[, 3])
 
   if (!any(levels(x) == compare[1]) || !any(levels(x) == compare[2])) {

@@ -103,12 +103,6 @@ RRmpWald <- function(formula = NULL, data = NULL, compare = c("vac", "con"),
     x <- Xx$freqvec
     multvec <- Xx$multvec
   } else if (is.matrix(x)) {
-    # if (!all(dim(x) == 2)) {
-    # 	stop("Table dimensions must be 2 x 2\n")
-    # } else {
-    # 	xtable <- x
-    # 	x <- c(x)
-    # }
     stop("RRmpWald: data input by matrix is deprecated.")
   } else if (is.vector(x)) {
     if (length(x) != 4) {
@@ -141,10 +135,8 @@ RRmpWald <- function(formula = NULL, data = NULL, compare = c("vac", "con"),
   }
   if (!is.null(df)) {
     q <- qt(c(0.5, alpha / 2, 1 - alpha / 2), df)
-    what <- paste(100 * (1 - alpha), "% t intervals on ", df, " df\n", sep = "")
   } else {
     q <- qnorm(c(0.5, alpha / 2, 1 - alpha / 2))
-    what <- paste(100 * (1 - alpha), "% gaussian interval\n", sep = "")
   }
 
   ci.dl <- exp(logR + q * sqrt(varlogR))

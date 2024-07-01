@@ -102,10 +102,6 @@
 #' # MN method    0.611 0.0251 0.857
 #' # score method 0.611 0.0328 0.855
 #' # skew corr    0.611 0.0380 0.876
-
-##-------------------------------
-## RRsc function
-##-------------------------------
 #' @importFrom stats qnorm
 RRsc <- function(y = NULL,
                  data = NULL,
@@ -132,11 +128,11 @@ RRsc <- function(y = NULL,
   ##
   ## internal functions
   ###############################
-  u.p <- function(p1, p2, n1, n2) {
+  u_p <- function(p1, p2, n1, n2) {
     (1 - p1) / (n1 * p1) + (1 - p2) / (n2 * p2)
   }
 
-  zsc.phi <- function(phi, x1, x2, n1, n2, u.p, root, za, MN = FALSE) {
+  zsc.phi <- function(phi, x1, x2, n1, n2, u_p, root, za, MN = FALSE) {
     # for score interval in RRsc
     if (MN)
       mn <- sqrt((n1 + n2 - 1) / (n1 + n2))
@@ -144,7 +140,7 @@ RRsc <- function(y = NULL,
       mn <- 1
     p2 <- root(x1, x2, n1, n2, phi)
     p1 <- p2 * phi
-    u <- u.p(p1, p2, n1, n2)
+    u <- u_p(p1, p2, n1, n2)
     u[u < 0] <- NA
     z <- ((x1 - n1 * p1) / (1. - p1)) * sqrt(u) * mn
     zd <- abs(z - za)
@@ -152,22 +148,22 @@ RRsc <- function(y = NULL,
     return(unique(z[zd == min(zd)]))
   }
 
-  zsk.phi <- function(phi, x1, x2, n1, n2, u.p, root, za, MN = FALSE) {
+  zsk.phi <- function(phi, x1, x2, n1, n2, u_p, root, za, MN = FALSE) {
     # for skewness-corrected interval in RRsc
     p2 <- root(x1, x2, n1, n2, phi)
     p1 <- p2 * phi
     q1 <- 1 - p1
     q2 <- 1 - p2
-    u <- u.p(p1, p2, n1, n2)
+    u <- u_p(p1, p2, n1, n2)
     u[u < 0] <- NA
-    z.ph <- ((x1 - n1 * p1) / (1 - p1)) * sqrt(u)
+    z_ph <- ((x1 - n1 * p1) / (1 - p1)) * sqrt(u)
     g <- (q1 * (q1 - p1)) / (n1 * p1)^2 - (q2 * (q2 - p2)) / (n2 * p2) ^
       2
     g.ph <- g / u^1.5
-    z.s <- z.ph - (g.ph * (za^2 - 1)) / 6
-    zd <- abs(z.s - za)
+    z_s <- z_ph - (g.ph * (za^2 - 1)) / 6
+    zd <- abs(z_s - za)
     zd[is.na(zd)] <- 2 * zd[!is.na(zd)]
-    return(unique(z.s[zd == min(zd)]))
+    return(unique(z_s[zd == min(zd)]))
   }
 
   root <- function(x1, x2, n1, n2, phi) {
@@ -193,32 +189,32 @@ RRsc <- function(y = NULL,
     return(c(r1, r2))
   }
 
-  rr.opt <- function(z.phi, phi, za, trace.it, u.p, root, MN) {
+  rr.opt <- function(z_phi, phi, za, trace.it, u_p, root, MN) {
     # optimizer function for RRsc
     # data from parent environment
-    zz <- c(z.phi(phi[1], x1, x2, n1, n2, u.p, root, za, MN),
-            z.phi(phi[2], x1, x2, n1, n2, u.p, root, za, MN))
+    zz <- c(z_phi(phi[1], x1, x2, n1, n2, u_p, root, za, MN),
+            z_phi(phi[2], x1, x2, n1, n2, u_p, root, za, MN))
     if (abs(za - zz[1]) > abs(za - zz[2]))
       phi <- rev(phi)
-    phi.new <- phi[1]
-    phi.old <- phi[2]
-    z.old <- z.phi(phi.old, x1, x2, n1, n2, u.p, root, za, MN)
+    phi_new <- phi[1]
+    phi_old <- phi[2]
+    z_old <- z_phi(phi_old, x1, x2, n1, n2, u_p, root, za, MN)
     if (trace.it)
       cat("\n\nR start", phi, "\n")
     iter <- 0
     repeat {
       iter <- iter + 1
-      z.new <-
-        z.phi(phi.new, x1, x2, n1, n2, u.p, root, za, MN)
+      z_new <-
+        z_phi(phi_new, x1, x2, n1, n2, u_p, root, za, MN)
       phi <-
-        exp(log(phi.old) + log(phi.new / phi.old) *
-              ((za - z.old) / (z.new - z.old)))
-      phi.old <- phi.new
-      z.old <- z.new
-      phi.new <- phi
+        exp(log(phi_old) + log(phi_new / phi_old) *
+              ((za - z_old) / (z_new - z_old)))
+      phi_old <- phi_new
+      z_old <- z_new
+      phi_new <- phi
       if (trace.it)
-        cat("iteration", iter, "  z", z.new, "phi", phi.new, "\n")
-      if (abs(za - z.new) < converge)
+        cat("iteration", iter, "  z", z_new, "phi", phi_new, "\n")
+      if (abs(za - z_new) < converge)
         break
       if (iter == iter.max) {
         # no convergence
@@ -226,13 +222,8 @@ RRsc <- function(y = NULL,
         break
       }
     } # end repeat
-    return(phi.new)
+    return(phi_new)
   }
-
-  #---------------------------------------
-  # end internal function definitions
-  #---------------------------------------
-
   ###########################################
   ## Data reshaping
   ## - y can be matrix or vector (expects formula and data to be NULL)
@@ -265,16 +256,16 @@ RRsc <- function(y = NULL,
       c("upper", "lower")
     ))
   al2 <- alpha / 2
-  z.al2 <- qnorm(al2)
-  z.ah2 <- qnorm(1 - al2)
-  zv <- c(z.al2, z.ah2)
+  z_al2 <- qnorm(al2)
+  z_ah2 <- qnorm(1 - al2)
+  zv <- c(z_al2, z_ah2)
   int["point", ] <- rep((x1 / n1) / (x2 / n2), 2)
   p1 <- x1 / n1
 
   # log method
   p2 <- x2 / n2
   phi <- p1 / p2
-  v <- sqrt(u.p(p1, p2, n1, n2))
+  v <- sqrt(u_p(p1, p2, n1, n2))
   intv <- exp(v * zv + logb(phi))
   int["log method", ] <- intv
 
@@ -282,7 +273,7 @@ RRsc <- function(y = NULL,
   p1 <- (x1 + 0.5) / (n1 + 0.5)
   p2 <- (x2 + 0.5) / (n2 + 0.5)
   phi <- p1 / p2
-  v <- sqrt(u.p(p1, p2, (n1 + 0.5), (n2 + 0.5)))
+  v <- sqrt(u_p(p1, p2, (n1 + 0.5), (n2 + 0.5)))
   intv <- exp(v * zv + logb(phi))
   int["0.5 method", ] <- intv
 
@@ -306,17 +297,17 @@ RRsc <- function(y = NULL,
       cat("\nMN", switch(k, "lower", "upper"))
     za <-  -zv[k]
     phi <- c(int["0.5 method", k], 0.9 * int["0.5 method", k])
-    phi.new <-
+    phi_new <-
       rr.opt(
-        z.phi = zsc.phi,
+        z_phi = zsc.phi,
         phi = phi,
         za = za,
         trace.it = trace.it,
-        u.p = u.p,
+        u_p = u_p,
         root = root,
         MN = TRUE
       )
-    score[k] <- phi.new
+    score[k] <- phi_new
   }
   int["MN method", ] <- score
 
@@ -327,17 +318,17 @@ RRsc <- function(y = NULL,
       cat("\nScore", switch(k, "lower", "upper"))
     za <-  -zv[k]
     phi <- c(int["0.5 method", k], 0.9 * int["0.5 method", k])
-    phi.new <-
+    phi_new <-
       rr.opt(
-        z.phi = zsc.phi,
+        z_phi = zsc.phi,
         phi = phi,
         za = za,
         trace.it = trace.it,
-        u.p = u.p,
+        u_p = u_p,
         root = root,
         MN = FALSE
       )
-    score[k] <- phi.new
+    score[k] <- phi_new
   }
   int["score method", ] <- score
 
@@ -348,17 +339,17 @@ RRsc <- function(y = NULL,
       cat("\nSkew corr", switch(k, "lower", "upper"))
     za <-  -zv[k]
     phi <- c(int["0.5 method", k], 0.9 * int["0.5 method", k])
-    phi.new <-
+    phi_new <-
       rr.opt(
-        z.phi = zsk.phi,
+        z_phi = zsk.phi,
         phi = phi,
         za = za,
         trace.it = trace.it,
-        u.p = u.p,
+        u_p = u_p,
         root = root,
         MN = FALSE
       )
-    score[k] <- phi.new
+    score[k] <- phi_new
   }
   int["skew corr", ] <- score
 

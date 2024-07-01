@@ -33,16 +33,12 @@
 #' # txcon  0.768 0.968 0.2659
 #' # txvac  0.400 0.848 0.0737
 #' #
-
-##-------------------------------
-## rsbWt uses rsb to refit model
-##-------------------------------
 #' @importFrom stats update
 rsbWt <- function(fit = NULL,
                   subset.factor = NULL,
                   fit.only = TRUE) {
+  ## rsbWt uses rsb to refit model
   fit <- update(fit, x = TRUE, y = TRUE)
-  x <- fit$x
   yovern <- fit$y
   n <- fit$prior.weights
   if (is.null(n))
@@ -91,13 +87,9 @@ rsbWt <- function(fit = NULL,
 #' rsb(data = rat, formula = cbind(y, n) ~ group)$d
 #' #  control  treated
 #' # 1.232495 3.952861
-
-#-------------------------------
-# rsb returns d's and weights
-#-------------------------------
 #' @importFrom dplyr select ungroup
 rsb <- function(y = NULL, n = NULL, formula = NULL, data = NULL, id = NULL) {
-
+  # rsb returns d's and weights
   if (is.null(y) && is.null(n) && !(is.null(formula) && is.null(data))) {
     ## case when formula and data is input
     vars <- all.vars(formula)
@@ -130,7 +122,5 @@ rsb <- function(y = NULL, n = NULL, formula = NULL, data = NULL, id = NULL) {
   v.i <- (tapply(r.ij^2, id, sum) * m.i) / ((m.i - 1) * n.i^2)
   d.i <- (n.i * v.i) / (p.i * (1 - p.i))
   w <- 1 / d.i[tapply(y, id)]
-  # y.tilde <- y * w
-  # n.tilde <- n * w
   return(list(weights = w, d = d.i))
 }

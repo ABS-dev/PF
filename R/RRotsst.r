@@ -91,11 +91,6 @@
 #' #
 #' # PF     LL     UL
 #' # 0.6111 0.0148 0.8519
-
-##-----------------------------------------------
-## RRotsst
-##-----------------------------------------------
-
 #' @importFrom stats qbeta
 RRotsst <- function(y = NULL,
                     data = NULL,
@@ -236,15 +231,14 @@ RRotsst <- function(y = NULL,
       if (iter > iter.max)
         break
       if (iter > 1) {
-        old.low <- low
         low <- low + step
       }
-      scst.y <- rep(NA, nrow(Y))
-      for (i in seq_along(scst.y))
-        scst.y[i] <- scst(low, Y$y1[i], n1, Y$y2[i], n2)
-      q.set <- Y[abs(scst.y) >= abs(scst.y[observed]), ]
-      q.set$n1y1 <- n1 - q.set$y1
-      q.set$n2y2 <- n2 - q.set$y2
+      scst_y <- rep(NA, nrow(Y))
+      for (i in seq_along(scst_y))
+        scst_y[i] <- scst(low, Y$y1[i], n1, Y$y2[i], n2)
+      q_set <- Y[abs(scst_y) >= abs(scst_y[observed]), ]
+      q_set$n1y1 <- n1 - q_set$y1
+      q_set$n2y2 <- n2 - q_set$y2
       if (gamma > 0)
         # Berger-Boos method 17.164
         pn <- seq(max(L1, L2 / low), min(U1, U2 / low),
@@ -263,9 +257,9 @@ RRotsst <- function(y = NULL,
         pni <- pn[i]
         fy[i] <-
           sum(
-            q.set$C * pni^q.set$y1 *
-              (1 - pni)^q.set$n1y1 *
-              (low * pni)^q.set$y2 * (1 - low * pni)^q.set$n2y2
+            q_set$C * pni^q_set$y1 *
+              (1 - pni)^q_set$n1y1 *
+              (low * pni)^q_set$y2 * (1 - low * pni)^q_set$n2y2
           )
       }
       max.fy <- max(fy)
@@ -295,15 +289,14 @@ RRotsst <- function(y = NULL,
     if (iter > iter.max)
       break
     if (iter > 1) {
-      old.high <- high
       high <- high + step
     }
-    scst.y <- rep(NA, nrow(Y))
-    for (i in seq_along(scst.y))
-      scst.y[i] <- scst(high, Y$y1[i], n1, Y$y2[i], n2)
-    p.set <- Y[abs(scst.y) >= abs(scst.y[observed]), ]
-    p.set$n1y1 <- n1 - p.set$y1
-    p.set$n2y2 <- n2 - p.set$y2
+    scst_y <- rep(NA, nrow(Y))
+    for (i in seq_along(scst_y))
+      scst_y[i] <- scst(high, Y$y1[i], n1, Y$y2[i], n2)
+    p_set <- Y[abs(scst_y) >= abs(scst_y[observed]), ]
+    p_set$n1y1 <- n1 - p_set$y1
+    p_set$n2y2 <- n2 - p_set$y2
     if (gamma > 0)
       # Berger-Boos method 17.164
       pn <- seq(max(L1, L2 / high), min(U1, U2 / high),
@@ -321,8 +314,8 @@ RRotsst <- function(y = NULL,
     for (i in 1:nuisance.points) {
       pni <- pn[i]
       fy[i] <-
-        sum(p.set$C * pni^p.set$y1 * (1 - pni)^p.set$n1y1 *
-              (high * pni)^p.set$y2 *  (1 - high * pni)^p.set$n2y2)
+        sum(p_set$C * pni^p_set$y1 * (1 - pni)^p_set$n1y1 *
+              (high * pni)^p_set$y2 *  (1 - high * pni)^p_set$n2y2)
     }
     max.fy <- max(fy)
     if (trace.it)

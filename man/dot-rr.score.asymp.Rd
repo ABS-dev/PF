@@ -21,5 +21,6 @@
 Internal function.
 }
 \examples{
-# none
+.rr.score.asymp(c(0, 18, 16, 19), mn = FALSE)
+.rr.score.asymp(c(0, 18, 16, 19), mn = TRUE)
 }

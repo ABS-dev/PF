@@ -38,15 +38,12 @@ phiWt <- function(fit,
                   subset.factor = NULL,
                   fit.only = TRUE,
                   show.warns = FALSE) {
-  # Estimates weights = 1 / phi by MME
-  # where phi = dispersion parameter such that
-  #  var(y) = n * phi * mu * (1-mu)
-  # old family either binomial or poisson
+  # Estimates weights = 1 / phi by MME where phi = dispersion parameter such
+  # that var(y) = n * phi * mu * (1-mu) old family either binomial or poisson
   # newfamily is quasibinomial or quasipoisson
   options.warn <- options()$warn
   if (!show.warns) options(warn = -1) # deprecated warning
   fit <- update(fit, x = TRUE, y = TRUE)
-  x <- fit$x
   y <- fit$y
   m <- fit$prior.weights
   oldfamily <- fit$family$family

@@ -85,11 +85,6 @@
 #' # txvac  0.367 0.752 0.0997
 #'
 #'
-
-##-----------------------------------------------
-## RRor
-##-----------------------------------------------
-
 #' @importFrom stats coef qnorm qt
 RRor <- function(fit = NULL, beta.hat = NULL, var.beta.hat = NULL,
                  degf = NULL, which = c(1, 2), pf = TRUE, norm = FALSE,
@@ -129,8 +124,4 @@ RRor <- function(fit = NULL, beta.hat = NULL, var.beta.hat = NULL,
   return(rror$new(estimate = int, estimator = ifelse(pf, "PF", "RR"),
                   mu = mu, rnd = rnd, alpha = alpha,
                   norm = norm, degf = degf))
-  # out <- list(estimate = int, estimator = ifelse(pf, "PF", "RR"),
-  #             mu = mu, rnd = rnd, alpha = alpha, norm = norm, degf = degf)
-  # class(out) <- "rror"
-  # return(out)
 }

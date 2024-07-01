@@ -53,14 +53,14 @@ tauWt <- function(fit,
                   converge = 1e-6,
                   trace.it = FALSE) {
   # define functions Tau and tauOptim
-  Tau <- function(fit, x, n, tau.hat, iter) {
+  Tau <- function(fit, x, n, tau_hat, iter) {
     pcs <- sum(resid(fit, type = "pearson")^2)
     degf <- summary(fit)$df.resid
     mu.hat <- fit$fitted
     V.beta <- summary(fit)$cov.sc
     V.eta <- x %*% V.beta %*% t(x)
     d <- diag(V.eta)
-    w <- 1 / (1 + (n - 1) * tau.hat)
+    w <- 1 / (1 + (n - 1) * tau_hat)
     v <- n * mu.hat * (1 - mu.hat)
     wvd <- w * (1 - w * v * d)
     denominator <- sum((n - 1) * wvd)
@@ -73,30 +73,30 @@ tauWt <- function(fit,
   }
 
   tauOptim <- function(fit, x, n) {
-    tau.hat <- 0
+    tau_hat <- 0
     w <- rep(1, length(n))
     pcs <- sum(resid(fit, type = "pearson")^2)
     df <- fit$df.residual
     iter <- 0
-    if (trace.it) cat("\nCycle", iter, "   tau.hat =", tau.hat,
+    if (trace.it) cat("\nCycle", iter, "   tau_hat =", tau_hat,
                       "PCS =", pcs, "deviance =", fit$deviance)
     repeat {
       iter <- iter + 1
       if (iter > iter.max)
         break
-      tau.hat <- Tau(fit, x, n, tau.hat, iter)
-      w <- 1 / (1 + tau.hat * (n - 1))
+      tau_hat <- Tau(fit, x, n, tau_hat, iter)
+      w <- 1 / (1 + tau_hat * (n - 1))
       fit <- update(fit, weights = w, maxit = iter.max / 2)
       pcs <- sum(resid(fit, type = "pearson")^2)
-      if (trace.it) cat("\nCycle", iter, "   tau.hat =",
-                        tau.hat, "PCS =", pcs, "deviance =",
+      if (trace.it) cat("\nCycle", iter, "   tau_hat =",
+                        tau_hat, "PCS =", pcs, "deviance =",
                         round(fit$deviance, 3))
       if (pcs < (df + converge))
         if (iter > 1)
           break
     }
-    if (trace.it) cat("\ntau =", tau.hat, "\n")
-    return(list(w = w, tau.hat = tau.hat))
+    if (trace.it) cat("\ntau =", tau_hat, "\n")
+    return(list(w = w, tau_hat = tau_hat))
   }
 
   fit <- update(fit, x = TRUE, y = TRUE)
@@ -111,11 +111,11 @@ tauWt <- function(fit,
   if (is.null(subset.factor)) {
     wTau <- tauOptim(fit, x, n)
     w <- wTau$w
-    tau.hat <- wTau$tau.hat
+    tau_hat <- wTau$tau_hat
   } else {
     w <- rep(NA, length(n))
-    tau.hat <- rep(NA, length(levels(subset.factor)))
-    names(tau.hat) <- levels(subset.factor)
+    tau_hat <- rep(NA, length(levels(subset.factor)))
+    names(tau_hat) <- levels(subset.factor)
     flink <- fit$family$link ##
     for (lev in levels(subset.factor)) {
       if (trace.it) cat("\n", lev, sep = "")
@@ -130,14 +130,14 @@ tauWt <- function(fit,
       xi <- matrix(1, nobs, 1)
       wTau <- tauOptim(subfit, xi, n[subset.factor == lev])
       w[subset.factor == lev] <- wTau$w
-      tau.hat[lev] <- wTau$tau.hat
+      tau_hat[lev] <- wTau$tau_hat
     }
   }
   newfit <- update(fit, weights = w)
   if (fit.only) {
     out <- newfit
   } else  {
-    out <- list(fit = newfit, weights = w, tau = tau.hat)
+    out <- list(fit = newfit, weights = w, tau = tau_hat)
   }
   return(out)
 }

@@ -75,8 +75,7 @@ Data may be input two ways, either using a formula and data frame, or as a matri
 ```{r} 
 RRstr(cbind(y, n) ~ tx + cluster(clus), Table6,
       compare = c("a", "b"), pf = FALSE)
-# Data matrix input:
-# RRstr(Y = table6, pf = F)
+# Data matrix input: RRstr(Y = table6, pf = F)
 ```
 
 ## Mantel-Haenszel estimator
@@ -94,8 +93,7 @@ bias for sparse data [@GR85].  It should be avoided.].
 ```{r} 
 RRmh(cbind(y, n) ~ tx + cluster(clus), Table6,
      compare = c("a", "b"), pf = FALSE)
-# Data matrix input:
-# RRmh(Y = table6, pf = F)
+# Data matrix input: RRmh(Y = table6, pf = F)
 ```
 
 ## Examples
