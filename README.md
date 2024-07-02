@@ -1,4 +1,4 @@
-# PF - Prevented Fraction <img src="man/figures/logo.png" align="right" />
+# PF - Prevented Fraction <img src="man/figures/logo.png" width="150" align="right" />
 
 
 ### To install or update PF:

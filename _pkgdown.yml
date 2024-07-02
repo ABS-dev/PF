@@ -1,4 +1,8 @@
 url: ~
+destination: docs/
 template:
   bootstrap: 5
-
+repo:
+  url:
+    home:  ttps://github.com/ABS-dev/PF/
+    issue: ttps://github.com/ABS-dev/PF/issues/
