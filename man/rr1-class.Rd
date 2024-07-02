@@ -11,12 +11,12 @@ Data class rr1
 
 \section{Fields}{
 
-\describe{
-\item{\code{estimate}}{  vector with point and interval estimate}
-\item{\code{estimator}}{  either \code{"PF"} or \code{"IDR"}}
-\item{\code{Y}}{data.frame with restructured input}
-\item{\code{rnd}}{how many digits to round display}
-\item{\code{alpha}}{complement of c.i.}
+\itemize{
+\item \code{estimate}:   vector with point and interval estimate
+\item \code{estimator}:   either \code{"PF"} or \code{"IDR"}
+\item \code{Y}: data.frame with restructured input
+\item \code{rnd}: how many digits to round display
+\item \code{alpha}: complement of c.i.
 }
 }
 

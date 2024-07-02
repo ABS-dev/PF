@@ -40,13 +40,13 @@ estimates.}
 }
 \value{
 An object of class \link{rr1}  with the following fields.
-\describe{
-\item{\code{estimate}}{vector of point and interval estimates:  point estimate,
-lower confidence limit, upper confidence limit}
-\item{\code{estimator}}{either \code{"PF"} or \code{"RR"}}
-\item{\code{y}}{data.frame of restructured input}
-\item{\code{rnd}}{how many digits to round the display}
-\item{\code{alpha}}{complement of confidence level}
+\itemize{
+\item \code{estimate}: vector of point and interval estimates:  point estimate, lower
+confidence limit, upper confidence limit
+\item \code{estimator}: either \code{"PF"} or \code{"RR"}
+\item \code{y}: data.frame of restructured input
+\item \code{rnd}: how many digits to round the display
+\item \code{alpha}: complement of confidence level
 }
 }
 \description{

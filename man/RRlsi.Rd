@@ -56,14 +56,12 @@ estimates.}
 }
 \value{
 An object of class \link{rrsi} with the following fields:
-\describe{
-\item{\code{estimate}}{matrix of point and interval estimates - see details}
-\item{\code{estimator}}{either \code{"PF"} or \code{"RR"}}
-\item{\code{y}}{data.frame with "y1", "n1", "y2", "n2" values. }
-\item{\code{rnd}}{how many digits to round the display}
-\item{\code{k}}{likelihood ratio criterion}
-\item{\code{alpha}}{complement of confidence level}
-}
+\code{estimate}: matrix of point and interval estimates - see details
+\code{estimator}: either \code{"PF"} or \code{"RR"}
+\code{y}: data.frame with "y1", "n1", "y2", "n2" values.
+\code{rnd}: how many digits to round the display
+\code{k}: likelihood ratio criterion
+\code{alpha}: complement of confidence level
 }
 \description{
 likelihood support interval for the risk ratio or prevented

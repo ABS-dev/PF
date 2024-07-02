@@ -36,15 +36,13 @@
 #' @param rnd Number of digits for rounding. Affects display only, not
 #'   estimates.
 #' @param start describe here.
-#' @return A [rrsi] object with the following elements.
-#' \describe{
-#'   \item{`estimate`}{vector with point and interval estimate}
-#'   \item{`estimator`}{either *PF* or *IDR*}
-#'   \item{`y`}{data.frame with "y1", "n1", "y2", "n2" values.}
-#'   \item{`k`}{Likelihood ratio criterion}
-#'   \item{`rnd`}{how many digits to round the display}
-#'   \item{`alpha`}{complement of confidence level}
-#' }
+#' @returns A [rrsi] object with the following elements.
+#' * `estimate`: vector with point and interval estimate
+#' * `estimator`: either *PF* or *IDR*
+#' * `y`: data.frame with "y1", "n1", "y2", "n2" values.
+#' * `k`: Likelihood ratio criterion
+#' * `rnd`: how many digits to round the display
+#' * `alpha`: complement of confidence level
 #' @references Royall R. *Statistical Evidence: A Likelihood Paradigm*.
 #'   Chapman & Hall, Boca Raton, 1997. Section 7.2.
 #' @author [PF-package]

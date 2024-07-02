@@ -30,16 +30,13 @@
 #' @param rnd Number of digits for rounding. Affects display only, not
 #'   estimates.
 #'
-#' @return A [rrmp] object with the following fields:
-#' \describe{
-#'   \item{`estimate`}{vector of point and interval estimates - see details}
-#'   \item{`estimator`}{either `"PF"` or `"RR"`}
-#'   \item{`compare`}{text vector, same as input}
-#'   \item{`alpha`}{complement of confidence level}
-#'   \item{`rnd`}{how many digits to round the display}
-#'   \item{`multvec`}{data frame showing the multinomial representation of the
-#'   data}
-#' }
+#' @returns A [rrmp] object with the following fields:
+#' * `estimate`: vector of point and interval estimates - see details
+#' * `estimator`: either `"PF"` or `"RR"`
+#' * `compare`: text vector, same as input
+#' * `alpha`: complement of confidence level
+#' * `rnd`: how many digits to round the display
+#' * `multvec`: data frame showing the multinomial representation of the data
 #' @export
 #' @author [PF-package]
 #' @note Experimental functions for estimating profile likelihood intervals are

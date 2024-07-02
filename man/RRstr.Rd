@@ -53,16 +53,16 @@ estimates.}
 }
 \value{
 A \link{rrstr} object with the following fields:
-\describe{
-\item{\code{estimate}}{matrix of point and interval estimates - starting value,
-MLE, and skewness corrected}
-\item{\code{hom}}{list of homogeneity statistic, p-value, and degrees of
-freedom, or error message if appropriate.}
-\item{\code{estimator}}{either \code{"PF"} or \code{"RR"}}
-\item{\code{y}}{\code{data.frame} of restructured input}
-\item{\code{compare}}{groups compared}
-\item{\code{rnd}}{how many digits to round the display}
-\item{\code{alpha}}{size of test; complement of confidence level}
+\itemize{
+\item \code{estimate}: matrix of point and interval estimates - starting value, MLE,
+and skewness corrected
+\item \code{hom}: list of homogeneity statistic, p-value, and degrees of freedom, or
+error message if appropriate.
+\item \code{estimator}: either \code{"PF"} or \code{"RR"}
+\item \code{y}: \code{data.frame} of restructured input
+\item \code{compare}: groups compared
+\item \code{rnd}: how many digits to round the display
+\item \code{alpha}: size of test; complement of confidence level
 }
 }
 \description{

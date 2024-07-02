@@ -28,14 +28,12 @@
 #' @param converge Convergence criterion
 #' @param rnd Number of digits for rounding. Affects display only, not
 #'   estimates.
-#' @return A [rrsc] object with the following fields.
-#' \describe{
-#'   \item{`estimate`}{matrix of point and interval estimates - see details}
-#'   \item{`estimator`}{either `"PF"` or `"RR"`}
-#'   \item{`y`}{data.frame with "y1", "n1", "y2", "n2" values. }
-#'   \item{`rnd`}{how many digits to round the display}
-#'   \item{`alpha`}{complement of confidence level}\
-#' }
+#' @returns A [rrsc] object with the following fields.
+#' * `estimate`: matrix of point and interval estimates - see details
+#' * `estimator`: either `"PF"` or `"RR"`
+#' * `y`: data.frame with "y1", "n1", "y2", "n2" values.
+#' * `rnd`: how many digits to round the display
+#' * `alpha`: complement of confidence level
 #' @export
 #' @references Gart JJ, Nam J, 1988. Approximate interval estimation of the
 #'   ratio of binomial parameters: a review and corrections for skewness.

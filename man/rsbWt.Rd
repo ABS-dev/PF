@@ -16,10 +16,10 @@ and phi estimates.}
 }
 \value{
 A list with the following elements.
-\describe{
-\item{\code{fit}}{the new model fit, updated by the estimated weights}
-\item{\code{weights}}{vector of weights}
-\item{\code{d}}{vector of \eqn{{d}_{i}}{d_i} estimates}
+\itemize{
+\item \code{fit}: the new model fit, updated by the estimated weights
+\item \code{weights}: vector of weights
+\item \code{d}: vector of \eqn{{d}_{i}}{d_i} estimates
 }
 }
 \description{

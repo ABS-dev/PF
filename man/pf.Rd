@@ -11,10 +11,10 @@ data class pf
 
 \section{Fields}{
 
-\describe{
-\item{\code{estimator}}{  either \code{"PF"} or \code{"IDR"}}
-\item{\code{rnd}}{  how many digits to round display}
-\item{\code{alpha}}{  complement of c.i.}
+\itemize{
+\item \code{estimator}:  either \code{"PF"} or \code{"IDR"}
+\item \code{rnd}:  how many digits to round display
+\item \code{alpha}:  complement of c.i.
 }
 }
 

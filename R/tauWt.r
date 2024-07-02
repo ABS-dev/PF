@@ -14,12 +14,10 @@
 #' @param converge Convergence criterion: difference between model degrees of
 #'   freedom and Pearson's chi-square. Default 1e-6.
 #' @param trace.it Display print statements indicating progress
-#' @return A list with the following elements.
-#' \describe{
-#'   \item{`fit`}{the new model fit, updated by the estimated weights}
-#'   \item{`weights`}{vector of weights}
-#'   \item{`phi`}{vector of phi estimates}
-#' }
+#' @returns A list with the following elements.
+#' `fit`: the new model fit, updated by the estimated weights
+#' `weights`: vector of weights
+#' `phi`: vector of phi estimates
 #' @export
 #' @references Williams DA, 1982. Extra-binomial variation in logistic linear
 #'   models. *Applied Statistics* 31:144-148.

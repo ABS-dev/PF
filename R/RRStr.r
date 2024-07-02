@@ -22,18 +22,16 @@
 #'   estimates.
 #' @param multiplier internal control parameter for algorithm
 #' @param divider internal control parameter for algorithm
-#' @return A [rrstr] object with the following fields:
-#' \describe{
-#'   \item{`estimate`}{matrix of point and interval estimates - starting value,
-#'   MLE, and skewness corrected}
-#'   \item{`hom`}{list of homogeneity statistic, p-value, and degrees of
-#'   freedom, or error message if appropriate.}
-#'   \item{`estimator`}{either `"PF"` or `"RR"`}
-#'   \item{`y`}{`data.frame` of restructured input}
-#'   \item{`compare`}{groups compared}
-#'   \item{`rnd`}{how many digits to round the display}
-#'   \item{`alpha`}{size of test; complement of confidence level}
-#' }
+#' @returns A [rrstr] object with the following fields:
+#' * `estimate`: matrix of point and interval estimates - starting value, MLE,
+#' and skewness corrected
+#' * `hom`: list of homogeneity statistic, p-value, and degrees of freedom, or
+#' error message if appropriate.
+#' * `estimator`: either `"PF"` or `"RR"`
+#' * `y`: `data.frame` of restructured input
+#' * `compare`: groups compared
+#' * `rnd`: how many digits to round the display
+#' * `alpha`: size of test; complement of confidence level
 #' @export
 #' @note Vignette *Examples for Stratified Designs* forthcoming with more
 #'   examples.

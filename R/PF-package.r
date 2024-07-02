@@ -4,11 +4,9 @@
 #' @docType data
 #' @format a data frame with 52 observations of the following 3 variables, no
 #'   NAs
-#' \describe{
-#'   \item{`cage`}{cage ID. 1 - 26}
-#'   \item{`tx`}{treatment. one of "con" or "vac"}
-#'   \item{`pos`}{numeric indicator of positive response. 0 = FALSE or 1 = TRUE}
-#'   }
+#' * `cage`: cage ID. 1 - 26
+#' * `tx`: treatment. one of "con" or "vac"
+#' * `pos`: numeric indicator of positive response. 0 = FALSE or 1 = TRUE
 #' @references We need some references
 #' @keywords datasets
 NA
@@ -19,12 +17,10 @@ NA
 #' @rdname dfSet1
 #' @docType data
 #' @format a data.frame with 6 observation of the following 4 variables, no NAs
-#' \describe{
-#'   \item{`y`}{number positive}
-#'   \item{`n`}{total number in group `tx` x `clus`}
-#'   \item{`tx`}{treatment "vac" or "con"}
-#'   \item{`clus`}{cluster ID}
-#' }
+#' * `y`: number positive
+#' * `n`: total number in group `tx` x `clus`
+#' * `tx`: treatment "vac" or "con"
+#' * `clus`: cluster ID
 #' @references We need some references
 #' @keywords datasets
 NA
@@ -35,12 +31,10 @@ NA
 #' @rdname dfTable6
 #' @docType data
 #' @format a data.frame with 8 observations of the following 4 variables, no NAs
-#' \describe{
-#'   \item{`y`}{number positive}
-#'   \item{`n`}{total number in group `tx` x `clus`}
-#'   \item{`tx`}{treatment "a" or "b"}
-#'   \item{`clus`}{cluster ID}
-#' }
+#' * `y`: number positive
+#' * `n`: total number in group `tx` x `clus`
+#' * `tx`: treatment "a" or "b"
+#' * `clus`: cluster ID
 #' @references Table 1 from Gart (1985)
 #' @keywords datasets
 NA
@@ -50,12 +44,10 @@ NA
 #' @description bird dataset
 #' @docType data
 #' @format a data.frame with 6 observations of the following 4 variables, no NAs
-#' \describe{
-#'   \item{`y`}{number positive}
-#'   \item{`n`}{total number in group `tx` x `all`}
-#'   \item{`tx`}{treatment "vac" or "con"}
-#'   \item{`all`}{all?}
-#' }
+#' * `y`: number positive
+#' * `n`: total number in group `tx` x `all`
+#' * `tx`: treatment "vac" or "con"
+#' * `all`: all?
 #' @references we need some references
 #' @keywords datasets
 NA
@@ -65,12 +57,10 @@ NA
 #' @description birdm dataset
 #' @docType data
 #' @format a data.frame with 6 observations of the following 4 variables, no NAs
-#' \describe{
-#'   \item{`y`}{number positive}
-#'   \item{`n`}{total number in group `tx` x `all`}
-#'   \item{`tx`}{treatment "vac" or "con"}
-#'   \item{`all`}{all?}
-#' }
+#' * `y`: number positive
+#' * `n`: total number in group `tx` x `all`
+#' * `tx`: treatment "vac" or "con"
+#' * `all`: all?
 #' @references we need some references
 #' @keywords datasets
 NA
@@ -95,16 +85,9 @@ NA
 #' @description rat dataset
 #' @format a data.frame with 32 observations of the following 3 variables, no
 #'   NAs
-#'
-#' \describe{
-#'
-#'   \item{y}{number positive}
-#'
-#'   \item{n}{total number}
-#'
-#'   \item{group}{treatment group: "control" or "treated"}
-#'
-#'   }
+#' * `y`: number positive
+#' * `n`: total number
+#' * `group`: treatment group: "control" or "treated"
 #' @references Weil's rat data (Table 1 of Rao and Scott)
 #' @keywords datasets
 NA

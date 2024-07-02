@@ -6,11 +6,11 @@
 \title{Table6 dataset}
 \format{
 a data.frame with 8 observations of the following 4 variables, no NAs
-\describe{
-\item{\code{y}}{number positive}
-\item{\code{n}}{total number in group \code{tx} x \code{clus}}
-\item{\code{tx}}{treatment "a" or "b"}
-\item{\code{clus}}{cluster ID}
+\itemize{
+\item \code{y}: number positive
+\item \code{n}: total number in group \code{tx} x \code{clus}
+\item \code{tx}: treatment "a" or "b"
+\item \code{clus}: cluster ID
 }
 }
 \description{

@@ -7,12 +7,10 @@
 #' @param subset.factor Factor for estimating the weights by subset.
 #' @param fit.only Return only the new fit? If FALSE, also returns the weights
 #'   and phi estimates.
-#' @return A list with the following elements.
-#' \describe{
-#'  \item{`fit`}{the new model fit, updated by the estimated weights}
-#'  \item{`weights`}{vector of weights}
-#'  \item{`d`}{vector of \eqn{{d}_{i}}{d_i} estimates}
-#' }
+#' @returns A list with the following elements.
+#' * `fit`: the new model fit, updated by the estimated weights
+#' * `weights`: vector of weights
+#' * `d`: vector of \eqn{{d}_{i}}{d_i} estimates
 #'
 #' @export
 #' @references Rao JNK, Scott AJ, 1992. A simple method for the analysis of
@@ -69,11 +67,9 @@ rsbWt <- function(fit = NULL,
 #' @param formula Formula of the form cbind(y, n) ~ id, where y is the number
 #'   positive, n is the total number, id is a factor for estimating the weights
 #'   by subset.
-#' @return A list with the following elements.
-#' \describe{
-#'   \item{`w`}{vector of weights}
-#'   \item{`d`}{vector of \eqn{{d}_{i}}{d_i} estimates}
-#' }
+#' @returns A list with the following elements.
+#' * `w`: vector of weights
+#' * `d`: vector of \eqn{{d}_{i}}{d_i} estimates
 #' @export
 #' @references Rao JNK, Scott AJ, 1992. A simple method for the analysis of
 #'   clustered binary data. *Biometrics* 48:577-585.

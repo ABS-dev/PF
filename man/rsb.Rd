@@ -21,9 +21,9 @@ by subset.}
 }
 \value{
 A list with the following elements.
-\describe{
-\item{\code{w}}{vector of weights}
-\item{\code{d}}{vector of \eqn{{d}_{i}}{d_i} estimates}
+\itemize{
+\item \code{w}: vector of weights
+\item \code{d}: vector of \eqn{{d}_{i}}{d_i} estimates
 }
 }
 \description{

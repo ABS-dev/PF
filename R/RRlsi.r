@@ -36,15 +36,13 @@
 #' @param start Optional starting value.
 #' @param track Verbose tracking of the iterations?
 #' @param full.track Verbose tracking of the iterations?
-#' @return An object of class [rrsi] with the following fields:
-#' \describe{
-#'   \item{`estimate`}{matrix of point and interval estimates - see details}
-#'   \item{`estimator`}{either `"PF"` or `"RR"`}
-#'   \item{`y`}{data.frame with "y1", "n1", "y2", "n2" values. }
-#'   \item{`rnd`}{how many digits to round the display}
-#'   \item{`k`}{likelihood ratio criterion}
-#'   \item{`alpha`}{complement of confidence level}
-#' }
+#' @returns An object of class [rrsi] with the following fields:
+#' `estimate`: matrix of point and interval estimates - see details
+#' `estimator`: either `"PF"` or `"RR"`
+#' `y`: data.frame with "y1", "n1", "y2", "n2" values.
+#' `rnd`: how many digits to round the display
+#' `k`: likelihood ratio criterion
+#' `alpha`: complement of confidence level
 #' @export
 #' @references Royall R. *Statistical Evidence: A Likelihood Paradigm*. Chapman
 #'   & Hall, Boca Raton, 1997.  Section 7.6

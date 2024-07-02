@@ -23,15 +23,13 @@
 #' @param alpha Complement of the confidence level.
 #' @param rnd Number of digits for rounding. Affects display only, not
 #'   estimates.
-#' @return An object of class [rr1]  with the following fields.
-#' \describe{
-#'   \item{`estimate`}{vector of point and interval estimates:  point estimate,
-#'   lower confidence limit, upper confidence limit}
-#'   \item{`estimator`}{either `"PF"` or `"RR"`}
-#'   \item{`y`}{data.frame of restructured input}
-#'   \item{`rnd`}{how many digits to round the display}
-#'   \item{`alpha`}{complement of confidence level}
-#' }
+#' @returns An object of class [rr1]  with the following fields.
+#' * `estimate`: vector of point and interval estimates:  point estimate, lower
+#' confidence limit, upper confidence limit
+#' * `estimator`: either `"PF"` or `"RR"`
+#' * `y`: data.frame of restructured input
+#' * `rnd`: how many digits to round the display
+#' * `alpha`: complement of confidence level
 #' @export
 #' @note If either all y1's or all y2's are zero, a division by zero may occur,
 #'   and a NaN returned for some values.

@@ -11,14 +11,13 @@ data class rrsi
 
 \section{Fields}{
 
-
-\describe{
-\item{\code{Y}}{ data.frame with restructured input}
-\item{\code{k}}{  likelihood ratio criterion}
-\item{\code{rnd}}{  digits to round display}
-\item{\code{alpha}}{  complement of c.i.}
-\item{\code{estimate}}{  vector with point and interval estimate}
-\item{\code{estimator}}{  either \code{"PF"} or \code{"IDR"}}
+\itemize{
+\item \code{Y}: data.frame with restructured input
+\item \code{k}:  likelihood ratio criterion
+\item \code{rnd}:  digits to round display
+\item \code{alpha}:  complement of c.i.
+\item \code{estimate}:  vector with point and interval estimate
+\item \code{estimator}:  either \code{"PF"} or \code{"IDR"}
 }
 }
 

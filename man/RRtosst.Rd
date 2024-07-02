@@ -55,12 +55,12 @@ nuisance parameter evaluation)}
 }
 \value{
 A \link{rr1} object with the following fields.
-\describe{
-\item{\code{estimate}}{vector with point and interval estimate}
-\item{\code{estimator}}{either \code{"PF"} or \code{"RR"}}
-\item{\code{y}}{data.frame with "y1", "n1", "y2", "n2" values. }
-\item{\code{rnd}}{how many digits to round the display}
-\item{\code{alpha}}{complement of confidence level}
+\itemize{
+\item \code{estimate}: vector with point and interval estimate
+\item \code{estimator}: either \code{"PF"} or \code{"RR"}
+\item \code{y}: data.frame with "y1", "n1", "y2", "n2" values.
+\item \code{rnd}: how many digits to round the display
+\item \code{alpha}: complement of confidence level
 }
 }
 \description{

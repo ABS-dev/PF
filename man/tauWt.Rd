@@ -30,11 +30,9 @@ freedom and Pearson's chi-square. Default 1e-6.}
 }
 \value{
 A list with the following elements.
-\describe{
-\item{\code{fit}}{the new model fit, updated by the estimated weights}
-\item{\code{weights}}{vector of weights}
-\item{\code{phi}}{vector of phi estimates}
-}
+\code{fit}: the new model fit, updated by the estimated weights
+\code{weights}: vector of weights
+\code{phi}: vector of phi estimates
 }
 \description{
 MME estimates of binomial dispersion parameter tau

@@ -8,12 +8,10 @@
 #' @param fit.only Return only the new fit?  If FALSE, also returns the weights
 #'   and phi estimates.
 #' @param show.warns Show warnings
-#' @return A list with the following elements.
-#' \describe{
-#'   \item{`fit`}{the new model fit, updated by the estimated weights}
-#'   \item{`weights`}{vector of weights}
-#'   \item{`phi`}{vector of phi estimates}
-#' }
+#' @returns A list with the following elements.
+#' `fit`: the new model fit, updated by the estimated weights
+#' `weights`: vector of weights
+#' `phi`: vector of phi estimates
 #' @export
 #' @references Wedderburn RWM, 1974. Quasi-likelihood functions, generalized
 #'   linear models, and the Gauss-Newton method. *Biometrika* 61:439-447.

@@ -27,14 +27,12 @@
 #' @param pf Estimate *IDR*, or its complement *PF*?
 #' @param rnd Number of digits for rounding. Affects display only, not
 #'   estimates.
-#' @return A [rr1] object with the following elements.
-#' \describe{
-#'   \item{`estimate`}{vector with point and interval estimate}
-#'   \item{`estimator`}{either *PF* or *IDR*}
-#'   \item{`y`}{data vector}
-#'   \item{`rnd`}{how many digits to round the display}
-#'   \item{`alpha`}{complement of confidence level}
-#' }
+#' @returns A [rr1] object with the following elements.
+#' * `estimate`: vector with point and interval estimate
+#' * `estimator`: either *PF* or *IDR*
+#' * `y`: data vector
+#' * `rnd`: how many digits to round the display
+#' * `alpha`: complement of confidence level
 #' @export
 #' @references Siev D, 1994. Estimating vaccine efficacy in prospective studies.
 #'   *Preventive Veterinary Medicine* 20:279-296, Appendix 1.

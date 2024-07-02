@@ -48,14 +48,13 @@ estimates.}
 }
 \value{
 A \link{rrmp} object with the following fields:
-\describe{
-\item{\code{estimate}}{vector of point and interval estimates - see details}
-\item{\code{estimator}}{either \code{"PF"} or \code{"RR"}}
-\item{\code{compare}}{text vector, same as input}
-\item{\code{alpha}}{complement of confidence level}
-\item{\code{rnd}}{how many digits to round the display}
-\item{\code{multvec}}{data frame showing the multinomial representation of the
-data}
+\itemize{
+\item \code{estimate}: vector of point and interval estimates - see details
+\item \code{estimator}: either \code{"PF"} or \code{"RR"}
+\item \code{compare}: text vector, same as input
+\item \code{alpha}: complement of confidence level
+\item \code{rnd}: how many digits to round the display
+\item \code{multvec}: data frame showing the multinomial representation of the data
 }
 }
 \description{

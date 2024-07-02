@@ -31,17 +31,14 @@
 #' @param rnd Number of digits for rounding. Affects display only, not
 #'   estimates.
 #'
-#' @return A [rror] object with the following fields.
-#' \describe{
-#'   \item{`estimate`}{vector with point and interval estimate}
-#'   \item{`estimator`}{either *PF* or *RR*}
-#'   \item{`mu`}{matrix with rows giving probability estimates for each of the
-#'   groups}
-#'   \item{`rnd`}{how many digits to round the display}
-#'   \item{`alpha`}{complement of confidence level}
-#'   \item{`norm`}{logical indicating Gaussian or t interval}
-#'   \item{`degf`}{degrees of freedom}
-#' }
+#' @returns A [rror] object with the following fields.
+#' * `estimate`: vector with point and interval estimate
+#' * `estimator`: either *PF* or *RR*
+#' * `mu`: matrix with rows giving probability estimates for each of the groups
+#' * `rnd`: how many digits to round the display
+#' * `alpha`: complement of confidence level
+#' * `norm`: logical indicating Gaussian or t-interval
+#' * `degf`: degrees of freedom
 #' @export
 #'
 #' @author [PF-package]

@@ -53,13 +53,13 @@ vaccinate group to which \code{compare[2]} (control or reference) is compared.}
 }
 \value{
 A \link{rrsi} object with the following elements.
-\describe{
-\item{\code{estimate}}{vector with point and interval estimate}
-\item{\code{estimator}}{either \emph{PF} or \emph{IDR}}
-\item{\code{y}}{data.frame with "y1", "n1", "y2", "n2" values.}
-\item{\code{k}}{Likelihood ratio criterion}
-\item{\code{rnd}}{how many digits to round the display}
-\item{\code{alpha}}{complement of confidence level}
+\itemize{
+\item \code{estimate}: vector with point and interval estimate
+\item \code{estimator}: either \emph{PF} or \emph{IDR}
+\item \code{y}: data.frame with "y1", "n1", "y2", "n2" values.
+\item \code{k}: Likelihood ratio criterion
+\item \code{rnd}: how many digits to round the display
+\item \code{alpha}: complement of confidence level
 }
 }
 \description{

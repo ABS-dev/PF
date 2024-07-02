@@ -30,14 +30,12 @@
 #'   parameter
 #' @param gamma parameter for Berger-Boos correction (restricts range of
 #'   nuisance parameter evaluation)
-#' @return An object of class [rr1] with the following fields:
-#' \describe{
-#'   \item{`estimate`}{vector with point and interval estimate}
-#'   \item{`estimator`}{either `"PF"` or `"RR"`}
-#'   \item{`y`}{`data.frame` with "y1", "n1", "y2", "n2" values. }
-#'   \item{`rnd`}{how many digits to round the display}
-#'   \item{`alpha`}{complement of confidence level}
-#' }
+#' @returns An object of class [rr1] with the following fields:
+#' * `estimate`: vector with point and interval estimate
+#' * `estimator`: either `"PF"` or `"RR"`
+#' * `y`: `data.frame` with "y1", "n1", "y2", "n2" values.
+#' * `rnd`: how many digits to round the display
+#' * `alpha`: complement of confidence level
 #' @export
 #' @references Koopman PAR, 1984. Confidence intervals for the ratio of two
 #'   binomial proportions. *Biometrics* 40:513-517.

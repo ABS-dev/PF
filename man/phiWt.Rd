@@ -18,11 +18,9 @@ and phi estimates.}
 }
 \value{
 A list with the following elements.
-\describe{
-\item{\code{fit}}{the new model fit, updated by the estimated weights}
-\item{\code{weights}}{vector of weights}
-\item{\code{phi}}{vector of phi estimates}
-}
+\code{fit}: the new model fit, updated by the estimated weights
+\code{weights}: vector of weights
+\code{phi}: vector of phi estimates
 }
 \description{
 MME estimate of dispersion parameter phi.

@@ -43,15 +43,14 @@ estimates.}
 }
 \value{
 A \link{rror} object with the following fields.
-\describe{
-\item{\code{estimate}}{vector with point and interval estimate}
-\item{\code{estimator}}{either \emph{PF} or \emph{RR}}
-\item{\code{mu}}{matrix with rows giving probability estimates for each of the
-groups}
-\item{\code{rnd}}{how many digits to round the display}
-\item{\code{alpha}}{complement of confidence level}
-\item{\code{norm}}{logical indicating Gaussian or t interval}
-\item{\code{degf}}{degrees of freedom}
+\itemize{
+\item \code{estimate}: vector with point and interval estimate
+\item \code{estimator}: either \emph{PF} or \emph{RR}
+\item \code{mu}: matrix with rows giving probability estimates for each of the groups
+\item \code{rnd}: how many digits to round the display
+\item \code{alpha}: complement of confidence level
+\item \code{norm}: logical indicating Gaussian or t-interval
+\item \code{degf}: degrees of freedom
 }
 }
 \description{

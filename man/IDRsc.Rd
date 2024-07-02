@@ -35,12 +35,12 @@ estimates.}
 }
 \value{
 A \link{rr1} object with the following elements.
-\describe{
-\item{\code{estimate}}{vector with point and interval estimate}
-\item{\code{estimator}}{either \emph{PF} or \emph{IDR}}
-\item{\code{y}}{data vector}
-\item{\code{rnd}}{how many digits to round the display}
-\item{\code{alpha}}{complement of confidence level}
+\itemize{
+\item \code{estimate}: vector with point and interval estimate
+\item \code{estimator}: either \emph{PF} or \emph{IDR}
+\item \code{y}: data vector
+\item \code{rnd}: how many digits to round the display
+\item \code{alpha}: complement of confidence level
 }
 }
 \description{

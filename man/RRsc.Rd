@@ -44,12 +44,12 @@ estimates.}
 }
 \value{
 A \link{rrsc} object with the following fields.
-\describe{
-\item{\code{estimate}}{matrix of point and interval estimates - see details}
-\item{\code{estimator}}{either \code{"PF"} or \code{"RR"}}
-\item{\code{y}}{data.frame with "y1", "n1", "y2", "n2" values. }
-\item{\code{rnd}}{how many digits to round the display}
-\item{\code{alpha}}{complement of confidence level}\
+\itemize{
+\item \code{estimate}: matrix of point and interval estimates - see details
+\item \code{estimator}: either \code{"PF"} or \code{"RR"}
+\item \code{y}: data.frame with "y1", "n1", "y2", "n2" values.
+\item \code{rnd}: how many digits to round the display
+\item \code{alpha}: complement of confidence level
 }
 }
 \description{
