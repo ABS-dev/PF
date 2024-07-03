@@ -11,6 +11,10 @@ pkgdown:
   as_is: true
 bibliography: PF.bib
 biblio-style: asa
+vignette: >
+  %\VignetteIndexEntry{PF Vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
 
 # Introduction
