@@ -1,34 +1,51 @@
 # PF - Prevented Fraction <img src="man/figures/logo.png" width="150" align="right" />
 
 
-### To install or update PF:
+## To install or update PF:
+
+### From Github
 
 From **within R**
 
-1. Installing last release [v9.5.4](https://github.com/ABS-dev/PF/releases/tag/v9.5.4)
+1. Installing last release
 
 ```
-require(devtools)
-install_github("ABS-dev/PF", ref = "v9.5.4")
+devtools::install_github("ABS-dev/PF", ref = "9.6.8")
 ```
 *See all historical releases [here](https://github.com/ABS-dev/PF/releases)*
 
-2. Installing work-in-progress towards v9.5.5
-
-[![Build Status](https://travis-ci.org/ABS-dev/PF.svg?branch=master)](https://travis-ci.org/ABS-dev/PF)
-[![codecov](https://codecov.io/gh/ABS-dev/PF/branch/master/graph/badge.svg)](https://codecov.io/gh/ABS-dev/PF)
+2. Installing work-in-progress on the main development branch 
 
 ```
-require(devtools)
-install_github("ABS-dev/PF")
+devtools::install_github("ABS-dev/PF")
 ```
 
-### Package Vignette:
+### For CVB employees
+
+After setting up Rstudio to work with [Package Manager](https://ncahconnect.usda.net/CVBverse/package_manager.html), you can install the most recent version of `PF` like so:
+
+``` r
+install.package("PF")
+```
+
+You can install an archived version of `PF` thus:
+
+``` r
+devtools::install_version('PF', '0.5.0')
+```
+
+Refer to the [PF overview](https://ncahrpackage.usda.net/client/#/repos/cvb-gitlab/packages/PF/overview#package-details) on Package Manager to find a list of the archived versions.
+
+
+## Package Vignette:
 
 Read online at https://www.aphis.usda.gov/animal_health/vet_biologics/publications/STATWI0007.pdf
 
-### Package Manual:
+## Package Manual:
 
 Read online at https://github.com/ABS-dev/PF/blob/master/inst/doc/PFPackageManual.pdf
 
 
+## Issues
+
+Report any issues or requests on the package  [issues](https://github.com/ABS-dev/PF/issues) page.
