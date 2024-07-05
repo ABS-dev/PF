@@ -1,0 +1,208 @@
+{
+  "version": 1,
+  "locale": "en_US",
+  "platform": "4.4.0",
+  "metadata": {
+    "appmode": "static",
+    "primary_rmd": null,
+    "primary_html": "index.html",
+    "content_category": "site",
+    "has_parameters": false
+  },
+  "packages": null,
+  "files": {
+    ".nojekyll": {
+      "checksum": "81051bcc2cf1bedf378224b0a93e2877"
+    },
+    "404.html": {
+      "checksum": "51678d69003b2de7bd558e04a1e6f409"
+    },
+    "apple-touch-icon-120x120.png": {
+      "checksum": "3a61109d9a887120c1ac1ed61a9ab1be"
+    },
+    "apple-touch-icon-152x152.png": {
+      "checksum": "68055c8501ec09c6290b51a180792094"
+    },
+    "apple-touch-icon-180x180.png": {
+      "checksum": "82cfa3ea8be3a525baaca40c6d1bc5dd"
+    },
+    "apple-touch-icon-60x60.png": {
+      "checksum": "5bc1777de440ccedddab885964fa5e02"
+    },
+    "apple-touch-icon-76x76.png": {
+      "checksum": "f94cb8bb0762a7012bcf7d9e66eaf6d0"
+    },
+    "apple-touch-icon.png": {
+      "checksum": "e2b9a4027816b1839d363107e26dee4c"
+    },
+    "articles/index.html": {
+      "checksum": "faf452a78069b96f1b74ac6d38b3a7fe"
+    },
+    "articles/PFvignette.html": {
+      "checksum": "2d966159fce4e2edf36dde1112c9d24c"
+    },
+    "authors.html": {
+      "checksum": "a8bd8beeb1d46945b791d30ab4417fe1"
+    },
+    "deps/bootstrap-5.3.1/bootstrap.bundle.min.js": {
+      "checksum": "e2b09c06f0e714b6144a6788a28e3950"
+    },
+    "deps/bootstrap-5.3.1/bootstrap.bundle.min.js.map": {
+      "checksum": "9c73ded054de790fdd86dec929def3b4"
+    },
+    "deps/bootstrap-5.3.1/bootstrap.min.css": {
+      "checksum": "d6b2461fd051c117d0650c37a0a23170"
+    },
+    "deps/data-deps.txt": {
+      "checksum": "3e127c805541113a7c3263160d71fb6b"
+    },
+    "deps/jquery-3.6.0/jquery-3.6.0.js": {
+      "checksum": "2849239b95f5a9a2aea3f6ed9420bb88"
+    },
+    "deps/jquery-3.6.0/jquery-3.6.0.min.js": {
+      "checksum": "8fb8fee4fcc3cc86ff6c724154c49c42"
+    },
+    "deps/jquery-3.6.0/jquery-3.6.0.min.map": {
+      "checksum": "6efc5d663aaacac2024153fa0d4bafcd"
+    },
+    "favicon-16x16.png": {
+      "checksum": "9bea869cd50635222ddea2681d0726e6"
+    },
+    "favicon-32x32.png": {
+      "checksum": "e279d9592c9c13801b5b5fedabbb0d22"
+    },
+    "favicon.ico": {
+      "checksum": "7e5e9b66cf83a07ce01d11f5405b0674"
+    },
+    "index.html": {
+      "checksum": "56e13978875761571883daf20fabec24"
+    },
+    "LICENSE-text.html": {
+      "checksum": "982332e333a2cf49a5b8a01d6cab03e1"
+    },
+    "link.svg": {
+      "checksum": "4759f31f8a585e9af173fc579d730265"
+    },
+    "logo.png": {
+      "checksum": "e5fb4928dbe8cff0f792d4dda86167ac"
+    },
+    "pkgdown.js": {
+      "checksum": "185cbf0f06480c90046685e99e537020"
+    },
+    "pkgdown.yml": {
+      "checksum": "e4e8ba2a3fb693a57abcb1b6d5a311e4"
+    },
+    "reference/bird.html": {
+      "checksum": "5ec91051ebb3e45bd151c950a818cd8e"
+    },
+    "reference/birdm.html": {
+      "checksum": "727f36af6410f158f8514ec60438f036"
+    },
+    "reference/dfSet1.html": {
+      "checksum": "4db26845a3529d9926d5aac503cc5f82"
+    },
+    "reference/dfTable6.html": {
+      "checksum": "73a4478f375cb1b317f73e08f0486bc8"
+    },
+    "reference/dot-rr.score.asymp.html": {
+      "checksum": "72f343f1582014d16abd206bac5abfce"
+    },
+    "reference/figures/logo.png": {
+      "checksum": "e5fb4928dbe8cff0f792d4dda86167ac"
+    },
+    "reference/IDRlsi.html": {
+      "checksum": "7e12e938dfe4c2769cb2951b00816144"
+    },
+    "reference/IDRsc.html": {
+      "checksum": "1b977feef1339c613bfaa8d99f8cf095"
+    },
+    "reference/index.html": {
+      "checksum": "8296b518d492c7cd54bb5999ba359d23"
+    },
+    "reference/New.html": {
+      "checksum": "73bedf4cba12b6988866d20fd6d0d119"
+    },
+    "reference/PF-package.html": {
+      "checksum": "b59f01055eba24bb608e7429bc5ef74b"
+    },
+    "reference/pf.html": {
+      "checksum": "1c743d8f0f57a7e2bed7a9d229c2f787"
+    },
+    "reference/phiWt.html": {
+      "checksum": "1c0c6abbe74c0339ea9ad4053d611a9e"
+    },
+    "reference/print.PF.html": {
+      "checksum": "6533ae09526bd8f47922735824d767c0"
+    },
+    "reference/rat.html": {
+      "checksum": "a35e560bc9dd61e084b00ce39f8fa282"
+    },
+    "reference/Rplot001.png": {
+      "checksum": "9b7a75eb2a0170ac2c15ab46a66f862b"
+    },
+    "reference/rr1-class.html": {
+      "checksum": "05d6ae76ed37bcae8c38986db8f75baf"
+    },
+    "reference/RRlsi.html": {
+      "checksum": "37c7d684b47a59a1fd2cfc8cc6415c6e"
+    },
+    "reference/RRmh.html": {
+      "checksum": "fd27905d5ca416a252eb1337d3efd795"
+    },
+    "reference/rrmp.html": {
+      "checksum": "eaaaa2251bae3c6c89622b4822f69b87"
+    },
+    "reference/RRmpWald.html": {
+      "checksum": "72d2f23ffeb73412d830aae8646fce79"
+    },
+    "reference/RRor.html": {
+      "checksum": "3cc0cfc19285dc1d194edd9406f80b68"
+    },
+    "reference/rrorclass.html": {
+      "checksum": "4e758303540efaab8c270418107ffa88"
+    },
+    "reference/RRotsst.html": {
+      "checksum": "d39bfd2bbd348b5b32551abc0ced285d"
+    },
+    "reference/RRsc.html": {
+      "checksum": "a398d78c5b9f7b4fd60bd15611eddb01"
+    },
+    "reference/rrscclass.html": {
+      "checksum": "ab9663f7d373797d37d653d4536d0218"
+    },
+    "reference/rrsi.html": {
+      "checksum": "8305f21e415f8618ea97d114b26483dc"
+    },
+    "reference/RRstr.html": {
+      "checksum": "84dc12773063caf0cec1120f48cbd1a0"
+    },
+    "reference/rrstrclass.html": {
+      "checksum": "fc3c0627dbc50720dc2fbc58655635c1"
+    },
+    "reference/RRtosst.html": {
+      "checksum": "f7c4790791f89ea6edaf5ebedab27b18"
+    },
+    "reference/rsb.html": {
+      "checksum": "b8942472b6e48b0db2b4decd4d076e71"
+    },
+    "reference/rsbWt.html": {
+      "checksum": "4ead23930994a91f6d32ad8e83d8b920"
+    },
+    "reference/set1.html": {
+      "checksum": "910c57771d3d544bc896a717193e74b4"
+    },
+    "reference/table6.html": {
+      "checksum": "0443300d7fb6568daaff4196dcf4ab0f"
+    },
+    "reference/tauWt.html": {
+      "checksum": "77766f538c0140773870c227d9a96a44"
+    },
+    "search.json": {
+      "checksum": "1ccf298e6ae5fe2590ec83fefaa25cc1"
+    },
+    "sitemap.xml": {
+      "checksum": "e3f3fe6600dfc6bca44479c5397a0932"
+    }
+  },
+  "users": null
+}
