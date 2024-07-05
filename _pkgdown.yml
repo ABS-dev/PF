@@ -12,38 +12,40 @@ reference:
   - .rr.score.asymp
   - IDRlsi
   - IDRsc
-  - pf-class
   - pf
   - phiWt
-  - print.rr1
-  - print.rrmp
-  - print.rror
-  - print.rrsc
-  - print.rrsi
-  - print.rrstr
-  - rr1-class
   - rr1
   - RRlsi
   - RRmh
-  - rrmp-class
   - rrmp
   - RRmpWald
   - RRor
-  - rror-class
   - rror
   - RRotsst
   - RRsc
-  - rrsc-class
   - rrsc
-  - rrsi-class
   - rrsi
   - RRstr
-  - rrstr-class
   - rrstr
   - RRtosst
   - rsb
   - rsbWt
   - tauWt
+- title: S3 and S4 classes
+- contents:
+  - pf-class
+  - rr1-class
+  - print.rr1
+  - rrmp-class
+  - print.rrmp
+  - rror-class
+  - print.rror
+  - rrsc-class
+  - print.rrsc
+  - rrsi-class
+  - print.rrsi
+  - rrstr-class
+  - print.rrstr
 - title: Data Sets
 - contents:
   - bird
