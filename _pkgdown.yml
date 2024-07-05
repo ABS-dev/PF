@@ -4,8 +4,8 @@ template:
   bootstrap: 5
 repo:
   url:
-    home:  ttps://github.com/ABS-dev/PF/
-    issue: ttps://github.com/ABS-dev/PF/issues/
+    home:  https://github.com/ABS-dev/PF/
+    issue: https://github.com/ABS-dev/PF/issues/
 reference:
 - title: Functions
 - contents:
