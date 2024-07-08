@@ -6,3 +6,5 @@
 docs
 public
 pkgdown
+/doc/
+/Meta/
