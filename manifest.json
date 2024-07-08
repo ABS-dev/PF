@@ -42,7 +42,7 @@
       "checksum": "6e3098f2acf0a759318b2b3a6560c6a1"
     },
     "authors.html": {
-      "checksum": "dd2613df5408604822f6cb49e6c11986"
+      "checksum": "8956b41faa8ad9ea448374691b5aca32"
     },
     "deps/bootstrap-5.3.1/bootstrap.bundle.min.js": {
       "checksum": "e2b09c06f0e714b6144a6788a28e3950"
@@ -132,7 +132,7 @@
       "checksum": "7e5e9b66cf83a07ce01d11f5405b0674"
     },
     "index.html": {
-      "checksum": "cbd46148240b07987fdb9ed918f154e9"
+      "checksum": "52748736f13e705706cf838662267cb6"
     },
     "katex-auto.js": {
       "checksum": "b6babfc10247cf9190b9fa172dde62b8"
@@ -156,7 +156,7 @@
       "checksum": "0196cc47dc30c3c4d73560cd19848986"
     },
     "pkgdown.yml": {
-      "checksum": "e074a2d0c9dedb3791613d278d5a7686"
+      "checksum": "4c59ed4a2aef3e2ba62ac9f2ab20cca2"
     },
     "reference/bird.html": {
       "checksum": "eef6d69d9faa89c704e026f1e4654596"
@@ -183,7 +183,7 @@
       "checksum": "1dc79c9905692fe37b9382cd750f8afd"
     },
     "reference/index.html": {
-      "checksum": "a830206ff762d8d70ffa89f9a1a55de9"
+      "checksum": "1ddaefad58f46f5b045142071a670ad4"
     },
     "reference/New.html": {
       "checksum": "6854332fcb62548c5bb07c4d83021ced"
@@ -282,7 +282,7 @@
       "checksum": "c42f885b2324864e1a8ba8391d9d414b"
     },
     "search.json": {
-      "checksum": "d94760bede36c0fcb56b8413a8ac7c44"
+      "checksum": "02c2e2bf8b7b4dbabae993723a0de264"
     },
     "sitemap.xml": {
       "checksum": "9aecfaf01890bdcc26a86e64b8db111e"
