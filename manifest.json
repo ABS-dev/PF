@@ -15,7 +15,7 @@
       "checksum": "81051bcc2cf1bedf378224b0a93e2877"
     },
     "404.html": {
-      "checksum": "51678d69003b2de7bd558e04a1e6f409"
+      "checksum": "d5fda685ad1571666e7a1ef2b640c72e"
     },
     "apple-touch-icon-120x120.png": {
       "checksum": "3a61109d9a887120c1ac1ed61a9ab1be"
@@ -36,13 +36,13 @@
       "checksum": "e2b9a4027816b1839d363107e26dee4c"
     },
     "articles/index.html": {
-      "checksum": "faf452a78069b96f1b74ac6d38b3a7fe"
+      "checksum": "65373582a96144e0b0b7b229f29ae509"
     },
     "articles/PFvignette.html": {
-      "checksum": "2d966159fce4e2edf36dde1112c9d24c"
+      "checksum": "cc8519d3c877e4f0d5dfcbd1ed74da61"
     },
     "authors.html": {
-      "checksum": "a8bd8beeb1d46945b791d30ab4417fe1"
+      "checksum": "2838c6d7697b8547d8bf5b23098b75b8"
     },
     "deps/bootstrap-5.3.1/bootstrap.bundle.min.js": {
       "checksum": "e2b09c06f0e714b6144a6788a28e3950"
@@ -51,10 +51,58 @@
       "checksum": "9c73ded054de790fdd86dec929def3b4"
     },
     "deps/bootstrap-5.3.1/bootstrap.min.css": {
-      "checksum": "d6b2461fd051c117d0650c37a0a23170"
+      "checksum": "31819d35384826454e083ad4c18d9b65"
+    },
+    "deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js": {
+      "checksum": "c82ff4de8b0955d6ff14f5b05eed7eb6"
+    },
+    "deps/clipboard.js-2.0.11/clipboard.min.js": {
+      "checksum": "15f52a1ee547f2bdd46e56747332ca2d"
     },
     "deps/data-deps.txt": {
-      "checksum": "3e127c805541113a7c3263160d71fb6b"
+      "checksum": "66b2a17d8d4d8e899fa823448051da52"
+    },
+    "deps/font-awesome-6.4.2/css/all.css": {
+      "checksum": "5ca7783adc61f933805bd0467228c7de"
+    },
+    "deps/font-awesome-6.4.2/css/all.min.css": {
+      "checksum": "1d46bd8219a15f094e4489e7f63778e9"
+    },
+    "deps/font-awesome-6.4.2/css/v4-shims.css": {
+      "checksum": "b8d8da46c1755698c28c00e06983371a"
+    },
+    "deps/font-awesome-6.4.2/css/v4-shims.min.css": {
+      "checksum": "665de85010641f678f0178a9d330a7af"
+    },
+    "deps/font-awesome-6.4.2/webfonts/fa-brands-400.ttf": {
+      "checksum": "bb8cd014d7a55672934233c354e1c4a3"
+    },
+    "deps/font-awesome-6.4.2/webfonts/fa-brands-400.woff2": {
+      "checksum": "005c9aa92b564b73b7582cc4f1fa49cb"
+    },
+    "deps/font-awesome-6.4.2/webfonts/fa-regular-400.ttf": {
+      "checksum": "675809e48e35c47d51c7d6fcc687ee28"
+    },
+    "deps/font-awesome-6.4.2/webfonts/fa-regular-400.woff2": {
+      "checksum": "747442fa76f1d9a31f9a54a2e8a4b448"
+    },
+    "deps/font-awesome-6.4.2/webfonts/fa-solid-900.ttf": {
+      "checksum": "0248ab19e74fc3731de14d647db4687a"
+    },
+    "deps/font-awesome-6.4.2/webfonts/fa-solid-900.woff2": {
+      "checksum": "d5e647388e2415268b700d3df2e30a0d"
+    },
+    "deps/font-awesome-6.4.2/webfonts/fa-v4compatibility.ttf": {
+      "checksum": "58f1253e5639d508a6fe310c97327f82"
+    },
+    "deps/font-awesome-6.4.2/webfonts/fa-v4compatibility.woff2": {
+      "checksum": "f20773a753bf1fbe9ccec04f90a470ea"
+    },
+    "deps/headroom-0.11.0/headroom.min.js": {
+      "checksum": "5b714c82675b78b78737585c71a42aa8"
+    },
+    "deps/headroom-0.11.0/jQuery.headroom.min.js": {
+      "checksum": "5d00b65f84e4be18124b864f30d66754"
     },
     "deps/jquery-3.6.0/jquery-3.6.0.js": {
       "checksum": "2849239b95f5a9a2aea3f6ed9420bb88"
@@ -64,6 +112,15 @@
     },
     "deps/jquery-3.6.0/jquery-3.6.0.min.map": {
       "checksum": "6efc5d663aaacac2024153fa0d4bafcd"
+    },
+    "deps/search-1.0.0/autocomplete.jquery.min.js": {
+      "checksum": "92fe1867b8a852d38fc44334fcde4618"
+    },
+    "deps/search-1.0.0/fuse.min.js": {
+      "checksum": "a9b84ece54b1853525a2c76fd12aa23c"
+    },
+    "deps/search-1.0.0/mark.min.js": {
+      "checksum": "d0c5399929d81f67cd6d7687880498a6"
     },
     "favicon-16x16.png": {
       "checksum": "9bea869cd50635222ddea2681d0726e6"
@@ -75,10 +132,16 @@
       "checksum": "7e5e9b66cf83a07ce01d11f5405b0674"
     },
     "index.html": {
-      "checksum": "56e13978875761571883daf20fabec24"
+      "checksum": "daeb946651808994e8d463a412108f88"
+    },
+    "katex-auto.js": {
+      "checksum": "b6babfc10247cf9190b9fa172dde62b8"
     },
     "LICENSE-text.html": {
-      "checksum": "982332e333a2cf49a5b8a01d6cab03e1"
+      "checksum": "9a1c65dabadd9e05c3fabf4eb43b51f5"
+    },
+    "lightswitch.js": {
+      "checksum": "5806fcea81ccc70e1ffc453a7d9e12b5"
     },
     "link.svg": {
       "checksum": "4759f31f8a585e9af173fc579d730265"
@@ -86,122 +149,125 @@
     "logo.png": {
       "checksum": "e5fb4928dbe8cff0f792d4dda86167ac"
     },
+    "news/index.html": {
+      "checksum": "82daf4384aca4683de2b895d2507dde3"
+    },
     "pkgdown.js": {
-      "checksum": "185cbf0f06480c90046685e99e537020"
+      "checksum": "0196cc47dc30c3c4d73560cd19848986"
     },
     "pkgdown.yml": {
-      "checksum": "e4e8ba2a3fb693a57abcb1b6d5a311e4"
+      "checksum": "a3e346f547aa07179ec6aab3ad873924"
     },
     "reference/bird.html": {
-      "checksum": "5ec91051ebb3e45bd151c950a818cd8e"
+      "checksum": "9091380a3f7ab33b0ddec98e1dc939c5"
     },
     "reference/birdm.html": {
-      "checksum": "727f36af6410f158f8514ec60438f036"
+      "checksum": "c455be83b98713f302de9c555426a568"
     },
     "reference/dfSet1.html": {
-      "checksum": "4db26845a3529d9926d5aac503cc5f82"
+      "checksum": "4692ccb8acd3350f866d378baf0a50e5"
     },
     "reference/dfTable6.html": {
-      "checksum": "73a4478f375cb1b317f73e08f0486bc8"
+      "checksum": "1c32e28c9f77be7404d4b91f222f62b4"
     },
     "reference/dot-rr.score.asymp.html": {
-      "checksum": "72f343f1582014d16abd206bac5abfce"
+      "checksum": "d2014fec6b921767b895b4e6ff3cf83e"
     },
     "reference/figures/logo.png": {
       "checksum": "e5fb4928dbe8cff0f792d4dda86167ac"
     },
     "reference/IDRlsi.html": {
-      "checksum": "7e12e938dfe4c2769cb2951b00816144"
+      "checksum": "dcd261f011fca7517ad73af0457f330b"
     },
     "reference/IDRsc.html": {
-      "checksum": "1b977feef1339c613bfaa8d99f8cf095"
+      "checksum": "ae035e9074deadb81523d0b9e3d70b11"
     },
     "reference/index.html": {
-      "checksum": "8296b518d492c7cd54bb5999ba359d23"
+      "checksum": "314fbc803c682c84944038f19bfcb79b"
     },
     "reference/New.html": {
-      "checksum": "73bedf4cba12b6988866d20fd6d0d119"
+      "checksum": "7b6621e3650092c7235345d31e794b1c"
     },
     "reference/PF-package.html": {
-      "checksum": "b59f01055eba24bb608e7429bc5ef74b"
+      "checksum": "69c29dfc537a08e7b02551e7b6d5a926"
     },
     "reference/pf.html": {
-      "checksum": "1c743d8f0f57a7e2bed7a9d229c2f787"
+      "checksum": "bee2c120b533805f808b31431202f538"
     },
     "reference/phiWt.html": {
-      "checksum": "1c0c6abbe74c0339ea9ad4053d611a9e"
+      "checksum": "281a9281aa4e09c3be5ab794b1e2a3d5"
     },
     "reference/print.PF.html": {
-      "checksum": "6533ae09526bd8f47922735824d767c0"
+      "checksum": "2dd644713e8790e41dc671c4cdddb087"
     },
     "reference/rat.html": {
-      "checksum": "a35e560bc9dd61e084b00ce39f8fa282"
+      "checksum": "8148a6cbb416a1e87b3784fe5f9393f5"
     },
     "reference/Rplot001.png": {
       "checksum": "9b7a75eb2a0170ac2c15ab46a66f862b"
     },
     "reference/rr1-class.html": {
-      "checksum": "05d6ae76ed37bcae8c38986db8f75baf"
+      "checksum": "f49200de7577132c3ec38ee3369bde6a"
     },
     "reference/RRlsi.html": {
-      "checksum": "37c7d684b47a59a1fd2cfc8cc6415c6e"
+      "checksum": "0aac13e2607bdec93f7302c0fce0d098"
     },
     "reference/RRmh.html": {
-      "checksum": "fd27905d5ca416a252eb1337d3efd795"
+      "checksum": "abde39693c9a5fb61d0fd23c3de45825"
     },
     "reference/rrmp.html": {
-      "checksum": "eaaaa2251bae3c6c89622b4822f69b87"
+      "checksum": "5c62b90e6db4e623c989ba1768ce1d12"
     },
     "reference/RRmpWald.html": {
-      "checksum": "72d2f23ffeb73412d830aae8646fce79"
+      "checksum": "1c4cef5f3c1e75964f41da6d25cc8994"
     },
     "reference/RRor.html": {
-      "checksum": "3cc0cfc19285dc1d194edd9406f80b68"
+      "checksum": "5a5af01dfbf8fa7102bacd5703c24649"
     },
     "reference/rrorclass.html": {
-      "checksum": "4e758303540efaab8c270418107ffa88"
+      "checksum": "62b7d5632483ac555bbf1401510c18f8"
     },
     "reference/RRotsst.html": {
-      "checksum": "d39bfd2bbd348b5b32551abc0ced285d"
+      "checksum": "67b4adc47979722570792734cae47d01"
     },
     "reference/RRsc.html": {
-      "checksum": "a398d78c5b9f7b4fd60bd15611eddb01"
+      "checksum": "13e8520731b9e424deb468ee4261261d"
     },
     "reference/rrscclass.html": {
-      "checksum": "ab9663f7d373797d37d653d4536d0218"
+      "checksum": "5641c0b2db7d667eb188e91bf1921f0d"
     },
     "reference/rrsi.html": {
-      "checksum": "8305f21e415f8618ea97d114b26483dc"
+      "checksum": "297bf7edcc689dbde6412bc34bebe8b9"
     },
     "reference/RRstr.html": {
-      "checksum": "84dc12773063caf0cec1120f48cbd1a0"
+      "checksum": "0f1e8cd586c95da828249b77b908689a"
     },
     "reference/rrstrclass.html": {
-      "checksum": "fc3c0627dbc50720dc2fbc58655635c1"
+      "checksum": "d8daf3ab850a33a537de7189b84f0ee3"
     },
     "reference/RRtosst.html": {
-      "checksum": "f7c4790791f89ea6edaf5ebedab27b18"
+      "checksum": "e48eea4601471a39cb29b65937c49c71"
     },
     "reference/rsb.html": {
-      "checksum": "b8942472b6e48b0db2b4decd4d076e71"
+      "checksum": "42d516654cdf0429307e781f301ca417"
     },
     "reference/rsbWt.html": {
-      "checksum": "4ead23930994a91f6d32ad8e83d8b920"
+      "checksum": "15233bb47304facc30f1a14b38fe4204"
     },
     "reference/set1.html": {
-      "checksum": "910c57771d3d544bc896a717193e74b4"
+      "checksum": "828dcf642cee3baa3fea3db4adbb4432"
     },
     "reference/table6.html": {
-      "checksum": "0443300d7fb6568daaff4196dcf4ab0f"
+      "checksum": "7dbaf3dbd241f947461e18848f4be088"
     },
     "reference/tauWt.html": {
-      "checksum": "77766f538c0140773870c227d9a96a44"
+      "checksum": "1eb118c0180281d4abbe54b0a0ecfba8"
     },
     "search.json": {
-      "checksum": "1ccf298e6ae5fe2590ec83fefaa25cc1"
+      "checksum": "7f80d6221d1079905b30079ac4079f09"
     },
     "sitemap.xml": {
-      "checksum": "e3f3fe6600dfc6bca44479c5397a0932"
+      "checksum": "80d7b48da1479e43570c825e5c6306e8"
     }
   },
   "users": null
