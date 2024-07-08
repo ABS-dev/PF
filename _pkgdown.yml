@@ -1,4 +1,4 @@
-url: ~
+url: https://github.com/ABS-dev/PF/
 destination: docs/
 template:
   bootstrap: 5
@@ -12,39 +12,39 @@ reference:
   - .rr.score.asymp
   - IDRlsi
   - IDRsc
-  - pf
   - phiWt
-  - rr1
   - RRlsi
   - RRmh
-  - rrmp
   - RRmpWald
   - RRor
-  - rror
   - RRotsst
   - RRsc
-  - rrsc
-  - rrsi
   - RRstr
-  - rrstr
   - RRtosst
   - rsb
   - rsbWt
   - tauWt
 - title: S3 and S4 classes
 - contents:
+  - pf
   - pf-class
+  - rr1
   - rr1-class
-  - print.rr1
+  - rrmp
   - rrmp-class
-  - print.rrmp
+  - rror
   - rror-class
-  - print.rror
+  - rrsc
   - rrsc-class
-  - print.rrsc
+  - rrsi
   - rrsi-class
-  - print.rrsi
+  - rrstr
   - rrstr-class
+  - print.rr1
+  - print.rrmp
+  - print.rror
+  - print.rrsc
+  - print.rrsi
   - print.rrstr
 - title: Data Sets
 - contents:
