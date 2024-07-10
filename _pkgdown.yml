@@ -2,6 +2,7 @@ url: https://github.com/ABS-dev/PF/
 destination: docs/
 template:
   bootstrap: 5
+  math-rendering: mathjax
 repo:
   url:
     home:  https://github.com/ABS-dev/PF/
