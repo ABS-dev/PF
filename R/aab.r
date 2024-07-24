@@ -83,3 +83,14 @@
   dimnames(Y) <- list(levels(clus), c("y1", "n1", "y2", "n2"))
   return(list(A = A, Y = Y))
 }
+
+
+.check_factor <- function(x) {
+  parameter_name <- deparse(substitute(x))
+  if (!is.null(x) && !is.factor(x)) {
+    x <- factor(x)
+    cat("Converting paramter ", parameter_name,
+            " to factor")
+  }
+  x
+}

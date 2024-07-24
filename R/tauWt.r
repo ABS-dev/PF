@@ -7,7 +7,8 @@
 #'   \eqn{\phi_{ij} = 1 + \tau_j(n_{ij} - 1)}{\phi_ij = 1 + \tau_j(n_ij - 1)},
 #'   \eqn{j} indexes the subsets, and \eqn{i} indexes the observations.
 #' @param fit A [glm] object.
-#' @param subset.factor Factor for estimating tau by subset.
+#' @param subset.factor Factor for estimating phi by subset.  Will be converted
+#'   to a factor if it is not a factor.
 #' @param fit.only Return only the final fit?  If FALSE, also returns the
 #'   weights and tau estimates.
 #' @param iter.max Maximum number of iterations.
@@ -97,6 +98,7 @@ tauWt <- function(fit,
     return(list(w = w, tau_hat = tau_hat))
   }
 
+  subset.factor <- .check_factor(subset.factor)
   fit <- update(fit, x = TRUE, y = TRUE)
   x <- fit$x
   yovern <- fit$y
