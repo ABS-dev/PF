@@ -10,15 +10,9 @@ From **within R**
 1. Installing last release
 
 ```
-devtools::install_github("ABS-dev/PF", ref = "9.6.8")
-```
-*See all historical releases [here](https://github.com/ABS-dev/PF/releases)*
-
-2. Installing work-in-progress on the main development branch 
-
-```
 devtools::install_github("ABS-dev/PF")
 ```
+*See all historical releases [here](https://github.com/ABS-dev/PF/releases)*
 
 ### For CVB employees
 
