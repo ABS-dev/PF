@@ -2,7 +2,7 @@
 title: "PF Vignette"
 author: "David Siev, Christopher H. Tong"
 date: "January 4, 2012"
-output: 
+output:
   bookdown::html_document2:
     base_format: rmarkdown::html_vignette
     toc: true
@@ -19,8 +19,8 @@ vignette: >
 
 # Introduction
 
-The `PF` package is a collection of functions related to estimating prevented fraction, $PF=1-RR$ , 
-where $RR={{{\pi}_{2}}}/{{{\pi}_{1}}}\;$ . 
+The `PF` package is a collection of functions related to estimating prevented fraction, $PF=1-RR$ ,
+where $RR={{{\pi}_{2}}}/{{{\pi}_{1}}}\;$ .
 
 ## Technical notes
 
@@ -38,26 +38,26 @@ where hat indicates the MLE and tilde indicates the MLE under the restriction th
 
 ## Asymptotic intervals
 
-`RRsc()` estimates asymptotic confidence intervals for the risk ratio or prevented fraction based on the score statistic. 
-Interval estimates are returned for three estimators. The score method was originally introduced by [@Koop84]. Gart and Nam's modification includes a skewness correction [@GN88]. The method of [@MN85] is a version made slightly more conservative than Koopman's by including a factor of ${(N-1)}/{N}\;$. 
+`RRsc()` estimates asymptotic confidence intervals for the risk ratio or prevented fraction based on the score statistic.
+Interval estimates are returned for three estimators. The score method was originally introduced by [@Koop84]. Gart and Nam's modification includes a skewness correction [@GN88]. The method of [@MN85] is a version made slightly more conservative than Koopman's by including a factor of ${(N-1)}/{N}\;$.
 
 ```{r}
 require(PF)
 RRsc(c(4, 24, 12, 28))
 ```
 
-Starting estimates for the algorithm are obtained by the modified Katz method (log method with 0.5 added to each cell). 
+Starting estimates for the algorithm are obtained by the modified Katz method (log method with 0.5 added to each cell).
 Both forms of the Katz estimate may be retrieved from the returned object using `RRsc()\$estimate`.
 
 ## Exact intervals
 
-These methods give intervals that are `exact' in the sense that they are based on the actual sampling distribution rather than an approximation to it. 
-The score statistic is used to select the $2 \times 2$ tables that would fall in the tail area, and the binomial probability is 
-estimated over the tail area by taking the maximum over the nuisance parameter. The search over the tail area is made more efficient 
-by the Berger-Boos correction [@BB94]. 
+These methods give intervals that are `exact' in the sense that they are based on the actual sampling distribution rather than an approximation to it.
+The score statistic is used to select the $2 \times 2$ tables that would fall in the tail area, and the binomial probability is
+estimated over the tail area by taking the maximum over the nuisance parameter. The search over the tail area is made more efficient
+by the Berger-Boos correction [@BB94].
 
-`RRtosst()` gives intervals obtained by inverting two one-sided score tests; `RRotsst()` gives intervals obtained by inverting one two-sided score test. `RRtosst()` is thus more conservative, preserving at least ${\alpha }/{2}\;$ in each tail. 
-[@AM01] discuss the properties and relative benefits of the two approaches. The price of exactnesss is conservatism, due to the discreteness of the binomial distribution [@AA01]. This means that the actual coverage of the confidence interval does not exactly conform to the nominal coverage, but it will not be less than it. (See also [@AA03].) Both functions use a simple step search algorithm. 
+`RRtosst()` gives intervals obtained by inverting two one-sided score tests; `RRotsst()` gives intervals obtained by inverting one two-sided score test. `RRtosst()` is thus more conservative, preserving at least ${\alpha }/{2}\;$ in each tail.
+[@AM01] discuss the properties and relative benefits of the two approaches. The price of exactnesss is conservatism, due to the discreteness of the binomial distribution [@AA01]. This means that the actual coverage of the confidence interval does not exactly conform to the nominal coverage, but it will not be less than it. (See also [@AA03].) Both functions use a simple step search algorithm.
 
 ```{r}
 RRotsst(c(4, 24, 12, 28))
@@ -76,7 +76,7 @@ Methods for estimating a common *RR* from stratified or clustered designs depend
 
 Data may be input two ways, either using a formula and data frame, or as a matrix.
 
-```{r} 
+```{r}
 RRstr(cbind(y, n) ~ tx + cluster(clus), Table6,
       compare = c("a", "b"), pf = FALSE)
 # Data matrix input: RRstr(Y = table6, pf = F)
@@ -84,17 +84,17 @@ RRstr(cbind(y, n) ~ tx + cluster(clus), Table6,
 
 ## Mantel-Haenszel estimator
 
-A widely-used heuristic method for sparse frequency tables is the weighted average approach of [@MH59]^[[@KLK88] review the Mantel-Haenzel approach and point out its relationship to a method proposed by [@Coc54], which was the basis of Rhadakrishnan's method [@Rad65], alluded to in Section 3.1.]. MH interval estimates are based on the asymptotic normality of the log of the risk ratio. 
+A widely-used heuristic method for sparse frequency tables is the weighted average approach of [@MH59]^[[@KLK88] review the Mantel-Haenzel approach and point out its relationship to a method proposed by [@Coc54], which was the basis of Rhadakrishnan's method [@Rad65], alluded to in Section 3.1.]. MH interval estimates are based on the asymptotic normality of the log of the risk ratio.
 `RRmh()` utilizes the variance estimator given by [@GR85] for sparse strata.
-The resulting asymptotic estimator is consistent for both the case of sparse strata where the number of strata is assumed increasing, 
-and the case of limited number of strata where the stratum size is assumed increasing. In the latter case, however, it is less 
-efficient than maximum likelihood [@AH00, @GR85]. 
+The resulting asymptotic estimator is consistent for both the case of sparse strata where the number of strata is assumed increasing,
+and the case of limited number of strata where the stratum size is assumed increasing. In the latter case, however, it is less
+efficient than maximum likelihood [@AH00, @GR85].
 Additional discussion may be found in Section 4.3.1 [@Lachin00], [@LSKK05], and [@SO06]
 ^[SAS Proc FREQ provides MH interval estimates of *RR*. The other estimator calculated by Proc FREQ, which it calls
 ``logit,'' is actually a weighted least squares estimator [@Lachin00] that has a demonstrable and severe
 bias for sparse data [@GR85].  It should be avoided.].
 
-```{r} 
+```{r}
 RRmh(cbind(y, n) ~ tx + cluster(clus), Table6,
      compare = c("a", "b"), pf = FALSE)
 # Data matrix input: RRmh(Y = table6, pf = F)
@@ -123,7 +123,7 @@ where $a(\hat{\varphi })$ is a function of the dispersion parameter.
 
 ### Dispersion parameter $\varphi$
 
-A simple estimator of the dispersion parameter, $\varphi$, may be estimated by the method of moments [Wed74]. It is given by `phiWt()`. 
+A simple estimator of the dispersion parameter, $\varphi$, may be estimated by the method of moments [Wed74]. It is given by `phiWt()`.
 This form of the dispersion parameter has $a(\varphi)=\varphi$, and $\varphi$ is estimated by ${X^2}/{df}\;$, the Pearson statistic divided by the degrees of freedom.
 
 Note that $\varphi$ is the same estimator as may be obtained by the `quasibinomial` family in `glm()` which is, in fact, what is used by `phiWt()` to reweight the original fit:
@@ -135,7 +135,7 @@ summary(update(bird.fit, family = quasibinomial))$disp
 
 `phiWt()` makes it easy to estimate *PF* intervals with a single command.
 
-```{r} 
+```{r}
 # model weighted by phi hat
 RRor(phiWt(bird.fit))
 ```
@@ -171,7 +171,7 @@ birdm.fit <- glm(cbind(y, n - y) ~ tx - 1, binomial, birdm)
 RRor(tauWt(birdm.fit, subset.factor = birdm$tx))
 ```
 
-Note that increasing cluster size can make things worse when there is intra-cluster correlation. 
+Note that increasing cluster size can make things worse when there is intra-cluster correlation.
 
 Now let's compare the weights from `phiWt()` and `tauWt()` with unequal cluster sizes.
 In the output below, `w` represents $1/a(\hat{\varphi })\;$ and `nw` is $n/a(\hat{\varphi })\;$
@@ -193,7 +193,7 @@ Look at the last two rows. Note that the `nw.phi` are directly proportional to `
 ## Rao-Scott weights
 
 [@RS92] give a method of weighting clustered binomial observations based on the variance inflation due to clustering.
-They relate their approach to the concepts of design effect and effective sample size familiar in survey sampling, and they illustrate its use in a variety of contexts. 
+They relate their approach to the concepts of design effect and effective sample size familiar in survey sampling, and they illustrate its use in a variety of contexts.
 `rsbWt()` implements it in the same manner as `phiWt()` and `tauWt()`. For more general use, the function `rsb()` just returns the design effect estimates and the weights.
 
 ```{r}
@@ -205,12 +205,12 @@ rsb(birdm$y, birdm$n)$d
 
 # Likelihood based intervals
 
-The `RRlsi()` function estimates likelihood support intervals for *RR* by the profile likelihood Section 7.6 [@Roy97].  
+The `RRlsi()` function estimates likelihood support intervals for *RR* by the profile likelihood Section 7.6 [@Roy97].
 
 Likelihood support intervals are usually formed based on the desired likelihood ratio, ${1}/{k}\;$, often ${1}/{8}\;$ or ${1}/{32}\;$. Under some conditions the log likelihood ratio may follow the chi-square distribution. If so, then $\alpha =1-{{F}_{{{\chi }^{2}}}}\left( 2\log (k),1 \right)$. `RRsc()` will make the conversion from $\alpha$ to $k$ with the argument `use.alpha = T`.
 
 
-```{r} 
+```{r}
 RRlsi(c(4, 24, 12, 28))
 RRlsi(c(4, 24, 12, 28), use.alpha = TRUE)
 ```
@@ -235,7 +235,7 @@ A likelihood support interval for $IDR$ may be estimated based on orthogonal fac
 Likelihood support intervals are usually formed based on the desired likelihood ratio, ${1}/{k}\;$, often ${1}/{8}\;$ or ${1}/{32}\;$. Under some conditions the log likelihood ratio may follow the chi square distribution. If so, then $\alpha =1-{{F}_{{{\chi }^{2}}}}\left( 2\log (k),1 \right)$. `IDRlsi()` will make the conversion from $\alpha$ tp $k$ with the argument `use.alpha = T`.
 
 
-```{r} 
+```{r}
 IDRlsi(c(26, 204, 10, 205), pf = FALSE)
 IDRlsi(c(26, 204, 10, 205), pf = FALSE, use.alpha = TRUE)
 ```
