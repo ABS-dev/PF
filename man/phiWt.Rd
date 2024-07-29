@@ -9,7 +9,8 @@ phiWt(fit, subset.factor = NULL, fit.only = TRUE, show.warns = FALSE)
 \arguments{
 \item{fit}{A \link{glm} object.}
 
-\item{subset.factor}{Factor for estimating phi by subset.}
+\item{subset.factor}{Factor for estimating phi by subset.  Will be converted
+to a factor if it is not a factor.}
 
 \item{fit.only}{Return only the new fit?  If FALSE, also returns the weights
 and phi estimates.}
@@ -17,10 +18,9 @@ and phi estimates.}
 \item{show.warns}{Show warnings}
 }
 \value{
-A list with the following elements.
-\code{fit}: the new model fit, updated by the estimated weights
-\code{weights}: vector of weights
-\code{phi}: vector of phi estimates
+A list with the following elements. \code{fit}: the new model fit,
+updated by the estimated weights \code{weights}: vector of weights \code{phi}: vector
+of phi estimates
 }
 \description{
 MME estimate of dispersion parameter phi.

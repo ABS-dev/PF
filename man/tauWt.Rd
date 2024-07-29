@@ -16,7 +16,8 @@ tauWt(
 \arguments{
 \item{fit}{A \link{glm} object.}
 
-\item{subset.factor}{Factor for estimating tau by subset.}
+\item{subset.factor}{Factor for estimating phi by subset.  Will be converted
+to a factor if it is not a factor.}
 
 \item{fit.only}{Return only the final fit?  If FALSE, also returns the
 weights and tau estimates.}
