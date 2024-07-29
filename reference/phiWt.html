@@ -54,7 +54,8 @@
 
 
 <dt id="arg-subset-factor">subset.factor<a class="anchor" aria-label="anchor" href="#arg-subset-factor"></a></dt>
-<dd><p>Factor for estimating phi by subset.</p></dd>
+<dd><p>Factor for estimating phi by subset.  Will be converted
+to a factor if it is not a factor.</p></dd>
 
 
 <dt id="arg-fit-only">fit.only<a class="anchor" aria-label="anchor" href="#arg-fit-only"></a></dt>
@@ -68,10 +69,9 @@ and phi estimates.</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A list with the following elements.
-<code>fit</code>: the new model fit, updated by the estimated weights
-<code>weights</code>: vector of weights
-<code>phi</code>: vector of phi estimates</p>
+    <p>A list with the following elements. <code>fit</code>: the new model fit,
+updated by the estimated weights <code>weights</code>: vector of weights <code>phi</code>: vector
+of phi estimates</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>

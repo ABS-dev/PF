@@ -159,7 +159,7 @@
       "checksum": "0196cc47dc30c3c4d73560cd19848986"
     },
     "pkgdown.yml": {
-      "checksum": "8debf86f7a48512f0336c1eb6923c8e4"
+      "checksum": "e8161377764f3d1dadeb12f4d225d676"
     },
     "reference/bird.html": {
       "checksum": "fc545d9141be404ca9eb22d4a9fb52db"
@@ -180,7 +180,7 @@
       "checksum": "e5fb4928dbe8cff0f792d4dda86167ac"
     },
     "reference/IDRlsi.html": {
-      "checksum": "9cbec448e56188d078498347d0bec922"
+      "checksum": "33d67cd2f4cceea3e43e0e2035dc27af"
     },
     "reference/IDRsc.html": {
       "checksum": "499c04c96d30842986a0c697873a3d0b"
@@ -198,7 +198,7 @@
       "checksum": "40b78496bae2da857dab0c0798fba181"
     },
     "reference/phiWt.html": {
-      "checksum": "ea744340dec4a46e358f69d067e2ba26"
+      "checksum": "e9e07c12ae18867a04eb98687efeabcc"
     },
     "reference/print.PF.html": {
       "checksum": "1aba0ec393589a32ba32f7a3a63aa0ef"
@@ -273,7 +273,7 @@
       "checksum": "0b15491f8b0591d56e45dbbd67abfd88"
     },
     "reference/rsbWt.html": {
-      "checksum": "99c860837fbf03e7578b389181fdd9a5"
+      "checksum": "54464129c9bf489ef4651378db2c9506"
     },
     "reference/set1.html": {
       "checksum": "2a1054cebc8d56817146f6d87cd759bd"
@@ -282,10 +282,10 @@
       "checksum": "b7621fee1ab4f931d2814b02c5cd3899"
     },
     "reference/tauWt.html": {
-      "checksum": "1a1628ff35d9d8b0110af9b69be89abb"
+      "checksum": "e041ed46961cd5f936d443a0dac834ff"
     },
     "search.json": {
-      "checksum": "7a2794afc4e49c89c5f047c26061e872"
+      "checksum": "f68c4dc2d599c0e0ecb33090f5bf722d"
     },
     "sitemap.xml": {
       "checksum": "9aecfaf01890bdcc26a86e64b8db111e"
