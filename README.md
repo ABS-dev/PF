@@ -37,7 +37,7 @@ Read online at https://www.aphis.usda.gov/animal_health/vet_biologics/publicatio
 
 ## Package Manual:
 
-Read online at https://github.com/ABS-dev/PF/blob/master/inst/doc/PFPackageManual.pdf
+Read online at https://github.com/ABS-dev/PF/blob/master/inst/doc/PF_9.6.9.pdf
 
 
 ## Issues

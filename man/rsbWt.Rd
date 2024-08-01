@@ -7,7 +7,7 @@
 rsbWt(fit = NULL, subset.factor = NULL, fit.only = TRUE)
 }
 \arguments{
-\item{fit}{A \link{glm} object.}
+\item{fit}{A \link[stats:glm]{stats::glm} object.}
 
 \item{subset.factor}{Factor for estimating phi by subset.  Will be converted
 to a factor if it is not a factor.}

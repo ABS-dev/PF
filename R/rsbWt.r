@@ -3,7 +3,7 @@
 #' @details Estimates the cluster design effect \eqn{{d}_{i}}{d_i} as the
 #'   variance inflation due to clustering by the method of Rao and Scott.
 #'   Observations are then weighted by the inverse of the \eqn{{d}_{i}}{d_i}.
-#' @param fit A [glm] object.
+#' @param fit A [stats::glm] object.
 #' @param subset.factor Factor for estimating phi by subset.  Will be converted
 #'   to a factor if it is not a factor.
 #' @param fit.only Return only the new fit? If FALSE, also returns the weights
