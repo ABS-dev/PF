@@ -26,7 +26,8 @@ Imports:
   methods,
   plyr,
   dplyr,
-  tidyr
+  tidyr,
+  data.table
 Suggests:
   testthat,
   knitr,
@@ -35,7 +36,6 @@ Suggests:
 Collate:
   'aaa.r'
   'aab.r'
-  'aac.r'
   'class.r'
   'generics.r'
   'PF.r'
