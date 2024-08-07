@@ -28,7 +28,6 @@ Imports:
   dplyr,
   tidyr
 Suggests:
-  magrittr,
   testthat,
   knitr,
   rmarkdown,

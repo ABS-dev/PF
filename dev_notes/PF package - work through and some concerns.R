@@ -39,18 +39,18 @@ RRtosst(formula = diagnosis ~ group, data = trial, compare = c("vaccinate", "con
 require(dplyr)
 data1 <- data.frame(group = rep(c("treated", "control"), each = 2),
                     y = c(1, 3, 7, 5),
-                    n = c(12, 12, 14, 14), 
+                    n = c(12, 12, 14, 14),
                     cage = rep(paste('cage', 1:2), 2))
 data1
 
-data2 <- data1 %>%
-  group_by(group) %>%
+data2 <- data1 |>
+  group_by(group) |>
   summarize(sum_y = sum(y),
             sum_n = sum(n))
 
 # I really don't like how this formula things works.  And for some reason, I'm crashing the function...
-RRtosst(data = data2, formula =  cbind(sum_y, sum_n) ~ group, 
-        compare = c("vaccinate", "control")) 
+RRtosst(data = data2, formula =  cbind(sum_y, sum_n) ~ group,
+        compare = c("vaccinate", "control"))
 
 # A way that would be more inline with how lm, glm, etc works is something like
 # RRtosst(formula = sick ~ group, data = trial, compare = c("vaccinate", "control"))
