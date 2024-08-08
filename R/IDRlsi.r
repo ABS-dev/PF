@@ -47,7 +47,6 @@
 #'   & Hall, Boca Raton, 1997. Section 7.2.
 #' @author [PF-package]
 #' @seealso [IDRsc]
-#' @export
 #' @examples
 #' # Both examples represent the same observation, with data entry by vector
 #' # and matrix notation.
@@ -56,30 +55,17 @@
 #' IDRlsi(y_vector, pf = FALSE)
 #'
 #' # 1 / 8 likelihood support interval for IDR
-#'
 #' # corresponds to 95.858% confidence
 #' #   (under certain assumptions)
 #'
-#' # IDR
-#' #  IDR   LL   UL
-#' # 2.61 1.26 5.88
-#'
 #' y_matrix <- matrix(c(26, 178, 10, 195), 2, 2, byrow = TRUE)
 #' y_matrix
-#' #      [, 1] [, 2]
-#' # [1, ]   26  178
-#' # [2, ]   10  195
 #'
 #' IDRlsi(y_matrix, pf = FALSE)
 #'
 #' # 1 / 8 likelihood support interval for IDR
-#'
 #' # corresponds to 95.858% confidence
 #' #   (under certain assumptions)
-#'
-#' # IDR
-#' #  IDR   LL   UL
-#' # 2.61 1.26 5.88
 #'
 #' data1 <- data.frame(group = rep(c("treated", "control"), each = 5),
 #'              n = c(rep(41, 4), 40, rep(41, 5)),
@@ -89,13 +75,8 @@
 #'                compare = c("treated", "control"), pf = FALSE)
 #'
 #' # 1 / 8 likelihood support interval for IDR
-#'
 #' # corresponds to 95.858% confidence
 #' #   (under certain assumptions)
-#'
-#' # IDR
-#' #  IDR   LL   UL
-#' # 2.61 1.26 5.88
 #'
 #' require(dplyr)
 #' data2 <- data1 |>
@@ -107,14 +88,12 @@
 #'                compare = c("treated", "control"), pf = FALSE)
 #'
 #' # 1 / 8 likelihood support interval for IDR
-#'
 #' # corresponds to 95.858% confidence
 #' #   (under certain assumptions)
 #'
-#' # IDR
-#' #  IDR   LL   UL
-#' # 2.61 1.26 5.88
 #' @importFrom stats pchisq qchisq
+#' @importFrom lifecycle badge deprecate_warn is_present deprecated
+#' @export
 IDRlsi <- function(y = NULL,
                    formula = NULL,
                    data = NULL,

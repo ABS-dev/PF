@@ -13,6 +13,7 @@
 #' @seealso [RRmh], [RRstr]
 #' @importFrom plyr ddply
 #' @importFrom stats model.frame terms
+#' @importFrom lifecycle badge deprecate_warn is_present deprecated
 #' @noRd
 .matricize <- function(formula, data, compare = compare) {
   # 1/18/2012 - added error checking for compare argument. mcv goal: avoid the

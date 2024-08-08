@@ -13,7 +13,6 @@
 #' * `weights`: vector of weights
 #' * `d`: vector of \eqn{{d}_{i}}{d_i} estimates
 #'
-#' @export
 #' @references Rao JNK, Scott AJ, 1992. A simple method for the analysis of
 #'   clustered binary data. *Biometrics* 48:577-585.
 #' @author [PF-package]
@@ -21,18 +20,8 @@
 #' @examples
 #' birdm.fit <- glm(cbind(y, n - y) ~ tx-1, binomial, birdm)
 #' RRor(rsbWt(birdm.fit))
-#' #
-#' # 95% t intervals on 4 df
-#' #
-#' # PF
-#' #     PF     LL     UL
-#' #  0.479 -1.061  0.868
-#' #
-#' #       mu.hat    LL     UL
-#' # txcon  0.768 0.968 0.2659
-#' # txvac  0.400 0.848 0.0737
-#' #
 #' @importFrom stats update
+#' @export
 rsbWt <- function(fit = NULL,
                   subset.factor = NULL,
                   fit.only = TRUE) {
@@ -72,7 +61,6 @@ rsbWt <- function(fit = NULL,
 #' @returns A list with the following elements.
 #' * `w`: vector of weights
 #' * `d`: vector of \eqn{{d}_{i}}{d_i} estimates
-#' @export
 #' @references Rao JNK, Scott AJ, 1992. A simple method for the analysis of
 #'   clustered binary data. *Biometrics* 48:577-585.
 #' @author [PF-package]
@@ -80,12 +68,9 @@ rsbWt <- function(fit = NULL,
 #' @examples
 #' # Weil's rat data (Table 1 of Rao and Scott)
 #' rsb(rat$y, rat$n, id = rat$group)$d
-#' #  control  treated
-#' # 1.232495 3.952861
 #' rsb(data = rat, formula = cbind(y, n) ~ group)$d
-#' #  control  treated
-#' # 1.232495 3.952861
 #' @importFrom dplyr select ungroup
+#' @export
 rsb <- function(y = NULL, n = NULL, formula = NULL, data = NULL, id = NULL) {
   # rsb returns d's and weights
   if (is.null(y) && is.null(n) && !(is.null(formula) && is.null(data))) {

@@ -34,7 +34,6 @@
 #' * `y`: data.frame with "y1", "n1", "y2", "n2" values.
 #' * `rnd`: how many digits to round the display
 #' * `alpha`: complement of confidence level
-#' @export
 #' @references Gart JJ, Nam J, 1988. Approximate interval estimation of the
 #'   ratio of binomial parameters: a review and corrections for skewness.
 #'   *Biometrics* 44:323-338.
@@ -58,28 +57,10 @@
 #' y_vector <- c(4, 24, 12, 28)
 #' RRsc(y_vector)
 #'
-#' # PF
-#' # 95% interval estimates
-#'
-#' # 				PF     LL    UL
-#' # MN method    0.611 0.0251 0.857
-#' # score method 0.611 0.0328 0.855
-#' # skew corr    0.611 0.0380 0.876
-#'
 #' y_matrix <- matrix(c(4, 20, 12, 16), 2, 2, byrow = TRUE)
-#' #       [, 1] [, 2]
-#' # [1, ]    4   20
-#' # [2, ]   12   16
 #'
 #' RRsc(y_matrix)
 #'
-#' # PF
-#' # 95% interval estimates
-#'
-#' # 				PF     LL    UL
-#' # MN method    0.611 0.0251 0.857
-#' # score method 0.611 0.0328 0.855
-#' # skew corr    0.611 0.0380 0.876
 #' require(dplyr)
 #' data1 <- data.frame(group = rep(c("treated", "control"), each = 2),
 #'   y = c(1, 3, 7, 5),
@@ -93,14 +74,9 @@
 #' RRsc(data = data2, formula = cbind(sum_y, sum_n) ~ group,
 #'   compare = c("treated", "control"))
 #'
-#' # PF
-#' # 95% interval estimates
-#'
-#' # 				PF     LL    UL
-#' # MN method    0.611 0.0251 0.857
-#' # score method 0.611 0.0328 0.855
-#' # skew corr    0.611 0.0380 0.876
 #' @importFrom stats qnorm
+#' @importFrom lifecycle badge deprecate_warn is_present deprecated
+#' @export
 RRsc <- function(y = NULL,
                  data = NULL,
                  formula = NULL,

@@ -30,7 +30,6 @@
 #' * `y`: data.frame of restructured input
 #' * `rnd`: how many digits to round the display
 #' * `alpha`: complement of confidence level
-#' @export
 #' @note If either all y1's or all y2's are zero, a division by zero may occur,
 #'   and a NaN returned for some values.
 #'
@@ -68,22 +67,12 @@
 #'      Table6,
 #'      compare = c("a", "b"), pf = FALSE)
 #'
-#' # RR
-#' # 95% interval estimates
-#' #
-#' #   RR   LL   UL
-#' # 2.67 1.37 5.23
-#' #
-#'
 #' ## or as matrix
 #' RRmh(Y = table6, pf = FALSE)
 #'
-#' # RR
-#' # 95% interval estimates
-#' #
-#' #   RR   LL   UL
-#' # 2.67 1.37 5.23
-
+#' @importFrom stats qnorm
+#' @importFrom lifecycle badge deprecate_warn is_present deprecated
+#' @export
 ################################################################################
 #
 # Mantel-Haenszel estimate of common risk ratio for K 2x2 tables.
@@ -93,8 +82,6 @@
 # data types and dimensions of the inputs.
 #
 ################################################################################
-
-#' @importFrom stats qnorm
 RRmh <- function(formula = NULL,
                  data = NULL,
                  compare = c("vac", "con"),

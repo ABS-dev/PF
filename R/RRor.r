@@ -39,7 +39,6 @@
 #' * `alpha`: complement of confidence level
 #' * `norm`: logical indicating Gaussian or t-interval
 #' * `degf`: degrees of freedom
-#' @export
 #'
 #' @author [PF-package]
 #'
@@ -60,29 +59,10 @@
 #' bird.fit <- glm(cbind(y, n - y) ~ tx - 1, binomial, bird)
 #' RRor(tauWt(bird.fit))
 #'
-#' # 95% t intervals on 4 df
-#' #
-#' # PF
-#' #     PF     LL     UL
-#' #  0.500 -0.583  0.842
-#' #
-#' #       mu.hat    LL     UL
-#' # txcon  0.733 0.943 0.3121
-#' # txvac  0.367 0.752 0.0997
-#'
 #' RRor(phiWt(bird.fit))
-#' # 95% t intervals on 4 df
-#' #
-#' # PF
-#' #     PF     LL     UL
-#' #  0.500 -0.583  0.842
-#' #
-#' #       mu.hat    LL     UL
-#' # txcon  0.733 0.943 0.3121
-#' # txvac  0.367 0.752 0.0997
-#'
 #'
 #' @importFrom stats coef qnorm qt
+#' @export
 RRor <- function(fit = NULL, beta.hat = NULL, var.beta.hat = NULL,
                  degf = NULL, which = c(1, 2), pf = TRUE, norm = FALSE,
                  alpha = 0.05, rnd = 3) {

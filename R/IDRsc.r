@@ -33,7 +33,6 @@
 #' * `y`: data vector
 #' * `rnd`: how many digits to round the display
 #' * `alpha`: complement of confidence level
-#' @export
 #' @references Siev D, 1994. Estimating vaccine efficacy in prospective studies.
 #'   *Preventive Veterinary Medicine* 20:279-296, Appendix 1.
 #'
@@ -54,25 +53,10 @@
 #' y_vector <- c(26, 204, 10, 205)
 #' IDRsc(y_vector, pf = FALSE)
 #'
-#' # IDR
-#' # 95% interval estimates
-#'
-#' #  IDR   LL   UL
-#' # 2.61 1.28 5.34
-#'
 #' y_matrix <- matrix(c(26, 178, 10, 195), 2, 2, byrow = TRUE)
 #' y_matrix
-#' #      [, 1] [, 2]
-#' # [1, ]   26  178
-#' # [2, ]   10  195
 #'
 #' IDRsc(y_matrix, pf = FALSE)
-#'
-#' # IDR
-#' # 95% interval estimates
-#'
-#' #  IDR   LL   UL
-#' # 2.61 1.28 5.34
 #'
 #' require(dplyr)
 #' data1 <- data.frame(group = rep(c("treated", "control"), each = 5),
@@ -86,13 +70,9 @@
 #' IDRsc(data = data2, formula =  cbind(sum_y, sum_n) ~ group,
 #'     compare = c("treated", "control"), pf = FALSE)
 #'
-#' # IDR
-#' # 95% interval estimates
-#'
-#' #  IDR   LL   UL
-#' # 2.61 1.28 5.34
-
 #' @importFrom stats qnorm
+#' @importFrom lifecycle badge deprecate_warn is_present deprecated
+#' @export
 IDRsc <- function(y = NULL,
                   data = NULL,
                   formula = NULL,

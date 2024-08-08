@@ -19,7 +19,6 @@
 #' `fit`: the new model fit, updated by the estimated weights
 #' `weights`: vector of weights
 #' `phi`: vector of phi estimates
-#' @export
 #' @references Williams DA, 1982. Extra-binomial variation in logistic linear
 #'   models. *Applied Statistics* 31:144-148.
 #'
@@ -31,20 +30,8 @@
 #' @examples
 #' birdm.fit <- glm(cbind(y, n - y) ~ tx - 1, binomial, birdm)
 #' RRor(tauWt(birdm.fit))
-#'
-#' # 95% t intervals on 4 df
-#' #
-#' # PF
-#' #     PF     LL     UL
-#' #  0.489 -0.578  0.835
-#' #
-#' #       mu.hat    LL    UL
-#' # txcon  0.737 0.944 0.320
-#' # txvac  0.376 0.758 0.104
-#' #
-#' # binomial family only
-#' # any link
 #' @importFrom stats binomial glm resid resid update update
+#' @export
 tauWt <- function(fit,
                   subset.factor = NULL,
                   fit.only = TRUE,

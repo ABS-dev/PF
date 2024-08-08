@@ -37,7 +37,6 @@
 #' * `alpha`: complement of confidence level
 #' * `rnd`: how many digits to round the display
 #' * `multvec`: data frame showing the multinomial representation of the data
-#' @export
 #' @author [PF-package]
 #' @note Experimental functions for estimating profile likelihood intervals are
 #'   in the CVBmisc package.
@@ -64,6 +63,8 @@
 #'
 #' RRmpWald(x = as.vector(thistable))
 #' @importFrom stats qnorm qt
+#' @importFrom lifecycle badge deprecate_warn is_present deprecated
+#' @export
 RRmpWald <- function(formula = NULL, data = NULL, compare = c("vac", "con"),
                      affected = 1, x, alpha = 0.05, pf = TRUE, tdist = TRUE,
                      df = NULL, rnd = 3) {

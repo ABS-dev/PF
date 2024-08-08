@@ -32,7 +32,6 @@
 #' * `compare`: groups compared
 #' * `rnd`: how many digits to round the display
 #' * `alpha`: size of test; complement of confidence level
-#' @export
 #' @note Vignette *Examples for Stratified Designs* forthcoming with more
 #'   examples.
 #' @references Gart JJ, 1985. Approximate tests and interval estimation of the
@@ -65,19 +64,6 @@
 #'       Table6,
 #'       compare = c("a", "b"), pf = FALSE)
 #'
-#' # Test of homogeneity across clusters
-#'
-#' # stat     0.954
-#' # df       3
-#' # p        0.812
-#'
-#' #  RR estimates
-#'
-#' # 		        RR   LL   UL
-#' # starting   2.66 1.37 5.18
-#' # mle        2.65 1.39 5.03
-#' # skew corr  2.65 1.31 5.08
-#'
 #' ## or as matrix
 #' RRstr(Y = table6, pf = FALSE)
 #'
@@ -87,6 +73,8 @@
 #' clus = rep(paste("Row", 1:4, sep = ""), each = 2))
 #'
 #' @importFrom stats pchisq qnorm
+#' @importFrom lifecycle badge deprecate_warn is_present deprecated
+#' @export
 RRstr <- function(formula = NULL, data = NULL, compare = c("vac", "con"), Y,
                   alpha = 0.05, pf = TRUE, trace.it = FALSE, iter.max = 24,
                   converge = 1e-6, rnd = 3, multiplier = 0.7, divider = 1.1) {

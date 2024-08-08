@@ -12,7 +12,6 @@
 #' @returns A list with the following elements. `fit`: the new model fit,
 #'   updated by the estimated weights `weights`: vector of weights `phi`: vector
 #'   of phi estimates
-#' @export
 #' @references Wedderburn RWM, 1974. Quasi-likelihood functions, generalized
 #'   linear models, and the Gauss-Newton method. *Biometrika* 61:439-447.
 #' @author [PF-package]
@@ -20,18 +19,8 @@
 #' @examples
 #' birdm.fit <- glm(cbind(y, n - y) ~ tx-1, binomial, birdm)
 #' RRor(phiWt(birdm.fit))
-#' #
-#' # 95% t intervals on 4 df
-#' #
-#' # PF
-#' #     PF     LL     UL
-#' #  0.479 -0.537  0.823
-#' #
-#' #       mu.hat   LL    UL
-#' # txcon  0.768 0.95 0.367
-#' # txvac  0.400 0.78 0.111
-#' #
 #' @importFrom stats glm update
+#' @export
 phiWt <- function(fit,
                   subset.factor = NULL,
                   fit.only = TRUE,

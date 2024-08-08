@@ -36,7 +36,6 @@
 #' * `y`: `data.frame` with "y1", "n1", "y2", "n2" values.
 #' * `rnd`: how many digits to round the display
 #' * `alpha`: complement of confidence level
-#' @export
 #' @references Koopman PAR, 1984. Confidence intervals for the ratio of two
 #'   binomial proportions. *Biometrics* 40:513-517.
 #'
@@ -56,20 +55,8 @@
 #' y_vector <- c(4, 24, 12, 28)
 #' RRotsst(y_vector, rnd = 3)
 #'
-#' # PF
-#' # 95% interval estimates
-#'
-#' #    PF     LL     UL
-#' # 0.6111 0.0148 0.8519
-#'
 #' y_matrix <- matrix(c(4, 20, 12, 16), 2, 2, byrow = TRUE)
 #' RRotsst(y_matrix, rnd = 3)
-#'
-#' # PF
-#' # 95% interval estimates
-#'
-#' #    PF     LL     UL
-#' # 0.6111 0.0148 0.8519
 #'
 #' require(dplyr)
 #' data1 <- data.frame(group = rep(c("treated", "control"), each = 2),
@@ -83,13 +70,9 @@
 #'     sum_n = sum(n))
 #' RRotsst(data = data2, formula =  cbind(sum_y, sum_n) ~ group,
 #'    compare = c("treated", "control"))
-#'
-#' # PF
-#' # 95% interval estimates
-#' #
-#' # PF     LL     UL
-#' # 0.6111 0.0148 0.8519
 #' @importFrom stats qbeta
+#' @importFrom lifecycle badge deprecate_warn is_present deprecated
+#' @export
 RRotsst <- function(y = NULL,
                     data = NULL,
                     formula = NULL,

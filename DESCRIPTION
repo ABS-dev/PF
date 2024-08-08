@@ -27,7 +27,8 @@ Imports:
   plyr,
   dplyr,
   tidyr,
-  data.table
+  data.table,
+  lifecycle
 Suggests:
   testthat,
   knitr,

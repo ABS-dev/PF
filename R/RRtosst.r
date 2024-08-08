@@ -36,7 +36,6 @@
 #' * `y`: data.frame with "y1", "n1", "y2", "n2" values.
 #' * `rnd`: how many digits to round the display
 #' * `alpha`: complement of confidence level
-#' @export
 #' @references Koopman PAR, 1984. Confidence intervals for the ratio of two
 #'   binomial proportions. *Biometrics* 40:513-517.
 #'
@@ -56,24 +55,9 @@
 #' y_vector <- c(4, 24, 12, 28)
 #' RRtosst(y_vector)
 #'
-#' # PF
-#' # 95% interval estimates
-#'
-#' #    PF    LL    UL
-#' # 0.611 0.012 0.902
-#'
 #' y_matrix <- matrix(c(4, 20, 12, 16), 2, 2, byrow = TRUE)
-#' #      [, 1] [, 2]
-#' # [1, ]    4   20
-#' # [2, ]   12   16
 #'
 #' RRtosst(y_matrix)
-#'
-#' # PF
-#' # 95% interval estimates
-#'
-#' #    PF    LL    UL
-#' # 0.611 0.012 0.902
 #'
 #' require(dplyr)
 #' data1 <- data.frame(group = rep(c("treated", "control"), each = 2),
@@ -87,12 +71,9 @@
 #' RRtosst(data = data2, formula =  cbind(sum_y, sum_n) ~ group,
 #'   compare = c("treated", "control"))
 #'
-#' # PF
-#' # 95% interval estimates
-#'
-#' #    PF    LL    UL
-#' # 0.611 0.012 0.902
 #' @importFrom stats qbeta
+#' @importFrom lifecycle badge deprecate_warn is_present deprecated
+#' @export
 RRtosst <- function(y = NULL,
                     formula = NULL,
                     data = NULL,
@@ -352,11 +333,11 @@ RRtosst <- function(y = NULL,
 #' @param iter.max maximum number of iterations
 #' @param converge convergence criterion
 #' @param mn boolean whether to calculate MN or use default value of 1.0
-#' @export
 #' @examples
 #' .rr.score.asymp(c(0, 18, 16, 19), mn = FALSE)
 #' .rr.score.asymp(c(0, 18, 16, 19), mn = TRUE)
 #' @importFrom stats qnorm
+#' @export
 .rr.score.asymp <- function(y,
                             alpha = 0.05,
                             iter.max = 18.,

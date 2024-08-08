@@ -41,7 +41,6 @@
 #'   `"PF"` or `"RR"` `y`: data.frame with "y1", "n1", "y2", "n2" values. `rnd`:
 #'   how many digits to round the display `k`: likelihood ratio criterion
 #'   `alpha`: complement of confidence level
-#' @export
 #' @references Royall R. *Statistical Evidence: A Likelihood Paradigm*. Chapman
 #'   & Hall, Boca Raton, 1997.  Section 7.6
 #'
@@ -56,30 +55,18 @@
 #' RRlsi(y_vector)
 #'
 #' # 1 / 8 likelihood support interval for PF
-#'
 #' # corresponds to 95.858% confidence
 #' #   (under certain assumptions)
 #'
-#' # PF
-#' #     PF     LL     UL
-#' # 0.6111 0.0168 0.8859
 #'
 #' y_matrix <- matrix(c(4, 20, 12, 16), 2, 2, byrow = TRUE)
 #' y_matrix
-#' #      [, 1] [, 2]
-#' # [1, ]    4   20
-#' # [2, ]   12   16
 #'
 #' RRlsi(y_matrix)
 #'
 #' # 1 / 8 likelihood support interval for PF
-#'
 #' # corresponds to 95.858% confidence
 #' #   (under certain assumptions)
-#'
-#' # PF
-#' #     PF     LL     UL
-#' # 0.6111 0.0168 0.8859
 #'
 #' require(dplyr)
 #' data1 <- data.frame(group = rep(c("treated", "control"), each = 2),
@@ -95,17 +82,14 @@
 #'    compare = c("treated", "control"))
 #'
 #' # 1 / 8 likelihood support interval for PF
-#' #
 #' # corresponds to 95.858% confidence
 #' # (under certain assumptions)
-#' #
-#' # PF
-#' # PF     LL     UL
-#' # 0.6111 0.0168 0.8859
 
 ## see file RR likelihood functions.r for other versions including conditional
 ## likelihood
 #' @importFrom stats pchisq qchisq
+#' @importFrom lifecycle badge deprecate_warn is_present deprecated
+#' @export
 RRlsi <- function(y = NULL,
                   formula = NULL,
                   data = NULL,
