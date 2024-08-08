@@ -34,17 +34,6 @@ Observations are then weighted by the inverse of the \eqn{{d}_{i}}{d_i}.
 \examples{
 birdm.fit <- glm(cbind(y, n - y) ~ tx-1, binomial, birdm)
 RRor(rsbWt(birdm.fit))
-#
-# 95\% t intervals on 4 df
-#
-# PF
-#     PF     LL     UL
-#  0.479 -1.061  0.868
-#
-#       mu.hat    LL     UL
-# txcon  0.768 0.968 0.2659
-# txvac  0.400 0.848 0.0737
-#
 }
 \references{
 Rao JNK, Scott AJ, 1992. A simple method for the analysis of

@@ -8,10 +8,12 @@ IDRsc(
   y = NULL,
   data = NULL,
   formula = NULL,
-  compare = c("con", "vac"),
+  vac_grp = "vac",
+  con_grp = "con",
   alpha = 0.05,
   pf = TRUE,
-  rnd = 3
+  rnd = 3,
+  compare = deprecated()
 )
 }
 \arguments{
@@ -23,8 +25,9 @@ total, and group 1 is compared to group 2 (control or reference).}
 \item{formula}{Formula of the form cbind(y, n) ~ x, where y is the number
 positive, n is the group size, x is a factor with two levels of treatment.}
 
-\item{compare}{Text vector stating the factor levels: \code{compare[1]} is the
-vaccinate group to which \code{compare[2]} (control or reference) is compared.}
+\item{vac_grp}{The name of the vaccinated group.}
+
+\item{con_grp}{The name of the control group.}
 
 \item{alpha}{Complement of the confidence level.}
 
@@ -32,6 +35,9 @@ vaccinate group to which \code{compare[2]} (control or reference) is compared.}
 
 \item{rnd}{Number of digits for rounding. Affects display only, not
 estimates.}
+
+\item{compare}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}  Text vector stating the factor levels: \code{compare[1]} is the
+vaccinate group to which \code{compare[2]} (control or reference) is compared.}
 }
 \value{
 A \link{rr1} object with the following elements.
@@ -71,25 +77,10 @@ The data may also be a matrix. In that case \code{y} would be entered as
 y_vector <- c(26, 204, 10, 205)
 IDRsc(y_vector, pf = FALSE)
 
-# IDR
-# 95\% interval estimates
-
-#  IDR   LL   UL
-# 2.61 1.28 5.34
-
 y_matrix <- matrix(c(26, 178, 10, 195), 2, 2, byrow = TRUE)
 y_matrix
-#      [, 1] [, 2]
-# [1, ]   26  178
-# [2, ]   10  195
 
 IDRsc(y_matrix, pf = FALSE)
-
-# IDR
-# 95\% interval estimates
-
-#  IDR   LL   UL
-# 2.61 1.28 5.34
 
 require(dplyr)
 data1 <- data.frame(group = rep(c("treated", "control"), each = 5),
@@ -101,13 +92,8 @@ data2 <- data1 |>
   summarize(sum_y = sum(y),
   sum_n = sum(n))
 IDRsc(data = data2, formula =  cbind(sum_y, sum_n) ~ group,
-    compare = c("treated", "control"), pf = FALSE)
+    vac_grp = "treated", con_grp = "control", pf = FALSE)
 
-# IDR
-# 95\% interval estimates
-
-#  IDR   LL   UL
-# 2.61 1.28 5.34
 }
 \references{
 Siev D, 1994. Estimating vaccine efficacy in prospective studies.

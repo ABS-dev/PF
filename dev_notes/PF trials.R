@@ -7,7 +7,7 @@ dt = data.table(pair = rep(1:n, each = 2),
                 trt  = rep(c("v", "c"), n),
                 diagnosis = sample(c(0, 1), 2 * n, replace = TRUE))
 
-temp = RRmpWald(diagnosis ~ trt + cluster(pair), dt, compare = c("v", "c"), rnd = 4)
+temp = RRmpWald(diagnosis ~ trt + cluster(pair), dt, vac_grp = "v", "con_grp = "c", rnd = 4)
 
 
 estimate = data.table(PF = numeric(1330),
@@ -30,7 +30,7 @@ for (PP in 0:n) {
                                 rep(c(1, 0), PN),
                                 rep(c(0, 1), NP),
                                 rep(c(0), 2 * NN))]
-            temp = RRmpWald(diagnosis ~ trt + cluster(pair), dt, compare = c("v", "c"), rnd = 4)$estimate
+            temp = RRmpWald(diagnosis ~ trt + cluster(pair), dt, vac_grp = "v", "con_grp = "c", rnd = 4)$estimate
             estimate[k, PF := temp[1]]
             estimate[k, LL := temp[2]]
             estimate[k, UL := temp[3]]

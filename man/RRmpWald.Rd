@@ -7,14 +7,16 @@
 RRmpWald(
   formula = NULL,
   data = NULL,
-  compare = c("vac", "con"),
+  vac_grp = "vac",
+  con_grp = "con",
   affected = 1,
   x,
   alpha = 0.05,
   pf = TRUE,
   tdist = TRUE,
   df = NULL,
-  rnd = 3
+  rnd = 3,
+  compare = deprecated()
 )
 }
 \arguments{
@@ -24,8 +26,9 @@ levels of treatment, and \code{w} identifies the pairs.}
 
 \item{data}{\code{data.frame} containing variables in formula}
 
-\item{compare}{Text vector stating the factor levels: \code{compare[1]} is the
-vaccinate group to which \code{compare[2]} (control or reference) is compared.}
+\item{vac_grp}{The name of the vaccinated group.}
+
+\item{con_grp}{The name of the control group.}
 
 \item{affected}{Indicator for positive response}
 
@@ -45,6 +48,9 @@ be input as frequency vector. See example for how to order this vector.}
 
 \item{rnd}{Number of digits for rounding. Affects display only, not
 estimates.}
+
+\item{compare}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}  Text vector stating the factor levels: \code{compare[1]} is the
+vaccinate group to which \code{compare[2]} (control or reference) is compared.}
 }
 \value{
 A \link{rrmp} object with the following fields:
@@ -80,15 +86,16 @@ in the CVBmisc package.
 Call to this function may be one of two formats: (1) specify \code{data} and
 \code{formula} or (2) as a vector \code{x}
 
-\code{RRmpWald(formula, data, compare = c("vac", "con"), affected = 1, alpha = 0.05, pf = TRUE, tdist = TRUE, df = NULL, rnd = 3)}
+\code{RRmpWald(formula, data, vac_grp = "vac", con_grp = "con", affected = 1, alpha = 0.05, pf = TRUE, tdist = TRUE, df = NULL, rnd = 3)}
 
-\code{RRmpWald(x, compare = c("vac", "con"), affected = 1, alpha = 0, 05, pf = TRUE, tdist = TRUE, df = NULL, rnd = 3)}
+\code{RRmpWald(x, vac_grp = "vac", con_grp = "con", affected = 1, alpha = 0, 05, pf = TRUE, tdist = TRUE, df = NULL, rnd = 3)}
 }
 \examples{
-RRmpWald(pos ~ tx + cluster(cage), New, compare = c("vac", "con"))
+RRmpWald(pos ~ tx + cluster(cage), New, vac_grp = "vac", con_grp = "con")
 
 thistable <- New |>
   tidyr::spread(tx, pos) |>
+  tidyr::drop_na() |>
   dplyr::mutate(vac = factor(vac, levels = 1:0),
     con = factor(con, levels = 1:0)) |>
   with(table(vac, con))

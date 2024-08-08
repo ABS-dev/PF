@@ -19,7 +19,7 @@
 #' @param degf Degrees of freedom.
 #'
 #' @param which Numeric vector indicating which parameters to compare, so that
-#'   `RR = compare[2] / compare[1]`
+#'   `RR = con_grp / vac_grp`
 #'
 #' @param pf Estimate *RR* or its complement *PF*?
 #'

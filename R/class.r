@@ -91,14 +91,16 @@ rrsi <- setRefClass("rrsi",
 #' * `Y`:  data vector
 #' * `rnd`:  how many digits to round display
 #' * `alpha`:  complement of c.i.
-#' * `compare`:  text vector, same as input
+#' * `vac_grp`:  text vector, same as input
+#' * `con_grp`:  text vector, same as input
 #' * `multvec`:  data.frame showing the multinomial representation of the data
 #' @seealso [RRmpWald]
 #' @export
 #' @author [PF-package]
 rrmp <- setRefClass("rrmp",
                     contains = "rr1",
-                    fields = list(compare = "character",
+                    fields = list(vac_grp = "character",
+                                  con_grp = "character",
                                   multvec = "data.frame"))
 
 #' @title Data class rrsc
@@ -131,7 +133,8 @@ rrsc <- setRefClass("rrsc",
 #' If `Phi == 0 | Phi == 1`, homogeneity test is not possible and error message
 #' displays
 #' * `Y`: data.frame of restructured input
-#' * `compare`:   groups compared
+#' * `vac_grp`: Vaccination group
+#' * `con_grp`: Control group
 #' @seealso [rrstr]
 #' @export
 #' @author [PF-package]
@@ -140,4 +143,5 @@ rrstr <- setRefClass("rrstr",
                      fields = list(estimate = "matrix",
                                    hom = "listORchar",
                                    y = "data.frame",
-                                   compare = "character"))
+                                   vac_grp = "character",
+                                   con_grp = "character"))

@@ -23,7 +23,8 @@ test_that("examples work", {
   expect_equal(ex1$estimate, thisestimate)
   expect_equal(ex1$hom, list(stat = 0.9540868, df = 3, p = 0.8123596))
   expect_equal(ex1$y, thisy)
-  expect_identical(ex1$compare, c("vac", "con"))
+  expect_identical(ex1$vac_grp, "vac")
+  expect_identical(ex1$con_grp, "con")
 
   ex2 <- RRstr(Y = table6, pf = FALSE)
   expect_equal(ex1, ex2)

@@ -12,8 +12,8 @@
 #'   is the number positive, `n` is the group size, `x` is a factor with two
 #'   levels of treatment, and `w` is a factor indicating the clusters.
 #' @param data `data.frame` containing variables for formula
-#' @param compare Text vector stating the factor levels: `compare[1]` is the
-#'   vaccinate group to which `compare[2]` (control or reference) is compared.
+#' @param vac_grp The name of the vaccinated group.
+#' @param con_grp The name of the control group.
 #' @param Y Matrix of data, \eqn{K \times 4}{K x 4}. Each row is a stratum or
 #'   cluster. The columns are \eqn{y1, n1, y2, n2}, where the y's are the number
 #'   of positive in each group, and the n is the total in each group. Group 1
@@ -23,6 +23,9 @@
 #' @param alpha Complement of the confidence level.
 #' @param rnd Number of digits for rounding. Affects display only, not
 #'   estimates.
+#' @param compare `r badge("deprecated")`  Text vector stating the factor
+#'   levels: `compare[1]` is the vaccinate group to which `compare[2]` (control
+#'   or reference) is compared.
 #' @returns An object of class [rr1]  with the following fields.
 #' * `estimate`: vector of point and interval estimates:  point estimate, lower
 #'   confidence limit, upper confidence limit
@@ -38,8 +41,8 @@
 #'   Call to this function may be one of two formats: (1) specify `data` and
 #'   `formula` or (2) as a matrix `Y`
 #'
-#'   `RRmh(formula, data, compare = c("b", "a"), pf = TRUE, alpha = 0.05, rnd =
-#'   3)`
+#'   `RRmh(formula, data, vac_grp = "b", con_grp = "a", pf = TRUE, alpha = 0.05,
+#'   rnd = 3)`
 #'
 #'   `RRmh(Y, pf = TRUE, alpha = 0.05, rnd = 3)`
 #' @references Mantel N, Haenszel W, 1959.  Statistical aspects of the analysis
@@ -64,8 +67,7 @@
 #'
 #' # tx group "b" is control
 #' RRmh(cbind(y, n) ~ tx + cluster(clus),
-#'      Table6,
-#'      compare = c("a", "b"), pf = FALSE)
+#'      Table6, vac_grp = "a", con_grp = "b", pf = FALSE)
 #'
 #' ## or as matrix
 #' RRmh(Y = table6, pf = FALSE)
@@ -73,25 +75,28 @@
 #' @importFrom stats qnorm
 #' @importFrom lifecycle badge deprecate_warn is_present deprecated
 #' @export
-################################################################################
-#
-# Mantel-Haenszel estimate of common risk ratio for K 2x2 tables.
-# First draft 5 March 2010.  Updated 11 March 2010, 5 Nov 2010.
-# Revised 28 Dec 2010 to bring input/output format consistent with David Siev's
-# RRstr(). Note that unlike earlier versions, this version does not check the
-# data types and dimensions of the inputs.
-#
-################################################################################
 RRmh <- function(formula = NULL,
                  data = NULL,
-                 compare = c("vac", "con"),
+                 vac_grp = "vac",
+                 con_grp = "con",
                  Y,
                  alpha = 0.05,
                  pf = TRUE,
-                 rnd = 3) {
+                 rnd = 3,
+                 compare = deprecated()) {
+  ################################################################################
+  #
+  # Mantel-Haenszel estimate of common risk ratio for K 2x2 tables.
+  # First draft 5 March 2010.  Updated 11 March 2010, 5 Nov 2010.
+  # Revised 28 Dec 2010 to bring input/output format consistent with David Siev's
+  # RRstr(). Note that unlike earlier versions, this version does not check the
+  # data types and dimensions of the inputs.
+  #
+  ################################################################################
   # convert data to matrix
   if (!is.null(formula) && !is.null(data)) {
-    Y <- .matricize(formula = formula, data = data, compare = compare)$Y
+    Y <- .matricize(formula = formula, data = data, vac_grp = vac_grp,
+                    con_grp = con_grp)$Y
   }
   colnames(Y) <- c("y1", "n1", "y2", "n2")
   rownames(Y) <- paste("Row", seq_len(nrow(Y)), sep = "")

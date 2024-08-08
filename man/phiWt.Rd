@@ -33,17 +33,6 @@ moments. Refits the model, weighting the observations by \eqn{1/\phi}. Uses
 \examples{
 birdm.fit <- glm(cbind(y, n - y) ~ tx-1, binomial, birdm)
 RRor(phiWt(birdm.fit))
-#
-# 95\% t intervals on 4 df
-#
-# PF
-#     PF     LL     UL
-#  0.479 -0.537  0.823
-#
-#       mu.hat   LL    UL
-# txcon  0.768 0.95 0.367
-# txvac  0.400 0.78 0.111
-#
 }
 \references{
 Wedderburn RWM, 1974. Quasi-likelihood functions, generalized

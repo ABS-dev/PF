@@ -2,8 +2,7 @@ context("RRmh")
 
 test_that("examples work", {
   ex1 <- RRmh(cbind(y, n) ~ tx + cluster(clus),
-              Table6,
-              compare = c("a", "b"),
+              Table6, vac_grp = "a", con_grp = "b",
               pf = FALSE)
   thisy <- data.frame(y1 = c(4, 2, 4, 1),
                       n1 = c(16, 16, 18, 15),

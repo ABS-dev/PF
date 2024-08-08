@@ -50,12 +50,12 @@
 # vaccinate groups
 #' @importFrom dplyr group_by_at select summarize_at ungroup
 #' @importFrom stats filter
-.extract_freqvec <- function(formula, data, compare = c("vac", "con")) {
+.extract_freqvec <- function(formula, data, vac_grp = "vac", con_grp = "con") {
   vars <- all.vars(formula)
 
   if (nrow(data) > 2) {
     message("'y' and 'n' values will be summed by ",
-            paste(compare, sep = "", collapse = " and "),
+            paste(c(vac_grp, con_grp), sep = "", collapse = " and "),
             " designation in data",
             "column ", vars[3])
   }
@@ -65,7 +65,7 @@
     group_by_at(vars[3]) |>
     summarize_at(c(vars[1:2]), sum, na.rm = TRUE)
   colnames(sumdata) <- c("group", "y", "n")
-  out <- as.numeric(c(sumdata[sumdata$group == compare[1], c("y", "n")],
-                      sumdata[sumdata$group == compare[2], c("y", "n")]))
+  out <- as.numeric(c(sumdata[sumdata$group == vac_grp, c("y", "n")],
+                      sumdata[sumdata$group == con_grp, c("y", "n")]))
   return(out)
 }

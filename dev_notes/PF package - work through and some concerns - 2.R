@@ -2,12 +2,12 @@ library(plyr)
 library(data.table)
 library(PF)
 
-RRstr1 = function (formula = NULL, data = NULL, compare = c("vac", "con"), 
-                   Y, alpha = 0.05, pf = TRUE, trace.it = FALSE, iter.max = 24, 
-                   converge = 1e-06, rnd = 3, multiplier = 0.7, divider = 1.1) 
+RRstr1 = function (formula = NULL, data = NULL, vac_grp = "vac", con_grp = "con",
+                   Y, alpha = 0.05, pf = TRUE, trace.it = FALSE, iter.max = 24,
+                   converge = 1e-06, rnd = 3, multiplier = 0.7, divider = 1.1)
 {
   u.p <- function(p1, p2, n1, n2) (1 - p1)/(n1 * p1) + (1 - p2) / (n2 * p2)
-  
+
   zi.phi <- function(phi, Y, u.p, root, za) {
     zi <- ui <- 0
     for (i in 1:nrow(Y)) {
@@ -28,7 +28,7 @@ RRstr1 = function (formula = NULL, data = NULL, compare = c("vac", "con"),
     }
     return(zi/sqrt(ui))
   }
-  
+
   zis.phi <- function(phi, Y, u.p, root, za) {
     zi <- ui <- gi <- 0
     for (i in 1:nrow(Y)) {
@@ -51,12 +51,12 @@ RRstr1 = function (formula = NULL, data = NULL, compare = c("vac", "con"),
       zd[is.na(zd)] <- 2 * zd[!is.na(zd)]
       zi <- zi + unique(zz[zd == min(zd)])
       ui <- ui + 1/unique(u[zd == min(zd)])
-      gi <- gi + unique(g[zd == min(zd)])/unique(u[zd == 
+      gi <- gi + unique(g[zd == min(zd)])/unique(u[zd ==
                                                      min(zd)])^3
     }
     return(zi/sqrt(ui) - (gi * (za^2 - 1))/(6 * ui^1.5))
   }
-  
+
   root <- function(y1, y2, n1, n2, phi) {
     a <- phi * (n1 + n2)
     b <- -(phi * (y2 + n1) + y1 + n2)
@@ -66,44 +66,44 @@ RRstr1 = function (formula = NULL, data = NULL, compare = c("vac", "con"),
     r2 <- (-b - det)/(2 * a)
     r1 <- round(r1, 8)
     r2 <- round(r2, 8)
-    if (r1 < 0 || r1 > 1) 
+    if (r1 < 0 || r1 > 1)
       r1 <- r2
-    if (r2 < 0 || r2 > 1) 
+    if (r2 < 0 || r2 > 1)
       r2 <- r1
     return(c(r1, r2))
   }
-  
+
   rr.opt <- function(z.phi, phi, za, divider, trace.it, u.p, root) {
     zz <- c(z.phi(phi[1], Y, u.p, root, za), z.phi(phi[2], Y, u.p, root, za))
-    if (abs(za - zz[1]) > abs(za - zz[2])) 
+    if (abs(za - zz[1]) > abs(za - zz[2]))
       phi <- rev(phi)
     phi.new <- phi[1]
     phi.old <- phi[2]
     z.old <- z.phi(phi.old, Y, u.p, root, za)
-    if (trace.it) 
+    if (trace.it)
       cat("\n\nR start", phi, "\n")
     iter <- 0
     repeat {
       iter <- iter + 1
       z.new <- z.phi(phi.new, Y, u.p, root, za)
-      if (is.na(z.new)) 
+      if (is.na(z.new))
         f <- 1
       while (is.na(z.new)) {
         phi.new <- phi.old + (phi.new - phi.old)/f
         z.new <- z.phi(phi.new, Y, u.p, root, za)
         f <- f * (1/divider)
-        if (trace.it) 
+        if (trace.it)
           cat("Step adjustment =", 1/f, "\n")
       }
-      phi <- exp(log(phi.old) + log(phi.new/phi.old) * 
+      phi <- exp(log(phi.old) + log(phi.new/phi.old) *
                    ((za - z.old)/(z.new - z.old)))
       phi.old <- phi.new
       z.old <- z.new
       phi.new <- phi
-      if (trace.it) 
-        cat("iteration", iter, "  z", z.new, "phi", phi.new, 
+      if (trace.it)
+        cat("iteration", iter, "  z", z.new, "phi", phi.new,
             "\n")
-      if (abs(za - z.new) < converge) 
+      if (abs(za - z.new) < converge)
         break
       if (iter == iter.max) {
         cat("\nIteration limit reached without convergence\n")
@@ -112,12 +112,12 @@ RRstr1 = function (formula = NULL, data = NULL, compare = c("vac", "con"),
     }
     return(phi.new)
   }
-  
+
   this.call <- match.call() # This line seems to do nothing?
-  
+
   if (!is.null(formula) & !is.null(data)) {
-    cat("a\n")
-    Y <- PF:::.matricize(formula = formula, data = data, compare = compare)$Y
+    Y <- PF:::.matricize(formula = formula, data = data, vac_grp = vac_grp,
+                         con_grp = con_grp)$Y
   }
   rownames(Y) <- paste("Row", 1:nrow(Y), sep = "")
   colnames(Y) <- c("y1", "n1", "y2", "n2")
@@ -162,21 +162,21 @@ RRstr1 = function (formula = NULL, data = NULL, compare = c("vac", "con"),
   if (Phi == 0 | Phi == 1) {
     cat("f\n")
     Phi.ML <- Phi
-    hom <- paste("MLE = ", Phi.ML, ", Homogeneity test not possible", 
+    hom <- paste("MLE = ", Phi.ML, ", Homogeneity test not possible",
                  sep = "")
   } else {
     cat("g\n")
     za <- 0
     phi <- c(Phi, multiplier * Phi)
-    if (trace.it) 
+    if (trace.it)
       cat("\nMLE")
-    phi.new <- rr.opt(z.phi = zi.phi, phi = phi, za = za, 
-                      divider = divider, trace.it = trace.it, u.p = u.p, 
+    phi.new <- rr.opt(z.phi = zi.phi, phi = phi, za = za,
+                      divider = divider, trace.it = trace.it, u.p = u.p,
                       root = root)
     Phi.ML <- phi.new
     test <- rep(0, nrow(Y))
     for (i in 1:nrow(Y)) {
-      test[i] <- zi.phi(Phi.ML, t(as.matrix(Y[i, ])), u.p, 
+      test[i] <- zi.phi(Phi.ML, t(as.matrix(Y[i, ])), u.p,
                         root, za)^2
     }
     hom.test <- sum(test)
@@ -186,47 +186,47 @@ RRstr1 = function (formula = NULL, data = NULL, compare = c("vac", "con"),
   }
   cat("h\n")
   for (k in which) {
-    if (trace.it) 
+    if (trace.it)
       cat("\nScore", switch(k, "lower", "upper"))
     za <- -zv[k]
     phi <- c(int[k], multiplier * int[k])
-    phi.new <- rr.opt(z.phi = zi.phi, phi = phi, za = za, 
-                      divider = divider, trace.it = trace.it, u.p = u.p, 
+    phi.new <- rr.opt(z.phi = zi.phi, phi = phi, za = za,
+                      divider = divider, trace.it = trace.it, u.p = u.p,
                       root = root)
     score[k] <- phi.new
   }
   cat("i\n")
   int <- rbind(int, score)
   for (k in which) {
-    if (trace.it) 
+    if (trace.it)
       cat("\nSkewness-corrected", switch(k, "lower", "upper"))
     za <- -zv[k]
     phi <- c(int[1, k], multiplier * int[1, k])
-    phi.new <- rr.opt(z.phi = zis.phi, phi = phi, za = za, 
-                      divider = divider, trace.it = trace.it, u.p = u.p, 
+    phi.new <- rr.opt(z.phi = zis.phi, phi = phi, za = za,
+                      divider = divider, trace.it = trace.it, u.p = u.p,
                       root = root)
     score[k] <- phi.new
   }
   cat("j\n")
   int <- rbind(int, score)
   int <- cbind(c(Phi, rep(Phi.ML, nrow(int) - 1)), int)
-  if (trace.it) 
+  if (trace.it)
     cat("\n\n")
   cat("pf == ", pf,"\n")
   if (!pf) {
-    dimnames(int) <- list(c("starting", "mle", "skew corr"), 
+    dimnames(int) <- list(c("starting", "mle", "skew corr"),
                           c("RR", "LL", "UL"))
   }
   else {
     int <- 1 - int[, c(1, 3, 2)]
-    dimnames(int) <- list(c("starting", "mle", "skew corr"), 
+    dimnames(int) <- list(c("starting", "mle", "skew corr"),
                           c("PF", "LL", "UL"))
   }
-  return(PF:::rrstr$new(estimate = int, 
-                        hom = hom, 
-                        estimator = ifelse(pf, "PF", "RR"), 
-                        y = as.data.frame(Y), 
-                        compare = compare, 
+  return(PF:::rrstr$new(estimate = int,
+                        hom = hom,
+                        estimator = ifelse(pf, "PF", "RR"),
+                        y = as.data.frame(Y),
+                        vac_grp = vac_grp, con_grp = con_grp,
                         rnd = rnd, alpha = alpha))
 }
 cat("\014")
@@ -260,6 +260,6 @@ wide2[, group := ifelse(group == 'control', 'a', 'b')]
 wide
 wide2
 
-RRstr1(cbind(sick, n) ~ group + cluster(cage), data.frame(wide),   compare = c("control", "vaccinate"))
-RRstr1(cbind(sick, n) ~ group + cluster(cage), data.frame(wide2),  compare = c("a", "b"))
+RRstr1(cbind(sick, n) ~ group + cluster(cage), data.frame(wide),   vac_grp = "control", con_grp = "vaccinate")
+RRstr1(cbind(sick, n) ~ group + cluster(cage), data.frame(wide2),  vac_grp = "a", con_grp = "b")
 

@@ -8,7 +8,8 @@ RRlsi(
   y = NULL,
   formula = NULL,
   data = NULL,
-  compare = c("vac", "con"),
+  vac_grp = "vac",
+  con_grp = "con",
   alpha = 0.05,
   k = 8,
   use.alpha = FALSE,
@@ -18,7 +19,8 @@ RRlsi(
   rnd = 3,
   start = NULL,
   track = FALSE,
-  full.track = FALSE
+  full.track = FALSE,
+  compare = deprecated()
 )
 }
 \arguments{
@@ -30,8 +32,9 @@ positive, n is the group size, x is a factor with two levels of treatment.}
 
 \item{data}{data.frame containing variables of formula.}
 
-\item{compare}{Text vector stating the factor levels: \code{compare[1]} is the
-vaccinate group to which \code{compare[2]} (control or reference) is compared.}
+\item{vac_grp}{The name of the vaccinated group.}
+
+\item{con_grp}{The name of the control group.}
 
 \item{alpha}{Complement of the confidence level (see details).}
 
@@ -53,14 +56,15 @@ estimates.}
 \item{track}{Verbose tracking of the iterations?}
 
 \item{full.track}{Verbose tracking of the iterations?}
+
+\item{compare}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}  Text vector stating the factor levels: \code{compare[1]} is the
+vaccinate group to which \code{compare[2]} (control or reference) is compared.}
 }
 \value{
-An object of class \link{rrsi} with the following fields:
-\code{estimate}: matrix of point and interval estimates - see details
-\code{estimator}: either \code{"PF"} or \code{"RR"}
-\code{y}: data.frame with "y1", "n1", "y2", "n2" values.
-\code{rnd}: how many digits to round the display
-\code{k}: likelihood ratio criterion
+An object of class \link{rrsi} with the following fields: \code{estimate}:
+matrix of point and interval estimates - see details \code{estimator}: either
+\code{"PF"} or \code{"RR"} \code{y}: data.frame with "y1", "n1", "y2", "n2" values. \code{rnd}:
+how many digits to round the display \code{k}: likelihood ratio criterion
 \code{alpha}: complement of confidence level
 }
 \description{
@@ -90,30 +94,18 @@ y_vector <- c(4, 24, 12, 28)
 RRlsi(y_vector)
 
 # 1 / 8 likelihood support interval for PF
-
 # corresponds to 95.858\% confidence
 #   (under certain assumptions)
 
-# PF
-#     PF     LL     UL
-# 0.6111 0.0168 0.8859
 
 y_matrix <- matrix(c(4, 20, 12, 16), 2, 2, byrow = TRUE)
 y_matrix
-#      [, 1] [, 2]
-# [1, ]    4   20
-# [2, ]   12   16
 
 RRlsi(y_matrix)
 
 # 1 / 8 likelihood support interval for PF
-
 # corresponds to 95.858\% confidence
 #   (under certain assumptions)
-
-# PF
-#     PF     LL     UL
-# 0.6111 0.0168 0.8859
 
 require(dplyr)
 data1 <- data.frame(group = rep(c("treated", "control"), each = 2),
@@ -126,16 +118,11 @@ data2 <- data1 |>
   summarize(sum_y = sum(y),
     sum_n = sum(n))
 RRlsi(data = data2, formula =  cbind(sum_y, sum_n) ~ group,
-   compare = c("treated", "control"))
+      vac_grp = "treated", con_grp = "control")
 
 # 1 / 8 likelihood support interval for PF
-#
 # corresponds to 95.858\% confidence
 # (under certain assumptions)
-#
-# PF
-# PF     LL     UL
-# 0.6111 0.0168 0.8859
 }
 \references{
 Royall R. \emph{Statistical Evidence: A Likelihood Paradigm}. Chapman

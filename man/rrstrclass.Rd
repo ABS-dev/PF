@@ -20,7 +20,8 @@ data class rrstr
 If \code{Phi == 0 | Phi == 1}, homogeneity test is not possible and error message
 displays
 \item \code{Y}: data.frame of restructured input
-\item \code{compare}:   groups compared
+\item \code{vac_grp}: Vaccination group
+\item \code{con_grp}: Control group
 }
 }
 

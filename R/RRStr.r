@@ -7,8 +7,8 @@
 #'   the number positive, n is the group size, x is a factor with two levels of
 #'   treatment, and w is a factor indicating the clusters.
 #' @param data data.frame containing variables of formula
-#' @param compare Text vector stating the factor levels: `compare[1]` is the
-#'   control or reference group to which `compare[2]` is compared
+#' @param vac_grp The name of the vaccinated group.
+#' @param con_grp The name of the control group.
 #' @param Y Matrix of data. Each row is a stratum or cluster. The columns are
 #'   y2, n2, y1, n1. If data entered by formula and dataframe, Y is generated
 #'   automatically.
@@ -22,6 +22,8 @@
 #'   estimates.
 #' @param multiplier internal control parameter for algorithm
 #' @param divider internal control parameter for algorithm
+#' @param compare `r badge("deprecated")`  Text vector stating the factor levels: `compare[1]` is the
+#'   control or reference group to which `compare[2]` is compared
 #' @returns A [rrstr] object with the following fields:
 #' * `estimate`: matrix of point and interval estimates - starting value, MLE,
 #'   and skewness corrected
@@ -49,20 +51,20 @@
 #'   `formula` or (2) as a matrix `Y`
 #'
 #'
-#'   `RRstr(formula, data, compare = c("b", "a"), pf = TRUE, alpha = 0.05,
-#'   trace.it = FALSE, iter.max = 24, converge = 1e-6, rnd = 3, multiplier =
-#'   0.7, divider = 1.1)`
+#'   `RRstr(formula, data, vac_grp = "b", con_grp = "a", pf = TRUE,
+#'          alpha = 0.05, trace.it = FALSE, iter.max = 24, converge = 1e-6,
+#'          rnd = 3, multiplier = 0.7, divider = 1.1)`
 #'
-#'   `RRstr(Y, compare = c("b", "a"), pf = TRUE, alpha = 0.05, trace.it = FALSE,
-#'   iter.max = 24, converge = 1e-6, rnd = 3, multiplier = 0.7, divider = 1.1)`
+#'   `RRstr(Y, vac_grp = "b", con_grp = "a", pf = TRUE, alpha = 0.05,
+#'          trace.it = FALSE, iter.max = 24, converge = 1e-6, rnd = 3,
+#'          multiplier = 0.7, divider = 1.1)`
 #' @seealso [rrstr]
 #' @examples
 #' ## Table 1 from Gart (1985)
 #' ##  as data frame
 #' ## "b" is control group
 #' RRstr(cbind(y, n) ~ tx + cluster(clus),
-#'       Table6,
-#'       compare = c("a", "b"), pf = FALSE)
+#'       Table6, vac_grp = "a", con_grp = "b", pf = FALSE)
 #'
 #' ## or as matrix
 #' RRstr(Y = table6, pf = FALSE)
@@ -75,9 +77,10 @@
 #' @importFrom stats pchisq qnorm
 #' @importFrom lifecycle badge deprecate_warn is_present deprecated
 #' @export
-RRstr <- function(formula = NULL, data = NULL, compare = c("vac", "con"), Y,
-                  alpha = 0.05, pf = TRUE, trace.it = FALSE, iter.max = 24,
-                  converge = 1e-6, rnd = 3, multiplier = 0.7, divider = 1.1) {
+RRstr <- function(formula = NULL, data = NULL, vac_grp = "vac", con_grp = "con",
+                  Y, alpha = 0.05, pf = TRUE, trace.it = FALSE, iter.max = 24,
+                  converge = 1e-6, rnd = 3, multiplier = 0.7, divider = 1.1,
+                  compare = deprecated()) {
 
   # define internal functions:
   #  u_p, zi_phi, zis_phi, root, rr.opt, matricize
@@ -192,7 +195,8 @@ RRstr <- function(formula = NULL, data = NULL, compare = c("vac", "con"), Y,
 
 
   if (!is.null(formula) && !is.null(data)) {
-    Y <- .matricize(formula = formula, data = data, compare = compare)$Y
+    Y <- .matricize(formula = formula, data = data, vac_grp =  vac_grp,
+                    con_grp = con_grp)$Y
   }
   rownames(Y) <- paste("Row", seq_len(nrow(Y)), sep = "")
   colnames(Y) <- c("y1", "n1", "y2", "n2")
@@ -292,6 +296,7 @@ RRstr <- function(formula = NULL, data = NULL, compare = c("vac", "con"), Y,
   }
   return(rrstr$new(estimate = int, hom = hom,
                    estimator = ifelse(pf, "PF", "RR"),
-                   y = as.data.frame(Y), compare = compare,
+                   y = as.data.frame(Y),
+                   vac_grp = vac_grp, con_grp = con_grp,
                    rnd = rnd, alpha = alpha))
 }

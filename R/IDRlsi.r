@@ -21,8 +21,8 @@
 #' `matrix(c(y1, n1 - y1, y2, n2 - y2), 2, 2, byrow = TRUE)`.
 #' @param y Data vector c(y1, n1, y2, n2) where y are the positives, n are the
 #'   total, and group 1 is compared to group 2 (control or reference).
-#' @param compare  Text vector stating the factor levels: `compare[1]` is the
-#'   vaccinate group to which `compare[2]` (control or reference) is compared.
+#' @param vac_grp The name of the vaccinated group.
+#' @param con_grp The name of the control group.
 #' @param data data.frame containing variables of the formula.
 #' @param formula  Formula of the form cbind(y, n) ~ x, where y is the number
 #'   positive, n is the group size, x is a factor with two levels of treatment.
@@ -36,6 +36,8 @@
 #' @param rnd Number of digits for rounding. Affects display only, not
 #'   estimates.
 #' @param start describe here.
+#' @param compare `r badge("deprecated")` Text vector stating the factor levels: `compare[1]` is the
+#'   vaccinate group to which `compare[2]` (control or reference) is compared.
 #' @returns A [rrsi] object with the following elements.
 #' * `estimate`: vector with point and interval estimate
 #' * `estimator`: either *PF* or *IDR*
@@ -72,7 +74,7 @@
 #'              y = c(4, 5, 7, 6, 4, 1, 3, 3, 2, 1),
 #'              cage = rep(paste("cage", 1:5), 2))
 #' IDRlsi(data = data1, formula = cbind(y, n) ~ group,
-#'                compare = c("treated", "control"), pf = FALSE)
+#'                vac_grp = "treated", con_grp = "control", pf = FALSE)
 #'
 #' # 1 / 8 likelihood support interval for IDR
 #' # corresponds to 95.858% confidence
@@ -85,7 +87,7 @@
 #'     sum_n = sum(n))
 #'
 #' IDRlsi(data = data2, formula = cbind(sum_y, sum_n) ~ group,
-#'                compare = c("treated", "control"), pf = FALSE)
+#'                vac_grp = "treated", con_grp = "control", pf = FALSE)
 #'
 #' # 1 / 8 likelihood support interval for IDR
 #' # corresponds to 95.858% confidence
@@ -106,7 +108,9 @@ IDRlsi <- function(y = NULL,
                    start = NULL,
                    trace.it = FALSE,
                    iter.max = 24,
-                   compare = c("con", "vac")) {
+                   vac_grp = "vac",
+                   con_grp = "con",
+                   compare = deprecated()) {
 
   ###########################################
   ## Error handling for input options
@@ -148,7 +152,7 @@ IDRlsi <- function(y = NULL,
   if (is.null(y)) {
 
     #extract from data+formula to vector c(y1, n1, y2, n2)
-    y <- .extract_freqvec(formula, data, compare)
+    y <- .extract_freqvec(formula, data, vac_grp, con_grp)
 
   } else if (is.matrix(y)) {
     y <- c(t(cbind(y[, 1], apply(y, 1, sum))))

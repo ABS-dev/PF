@@ -35,7 +35,7 @@ test_that("examples work", {
                             1, 3, 3, 2, 1),
                       cage = rep(paste("cage", 1:5), 2))
   ex3 <- IDRsc(data = data1, formula = cbind(y, n) ~ group,
-               compare = c("treated", "control"), pf = FALSE)
+               vac_grp = "treated", con_grp = "control", pf = FALSE)
   expect_equal(ex1, ex3)
 
   data2 <- data1 |>
@@ -43,6 +43,6 @@ test_that("examples work", {
     summarize(sum_y = sum(y),
               sum_n = sum(n))
   ex4 <- IDRsc(data = data2, formula =  cbind(sum_y, sum_n) ~ group,
-               compare = c("treated", "control"), pf = FALSE)
+               vac_grp = "treated", con_grp = "control", pf = FALSE)
   expect_equal(ex1, ex4)
 })

@@ -23,8 +23,8 @@
 #' @param formula Formula of the form `cbind(y, n) ~ x`, where y is the number
 #'   positive, n is the group size, x is a factor with two levels of treatment.
 #' @param data data.frame containing variables of formula.
-#' @param compare Text vector stating the factor levels: `compare[1]` is the
-#'   vaccinate group to which `compare[2]` (control or reference) is compared.
+#' @param vac_grp The name of the vaccinated group.
+#' @param con_grp The name of the control group.
 #' @param k Likelihood ratio criterion.
 #' @param alpha Complement of the confidence level (see details).
 #' @param use.alpha Base choice of k on its relationship to alpha?
@@ -36,6 +36,8 @@
 #' @param start Optional starting value.
 #' @param track Verbose tracking of the iterations?
 #' @param full.track Verbose tracking of the iterations?
+#' @param compare `r badge("deprecated")`  Text vector stating the factor levels: `compare[1]` is the
+#'   vaccinate group to which `compare[2]` (control or reference) is compared.
 #' @returns An object of class [rrsi] with the following fields: `estimate`:
 #'   matrix of point and interval estimates - see details `estimator`: either
 #'   `"PF"` or `"RR"` `y`: data.frame with "y1", "n1", "y2", "n2" values. `rnd`:
@@ -79,7 +81,7 @@
 #'   summarize(sum_y = sum(y),
 #'     sum_n = sum(n))
 #' RRlsi(data = data2, formula =  cbind(sum_y, sum_n) ~ group,
-#'    compare = c("treated", "control"))
+#'       vac_grp = "treated", con_grp = "control")
 #'
 #' # 1 / 8 likelihood support interval for PF
 #' # corresponds to 95.858% confidence
@@ -93,7 +95,8 @@
 RRlsi <- function(y = NULL,
                   formula = NULL,
                   data = NULL,
-                  compare = c("vac", "con"),
+                  vac_grp = "vac",
+                  con_grp = "con",
                   alpha = 0.05,
                   k = 8,
                   use.alpha = FALSE,
@@ -103,7 +106,8 @@ RRlsi <- function(y = NULL,
                   rnd = 3,
                   start = NULL,
                   track = FALSE,
-                  full.track = FALSE) {
+                  full.track = FALSE,
+                  compare = deprecated()) {
 
   ###########################################
   ## Error handling for input options
@@ -128,7 +132,7 @@ RRlsi <- function(y = NULL,
 
   if (is.null(y)) {
     # extract from data+formula to vector c(y1, n1, y2, n2)
-    y <- .extract_freqvec(formula, data, compare)
+    y <- .extract_freqvec(formula, data, vac_grp, con_grp)
 
   } else if (is.matrix(y)) {
     y <- c(t(cbind(y[, 1], apply(y, 1, sum))))

@@ -8,7 +8,8 @@ RRotsst(
   y = NULL,
   data = NULL,
   formula = NULL,
-  compare = c("vac", "con"),
+  vac_grp = "vac",
+  con_grp = "con",
   alpha = 0.05,
   pf = TRUE,
   stepstart = 0.1,
@@ -17,7 +18,8 @@ RRotsst(
   rnd = 3,
   trace.it = FALSE,
   nuisance.points = 120,
-  gamma = 1e-06
+  gamma = 1e-06,
+  compare = deprecated()
 )
 }
 \arguments{
@@ -29,8 +31,9 @@ total, and group 1 is compared to group 2 (control or reference).}
 \item{formula}{Formula of the form cbind(y, n) ~ x, where y is the number
 positive, n is the group size, x is a factor with two levels of treatment.}
 
-\item{compare}{Text vector stating the factor levels: \code{compare[1]} is the
-vaccinate group to which \code{compare[2]} (control or reference) is compared.}
+\item{vac_grp}{The name of the vaccinated group.}
+
+\item{con_grp}{The name of the control group.}
 
 \item{alpha}{Complement of the confidence level.}
 
@@ -52,6 +55,9 @@ parameter}
 
 \item{gamma}{parameter for Berger-Boos correction (restricts range of
 nuisance parameter evaluation)}
+
+\item{compare}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}  Text vector stating the factor levels: \code{compare[1]} is the
+vaccinate group to which \code{compare[2]} (control or reference) is compared.}
 }
 \value{
 An object of class \link{rr1} with the following fields:
@@ -86,20 +92,8 @@ The data may also be a matrix. In that case \code{Y} would be entered as
 y_vector <- c(4, 24, 12, 28)
 RRotsst(y_vector, rnd = 3)
 
-# PF
-# 95\% interval estimates
-
-#    PF     LL     UL
-# 0.6111 0.0148 0.8519
-
 y_matrix <- matrix(c(4, 20, 12, 16), 2, 2, byrow = TRUE)
 RRotsst(y_matrix, rnd = 3)
-
-# PF
-# 95\% interval estimates
-
-#    PF     LL     UL
-# 0.6111 0.0148 0.8519
 
 require(dplyr)
 data1 <- data.frame(group = rep(c("treated", "control"), each = 2),
@@ -112,13 +106,7 @@ data2 <- data1 |>
   summarize(sum_y = sum(y),
     sum_n = sum(n))
 RRotsst(data = data2, formula =  cbind(sum_y, sum_n) ~ group,
-   compare = c("treated", "control"))
-
-# PF
-# 95\% interval estimates
-#
-# PF     LL     UL
-# 0.6111 0.0148 0.8519
+   vac_grp = "treated", con_grp = "control")
 }
 \references{
 Koopman PAR, 1984. Confidence intervals for the ratio of two

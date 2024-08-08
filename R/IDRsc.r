@@ -21,12 +21,14 @@
 #' @param formula Formula of the form cbind(y, n) ~ x, where y is the number
 #'   positive, n is the group size, x is a factor with two levels of treatment.
 #' @param data data.frame containing variables of formula.
-#' @param compare Text vector stating the factor levels: `compare[1]` is the
-#'   vaccinate group to which `compare[2]` (control or reference) is compared.
+#' @param vac_grp The name of the vaccinated group.
+#' @param con_grp The name of the control group.
 #' @param alpha Complement of the confidence level.
 #' @param pf Estimate *IDR*, or its complement *PF*?
 #' @param rnd Number of digits for rounding. Affects display only, not
 #'   estimates.
+#' @param compare `r badge("deprecated")`  Text vector stating the factor levels: `compare[1]` is the
+#'   vaccinate group to which `compare[2]` (control or reference) is compared.
 #' @returns A [rr1] object with the following elements.
 #' * `estimate`: vector with point and interval estimate
 #' * `estimator`: either *PF* or *IDR*
@@ -68,7 +70,7 @@
 #'   summarize(sum_y = sum(y),
 #'   sum_n = sum(n))
 #' IDRsc(data = data2, formula =  cbind(sum_y, sum_n) ~ group,
-#'     compare = c("treated", "control"), pf = FALSE)
+#'     vac_grp = "treated", con_grp = "control", pf = FALSE)
 #'
 #' @importFrom stats qnorm
 #' @importFrom lifecycle badge deprecate_warn is_present deprecated
@@ -76,10 +78,12 @@
 IDRsc <- function(y = NULL,
                   data = NULL,
                   formula = NULL,
-                  compare = c("con", "vac"),
+                  vac_grp = "vac",
+                  con_grp = "con",
                   alpha = 0.05,
                   pf = TRUE,
-                  rnd = 3) {
+                  rnd = 3,
+                  compare = deprecated()) {
 
   ###########################################
   ## Error handling for input options
@@ -96,7 +100,7 @@ IDRsc <- function(y = NULL,
 
   if (is.null(y)) {
     #extract from data+formula to vector c(y1, n1, y2, n2)
-    y <- .extract_freqvec(formula, data, compare)
+    y <- .extract_freqvec(formula, data, vac_grp, con_grp)
 
   } else if (is.matrix(y)) {
     y <- c(t(cbind(y[, 1], apply(y, 1, sum))))

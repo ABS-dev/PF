@@ -16,8 +16,8 @@
 #' @param formula Formula of the form `cbind(y, n) ~ x`, where y is the number
 #'   positive, n is the group size, x is a factor with two levels of treatment.
 #' @param data data.frame containing variables of formula.
-#' @param compare Text vector stating the factor levels: `compare[1]` is the
-#'   vaccinate group to which `compare[2]` (control or reference) is compared.
+#' @param vac_grp The name of the vaccinated group.
+#' @param con_grp The name of the control group.
 #' @param alpha Complement of the confidence level.
 #' @param pf Estimate *RR* or its complement *PF*?
 #' @param trace.it Verbose tracking of the iterations?
@@ -36,6 +36,8 @@
 #' * `y`: data.frame with "y1", "n1", "y2", "n2" values.
 #' * `rnd`: how many digits to round the display
 #' * `alpha`: complement of confidence level
+#' @param compare `r badge("deprecated")`  Text vector stating the factor levels: `compare[1]` is the
+#'   vaccinate group to which `compare[2]` (control or reference) is compared.
 #' @references Koopman PAR, 1984. Confidence intervals for the ratio of two
 #'   binomial proportions. *Biometrics* 40:513-517.
 #'
@@ -69,7 +71,7 @@
 #'   summarize(sum_y = sum(y),
 #'     sum_n = sum(n))
 #' RRtosst(data = data2, formula =  cbind(sum_y, sum_n) ~ group,
-#'   compare = c("treated", "control"))
+#'   vac_grp = "treated", con_grp = "control")
 #'
 #' @importFrom stats qbeta
 #' @importFrom lifecycle badge deprecate_warn is_present deprecated
@@ -77,7 +79,8 @@
 RRtosst <- function(y = NULL,
                     formula = NULL,
                     data = NULL,
-                    compare = c("vac", "con"),
+                    vac_grp = "vac",
+                    con_grp = "con",
                     alpha = 0.05,
                     pf = TRUE,
                     stepstart = .1,
@@ -86,7 +89,8 @@ RRtosst <- function(y = NULL,
                     rnd = 3,
                     trace.it = FALSE,
                     nuisance.points = 120,
-                    gamma = 1e-6) {
+                    gamma = 1e-6,
+                    compare = deprecated()) {
   ###########################################
   ## Error handling for input options
   ## - y can be matrix or vector (expects formula and data to be NULL)
@@ -138,7 +142,7 @@ RRtosst <- function(y = NULL,
 
   if (is.null(y)) {
     # extract from data+formula to vector c(y1, n1, y2, n2)
-    y <- .extract_freqvec(formula, data, compare)
+    y <- .extract_freqvec(formula, data, vac_grp, con_grp)
 
   } else if (is.matrix(y)) {
     # Data entry y = c(x2, n2, x1, n1) Vaccinates First (order same but

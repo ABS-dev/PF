@@ -7,7 +7,8 @@
 RRstr(
   formula = NULL,
   data = NULL,
-  compare = c("vac", "con"),
+  vac_grp = "vac",
+  con_grp = "con",
   Y,
   alpha = 0.05,
   pf = TRUE,
@@ -16,7 +17,8 @@ RRstr(
   converge = 1e-06,
   rnd = 3,
   multiplier = 0.7,
-  divider = 1.1
+  divider = 1.1,
+  compare = deprecated()
 )
 }
 \arguments{
@@ -26,8 +28,9 @@ treatment, and w is a factor indicating the clusters.}
 
 \item{data}{data.frame containing variables of formula}
 
-\item{compare}{Text vector stating the factor levels: \code{compare[1]} is the
-control or reference group to which \code{compare[2]} is compared}
+\item{vac_grp}{The name of the vaccinated group.}
+
+\item{con_grp}{The name of the control group.}
 
 \item{Y}{Matrix of data. Each row is a stratum or cluster. The columns are
 y2, n2, y1, n1. If data entered by formula and dataframe, Y is generated
@@ -50,6 +53,9 @@ estimates.}
 \item{multiplier}{internal control parameter for algorithm}
 
 \item{divider}{internal control parameter for algorithm}
+
+\item{compare}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}  Text vector stating the factor levels: \code{compare[1]} is the
+control or reference group to which \code{compare[2]} is compared}
 }
 \value{
 A \link{rrstr} object with the following fields:
@@ -80,30 +86,16 @@ examples.
 Call to this function may be one of two formats: (1) specify \code{data} and
 \code{formula} or (2) as a matrix \code{Y}
 
-\code{RRstr(formula, data, compare = c("b", "a"), pf = TRUE, alpha = 0.05, trace.it = FALSE, iter.max = 24, converge = 1e-6, rnd = 3, multiplier = 0.7, divider = 1.1)}
+\code{RRstr(formula, data, vac_grp = "b", con_grp = "a", pf = TRUE, alpha = 0.05, trace.it = FALSE, iter.max = 24, converge = 1e-6, rnd = 3, multiplier = 0.7, divider = 1.1)}
 
-\code{RRstr(Y, compare = c("b", "a"), pf = TRUE, alpha = 0.05, trace.it = FALSE, iter.max = 24, converge = 1e-6, rnd = 3, multiplier = 0.7, divider = 1.1)}
+\code{RRstr(Y, vac_grp = "b", con_grp = "a", pf = TRUE, alpha = 0.05, trace.it = FALSE, iter.max = 24, converge = 1e-6, rnd = 3, multiplier = 0.7, divider = 1.1)}
 }
 \examples{
 ## Table 1 from Gart (1985)
 ##  as data frame
 ## "b" is control group
 RRstr(cbind(y, n) ~ tx + cluster(clus),
-      Table6,
-      compare = c("a", "b"), pf = FALSE)
-
-# Test of homogeneity across clusters
-
-# stat     0.954
-# df       3
-# p        0.812
-
-#  RR estimates
-
-# 		        RR   LL   UL
-# starting   2.66 1.37 5.18
-# mle        2.65 1.39 5.03
-# skew corr  2.65 1.31 5.08
+      Table6, vac_grp = "a", con_grp = "b", pf = FALSE)
 
 ## or as matrix
 RRstr(Y = table6, pf = FALSE)

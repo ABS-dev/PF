@@ -8,11 +8,13 @@ sparse data.}
 RRmh(
   formula = NULL,
   data = NULL,
-  compare = c("vac", "con"),
+  vac_grp = "vac",
+  con_grp = "con",
   Y,
   alpha = 0.05,
   pf = TRUE,
-  rnd = 3
+  rnd = 3,
+  compare = deprecated()
 )
 }
 \arguments{
@@ -22,8 +24,9 @@ levels of treatment, and \code{w} is a factor indicating the clusters.}
 
 \item{data}{\code{data.frame} containing variables for formula}
 
-\item{compare}{Text vector stating the factor levels: \code{compare[1]} is the
-vaccinate group to which \code{compare[2]} (control or reference) is compared.}
+\item{vac_grp}{The name of the vaccinated group.}
+
+\item{con_grp}{The name of the control group.}
 
 \item{Y}{Matrix of data, \eqn{K \times 4}{K x 4}. Each row is a stratum or
 cluster. The columns are \eqn{y1, n1, y2, n2}, where the y's are the number
@@ -37,6 +40,10 @@ entered by formula and dataframe, \code{Y} is generated automatically.}
 
 \item{rnd}{Number of digits for rounding. Affects display only, not
 estimates.}
+
+\item{compare}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}  Text vector stating the factor
+levels: \code{compare[1]} is the vaccinate group to which \code{compare[2]} (control
+or reference) is compared.}
 }
 \value{
 An object of class \link{rr1}  with the following fields.
@@ -70,7 +77,7 @@ Vignette \emph{Examples for Stratified Designs} forthcoming with more examples.
 Call to this function may be one of two formats: (1) specify \code{data} and
 \code{formula} or (2) as a matrix \code{Y}
 
-\code{RRmh(formula, data, compare = c("b", "a"), pf = TRUE, alpha = 0.05, rnd = 3)}
+\code{RRmh(formula, data, vac_grp = "b", con_grp = "a", pf = TRUE, alpha = 0.05, rnd = 3)}
 
 \code{RRmh(Y, pf = TRUE, alpha = 0.05, rnd = 3)}
 }
@@ -81,24 +88,11 @@ Call to this function may be one of two formats: (1) specify \code{data} and
 
 # tx group "b" is control
 RRmh(cbind(y, n) ~ tx + cluster(clus),
-     Table6,
-     compare = c("a", "b"), pf = FALSE)
-
-# RR
-# 95\% interval estimates
-#
-#   RR   LL   UL
-# 2.67 1.37 5.23
-#
+     Table6, vac_grp = "a", con_grp = "b", pf = FALSE)
 
 ## or as matrix
 RRmh(Y = table6, pf = FALSE)
 
-# RR
-# 95\% interval estimates
-#
-#   RR   LL   UL
-# 2.67 1.37 5.23
 }
 \references{
 Mantel N, Haenszel W, 1959.  Statistical aspects of the analysis

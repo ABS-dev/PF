@@ -13,8 +13,8 @@
 #'   `matrix(c(y1, n1 - y1, y2, n2 - y2), 2, 2, byrow = TRUE)`.
 #' @param y Data vector c(y1, n1, y2, n2) where y are the positives, n are the
 #'   total, and group 1 is compared to group 2 (control or reference).
-#' @param compare Text vector stating the factor levels: `compare[1]` is the
-#'   vaccinate group to which `compare[2]` (control or reference) is compared.
+#' @param vac_grp The name of the vaccinated group.
+#' @param con_grp The name of the control group.
 #' @param data data.frame containing variables of the formula.
 #' @param formula  Formula of the form cbind(y, n) ~ x, where y is the number
 #'   positive, n is the group size, x is a factor with two levels of treatment.
@@ -30,6 +30,8 @@
 #'   parameter
 #' @param gamma parameter for Berger-Boos correction (restricts range of
 #'   nuisance parameter evaluation)
+#' @param compare `r badge("deprecated")`  Text vector stating the factor levels: `compare[1]` is the
+#'   vaccinate group to which `compare[2]` (control or reference) is compared.
 #' @returns An object of class [rr1] with the following fields:
 #' * `estimate`: vector with point and interval estimate
 #' * `estimator`: either `"PF"` or `"RR"`
@@ -69,14 +71,15 @@
 #'   summarize(sum_y = sum(y),
 #'     sum_n = sum(n))
 #' RRotsst(data = data2, formula =  cbind(sum_y, sum_n) ~ group,
-#'    compare = c("treated", "control"))
+#'    vac_grp = "treated", con_grp = "control")
 #' @importFrom stats qbeta
 #' @importFrom lifecycle badge deprecate_warn is_present deprecated
 #' @export
 RRotsst <- function(y = NULL,
                     data = NULL,
                     formula = NULL,
-                    compare = c("vac", "con"),
+                    vac_grp = "vac",
+                    con_grp = "con",
                     alpha = 0.05,
                     pf = TRUE,
                     stepstart = .1,
@@ -85,7 +88,8 @@ RRotsst <- function(y = NULL,
                     rnd = 3,
                     trace.it = FALSE,
                     nuisance.points = 120,
-                    gamma = 1e-6) {
+                    gamma = 1e-6,
+                    compare = deprecated()) {
   # Estimates exact confidence interval by the OTSST method
   # Score statistic used to select tail area tables
   # Binomial probability estimated over the tail area
@@ -146,7 +150,7 @@ RRotsst <- function(y = NULL,
     #extract from data+formula to vector c(y1, n1, y2, n2)
     #y1n1 from vaccinate group
     #y2n2 from control group
-    y <- .extract_freqvec(formula, data, compare)
+    y <- .extract_freqvec(formula, data, vac_grp, con_grp)
 
   } else if (is.matrix(y)) {
     # Data entry y = c(x2, n2, x1, n1) Vaccinates First (order same but

@@ -29,7 +29,7 @@ test_that("examples work", {
                       n = c(12, 12, 14, 14),
                       cage = rep(paste("cage", 1:2), 2))
   ex3 <- RRsc(data = data1, formula = cbind(y, n) ~ group,
-              compare = c("treated", "control"))
+              vac_grp = "treated", con_grp = "control")
   expect_equal(ex1, ex3)
 
   data2 <- data1 |>
@@ -38,6 +38,6 @@ test_that("examples work", {
               sum_n = sum(n))
 
   ex4 <- RRsc(data = data2, formula =  cbind(sum_y, sum_n) ~ group,
-              compare = c("treated", "control"))
+              vac_grp = "treated", con_grp = "control")
   expect_equal(ex1, ex4)
 })

@@ -37,11 +37,7 @@ estimates the \eqn{{d}_{i}}{d_i} for use by \code{rsbWt} or other functions.
 \examples{
 # Weil's rat data (Table 1 of Rao and Scott)
 rsb(rat$y, rat$n, id = rat$group)$d
-#  control  treated
-# 1.232495 3.952861
 rsb(data = rat, formula = cbind(y, n) ~ group)$d
-#  control  treated
-# 1.232495 3.952861
 }
 \references{
 Rao JNK, Scott AJ, 1992. A simple method for the analysis of

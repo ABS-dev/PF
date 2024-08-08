@@ -49,19 +49,6 @@ the observations by \eqn{1 / \phi_{ij}}{1 / \phi_ij}, where
 \examples{
 birdm.fit <- glm(cbind(y, n - y) ~ tx - 1, binomial, birdm)
 RRor(tauWt(birdm.fit))
-
-# 95\% t intervals on 4 df
-#
-# PF
-#     PF     LL     UL
-#  0.489 -0.578  0.835
-#
-#       mu.hat    LL    UL
-# txcon  0.737 0.944 0.320
-# txvac  0.376 0.758 0.104
-#
-# binomial family only
-# any link
 }
 \references{
 Williams DA, 1982. Extra-binomial variation in logistic linear

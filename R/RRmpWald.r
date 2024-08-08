@@ -17,8 +17,8 @@
 #'   indicator for an individual's positive response, `x` is a factor with two
 #'   levels of treatment, and `w` identifies the pairs.
 #' @param data `data.frame` containing variables in formula
-#' @param compare Text vector stating the factor levels: `compare[1]` is the
-#'   vaccinate group to which `compare[2]` (control or reference) is compared.
+#' @param vac_grp The name of the vaccinated group.
+#' @param con_grp The name of the control group.
 #' @param affected Indicator for positive response
 #' @param x Alternative data input. Instead of formula and data frame, data may
 #'   be input as frequency vector. See example for how to order this vector.
@@ -29,7 +29,8 @@
 #'   - 2`, where N is the total number of pairs.
 #' @param rnd Number of digits for rounding. Affects display only, not
 #'   estimates.
-#'
+#' @param compare `r badge("deprecated")`  Text vector stating the factor levels: `compare[1]` is the
+#'   vaccinate group to which `compare[2]` (control or reference) is compared.
 #' @returns A [rrmp] object with the following fields:
 #' * `estimate`: vector of point and interval estimates - see details
 #' * `estimator`: either `"PF"` or `"RR"`
@@ -44,13 +45,13 @@
 #'   Call to this function may be one of two formats: (1) specify `data` and
 #'   `formula` or (2) as a vector `x`
 #'
-#'   `RRmpWald(formula, data, compare = c("vac", "con"), affected = 1, alpha =
-#'   0.05, pf = TRUE, tdist = TRUE, df = NULL, rnd = 3)`
+#'   `RRmpWald(formula, data, vac_grp = "vac", con_grp = "con", affected = 1,
+#'             alpha = 0.05, pf = TRUE, tdist = TRUE, df = NULL, rnd = 3)`
 #'
-#'   `RRmpWald(x, compare = c("vac", "con"), affected = 1, alpha = 0, 05, pf =
-#'   TRUE, tdist = TRUE, df = NULL, rnd = 3)`
+#'   `RRmpWald(x, vac_grp = "vac", con_grp = "con", affected = 1, alpha = 0, 05,
+#'             pf = TRUE, tdist = TRUE, df = NULL, rnd = 3)`
 #' @examples
-#' RRmpWald(pos ~ tx + cluster(cage), New, compare = c("vac", "con"))
+#' RRmpWald(pos ~ tx + cluster(cage), New, vac_grp = "vac", con_grp = "con")
 #'
 #' thistable <- New |>
 #'   tidyr::spread(tx, pos) |>
@@ -65,9 +66,18 @@
 #' @importFrom stats qnorm qt
 #' @importFrom lifecycle badge deprecate_warn is_present deprecated
 #' @export
-RRmpWald <- function(formula = NULL, data = NULL, compare = c("vac", "con"),
-                     affected = 1, x, alpha = 0.05, pf = TRUE, tdist = TRUE,
-                     df = NULL, rnd = 3) {
+RRmpWald <- function(formula = NULL,
+                     data = NULL,
+                     vac_grp = "vac",
+                     con_grp = "con",
+                     affected = 1,
+                     x,
+                     alpha = 0.05,
+                     pf = TRUE,
+                     tdist = TRUE,
+                     df = NULL,
+                     rnd = 3,
+                     compare = deprecated()) {
   # CI for RR with matched pairs, based on asymptotic normality of log(RR) and
   # multinomial variance
   #
@@ -78,8 +88,8 @@ RRmpWald <- function(formula = NULL, data = NULL, compare = c("vac", "con"),
   # ordered by vac/con pairs: c(11, 01, 10, 00)
   multvec <- NULL
   if (!is.null(formula) && !is.null(data)) {
-    x <- .twoby(formula = formula, data = data, compare = compare,
-                 affected = affected)
+    x <- .twoby(formula = formula, data = data, vac_grp = vac_grp,
+                con_grp = con_grp, affected = affected)
   } else if (is.matrix(x)) {
     stop("RRmpWald: data input by matrix is deprecated.")
   } else if (is.vector(x)) {
@@ -91,7 +101,7 @@ RRmpWald <- function(formula = NULL, data = NULL, compare = c("vac", "con"),
   rownames(multvec) <- c("pos", "neg")
   colnames(multvec) <- c("pos", "neg")
   multvec <- multvec |> as.table() |> as.data.frame()
-  colnames(multvec) <- c(compare, "Freq")
+  colnames(multvec) <- c(vac_grp, con_grp, "Freq")
 
   N <- sum(x)
   p <- x / N
@@ -132,15 +142,15 @@ RRmpWald <- function(formula = NULL, data = NULL, compare = c("vac", "con"),
 
 
   return(rrmp$new(estimate = int, estimator = ifelse(pf, "PF", "RR"),
-                  compare = compare, alpha = alpha, rnd = rnd,
+                  vac_grp = vac_grp, con_grp = con_grp,
+                  alpha = alpha, rnd = rnd,
                   multvec =	multvec))
-
 }
 
 #' @importFrom stats model.frame terms
 #' @importFrom data.table fifelse
 #' @importFrom tidyr spread drop_na
-.twoby <- function(formula, data, compare, affected) {
+.twoby <- function(formula, data, vac_grp, con_grp, affected) {
   tx <- pos <- NULL
   cluster <- function(x) {
     return(x)
@@ -153,7 +163,7 @@ RRmpWald <- function(formula = NULL, data = NULL, compare = c("vac", "con"),
   A <- tidyr::drop_na(A)
   A$pos <- fifelse(A$pos %in% affected, 1, 0)
   A$pos <- factor(A$pos, levels = 1:0)
-  A$tx  <- fifelse(A$tx %in% compare[1], "vac", "con")
+  A$tx  <- fifelse(A$tx %in% vac_grp, "vac", "con")
   tbl <- A |>
     spread(tx, pos) |>
     drop_na() |>

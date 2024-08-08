@@ -19,8 +19,8 @@
 #' @param formula Formula of the form `cbind(y, n) ~ x`, where y is the number
 #'   positive, n is the group size, x is a factor with two levels of treatment.
 #' @param data data.frame containing variables of formula.
-#' @param compare Text vector stating the factor levels: `compare[1]` is the
-#'   vaccinate group to which `compare[2]` (control or reference) is compared.
+#' @param vac_grp The name of the vaccinated group.
+#' @param con_grp The name of the control group.
 #' @param alpha Complement of the confidence level.
 #' @param pf Estimate *RR* or its complement *PF*?
 #' @param trace.it Verbose tracking of the iterations?
@@ -34,6 +34,8 @@
 #' * `y`: data.frame with "y1", "n1", "y2", "n2" values.
 #' * `rnd`: how many digits to round the display
 #' * `alpha`: complement of confidence level
+#' @param compare `r badge("deprecated")`  Text vector stating the factor levels: `compare[1]` is the
+#'   vaccinate group to which `compare[2]` (control or reference) is compared.
 #' @references Gart JJ, Nam J, 1988. Approximate interval estimation of the
 #'   ratio of binomial parameters: a review and corrections for skewness.
 #'   *Biometrics* 44:323-338.
@@ -72,7 +74,7 @@
 #'   summarize(sum_y = sum(y),
 #'     sum_n = sum(n))
 #' RRsc(data = data2, formula = cbind(sum_y, sum_n) ~ group,
-#'   compare = c("treated", "control"))
+#'   vac_grp = "treated", con_grp = "control")
 #'
 #' @importFrom stats qnorm
 #' @importFrom lifecycle badge deprecate_warn is_present deprecated
@@ -80,13 +82,14 @@
 RRsc <- function(y = NULL,
                  data = NULL,
                  formula = NULL,
-                 compare = c("vac", "con"),
+                 vac_grp = "vac", con_grp = "con",
                  alpha = 0.05,
                  pf = TRUE,
                  trace.it = FALSE,
                  iter.max = 18,
                  converge = 1e-6,
-                 rnd = 3) {
+                 rnd = 3,
+                 compare = deprecated()) {
 
   ###########################################
   ## Error handling for input options
@@ -206,7 +209,7 @@ RRsc <- function(y = NULL,
 
   if (is.null(y)) {
     # extract from data+formula to vector c(y1, n1, y2, n2)
-    y <- .extract_freqvec(formula, data, compare)
+    y <- .extract_freqvec(formula, data, vac_grp, con_grp)
   } else if (is.matrix(y)) {
     y <- c(t(cbind(y[, 1], apply(y, 1, sum))))
   }

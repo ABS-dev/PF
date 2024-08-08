@@ -28,7 +28,7 @@ with no intercept.}
 \item{degf}{Degrees of freedom.}
 
 \item{which}{Numeric vector indicating which parameters to compare, so that
-\code{RR = compare[2] / compare[1]}}
+\code{RR = con_grp / vac_grp}}
 
 \item{pf}{Estimate \emph{RR} or its complement \emph{PF}?}
 
@@ -76,27 +76,7 @@ Call to this function may be one of two formats: (1) specify \code{fit} or
 bird.fit <- glm(cbind(y, n - y) ~ tx - 1, binomial, bird)
 RRor(tauWt(bird.fit))
 
-# 95\% t intervals on 4 df
-#
-# PF
-#     PF     LL     UL
-#  0.500 -0.583  0.842
-#
-#       mu.hat    LL     UL
-# txcon  0.733 0.943 0.3121
-# txvac  0.367 0.752 0.0997
-
 RRor(phiWt(bird.fit))
-# 95\% t intervals on 4 df
-#
-# PF
-#     PF     LL     UL
-#  0.500 -0.583  0.842
-#
-#       mu.hat    LL     UL
-# txcon  0.733 0.943 0.3121
-# txvac  0.367 0.752 0.0997
-
 
 }
 \seealso{

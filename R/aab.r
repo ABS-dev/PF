@@ -6,7 +6,8 @@
 #' @description This function converts a subset of columns in `data` as
 #'   specified by `formula` into a matrix
 #' @param formula the formula to use. of format cbind(y, n) ~ tx + cluster(clus)
-#' @param compare what to compare (length == 2)
+#' @param vac_grp The name of the vaccinated group.
+#' @param con_grp The name of the control group.
 #' @returns list of: `A`: A data.frame containing only the variables of
 #'   `formula` `Y`: a matrix where each compare element is the set of columns
 #'   `(y, n)` and each `unique(clus)` is a row
@@ -15,20 +16,7 @@
 #' @importFrom stats model.frame terms
 #' @importFrom lifecycle badge deprecate_warn is_present deprecated
 #' @noRd
-.matricize <- function(formula, data, compare = compare) {
-  # 1/18/2012 - added error checking for compare argument. mcv goal: avoid the
-  # two following scenarios
-  #
-  # if length(compare) < 2: cannot check levels(x) later
-  #
-  # if length(compare) > 2: only look at first two compare elements - notify
-  # user
-  if (length(compare) > 2) {
-    warning("matricize: length(compare) > 2; only first two elements used")
-  } else if (length(compare) < 2) {
-    stop("matricize: argument compare must have at least two elements")
-  }
-
+.matricize <- function(formula, data, vac_grp, con_grp) {
   # 1/18/2012 - added error checking for formula argument. mcv
   # goal: ensure that formula is of meaningful format. if formula is incorrect,
   #      the accessors to A will not work. A better solution would be to access
@@ -73,12 +61,9 @@
   }
   x <- as.factor(A[, 3])
 
-  if (!any(levels(x) == compare[1]) || !any(levels(x) == compare[2])) {
-    stop("matricize: What is being compared?")
-  }
   clus <- A[, 4]
-  Y1 <- A[x == compare[2], 1:2]
-  Y2 <- A[x == compare[1], 1:2]
+  Y1 <- A[x == con_grp, 1:2]
+  Y2 <- A[x == vac_grp, 1:2]
   Y <- as.matrix(cbind(Y2, Y1))
   dimnames(Y) <- list(levels(clus), c("y1", "n1", "y2", "n2"))
   return(list(A = A, Y = Y))

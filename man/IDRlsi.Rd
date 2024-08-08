@@ -17,7 +17,9 @@ IDRlsi(
   start = NULL,
   trace.it = FALSE,
   iter.max = 24,
-  compare = c("con", "vac")
+  vac_grp = "vac",
+  con_grp = "con",
+  compare = deprecated()
 )
 }
 \arguments{
@@ -48,7 +50,11 @@ estimates.}
 
 \item{iter.max}{Maximum number of iterations}
 
-\item{compare}{Text vector stating the factor levels: \code{compare[1]} is the
+\item{vac_grp}{The name of the vaccinated group.}
+
+\item{con_grp}{The name of the control group.}
+
+\item{compare}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} Text vector stating the factor levels: \code{compare[1]} is the
 vaccinate group to which \code{compare[2]} (control or reference) is compared.}
 }
 \value{
@@ -90,46 +96,28 @@ y_vector <- c(26, 204, 10, 205)
 IDRlsi(y_vector, pf = FALSE)
 
 # 1 / 8 likelihood support interval for IDR
-
 # corresponds to 95.858\% confidence
 #   (under certain assumptions)
 
-# IDR
-#  IDR   LL   UL
-# 2.61 1.26 5.88
-
 y_matrix <- matrix(c(26, 178, 10, 195), 2, 2, byrow = TRUE)
 y_matrix
-#      [, 1] [, 2]
-# [1, ]   26  178
-# [2, ]   10  195
 
 IDRlsi(y_matrix, pf = FALSE)
 
 # 1 / 8 likelihood support interval for IDR
-
 # corresponds to 95.858\% confidence
 #   (under certain assumptions)
-
-# IDR
-#  IDR   LL   UL
-# 2.61 1.26 5.88
 
 data1 <- data.frame(group = rep(c("treated", "control"), each = 5),
              n = c(rep(41, 4), 40, rep(41, 5)),
              y = c(4, 5, 7, 6, 4, 1, 3, 3, 2, 1),
              cage = rep(paste("cage", 1:5), 2))
 IDRlsi(data = data1, formula = cbind(y, n) ~ group,
-               compare = c("treated", "control"), pf = FALSE)
+               vac_grp = "treated", con_grp = "control", pf = FALSE)
 
 # 1 / 8 likelihood support interval for IDR
-
 # corresponds to 95.858\% confidence
 #   (under certain assumptions)
-
-# IDR
-#  IDR   LL   UL
-# 2.61 1.26 5.88
 
 require(dplyr)
 data2 <- data1 |>
@@ -138,20 +126,16 @@ data2 <- data1 |>
     sum_n = sum(n))
 
 IDRlsi(data = data2, formula = cbind(sum_y, sum_n) ~ group,
-               compare = c("treated", "control"), pf = FALSE)
+               vac_grp = "treated", con_grp = "control", pf = FALSE)
 
 # 1 / 8 likelihood support interval for IDR
-
 # corresponds to 95.858\% confidence
 #   (under certain assumptions)
 
-# IDR
-#  IDR   LL   UL
-# 2.61 1.26 5.88
 }
 \references{
-Royall R. \emph{Statistical Evidence: A Likelihood Paradigm}.
-Chapman & Hall, Boca Raton, 1997. Section 7.2.
+Royall R. \emph{Statistical Evidence: A Likelihood Paradigm}. Chapman
+& Hall, Boca Raton, 1997. Section 7.2.
 }
 \seealso{
 \link{IDRsc}

@@ -8,13 +8,15 @@ RRsc(
   y = NULL,
   data = NULL,
   formula = NULL,
-  compare = c("vac", "con"),
+  vac_grp = "vac",
+  con_grp = "con",
   alpha = 0.05,
   pf = TRUE,
   trace.it = FALSE,
   iter.max = 18,
   converge = 1e-06,
-  rnd = 3
+  rnd = 3,
+  compare = deprecated()
 )
 }
 \arguments{
@@ -26,8 +28,9 @@ total, and group 1 is compared to group 2 (control or reference group).}
 \item{formula}{Formula of the form \code{cbind(y, n) ~ x}, where y is the number
 positive, n is the group size, x is a factor with two levels of treatment.}
 
-\item{compare}{Text vector stating the factor levels: \code{compare[1]} is the
-vaccinate group to which \code{compare[2]} (control or reference) is compared.}
+\item{vac_grp}{The name of the vaccinated group.}
+
+\item{con_grp}{The name of the control group.}
 
 \item{alpha}{Complement of the confidence level.}
 
@@ -41,6 +44,9 @@ vaccinate group to which \code{compare[2]} (control or reference) is compared.}
 
 \item{rnd}{Number of digits for rounding. Affects display only, not
 estimates.}
+
+\item{compare}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}  Text vector stating the factor levels: \code{compare[1]} is the
+vaccinate group to which \code{compare[2]} (control or reference) is compared.}
 }
 \value{
 A \link{rrsc} object with the following fields.
@@ -77,28 +83,10 @@ The data may also be a matrix. In that case \code{Y} would be entered as
 y_vector <- c(4, 24, 12, 28)
 RRsc(y_vector)
 
-# PF
-# 95\% interval estimates
-
-# 				PF     LL    UL
-# MN method    0.611 0.0251 0.857
-# score method 0.611 0.0328 0.855
-# skew corr    0.611 0.0380 0.876
-
 y_matrix <- matrix(c(4, 20, 12, 16), 2, 2, byrow = TRUE)
-#       [, 1] [, 2]
-# [1, ]    4   20
-# [2, ]   12   16
 
 RRsc(y_matrix)
 
-# PF
-# 95\% interval estimates
-
-# 				PF     LL    UL
-# MN method    0.611 0.0251 0.857
-# score method 0.611 0.0328 0.855
-# skew corr    0.611 0.0380 0.876
 require(dplyr)
 data1 <- data.frame(group = rep(c("treated", "control"), each = 2),
   y = c(1, 3, 7, 5),
@@ -110,29 +98,22 @@ data2 <- data1 |>
   summarize(sum_y = sum(y),
     sum_n = sum(n))
 RRsc(data = data2, formula = cbind(sum_y, sum_n) ~ group,
-  compare = c("treated", "control"))
+  vac_grp = "treated", con_grp = "control")
 
-# PF
-# 95\% interval estimates
-
-# 				PF     LL    UL
-# MN method    0.611 0.0251 0.857
-# score method 0.611 0.0328 0.855
-# skew corr    0.611 0.0380 0.876
 }
 \references{
 Gart JJ, Nam J, 1988. Approximate interval estimation of the
 ratio of binomial parameters: a review and corrections for skewness.
 \emph{Biometrics} 44:323-338.
 
-Koopman PAR, 1984. Confidence intervals
-for the ratio of two binomial proportions. \emph{Biometrics} 40:513-517.
+Koopman PAR, 1984. Confidence intervals for the ratio of two binomial
+proportions. \emph{Biometrics} 40:513-517.
 
 Miettinen O, Nurminen M, 1985. Comparative analysis of two rates.
 \emph{Statistics in Medicine} 4:213-226.
 
-Ralston ML, Jennrich RI, 1978.
-DUD, A Derivative-Free Algorithm for Nonlinear Least Squares.
+Ralston ML, Jennrich RI, 1978. DUD, A Derivative-Free Algorithm for
+Nonlinear Least Squares.
 \emph{Technometrics} 20:7-14.
 }
 \seealso{
