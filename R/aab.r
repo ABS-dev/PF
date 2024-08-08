@@ -7,10 +7,9 @@
 #'   specified by `formula` into a matrix
 #' @param formula the formula to use. of format cbind(y, n) ~ tx + cluster(clus)
 #' @param compare what to compare (length == 2)
-#' @returns list of:
-#' `A`: A data.frame containing only the variables of `formula`
-#' `Y`: a matrix where each compare element is the set of columns `(y, n)` and
-#' each `unique(clus)` is a row
+#' @returns list of: `A`: A data.frame containing only the variables of
+#'   `formula` `Y`: a matrix where each compare element is the set of columns
+#'   `(y, n)` and each `unique(clus)` is a row
 #' @seealso [RRmh], [RRstr]
 #' @importFrom plyr ddply
 #' @importFrom stats model.frame terms

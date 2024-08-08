@@ -43,8 +43,8 @@
 #' * `k`: Likelihood ratio criterion
 #' * `rnd`: how many digits to round the display
 #' * `alpha`: complement of confidence level
-#' @references Royall R. *Statistical Evidence: A Likelihood Paradigm*.
-#'   Chapman & Hall, Boca Raton, 1997. Section 7.2.
+#' @references Royall R. *Statistical Evidence: A Likelihood Paradigm*. Chapman
+#'   & Hall, Boca Raton, 1997. Section 7.2.
 #' @author [PF-package]
 #' @seealso [IDRsc]
 #' @export

@@ -24,9 +24,9 @@
 #' @param divider internal control parameter for algorithm
 #' @returns A [rrstr] object with the following fields:
 #' * `estimate`: matrix of point and interval estimates - starting value, MLE,
-#' and skewness corrected
+#'   and skewness corrected
 #' * `hom`: list of homogeneity statistic, p-value, and degrees of freedom, or
-#' error message if appropriate.
+#'   error message if appropriate.
 #' * `estimator`: either `"PF"` or `"RR"`
 #' * `y`: `data.frame` of restructured input
 #' * `compare`: groups compared

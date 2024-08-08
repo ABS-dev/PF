@@ -25,7 +25,7 @@
 #'   estimates.
 #' @returns An object of class [rr1]  with the following fields.
 #' * `estimate`: vector of point and interval estimates:  point estimate, lower
-#' confidence limit, upper confidence limit
+#'   confidence limit, upper confidence limit
 #' * `estimator`: either `"PF"` or `"RR"`
 #' * `y`: data.frame of restructured input
 #' * `rnd`: how many digits to round the display

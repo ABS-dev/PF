@@ -39,14 +39,14 @@
 #'   ratio of binomial parameters: a review and corrections for skewness.
 #'   *Biometrics* 44:323-338.
 #'
-#'   Koopman PAR, 1984. Confidence intervals
-#'   for the ratio of two binomial proportions. *Biometrics* 40:513-517.
+#'   Koopman PAR, 1984. Confidence intervals for the ratio of two binomial
+#'   proportions. *Biometrics* 40:513-517.
 #'
 #'   Miettinen O, Nurminen M, 1985. Comparative analysis of two rates.
 #'   *Statistics in Medicine* 4:213-226.
 #'
-#'   Ralston ML, Jennrich RI, 1978.
-#'   DUD, A Derivative-Free Algorithm for Nonlinear Least Squares.
+#'   Ralston ML, Jennrich RI, 1978. DUD, A Derivative-Free Algorithm for
+#'   Nonlinear Least Squares.
 #'   *Technometrics* 20:7-14.
 #' @author [PF-package]
 #' @seealso [rrsc]
