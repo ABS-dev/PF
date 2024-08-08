@@ -78,9 +78,18 @@
 #' @importFrom stats pchisq qnorm
 #' @importFrom lifecycle badge deprecate_warn is_present deprecated
 #' @export
-RRstr <- function(formula = NULL, data = NULL, vac_grp = "vac", con_grp = "con",
-                  Y, alpha = 0.05, pf = TRUE, trace.it = FALSE, iter.max = 24,
-                  converge = 1e-6, rnd = 3, multiplier = 0.7, divider = 1.1,
+RRstr <- function(formula = NULL,
+                  data = NULL,
+                  vac_grp = "vac",
+                  con_grp = "con",
+                  Y, alpha = 0.05,
+                  pf = TRUE,
+                  trace.it = FALSE,
+                  iter.max = 24,
+                  converge = 1e-6,
+                  rnd = 3,
+                  multiplier = 0.7,
+                  divider = 1.1,
                   compare = deprecated()) {
   if (is_present(compare)) {
     deprecate_warn("9.7.0",
