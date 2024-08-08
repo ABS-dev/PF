@@ -34,8 +34,9 @@
 #' * `y`: data.frame with "y1", "n1", "y2", "n2" values.
 #' * `rnd`: how many digits to round the display
 #' * `alpha`: complement of confidence level
-#' @param compare `r badge("deprecated")`  Text vector stating the factor levels: `compare[1]` is the
-#'   vaccinate group to which `compare[2]` (control or reference) is compared.
+#' @param compare `r badge("deprecated")`  Text vector stating the factor
+#'   levels: `compare[1]` is the vaccinate group to which `compare[2]` (control
+#'   or reference) is compared.
 #' @references Gart JJ, Nam J, 1988. Approximate interval estimation of the
 #'   ratio of binomial parameters: a review and corrections for skewness.
 #'   *Biometrics* 44:323-338.
@@ -90,6 +91,16 @@ RRsc <- function(y = NULL,
                  converge = 1e-6,
                  rnd = 3,
                  compare = deprecated()) {
+  if (is_present(compare)) {
+    deprecate_warn("9.7.0",
+                   "RRsc(compare)",
+                   "RRsc(vac_grp, con_grp)")
+    if (length(compare) != 2) {
+      stop("`compare` must be a vector of length 2!")
+    }
+    vac_grp <- compare[1]
+    con_grp <- compare[2]
+  }
 
   ###########################################
   ## Error handling for input options

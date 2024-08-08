@@ -30,8 +30,9 @@
 #'   parameter
 #' @param gamma parameter for Berger-Boos correction (restricts range of
 #'   nuisance parameter evaluation)
-#' @param compare `r badge("deprecated")`  Text vector stating the factor levels: `compare[1]` is the
-#'   vaccinate group to which `compare[2]` (control or reference) is compared.
+#' @param compare `r badge("deprecated")`  Text vector stating the factor
+#'   levels: `compare[1]` is the vaccinate group to which `compare[2]` (control
+#'   or reference) is compared.
 #' @returns An object of class [rr1] with the following fields:
 #' * `estimate`: vector with point and interval estimate
 #' * `estimator`: either `"PF"` or `"RR"`
@@ -90,6 +91,16 @@ RRotsst <- function(y = NULL,
                     nuisance.points = 120,
                     gamma = 1e-6,
                     compare = deprecated()) {
+  if (is_present(compare)) {
+    deprecate_warn("9.7.0",
+                   "RRotsst(compare)",
+                   "RRotsst(vac_grp, con_grp)")
+    if (length(compare) != 2) {
+      stop("`compare` must be a vector of length 2!")
+    }
+    vac_grp <- compare[1]
+    con_grp <- compare[2]
+  }
   # Estimates exact confidence interval by the OTSST method
   # Score statistic used to select tail area tables
   # Binomial probability estimated over the tail area

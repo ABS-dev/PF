@@ -27,8 +27,9 @@
 #' @param pf Estimate *IDR*, or its complement *PF*?
 #' @param rnd Number of digits for rounding. Affects display only, not
 #'   estimates.
-#' @param compare `r badge("deprecated")`  Text vector stating the factor levels: `compare[1]` is the
-#'   vaccinate group to which `compare[2]` (control or reference) is compared.
+#' @param compare `r badge("deprecated")`  Text vector stating the factor
+#'   levels: `compare[1]` is the vaccinate group to which `compare[2]` (control
+#'   or reference) is compared.
 #' @returns A [rr1] object with the following elements.
 #' * `estimate`: vector with point and interval estimate
 #' * `estimator`: either *PF* or *IDR*
@@ -84,6 +85,16 @@ IDRsc <- function(y = NULL,
                   pf = TRUE,
                   rnd = 3,
                   compare = deprecated()) {
+  if (is_present(compare)) {
+    deprecate_warn("9.7.0",
+                   "IDRsc(compare)",
+                   "IDRsc(vac_grp, con_grp)")
+    if (length(compare) != 2) {
+      stop("`compare` must be a vector of length 2!")
+    }
+    vac_grp <- compare[1]
+    con_grp <- compare[2]
+  }
 
   ###########################################
   ## Error handling for input options

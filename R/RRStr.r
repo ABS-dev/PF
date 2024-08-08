@@ -22,8 +22,9 @@
 #'   estimates.
 #' @param multiplier internal control parameter for algorithm
 #' @param divider internal control parameter for algorithm
-#' @param compare `r badge("deprecated")`  Text vector stating the factor levels: `compare[1]` is the
-#'   control or reference group to which `compare[2]` is compared
+#' @param compare `r badge("deprecated")`  Text vector stating the factor
+#'   levels: `compare[1]` is the control or reference group to which
+#'   `compare[2]` is compared
 #' @returns A [rrstr] object with the following fields:
 #' * `estimate`: matrix of point and interval estimates - starting value, MLE,
 #'   and skewness corrected
@@ -51,13 +52,13 @@
 #'   `formula` or (2) as a matrix `Y`
 #'
 #'
-#'   `RRstr(formula, data, vac_grp = "b", con_grp = "a", pf = TRUE,
-#'          alpha = 0.05, trace.it = FALSE, iter.max = 24, converge = 1e-6,
-#'          rnd = 3, multiplier = 0.7, divider = 1.1)`
+#'   `RRstr(formula, data, vac_grp = "b", con_grp = "a", pf = TRUE, alpha =
+#'   0.05, trace.it = FALSE, iter.max = 24, converge = 1e-6, rnd = 3, multiplier
+#'   = 0.7, divider = 1.1)`
 #'
-#'   `RRstr(Y, vac_grp = "b", con_grp = "a", pf = TRUE, alpha = 0.05,
-#'          trace.it = FALSE, iter.max = 24, converge = 1e-6, rnd = 3,
-#'          multiplier = 0.7, divider = 1.1)`
+#'   `RRstr(Y, vac_grp = "b", con_grp = "a", pf = TRUE, alpha = 0.05, trace.it =
+#'   FALSE, iter.max = 24, converge = 1e-6, rnd = 3, multiplier = 0.7, divider =
+#'   1.1)`
 #' @seealso [rrstr]
 #' @examples
 #' ## Table 1 from Gart (1985)
@@ -81,6 +82,16 @@ RRstr <- function(formula = NULL, data = NULL, vac_grp = "vac", con_grp = "con",
                   Y, alpha = 0.05, pf = TRUE, trace.it = FALSE, iter.max = 24,
                   converge = 1e-6, rnd = 3, multiplier = 0.7, divider = 1.1,
                   compare = deprecated()) {
+  if (is_present(compare)) {
+    deprecate_warn("9.7.0",
+                   "RRstr(compare)",
+                   "RRstr(vac_grp, con_grp)")
+    if (length(compare) != 2) {
+      stop("`compare` must be a vector of length 2!")
+    }
+    vac_grp <- compare[1]
+    con_grp <- compare[2]
+  }
 
   # define internal functions:
   #  u_p, zi_phi, zis_phi, root, rr.opt, matricize

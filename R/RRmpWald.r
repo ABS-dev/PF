@@ -29,8 +29,9 @@
 #'   - 2`, where N is the total number of pairs.
 #' @param rnd Number of digits for rounding. Affects display only, not
 #'   estimates.
-#' @param compare `r badge("deprecated")`  Text vector stating the factor levels: `compare[1]` is the
-#'   vaccinate group to which `compare[2]` (control or reference) is compared.
+#' @param compare `r badge("deprecated")`  Text vector stating the factor
+#'   levels: `compare[1]` is the vaccinate group to which `compare[2]` (control
+#'   or reference) is compared.
 #' @returns A [rrmp] object with the following fields:
 #' * `estimate`: vector of point and interval estimates - see details
 #' * `estimator`: either `"PF"` or `"RR"`
@@ -46,10 +47,10 @@
 #'   `formula` or (2) as a vector `x`
 #'
 #'   `RRmpWald(formula, data, vac_grp = "vac", con_grp = "con", affected = 1,
-#'             alpha = 0.05, pf = TRUE, tdist = TRUE, df = NULL, rnd = 3)`
+#'   alpha = 0.05, pf = TRUE, tdist = TRUE, df = NULL, rnd = 3)`
 #'
 #'   `RRmpWald(x, vac_grp = "vac", con_grp = "con", affected = 1, alpha = 0, 05,
-#'             pf = TRUE, tdist = TRUE, df = NULL, rnd = 3)`
+#'   pf = TRUE, tdist = TRUE, df = NULL, rnd = 3)`
 #' @examples
 #' RRmpWald(pos ~ tx + cluster(cage), New, vac_grp = "vac", con_grp = "con")
 #'
@@ -78,6 +79,17 @@ RRmpWald <- function(formula = NULL,
                      df = NULL,
                      rnd = 3,
                      compare = deprecated()) {
+  if (is_present(compare)) {
+    deprecate_warn("9.7.0",
+                   "RRmpWald(compare)",
+                   "RRmpWald(vac_grp, con_grp)")
+    if (length(compare) != 2) {
+      stop("`compare` must be a vector of length 2!")
+    }
+    vac_grp <- compare[1]
+    con_grp <- compare[2]
+  }
+
   # CI for RR with matched pairs, based on asymptotic normality of log(RR) and
   # multinomial variance
   #

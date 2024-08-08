@@ -36,8 +36,9 @@
 #' @param rnd Number of digits for rounding. Affects display only, not
 #'   estimates.
 #' @param start describe here.
-#' @param compare `r badge("deprecated")` Text vector stating the factor levels: `compare[1]` is the
-#'   vaccinate group to which `compare[2]` (control or reference) is compared.
+#' @param compare `r badge("deprecated")` Text vector stating the factor levels:
+#'   `compare[1]` is the vaccinate group to which `compare[2]` (control or
+#'   reference) is compared.
 #' @returns A [rrsi] object with the following elements.
 #' * `estimate`: vector with point and interval estimate
 #' * `estimator`: either *PF* or *IDR*
@@ -111,6 +112,16 @@ IDRlsi <- function(y = NULL,
                    vac_grp = "vac",
                    con_grp = "con",
                    compare = deprecated()) {
+  if (is_present(compare)) {
+    deprecate_warn("9.7.0",
+                   "IDRlsi(compare)",
+                   "IDRlsi(vac_grp, con_grp)")
+    if (length(compare) != 2) {
+      stop("`compare` must be a vector of length 2!")
+    }
+    vac_grp <- compare[1]
+    con_grp <- compare[2]
+  }
 
   ###########################################
   ## Error handling for input options

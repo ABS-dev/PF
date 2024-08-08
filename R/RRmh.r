@@ -84,16 +84,27 @@ RRmh <- function(formula = NULL,
                  pf = TRUE,
                  rnd = 3,
                  compare = deprecated()) {
-  ################################################################################
+  if (is_present(compare)) {
+    deprecate_warn("9.7.0",
+                   "RRmh(compare)",
+                   "RRmh(vac_grp, con_grp)")
+    if (length(compare) != 2) {
+      stop("`compare` must be a vector of length 2!")
+    }
+    vac_grp <- compare[1]
+    con_grp <- compare[2]
+  }
+
+  ##############################################################################
   #
-  # Mantel-Haenszel estimate of common risk ratio for K 2x2 tables.
-  # First draft 5 March 2010.  Updated 11 March 2010, 5 Nov 2010.
-  # Revised 28 Dec 2010 to bring input/output format consistent with David Siev's
-  # RRstr(). Note that unlike earlier versions, this version does not check the
-  # data types and dimensions of the inputs.
+  #Mantel-Haenszel estimate of common risk ratio for K 2x2 tables. First draft 5
+  #March 2010.  Updated 11 March 2010, 5 Nov 2010. Revised 28 Dec 2010 to bring
+  #input/output format consistent with David Siev's RRstr(). Note that unlike
+  #earlier versions, this version does not check the data types and dimensions
+  #of the inputs.
   #
-  ################################################################################
-  # convert data to matrix
+  ##############################################################################
+  #convert data to matrix
   if (!is.null(formula) && !is.null(data)) {
     Y <- .matricize(formula = formula, data = data, vac_grp = vac_grp,
                     con_grp = con_grp)$Y

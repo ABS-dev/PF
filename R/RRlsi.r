@@ -36,8 +36,9 @@
 #' @param start Optional starting value.
 #' @param track Verbose tracking of the iterations?
 #' @param full.track Verbose tracking of the iterations?
-#' @param compare `r badge("deprecated")`  Text vector stating the factor levels: `compare[1]` is the
-#'   vaccinate group to which `compare[2]` (control or reference) is compared.
+#' @param compare `r badge("deprecated")`  Text vector stating the factor
+#'   levels: `compare[1]` is the vaccinate group to which `compare[2]` (control
+#'   or reference) is compared.
 #' @returns An object of class [rrsi] with the following fields: `estimate`:
 #'   matrix of point and interval estimates - see details `estimator`: either
 #'   `"PF"` or `"RR"` `y`: data.frame with "y1", "n1", "y2", "n2" values. `rnd`:
@@ -108,6 +109,16 @@ RRlsi <- function(y = NULL,
                   track = FALSE,
                   full.track = FALSE,
                   compare = deprecated()) {
+  if (is_present(compare)) {
+    deprecate_warn("9.7.0",
+                   "RRlsi(compare)",
+                   "RRlsi(vac_grp, con_grp)")
+    if (length(compare) != 2) {
+      stop("`compare` must be a vector of length 2!")
+    }
+    vac_grp <- compare[1]
+    con_grp <- compare[2]
+  }
 
   ###########################################
   ## Error handling for input options
