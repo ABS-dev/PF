@@ -57,8 +57,9 @@ estimates.}
 
 \item{full.track}{Verbose tracking of the iterations?}
 
-\item{compare}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}  Text vector stating the factor levels: \code{compare[1]} is the
-vaccinate group to which \code{compare[2]} (control or reference) is compared.}
+\item{compare}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}  Text vector stating the factor
+levels: \code{compare[1]} is the vaccinate group to which \code{compare[2]} (control
+or reference) is compared.}
 }
 \value{
 An object of class \link{rrsi} with the following fields: \code{estimate}:
@@ -93,19 +94,10 @@ The data may also be a matrix. In that case \code{Y} would be entered as
 y_vector <- c(4, 24, 12, 28)
 RRlsi(y_vector)
 
-# 1 / 8 likelihood support interval for PF
-# corresponds to 95.858\% confidence
-#   (under certain assumptions)
-
-
 y_matrix <- matrix(c(4, 20, 12, 16), 2, 2, byrow = TRUE)
 y_matrix
 
 RRlsi(y_matrix)
-
-# 1 / 8 likelihood support interval for PF
-# corresponds to 95.858\% confidence
-#   (under certain assumptions)
 
 require(dplyr)
 data1 <- data.frame(group = rep(c("treated", "control"), each = 2),
@@ -120,9 +112,6 @@ data2 <- data1 |>
 RRlsi(data = data2, formula =  cbind(sum_y, sum_n) ~ group,
       vac_grp = "treated", con_grp = "control")
 
-# 1 / 8 likelihood support interval for PF
-# corresponds to 95.858\% confidence
-# (under certain assumptions)
 }
 \references{
 Royall R. \emph{Statistical Evidence: A Likelihood Paradigm}. Chapman

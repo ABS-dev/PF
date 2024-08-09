@@ -57,19 +57,10 @@
 #' y_vector <- c(4, 24, 12, 28)
 #' RRlsi(y_vector)
 #'
-#' # 1 / 8 likelihood support interval for PF
-#' # corresponds to 95.858% confidence
-#' #   (under certain assumptions)
-#'
-#'
 #' y_matrix <- matrix(c(4, 20, 12, 16), 2, 2, byrow = TRUE)
 #' y_matrix
 #'
 #' RRlsi(y_matrix)
-#'
-#' # 1 / 8 likelihood support interval for PF
-#' # corresponds to 95.858% confidence
-#' #   (under certain assumptions)
 #'
 #' require(dplyr)
 #' data1 <- data.frame(group = rep(c("treated", "control"), each = 2),
@@ -84,10 +75,6 @@
 #' RRlsi(data = data2, formula =  cbind(sum_y, sum_n) ~ group,
 #'       vac_grp = "treated", con_grp = "control")
 #'
-#' # 1 / 8 likelihood support interval for PF
-#' # corresponds to 95.858% confidence
-#' # (under certain assumptions)
-
 ## see file RR likelihood functions.r for other versions including conditional
 ## likelihood
 #' @importFrom stats pchisq qchisq

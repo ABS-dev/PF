@@ -45,8 +45,9 @@ positive, n is the group size, x is a factor with two levels of treatment.}
 \item{rnd}{Number of digits for rounding. Affects display only, not
 estimates.}
 
-\item{compare}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}  Text vector stating the factor levels: \code{compare[1]} is the
-vaccinate group to which \code{compare[2]} (control or reference) is compared.}
+\item{compare}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}  Text vector stating the factor
+levels: \code{compare[1]} is the vaccinate group to which \code{compare[2]} (control
+or reference) is compared.}
 }
 \value{
 A \link{rrsc} object with the following fields.

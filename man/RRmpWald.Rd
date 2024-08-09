@@ -14,7 +14,7 @@ RRmpWald(
   alpha = 0.05,
   pf = TRUE,
   tdist = TRUE,
-  df = NULL,
+  df = NA_real_,
   rnd = 3,
   compare = deprecated()
 )
@@ -41,7 +41,7 @@ be input as frequency vector. See example for how to order this vector.}
 
 \item{tdist}{Use t distribution?}
 
-\item{df}{Degrees of freedom. When NULL, the function will default to `df = N
+\item{df}{Degrees of freedom. When NA, the function will default to `df = N
 \itemize{
 \item 2`, where N is the total number of pairs.
 }}
@@ -49,8 +49,9 @@ be input as frequency vector. See example for how to order this vector.}
 \item{rnd}{Number of digits for rounding. Affects display only, not
 estimates.}
 
-\item{compare}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}  Text vector stating the factor levels: \code{compare[1]} is the
-vaccinate group to which \code{compare[2]} (control or reference) is compared.}
+\item{compare}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}  Text vector stating the factor
+levels: \code{compare[1]} is the vaccinate group to which \code{compare[2]} (control
+or reference) is compared.}
 }
 \value{
 A \link{rrmp} object with the following fields:
@@ -86,9 +87,9 @@ in the CVBmisc package.
 Call to this function may be one of two formats: (1) specify \code{data} and
 \code{formula} or (2) as a vector \code{x}
 
-\code{RRmpWald(formula, data, vac_grp = "vac", con_grp = "con", affected = 1, alpha = 0.05, pf = TRUE, tdist = TRUE, df = NULL, rnd = 3)}
+\code{RRmpWald(formula, data, vac_grp = "vac", con_grp = "con", affected = 1, alpha = 0.05, pf = TRUE, tdist = TRUE, df = NA, rnd = 3)}
 
-\code{RRmpWald(x, vac_grp = "vac", con_grp = "con", affected = 1, alpha = 0, 05, pf = TRUE, tdist = TRUE, df = NULL, rnd = 3)}
+\code{RRmpWald(x, vac_grp = "vac", con_grp = "con", affected = 1, alpha = 0, 05, pf = TRUE, tdist = TRUE, df = NA, rnd = 3)}
 }
 \examples{
 RRmpWald(pos ~ tx + cluster(cage), New, vac_grp = "vac", con_grp = "con")

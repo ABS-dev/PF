@@ -57,18 +57,10 @@
 #' y_vector <- c(26, 204, 10, 205)
 #' IDRlsi(y_vector, pf = FALSE)
 #'
-#' # 1 / 8 likelihood support interval for IDR
-#' # corresponds to 95.858% confidence
-#' #   (under certain assumptions)
-#'
 #' y_matrix <- matrix(c(26, 178, 10, 195), 2, 2, byrow = TRUE)
 #' y_matrix
 #'
 #' IDRlsi(y_matrix, pf = FALSE)
-#'
-#' # 1 / 8 likelihood support interval for IDR
-#' # corresponds to 95.858% confidence
-#' #   (under certain assumptions)
 #'
 #' data1 <- data.frame(group = rep(c("treated", "control"), each = 5),
 #'              n = c(rep(41, 4), 40, rep(41, 5)),
@@ -76,10 +68,6 @@
 #'              cage = rep(paste("cage", 1:5), 2))
 #' IDRlsi(data = data1, formula = cbind(y, n) ~ group,
 #'                vac_grp = "treated", con_grp = "control", pf = FALSE)
-#'
-#' # 1 / 8 likelihood support interval for IDR
-#' # corresponds to 95.858% confidence
-#' #   (under certain assumptions)
 #'
 #' require(dplyr)
 #' data2 <- data1 |>
@@ -89,10 +77,6 @@
 #'
 #' IDRlsi(data = data2, formula = cbind(sum_y, sum_n) ~ group,
 #'                vac_grp = "treated", con_grp = "control", pf = FALSE)
-#'
-#' # 1 / 8 likelihood support interval for IDR
-#' # corresponds to 95.858% confidence
-#' #   (under certain assumptions)
 #'
 #' @importFrom stats pchisq qchisq
 #' @importFrom lifecycle badge deprecate_warn is_present deprecated

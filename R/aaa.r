@@ -1,13 +1,8 @@
-# These are needed for tests, but I'm not sure where to put them
-
-#' @importFrom tidyr spread
-#' @importFrom dplyr summarize mutate group_by
-
-
-
 # error checking for use in functions where y can either be a
 # frequency vector of length 4 or a 2x2 matrix.
 # checks for type and dim.
+#' @importFrom tidyr spread
+#' @importFrom dplyr summarize mutate group_by
 .check_y_input_freq <- function(y) {
   if (is.vector(y) && length(y) != 4) {
     stop("'y' input vector incorrect. Must be length 4.")
@@ -48,17 +43,28 @@
 # handle both summarized data (each group on one line) and stratified data where
 # we intend to ignore the strafication and summarize by the control and
 # vaccinate groups
-#' @importFrom dplyr group_by_at select summarize_at ungroup
-#' @importFrom stats filter
+#' @importFrom dplyr group_by_at select summarize_at ungroup filter
+#' @importFrom rlang .data
 .extract_freqvec <- function(formula, data, vac_grp = "vac", con_grp = "con") {
   vars <- all.vars(formula)
 
+  if (nrow(filter(data, .data[[vars[3]]] == vac_grp)) == 0) {
+    stop("No matches in data for `vac_grp` = '", vac_grp, "'.",
+         call. = FALSE)
+  }
+  if (nrow(filter(data, .data[[vars[3]]] == con_grp)) == 0) {
+    stop("No matches in data for `con_grp` = '", con_grp, "'.",
+         call. = FALSE)
+  }
   if (nrow(data) > 2) {
     message("'y' and 'n' values will be summed by ",
             paste(c(vac_grp, con_grp), sep = "", collapse = " and "),
             " designation in data",
             "column ", vars[3])
   }
+
+
+
   sumdata <- data |>
     ungroup() |>
     select(vars[1:3]) |>

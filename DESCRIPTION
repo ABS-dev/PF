@@ -28,7 +28,8 @@ Imports:
   dplyr,
   tidyr,
   data.table,
-  lifecycle
+  lifecycle,
+  rlang
 Suggests:
   testthat,
   knitr,

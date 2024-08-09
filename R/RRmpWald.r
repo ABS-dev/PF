@@ -174,7 +174,18 @@ RRmpWald <- function(formula = NULL,
   environment(Terms) <- environment()
   A <- model.frame(formula = Terms, data = data)
   names(A) <- c("pos", "tx", "cage")
-  A <- tidyr::drop_na(A)
+  A <- A |>
+    drop_na() |>
+    filter(tx %in% c(vac_grp, con_grp))
+  if (nrow(filter(A, tx %in% vac_grp)) == 0) {
+    stop("No matches in data for `vac_grp` = '", vac_grp, "'.",
+         call. = FALSE)
+  }
+  if (nrow(filter(A, tx %in% con_grp)) == 0) {
+    stop("No matches in data for `con_grp` = '", con_grp, "'.",
+         call. = FALSE)
+  }
+
   A$pos <- fifelse(A$pos %in% affected, 1, 0)
   A$pos <- factor(A$pos, levels = 1:0)
   A$tx  <- fifelse(A$tx %in% vac_grp, "vac", "con")

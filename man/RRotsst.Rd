@@ -56,8 +56,9 @@ parameter}
 \item{gamma}{parameter for Berger-Boos correction (restricts range of
 nuisance parameter evaluation)}
 
-\item{compare}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}  Text vector stating the factor levels: \code{compare[1]} is the
-vaccinate group to which \code{compare[2]} (control or reference) is compared.}
+\item{compare}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}  Text vector stating the factor
+levels: \code{compare[1]} is the vaccinate group to which \code{compare[2]} (control
+or reference) is compared.}
 }
 \value{
 An object of class \link{rr1} with the following fields:

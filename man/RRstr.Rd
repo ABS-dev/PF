@@ -54,8 +54,9 @@ estimates.}
 
 \item{divider}{internal control parameter for algorithm}
 
-\item{compare}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}  Text vector stating the factor levels: \code{compare[1]} is the
-control or reference group to which \code{compare[2]} is compared}
+\item{compare}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}  Text vector stating the factor
+levels: \code{compare[1]} is the control or reference group to which
+\code{compare[2]} is compared}
 }
 \value{
 A \link{rrstr} object with the following fields:

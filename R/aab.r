@@ -44,7 +44,6 @@
   Terms <- terms(formula, data = data)
   environment(Terms) <- environment()
   A <- model.frame(formula = Terms, data = data)
-
   A <- data.frame(A[, 1], A[, 2:3]) # for easier subscripting
   A <- A[order(A[, 4], A[, 3]), ]
 
@@ -63,6 +62,14 @@
   clus <- A[, 4]
   Y1 <- A[x == con_grp, 1:2]
   Y2 <- A[x == vac_grp, 1:2]
+  if (nrow(Y1) == 0) {
+    stop("No matches in data for `con_grp` = '", con_grp, "'.",
+         call. = FALSE)
+  }
+  if (nrow(Y2) == 0) {
+    stop("No matches in data for `vac_grp` = '", vac_grp, "'.",
+         call. = FALSE)
+  }
   Y <- as.matrix(cbind(Y2, Y1))
   dimnames(Y) <- list(levels(clus), c("y1", "n1", "y2", "n2"))
   return(list(A = A, Y = Y))
