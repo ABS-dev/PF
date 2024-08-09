@@ -113,9 +113,10 @@ IDRlsi <- function(y = NULL,
                    con_grp = "con",
                    compare = deprecated()) {
   if (is_present(compare)) {
-    deprecate_warn("9.7.0",
-                   "IDRlsi(compare)",
-                   "IDRlsi(vac_grp, con_grp)")
+    deprecate_warn(
+      "9.7.0",
+      "IDRlsi(compare)",
+      details = "Please use the `vac_grp` and `con_grp` argumetns instead.")
     if (length(compare) != 2) {
       stop("`compare` must be a vector of length 2!")
     }

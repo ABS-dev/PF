@@ -92,9 +92,10 @@ RRstr <- function(formula = NULL,
                   divider = 1.1,
                   compare = deprecated()) {
   if (is_present(compare)) {
-    deprecate_warn("9.7.0",
-                   "RRstr(compare)",
-                   "RRstr(vac_grp, con_grp)")
+    deprecate_warn(
+      "9.7.0",
+      "RRstr(compare)",
+      details = "Please use the `vac_grp` and `con_grp` argumetns instead.")
     if (length(compare) != 2) {
       stop("`compare` must be a vector of length 2!")
     }

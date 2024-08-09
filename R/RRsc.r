@@ -93,9 +93,10 @@ RRsc <- function(y = NULL,
                  rnd = 3,
                  compare = deprecated()) {
   if (is_present(compare)) {
-    deprecate_warn("9.7.0",
-                   "RRsc(compare)",
-                   "RRsc(vac_grp, con_grp)")
+    deprecate_warn(
+      "9.7.0",
+      "RRsc(compare)",
+      details = "Please use the `vac_grp` and `con_grp` argumetns instead.")
     if (length(compare) != 2) {
       stop("`compare` must be a vector of length 2!")
     }
