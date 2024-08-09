@@ -25,7 +25,7 @@
 #' @param alpha Complement of the confidence level
 #' @param pf Estimate *RR* or its complement *PF*?
 #' @param tdist Use t distribution?
-#' @param df Degrees of freedom. When NULL, the function will default to `df = N
+#' @param df Degrees of freedom. When NA, the function will default to `df = N
 #'   - 2`, where N is the total number of pairs.
 #' @param rnd Number of digits for rounding. Affects display only, not
 #'   estimates.
@@ -47,10 +47,10 @@
 #'   `formula` or (2) as a vector `x`
 #'
 #'   `RRmpWald(formula, data, vac_grp = "vac", con_grp = "con", affected = 1,
-#'   alpha = 0.05, pf = TRUE, tdist = TRUE, df = NULL, rnd = 3)`
+#'   alpha = 0.05, pf = TRUE, tdist = TRUE, df = NA, rnd = 3)`
 #'
 #'   `RRmpWald(x, vac_grp = "vac", con_grp = "con", affected = 1, alpha = 0, 05,
-#'   pf = TRUE, tdist = TRUE, df = NULL, rnd = 3)`
+#'   pf = TRUE, tdist = TRUE, df = NA, rnd = 3)`
 #' @examples
 #' RRmpWald(pos ~ tx + cluster(cage), New, vac_grp = "vac", con_grp = "con")
 #'
@@ -76,9 +76,10 @@ RRmpWald <- function(formula = NULL,
                      alpha = 0.05,
                      pf = TRUE,
                      tdist = TRUE,
-                     df = NULL,
+                     df = NA_real_,
                      rnd = 3,
                      compare = deprecated()) {
+  if (is.null(df)) df <- NA_real_
   if (is_present(compare)) {
     deprecate_warn("9.7.0",
                    "RRmpWald(compare)",
@@ -128,9 +129,9 @@ RRmpWald <- function(formula = NULL,
   varlogR <- as.numeric(t(gradlogR) %*% V %*% t(t(gradlogR)))
 
   if (tdist) {
-    if (is.null(df))	df <- N - 2
+    if (is.na(df))	df <- N - 2
   }
-  if (!is.null(df)) {
+  if (!is.na(df)) {
     q <- qt(c(0.5, alpha / 2, 1 - alpha / 2), df)
   } else {
     q <- qnorm(c(0.5, alpha / 2, 1 - alpha / 2))
