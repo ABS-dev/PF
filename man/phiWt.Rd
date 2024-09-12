@@ -7,7 +7,7 @@
 phiWt(fit, subset.factor = NULL, fit.only = TRUE, show.warns = FALSE)
 }
 \arguments{
-\item{fit}{A \code{\link{glm}} object.}
+\item{fit}{A \link{glm} object.}
 
 \item{subset.factor}{Factor for estimating phi by subset.}
 
@@ -17,9 +17,10 @@ and phi estimates.}
 \item{show.warns}{Show warnings}
 }
 \value{
-A list with the following elements. \item{fit}{the new model fit,
-updated by the estimated weights} \item{weights}{vector of weights}
-\item{phi}{vector of phi estimates}
+A list with the following elements.
+\code{fit}: the new model fit, updated by the estimated weights
+\code{weights}: vector of weights
+\code{phi}: vector of phi estimates
 }
 \description{
 MME estimate of dispersion parameter phi.
@@ -30,7 +31,7 @@ moments. Refits the model, weighting the observations by \eqn{1/\phi}. Uses
 \code{quasibinomial} family in \code{glm()}.
 }
 \examples{
-birdm.fit <- glm(cbind(y, n - y)~tx-1, binomial, birdm)
+birdm.fit <- glm(cbind(y, n - y) ~ tx-1, binomial, birdm)
 RRor(phiWt(birdm.fit))
 #
 # 95\% t intervals on 4 df
@@ -49,7 +50,7 @@ Wedderburn RWM, 1974. Quasi-likelihood functions, generalized
 linear models, and the Gauss-Newton method. \emph{Biometrika} 61:439-447.
 }
 \seealso{
-\code{\link{tauWt}}, \code{\link{RRor}}.
+\link{tauWt}, \link{RRor}.
 }
 \author{
 \link{PF-package}

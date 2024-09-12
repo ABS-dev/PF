@@ -7,53 +7,51 @@
 #'   the column when displayed as a 2x2 table. Wald type confidence intervals
 #'   are found by applying the delta method to the multinomial variance. This
 #'   method fails when there are no responders in one of the treatment groups.
-#'   \cr \cr Alternative forms of data entry are illustrated by the output, say
-#'   \cr \code{Y}, where \code{c(Y$xtable) = Y$freqvec = Y$multvec$Freq}. \cr
-#'   \cr If RR = 0 (PF = 1), the function will return degenerate interval.
+#'
+#'   Alternative forms of data entry are illustrated by the output, say `Y`,
+#'   where `c(Y$xtable) = Y$freqvec = Y$multvec$Freq`.
+#'
+#'   If `RR = 0` (`PF = 1`), the function will return degenerate interval.
 #' @name RRmpWald
-#' @param formula Formula of the form \code{y ~ x + cluster(w)}, where y is the
-#'   indicator for an individual's positive response, x is a factor with two
-#'   levels of treatment, and w identifies the pairs.
-#' @param data \code{data.frame} containing variables in formula
+#' @param formula Formula of the form `y ~ x + cluster(w)`, where `y` is the
+#'   indicator for an individual's positive response, `x` is a factor with two
+#'   levels of treatment, and `w` identifies the pairs.
+#' @param data `data.frame` containing variables in formula
 #' @param compare Text vector stating the factor levels: `compare[1]` is the
 #'   vaccinate group to which `compare[2]` (control or reference) is compared.
 #' @param affected Indicator for positive response
 #' @param x Alternative data input. Instead of formula and data frame, data may
 #'   be input as frequency vector. See example for how to order this vector.
 #' @param alpha Complement of the confidence level
-#' @param pf Estimate \emph{RR} or its complement \emph{PF}?
+#' @param pf Estimate *RR* or its complement *PF*?
 #' @param tdist Use t distribution?
-#' @param df Degrees of freedom. When NULL, the function will default to
-#'   \code{df = N - 2}, where N is the total number of pairs.
+#' @param df Degrees of freedom. When NULL, the function will default to `df = N
+#'   - 2`, where N is the total number of pairs.
 #' @param rnd Number of digits for rounding. Affects display only, not
 #'   estimates.
 #'
-#' @return A \code{\link{rrmp}} object with the following fields:
-#'
-#'   \item{estimate}{vector of point and interval estimates - see details}
-#'
-#'   \item{estimator}{either \code{"PF"} or \code{"RR"}}
-#'
-#'   \item{compare}{text vector, same as input}
-#'
-#'   \item{alpha}{complement of confidence level}
-#'
-#'   \item{rnd}{how many digits to round the display}
-#'
-#'   \item{multvec}{data frame showing the multinomial representation of the
-#'   data}
-#'
+#' @returns A [rrmp] object with the following fields:
+#' * `estimate`: vector of point and interval estimates - see details
+#' * `estimator`: either `"PF"` or `"RR"`
+#' * `compare`: text vector, same as input
+#' * `alpha`: complement of confidence level
+#' * `rnd`: how many digits to round the display
+#' * `multvec`: data frame showing the multinomial representation of the data
 #' @export
-#' @author \link{PF-package}
+#' @author [PF-package]
 #' @note Experimental functions for estimating profile likelihood intervals are
-#'   in the CVBmisc package. \cr \cr Call to this function may be one of two
-#'   formats: (1) specify \code{data} and \code{formula} or (2) as a vector
-#'   \code{x} \cr \cr \code{RRmpWald(formula, data, compare = c('vac', 'con'),
-#'   affected = 1, alpha = 0.05,} \cr \code{pf = TRUE, tdist = TRUE, df = NULL,
-#'   rnd = 3)} \cr \cr \code{RRmpWald(x, compare = c('vac', 'con'), affected =
-#'   1, alpha = 0, 05,} \cr \code{pf = TRUE, tdist = TRUE, df = NULL, rnd = 3)}
+#'   in the CVBmisc package.
+#'
+#'   Call to this function may be one of two formats: (1) specify `data` and
+#'   `formula` or (2) as a vector `x`
+#'
+#'   `RRmpWald(formula, data, compare = c("vac", "con"), affected = 1, alpha =
+#'   0.05, pf = TRUE, tdist = TRUE, df = NULL, rnd = 3)`
+#'
+#'   `RRmpWald(x, compare = c("vac", "con"), affected = 1, alpha = 0, 05, pf =
+#'   TRUE, tdist = TRUE, df = NULL, rnd = 3)`
 #' @examples
-#' RRmpWald(pos ~ tx + cluster(cage), New, compare = c('vac', 'con'))
+#' RRmpWald(pos ~ tx + cluster(cage), New, compare = c("vac", "con"))
 #'
 #' # PF
 #' # 95% interval estimates
@@ -92,7 +90,7 @@ RRmpWald <- function(formula = NULL, data = NULL, compare = c("vac", "con"),
   # Data entry:
   #
   # formula of the form response ~ treatment + cluster(clustername) then it will
-  # convert data to matrix and vector if entered as vector (x=) it must be
+  # convert data to matrix and vector if entered as vector (x =) it must be
   # ordered by vac/con pairs: c(11, 01, 10, 00)
   multvec <- NULL
   if (!is.null(formula) && !is.null(data)) {
@@ -102,12 +100,6 @@ RRmpWald <- function(formula = NULL, data = NULL, compare = c("vac", "con"),
     x <- Xx$freqvec
     multvec <- Xx$multvec
   } else if (is.matrix(x)) {
-    # if (!all(dim(x) == 2)) {
-    # 	stop("Table dimensions must be 2 x 2\n")
-    # } else {
-    # 	xtable <- x
-    # 	x <- c(x)
-    # }
     stop("RRmpWald: data input by matrix is deprecated.")
   } else if (is.vector(x)) {
     if (length(x) != 4) {
@@ -140,10 +132,8 @@ RRmpWald <- function(formula = NULL, data = NULL, compare = c("vac", "con"),
   }
   if (!is.null(df)) {
     q <- qt(c(0.5, alpha / 2, 1 - alpha / 2), df)
-    what <- paste(100 * (1 - alpha), "% t intervals on ", df, " df\n", sep = "")
   } else {
     q <- qnorm(c(0.5, alpha / 2, 1 - alpha / 2))
-    what <- paste(100 * (1 - alpha), "% gaussian interval\n", sep = "")
   }
 
   ci.dl <- exp(logR + q * sqrt(varlogR))

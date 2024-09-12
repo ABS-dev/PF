@@ -7,7 +7,7 @@
 rsbWt(fit = NULL, subset.factor = NULL, fit.only = TRUE)
 }
 \arguments{
-\item{fit}{A \code{\link{glm}} object.}
+\item{fit}{A \link{glm} object.}
 
 \item{subset.factor}{Factor for estimating the weights by subset.}
 
@@ -15,9 +15,12 @@ rsbWt(fit = NULL, subset.factor = NULL, fit.only = TRUE)
 and phi estimates.}
 }
 \value{
-A list with the following elements. \item{fit}{the new model fit,
-updated by the estimated weights} \item{weights}{vector of weights}
-\item{d}{vector of \eqn{{d}_{i}}{d_i} estimates}
+A list with the following elements.
+\itemize{
+\item \code{fit}: the new model fit, updated by the estimated weights
+\item \code{weights}: vector of weights
+\item \code{d}: vector of \eqn{{d}_{i}}{d_i} estimates
+}
 }
 \description{
 Rao-Scott weighting of clustered binomial observations.
@@ -28,7 +31,7 @@ variance inflation due to clustering by the method of Rao and Scott.
 Observations are then weighted by the inverse of the \eqn{{d}_{i}}{d_i}.
 }
 \examples{
-birdm.fit <- glm(cbind(y,n-y)~tx-1,binomial,birdm)
+birdm.fit <- glm(cbind(y, n - y) ~ tx-1, binomial, birdm)
 RRor(rsbWt(birdm.fit))
 #
 # 95\% t intervals on 4 df
@@ -47,7 +50,7 @@ Rao JNK, Scott AJ, 1992. A simple method for the analysis of
 clustered binary data. \emph{Biometrics} 48:577-585.
 }
 \seealso{
-\code{\link{RRor}, \link{rsb}}.
+\link{RRor}, \link{rsb}.
 }
 \author{
 \link{PF-package}

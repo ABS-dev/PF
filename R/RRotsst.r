@@ -6,9 +6,11 @@
 #'   'exact' in the sense of accounting for discreteness. The score statistic is
 #'   used to select tail area tables, and the binomial probability is estimated
 #'   over the tail area by taking the maximum over the nuisance parameter.
-#'   Algorithm is a simple step search. \cr \cr The data may also be a matrix.
-#'   In that case \code{y} would be entered as \cr \code{matrix(c(y1, n1 - y1,
-#'   y2, n2 - y2), 2, 2, byrow = TRUE)}.
+#'   Algorithm is a simple step search.
+#'
+#'   The data may also be a matrix. In that case `Y` would be entered as
+#'
+#'   `matrix(c(y1, n1 - y1, y2, n2 - y2), 2, 2, byrow = TRUE)`.
 #' @param y Data vector c(y1, n1, y2, n2) where y are the positives, n are the
 #'   total, and group 1 is compared to group 2 (control or reference).
 #' @param compare Text vector stating the factor levels: `compare[1]` is the
@@ -17,7 +19,7 @@
 #' @param formula  Formula of the form cbind(y, n) ~ x, where y is the number
 #'   positive, n is the group size, x is a factor with two levels of treatment.
 #' @param alpha Complement of the confidence level.
-#' @param pf Estimate \emph{RR} or its complement \emph{PF}?
+#' @param pf Estimate *RR* or its complement *PF*?
 #' @param trace.it Verbose tracking of the iterations?
 #' @param iter.max Maximum number of iterations
 #' @param converge Convergence criterion
@@ -28,20 +30,24 @@
 #'   parameter
 #' @param gamma parameter for Berger-Boos correction (restricts range of
 #'   nuisance parameter evaluation)
-#' @return An object of class \code{\link{rr1}} with the following fields: \cr
-#'   \item{estimate}{vector with point and interval estimate}
-#'   \item{estimator}{either \code{"PF"} or \code{"RR"}} \item{y}{data.frame
-#'   with "y1", "n1", "y2", "n2" values. } \item{rnd}{how many digits to round
-#'   the display} \item{alpha}{complement of confidence level}
+#' @returns An object of class [rr1] with the following fields:
+#' * `estimate`: vector with point and interval estimate
+#' * `estimator`: either `"PF"` or `"RR"`
+#' * `y`: `data.frame` with "y1", "n1", "y2", "n2" values.
+#' * `rnd`: how many digits to round the display
+#' * `alpha`: complement of confidence level
 #' @export
 #' @references Koopman PAR, 1984. Confidence intervals for the ratio of two
-#'   binomial proportions. \emph{Biometrics} 40:513-517. \cr Agresti A, Min Y,
-#'   2001.  On small-sample confidence intervals for parameters in discrete
-#'   distribution. \emph{Biometrics} 57: 963-971. \cr Berger RL, Boos DD, 1994.
-#'   P values maximized over a confidence set for the nuisance parameter.
-#'   \emph{Journal of the American Statistical Association} 89:214-220.
-#' @author \link{PF-package}
-#' @seealso \code{\link{RRtosst}, \link{rr1}}.
+#'   binomial proportions. *Biometrics* 40:513-517.
+#'
+#'   Agresti A, Min Y, 2001.  On small-sample confidence intervals for
+#'   parameters in discrete distribution. *Biometrics* 57: 963-971.
+#'
+#'   Berger RL, Boos DD, 1994. P values maximized over a confidence set for the
+#'   nuisance parameter. *Journal of the American Statistical Association*
+#'   89:214-220.
+#' @author [PF-package]
+#' @seealso [RRtosst], [rr1].
 #'
 #' @examples
 #' # All examples represent the same observation, with data entry by multiple
@@ -69,7 +75,7 @@
 #' data1 <- data.frame(group = rep(c("treated", "control"), each = 2),
 #'   y = c(1, 3, 7, 5),
 #'   n = c(12, 12, 14, 14),
-#'   cage = rep(paste('cage', 1:2), 2))
+#'   cage = rep(paste("cage", 1:2), 2))
 #'
 #' data2 <- data1 |>
 #'   group_by(group) |>
@@ -83,11 +89,6 @@
 #' #
 #' # PF     LL     UL
 #' # 0.6111 0.0148 0.8519
-
-##-----------------------------------------------
-## RRotsst
-##-----------------------------------------------
-
 #' @importFrom stats qbeta
 RRotsst <- function(y = NULL,
                     data = NULL,
@@ -165,7 +166,7 @@ RRotsst <- function(y = NULL,
     y <- .extract_freqvec(formula, data, compare)
 
   } else if (is.matrix(y)) {
-    # Data entry y=c(x2, n2, x1, n1) Vaccinates First (order same but
+    # Data entry y = c(x2, n2, x1, n1) Vaccinates First (order same but
     # subscripts reversed)
     # data vector
     y <- c(t(cbind(y[, 1], apply(y, 1, sum))))
@@ -228,15 +229,14 @@ RRotsst <- function(y = NULL,
       if (iter > iter.max)
         break
       if (iter > 1) {
-        old.low <- low
         low <- low + step
       }
-      scst.y <- rep(NA, nrow(Y))
-      for (i in seq_along(scst.y))
-        scst.y[i] <- scst(low, Y$y1[i], n1, Y$y2[i], n2)
-      q.set <- Y[abs(scst.y) >= abs(scst.y[observed]), ]
-      q.set$n1y1 <- n1 - q.set$y1
-      q.set$n2y2 <- n2 - q.set$y2
+      scst_y <- rep(NA, nrow(Y))
+      for (i in seq_along(scst_y))
+        scst_y[i] <- scst(low, Y$y1[i], n1, Y$y2[i], n2)
+      q_set <- Y[abs(scst_y) >= abs(scst_y[observed]), ]
+      q_set$n1y1 <- n1 - q_set$y1
+      q_set$n2y2 <- n2 - q_set$y2
       if (gamma > 0)
         # Berger-Boos method 17.164
         pn <- seq(max(L1, L2 / low), min(U1, U2 / low),
@@ -255,9 +255,9 @@ RRotsst <- function(y = NULL,
         pni <- pn[i]
         fy[i] <-
           sum(
-            q.set$C * pni^q.set$y1 *
-              (1 - pni)^q.set$n1y1 *
-              (low * pni)^q.set$y2 * (1 - low * pni)^q.set$n2y2
+            q_set$C * pni^q_set$y1 *
+              (1 - pni)^q_set$n1y1 *
+              (low * pni)^q_set$y2 * (1 - low * pni)^q_set$n2y2
           )
       }
       max.fy <- max(fy)
@@ -287,15 +287,14 @@ RRotsst <- function(y = NULL,
     if (iter > iter.max)
       break
     if (iter > 1) {
-      old.high <- high
       high <- high + step
     }
-    scst.y <- rep(NA, nrow(Y))
-    for (i in seq_along(scst.y))
-      scst.y[i] <- scst(high, Y$y1[i], n1, Y$y2[i], n2)
-    p.set <- Y[abs(scst.y) >= abs(scst.y[observed]), ]
-    p.set$n1y1 <- n1 - p.set$y1
-    p.set$n2y2 <- n2 - p.set$y2
+    scst_y <- rep(NA, nrow(Y))
+    for (i in seq_along(scst_y))
+      scst_y[i] <- scst(high, Y$y1[i], n1, Y$y2[i], n2)
+    p_set <- Y[abs(scst_y) >= abs(scst_y[observed]), ]
+    p_set$n1y1 <- n1 - p_set$y1
+    p_set$n2y2 <- n2 - p_set$y2
     if (gamma > 0)
       # Berger-Boos method 17.164
       pn <- seq(max(L1, L2 / high), min(U1, U2 / high),
@@ -313,8 +312,8 @@ RRotsst <- function(y = NULL,
     for (i in 1:nuisance.points) {
       pni <- pn[i]
       fy[i] <-
-        sum(p.set$C * pni^p.set$y1 * (1 - pni)^p.set$n1y1 *
-              (high * pni)^p.set$y2 *  (1 - high * pni)^p.set$n2y2)
+        sum(p_set$C * pni^p_set$y1 * (1 - pni)^p_set$n1y1 *
+              (high * pni)^p_set$y2 *  (1 - high * pni)^p_set$n2y2)
     }
     max.fy <- max(fy)
     if (trace.it)

@@ -6,9 +6,11 @@
 #'   'exact' in the sense of accounting for discreteness. Inverts two one-sided
 #'   score tests. The score statistic is used to select tail area tables, and
 #'   the binomial probability is estimated over the tail area by taking the
-#'   maximum over the nuisance parameter. Algorithm is a simple step search. \cr
-#'   \cr The data may also be a matrix. In that case \code{y} would be entered
-#'   as \cr \code{matrix(c(y1, n1-y1, y2, n2-y2), 2, 2, byrow = TRUE)}.
+#'   maximum over the nuisance parameter. Algorithm is a simple step search.
+#'
+#'   The data may also be a matrix. In that case `Y` would be entered as
+#'
+#'   `matrix(c(y1, n1-y1, y2, n2-y2), 2, 2, byrow = TRUE)`.
 #' @param y Data vector c(y1, n1, y2, n2) where y are the positives, n are the
 #'   total, and group 1 is compared to group 2 (control or reference group).
 #' @param formula Formula of the form `cbind(y, n) ~ x`, where y is the number
@@ -17,7 +19,7 @@
 #' @param compare Text vector stating the factor levels: `compare[1]` is the
 #'   vaccinate group to which `compare[2]` (control or reference) is compared.
 #' @param alpha Complement of the confidence level.
-#' @param pf Estimate \emph{RR} or its complement \emph{PF}?
+#' @param pf Estimate *RR* or its complement *PF*?
 #' @param trace.it Verbose tracking of the iterations?
 #' @param iter.max Maximum number of iterations
 #' @param converge Convergence criterion
@@ -28,20 +30,24 @@
 #'   parameter
 #' @param gamma parameter for Berger-Boos correction (restricts range of
 #'   nuisance parameter evaluation)
-#' @return A \code{\link{rr1}} object with the following fields.
-#'   \item{estimate}{vector with point and interval estimate}
-#'   \item{estimator}{either \code{"PF"} or \code{"RR"}} \item{y}{data.frame
-#'   with "y1", "n1", "y2", "n2" values. } \item{rnd}{how many digits to round
-#'   the display} \item{alpha}{complement of confidence level}
+#' @returns A [rr1] object with the following fields.
+#' * `estimate`: vector with point and interval estimate
+#' * `estimator`: either `"PF"` or `"RR"`
+#' * `y`: data.frame with "y1", "n1", "y2", "n2" values.
+#' * `rnd`: how many digits to round the display
+#' * `alpha`: complement of confidence level
 #' @export
 #' @references Koopman PAR, 1984. Confidence intervals for the ratio of two
-#'   binomial proportions. \emph{Biometrics} 40:513-517. \cr Agresti A, Min Y,
-#'   2001.  On small-sample confidence intervals for parameters in discrete
-#'   distribution. \emph{Biometrics} 57: 963-971. \cr Berger RL, Boos DD, 1994.
-#'   P values maximized over a confidence set for the nuisance parameter.
-#'   \emph{Journal of the American Statistical Association} 89:214-220.
-#' @author \link{PF-package}
-#' @seealso \code{\link{RRotsst}, \link{rr1}}
+#'   binomial proportions. *Biometrics* 40:513-517.
+#'
+#'   Agresti A, Min Y, 2001.  On small-sample confidence intervals for
+#'   parameters in discrete distribution. *Biometrics* 57: 963-971.
+#'
+#'   Berger RL, Boos DD, 1994. P values maximized over a confidence set for the
+#'   nuisance parameter. *Journal of the American Statistical Association*
+#'   89:214-220.
+#' @author [PF-package]
+#' @seealso [RRotsst], [rr1]
 #'
 #' @examples
 #' # Both examples represent the same observation, with data entry by vector
@@ -73,7 +79,7 @@
 #' data1 <- data.frame(group = rep(c("treated", "control"), each = 2),
 #'   y = c(1, 3, 7, 5),
 #'   n = c(12, 12, 14, 14),
-#'   cage = rep(paste('cage', 1:2), 2))
+#'   cage = rep(paste("cage", 1:2), 2))
 #' data2 <- data1 |>
 #'   group_by(group) |>
 #'   summarize(sum_y = sum(y),
@@ -86,11 +92,6 @@
 #'
 #' #    PF    LL    UL
 #' # 0.611 0.012 0.902
-
-##--------------------------------------------------------------------
-## RRtosst function
-##--------------------------------------------------------------------
-
 #' @importFrom stats qbeta
 RRtosst <- function(y = NULL,
                     formula = NULL,
@@ -159,7 +160,7 @@ RRtosst <- function(y = NULL,
     y <- .extract_freqvec(formula, data, compare)
 
   } else if (is.matrix(y)) {
-    # Data entry y=c(x2, n2, x1, n1) Vaccinates First (order same but
+    # Data entry y = c(x2, n2, x1, n1) Vaccinates First (order same but
     # subscripts reversed) data vector
     y <- c(t(cbind(y[, 1], apply(y, 1, sum))))
     # NOTE: the subscripts are reversed compared to the other functions
@@ -220,15 +221,14 @@ RRtosst <- function(y = NULL,
       if (iter > iter.max)
         break
       if (iter > 1) {
-        old.low <- low
         low <- low + step
       }
-      scst.y <- rep(NA, nrow(Y))
-      for (i in seq_along(scst.y))
-        scst.y[i] <- scst(low, Y$y1[i], n1, Y$y2[i], n2)
-      q.set <- Y[scst.y >= scst.y[observed], ]
-      q.set$n1y1 <- n1 - q.set$y1
-      q.set$n2y2 <- n2 - q.set$y2
+      scst_y <- rep(NA, nrow(Y))
+      for (i in seq_along(scst_y))
+        scst_y[i] <- scst(low, Y$y1[i], n1, Y$y2[i], n2)
+      q_set <- Y[scst_y >= scst_y[observed], ]
+      q_set$n1y1 <- n1 - q_set$y1
+      q_set$n2y2 <- n2 - q_set$y2
       if (gamma > 0)
         # Berger-Boos method 17.164
         pn <- seq(max(L1, L2 / low), min(U1, U2 / low),
@@ -247,10 +247,10 @@ RRtosst <- function(y = NULL,
         pni <- pn[i]
         fy[i] <-
           sum(
-            q.set$C * pni^q.set$y1 *
-              (1 - pni)^q.set$n1y1 *
-              (low * pni)^q.set$y2 *
-              (1 - low * pni)^q.set$n2y2
+            q_set$C * pni^q_set$y1 *
+              (1 - pni)^q_set$n1y1 *
+              (low * pni)^q_set$y2 *
+              (1 - low * pni)^q_set$n2y2
           )
       }
       max.fy <- max(fy)
@@ -279,15 +279,14 @@ RRtosst <- function(y = NULL,
     if (iter > iter.max)
       break
     if (iter > 1) {
-      old.high <- high
       high <- high + step
     }
-    scst.y <- rep(NA, nrow(Y))
-    for (i in seq_along(scst.y))
-      scst.y[i] <- scst(high, Y$y1[i], n1, Y$y2[i], n2)
-    p.set <- Y[scst.y <= scst.y[observed], ]
-    p.set$n1y1 <- n1 - p.set$y1
-    p.set$n2y2 <- n2 - p.set$y2
+    scst_y <- rep(NA, nrow(Y))
+    for (i in seq_along(scst_y))
+      scst_y[i] <- scst(high, Y$y1[i], n1, Y$y2[i], n2)
+    p_set <- Y[scst_y <= scst_y[observed], ]
+    p_set$n1y1 <- n1 - p_set$y1
+    p_set$n2y2 <- n2 - p_set$y2
     if (gamma > 0)
       # Berger-Boos method 17.164
       pn <- seq(max(L1, L2 / high),
@@ -307,10 +306,10 @@ RRtosst <- function(y = NULL,
       pni <- pn[i]
       fy[i] <-
         sum(
-          p.set$C * pni^p.set$y1 *
-            (1 - pni)^p.set$n1y1 *
-            (high * pni)^p.set$y2 *
-            (1 - high * pni)^p.set$n2y2
+          p_set$C * pni^p_set$y1 *
+            (1 - pni)^p_set$n1y1 *
+            (high * pni)^p_set$y2 *
+            (1 - high * pni)^p_set$n2y2
         )
     }
     max.fy <- max(fy)
@@ -342,16 +341,9 @@ RRtosst <- function(y = NULL,
     rnd = rnd,
     alpha = alpha
   ))
-  # out <- list(estimate = int, estimator = ifelse(pf, "PF", "RR"),
-  #             y = y, rnd = rnd, alpha = alpha)
-  # class(out) <- "rr1"
-  # return(out)
 }
 
 
-#-------------------------------------------------------
-# Asymptotic score interval
-#-------------------------------------------------------
 ##
 #' Internal function.
 #'
@@ -362,7 +354,8 @@ RRtosst <- function(y = NULL,
 #' @param mn boolean whether to calculate MN or use default value of 1.0
 #' @export
 #' @examples
-#' # none
+#' .rr.score.asymp(c(0, 18, 16, 19), mn = FALSE)
+#' .rr.score.asymp(c(0, 18, 16, 19), mn = TRUE)
 #' @importFrom stats qnorm
 .rr.score.asymp <- function(y,
                             alpha = 0.05,
@@ -371,22 +364,22 @@ RRtosst <- function(y = NULL,
                             mn = FALSE) {
   # asymptotic score interval
   # code taken from RRsc()
-  # choice of either Koopman (mn=F)
-  # or Miettinenen-Nurminen (mn=T)
-  # Data entry y=c(x2, n2, x1, n1) Vaccinates First
+  # choice of either Koopman (mn = FALSE)
+  # or Miettinenen-Nurminen (mn = TRUE)
+  # Data entry y = c(x2, n2, x1, n1) Vaccinates First
 
-  u.p <- function(p1, p2, n1, n2) {
+  u_p <- function(p1, p2, n1, n2) {
     (1. - p1) / (n1 * p1) + (1. - p2) / (n2 * p2)
   }
 
-  z.phi <- function(phi, x1, x2, n1, n2, u.p, root, za, MN = FALSE)	{
+  z_phi <- function(phi, x1, x2, n1, n2, u_p, root, za, MN = FALSE)	{
     if (MN)
       mn <- sqrt((n1 + n2 - 1.) / (n1 + n2))
     else
       mn <- 1.
     p2 <- root(x1, x2, n1, n2, phi)
     p1 <- p2 * phi
-    u <- u.p(p1, p2, n1, n2)
+    u <- u_p(p1, p2, n1, n2)
     z <- ((x1 - n1 * p1) / (1. - p1)) * sqrt(u) * mn
     return(z)
   }
@@ -401,9 +394,9 @@ RRtosst <- function(y = NULL,
   }
 
   al2 <- alpha / 2.
-  z.al2 <- qnorm(al2)
-  z.ah2 <- qnorm(1. - al2)
-  zv <- c(z.al2, z.ah2)
+  z_al2 <- qnorm(al2)
+  z_ah2 <- qnorm(1. - al2)
+  zv <- c(z_al2, z_ah2)
   x1 <- y[1.]
   n1 <- y[2.]
   x2 <- y[3.]
@@ -417,7 +410,7 @@ RRtosst <- function(y = NULL,
   p1 <- (x1 + 0.5) / (n1 + 0.5)
   p2 <- (x2 + 0.5) / (n2 + 0.5)
   phi <- p1 / p2
-  v <- sqrt(u.p(p1, p2, (n1 + 0.5), (n2 + 0.5)))
+  v <- sqrt(u_p(p1, p2, (n1 + 0.5), (n2 + 0.5)))
   starting <- exp(v * zv + logb(phi))
 
   # Score method
@@ -433,42 +426,33 @@ RRtosst <- function(y = NULL,
         za <-  -zv[k]
         zz <-
           c(
-            z.phi(phi[1.], x1, x2, n1, n2, u.p, root, za, mn),
-            z.phi(phi[2.], x1, x2, n1, n2, u.p, root, za, mn)
+            z_phi(phi[1.], x1, x2, n1, n2, u_p, root, za, mn),
+            z_phi(phi[2.], x1, x2, n1, n2, u_p, root, za, mn)
           )
         if (abs(za - zz[1.]) > abs(za - zz[2.]))
           phi <- rev(phi)
-        phi.new <- phi[1.]
-        phi.old <- phi[2.]
-        # cat("\n\n")
+        phi_new <- phi[1.]
+        phi_old <- phi[2.]
         iter <- 0.
         repeat {
           iter <- iter + 1.
           if (iter > iter.max)
             break
-          z.new <- z.phi(phi.new, x1, x2, n1, n2, u.p, root, za, mn)
-          # cat("iteration", iter, "  z", z.new, "phi", phi.new, "\n")
-          if (abs(za - z.new) < converge)
+          z_new <- z_phi(phi_new, x1, x2, n1, n2, u_p, root, za, mn)
+          if (abs(za - z_new) < converge)
             break
-          z.old <- z.phi(phi.old, x1, x2, n1, n2, u.p, root, za, mn)
+          z_old <- z_phi(phi_old, x1, x2, n1, n2, u_p, root, za, mn)
           phi <-
-            exp(logb(phi.old) + logb(phi.new / phi.old) *
-                  ((za - z.old) / (z.new - z.old)))
-          phi.old <- phi.new
-          phi.new <- phi
+            exp(logb(phi_old) + logb(phi_new / phi_old) *
+                  ((za - z_old) / (z_new - z_old)))
+          phi_old <- phi_new
+          phi_new <- phi
         }
-        score[k] <- phi.new
+        score[k] <- phi_new
       }
   }
   int <- c(phi.mle, score)
 
-  # cat("\n\n")
   names(int) <- c("point", "LL", "UL")
   return(int)
 }
-#------------------------------------------------------
-# End asymptotic score method
-#------------------------------------------------------
-
-# .rr.score.asymp(c(0, 18, 16, 19),mn=F)
-# .rr.score.asymp(c(0, 18, 16, 19),mn=T)

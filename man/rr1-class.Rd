@@ -12,16 +12,16 @@ Data class rr1
 \section{Fields}{
 
 \itemize{
-\item[\code{estimate}]{  vector with point and interval estimate}
-\item[\code{estimator}]{  either \code{"PF"} or \code{"IDR"}}
-\item[\code{y}]{data.frame with restructured input}
-\item[\code{rnd}]{how many digits to round display}
-\item[\code{alpha}]{complement of c.i.}
+\item \code{estimate}:   vector with point and interval estimate
+\item \code{estimator}:   either \code{"PF"} or \code{"IDR"}
+\item \code{Y}: data.frame with restructured input
+\item \code{rnd}: how many digits to round display
+\item \code{alpha}: complement of c.i.
 }
 }
 
 \seealso{
-\code{\link{IDRsc}, \link{RRotsst}, \link{RRtosst}}
+\link{IDRsc}, \link{RRotsst}, \link{RRtosst}
 }
 \author{
 \link{PF-package}

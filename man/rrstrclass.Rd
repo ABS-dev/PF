@@ -10,29 +10,22 @@ data class rrstr
 }
 
 \section{Fields}{
- \itemize{
 
-\item[\code{estimate}]{  vector with point and interval estimate}
-
-\item[\code{rnd}]{  how many digits to round display}
-
-\item[\code{alpha}]{  complement of c.i.}
-
-\item[\code{estimator}]{  either \code{"PF"} or \code{"RR"}}
-
-\item[\code{hom}]{list of homogeneity statistic, p-value, and degrees of
-freedom. If \code{Phi == 0 | Phi == 1}, homogeneity test is not possible
-and error message displays}
-
-\item[\code{y}]{data.frame of restructured input}
-
-\item[\code{compare}]{  groups compared}
-
+\itemize{
+\item \code{estimate}:   vector with point and interval estimate
+\item \code{rnd}:   how many digits to round display
+\item \code{alpha}:   complement of c.i.
+\item \code{estimator}:   either \code{"PF"} or \code{"RR"}
+\item \code{hom}: list of homogeneity statistic, p-value, and degrees of freedom.
+If \code{Phi == 0 | Phi == 1}, homogeneity test is not possible and error message
+displays
+\item \code{Y}: data.frame of restructured input
+\item \code{compare}:   groups compared
 }
 }
 
 \seealso{
-\code{\link{RRstr}}
+\link{rrstr}
 }
 \author{
 \link{PF-package}

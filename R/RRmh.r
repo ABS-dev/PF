@@ -8,54 +8,56 @@
 #'   on asymptotic normality of the log(risk ratio).  Agresti and Hartzel (2000)
 #'   favor this procedure for small, sparse data sets, but they warn that it is
 #'   less efficient than maximum likelihood for large data sets.
-#' @param formula Formula of the form \code{cbind(y, n) ~ x + cluster(w)}, where
-#'   \code{y} is the number positive, \code{n} is the group size, \code{x} is a
-#'   factor with two levels of treatment, and \code{w} is a factor indicating
-#'   the clusters.
-#' @param data \code{data.frame} containing variables for formula
+#' @param formula Formula of the form `cbind(y, n) ~ x + cluster(w)`, where `Y`
+#'   is the number positive, `n` is the group size, `x` is a factor with two
+#'   levels of treatment, and `w` is a factor indicating the clusters.
+#' @param data `data.frame` containing variables for formula
 #' @param compare Text vector stating the factor levels: `compare[1]` is the
 #'   vaccinate group to which `compare[2]` (control or reference) is compared.
 #' @param Y Matrix of data, \eqn{K \times 4}{K x 4}. Each row is a stratum or
 #'   cluster. The columns are \eqn{y1, n1, y2, n2}, where the y's are the number
 #'   of positive in each group, and the n is the total in each group. Group 1
 #'   corresponds to vaccinates and group 2 are controls or reference. If data
-#'   entered by formula and dataframe, \code{Y} is generated automatically.
-#' @param pf Estimate \emph{RR} or its complement \emph{PF}?
+#'   entered by formula and dataframe, `Y` is generated automatically.
+#' @param pf Estimate *RR* or its complement *PF*?
 #' @param alpha Complement of the confidence level.
 #' @param rnd Number of digits for rounding. Affects display only, not
 #'   estimates.
-#' @return An object of class \code{\link{rr1}}  with the following fields.
-#'
-#'   \item{estimate}{vector of point and interval estimates:  point estimate,
-#'   lower confidence limit, upper confidence limit}
-#'
-#'   \item{estimator}{either \code{"PF"} or \code{"RR"}}
-#'
-#'   \item{y}{data.frame of restructured input}
-#'
-#'   \item{rnd}{how many digits to round the display}
-#'
-#'   \item{alpha}{complement of confidence level}
-#'
+#' @returns An object of class [rr1]  with the following fields.
+#' * `estimate`: vector of point and interval estimates:  point estimate, lower
+#' confidence limit, upper confidence limit
+#' * `estimator`: either `"PF"` or `"RR"`
+#' * `y`: data.frame of restructured input
+#' * `rnd`: how many digits to round the display
+#' * `alpha`: complement of confidence level
 #' @export
 #' @note If either all y1's or all y2's are zero, a division by zero may occur,
-#'   and a NaN returned for some values. \cr \cr Vignette \emph{Examples for
-#'   Stratified Designs} forthcoming with more examples. \cr Call to this
-#'   function may be one of two formats: (1) specify \code{data} and
-#'   \code{formula} or (2) as a matrix \code{Y} \cr \cr \code{RRmh(formula,
-#'   data, compare = c('b','a'), pf = TRUE, alpha = 0.05, rnd = 3)} \cr \cr
-#'   \code{RRmh(Y, pf = TRUE, alpha = 0.05, rnd = 3)}
+#'   and a NaN returned for some values.
+#'
+#'   Vignette *Examples for Stratified Designs* forthcoming with more examples.
+#'
+#'   Call to this function may be one of two formats: (1) specify `data` and
+#'   `formula` or (2) as a matrix `Y`
+#'
+#'   `RRmh(formula, data, compare = c("b", "a"), pf = TRUE, alpha = 0.05, rnd =
+#'   3)`
+#'
+#'   `RRmh(Y, pf = TRUE, alpha = 0.05, rnd = 3)`
 #' @references Mantel N, Haenszel W, 1959.  Statistical aspects of the analysis
-#'   of data from retrospective studies of disease. \emph{Journal of the
-#'   National Cancer Institute} 22:  719-748. \cr \cr Greenland S, Robins JM,
-#'   1985.  Estimation of a common effect parameter from sparse follow-up data.
-#'   \emph{Biometrics}  41:  55-68.  Errata, 45:  1323-1324. \cr \cr Agresti A,
-#'   Hartzel J, 2000.  Strategies for comparing treatments on a binary response
-#'   with multi-centre data.  \emph{Statistics in Medicine}  19:  1115-1139. \cr
-#'   Lachin JM, 2000.  \emph{Biostatistical Methods:  The Assessment of Relative
-#'   Risks} (Wiley, New York), Sec. 4.3.1.
-#' @author \link{PF-package}
-#' @seealso \code{\link{rr1}}
+#'   of data from retrospective studies of disease. *Journal of the National
+#'   Cancer Institute* 22:719-748.
+#'
+#'   Greenland S, Robins JM, 1985.  Estimation of a common effect parameter from
+#'   sparse follow-up data. *Biometrics*  41:  55-68.  Errata, 45: 1323-1324.
+#'
+#'   Agresti A, Hartzel J, 2000.  Strategies for comparing treatments on a
+#'   binary response with multi-centre data.  *Statistics in Medicine*  19:
+#'   1115-1139.
+#'
+#'   Lachin JM, 2000.  *Biostatistical Methods:  The Assessment of Relative
+#'   Risks* (Wiley, New York), Sec. 4.3.1.
+#' @author [PF-package]
+#' @seealso [rr1]
 #' @examples
 #'
 #' ## Table 1 from Gart (1985)
@@ -64,7 +66,7 @@
 #' # tx group "b" is control
 #' RRmh(cbind(y, n) ~ tx + cluster(clus),
 #'      Table6,
-#'      compare = c('a', 'b'), pf = FALSE)
+#'      compare = c("a", "b"), pf = FALSE)
 #'
 #' # RR
 #' # 95% interval estimates
@@ -106,8 +108,6 @@ RRmh <- function(formula = NULL,
   }
   colnames(Y) <- c("y1", "n1", "y2", "n2")
   rownames(Y) <- paste("Row", seq_len(nrow(Y)), sep = "")
-  # save data and empirical Rs
-  Y <- cbind(Y, R.obs = (Y[, 1] / Y[, 2]) / (Y[, 3] / Y[, 4]))
 
   ### Innards of the algorithm
   zcrit <- qnorm(1 - alpha / 2)
@@ -115,31 +115,33 @@ RRmh <- function(formula = NULL,
   n1vec <- Y[, 2] # vac
   x2vec <- Y[, 3] # con or ref
   n2vec <- Y[, 4] # con or ref
+  R.obs <- (x1vec / n1vec) / (x2vec / n2vec)
   nk <- n1vec + n2vec
-
-  # Point estimate (Greenland & Robins, eq. 4.  Lachin, eq. 4.17)
-  numer <- sum(x1vec * n2vec / (nk))
-  denom <- sum(x2vec * n1vec / (nk))
-  rr.est <- numer / denom
-
-  # variance of log RR (Greenland & Robins, eq. 13)
-  numer <- ((n1vec * n2vec) * (x1vec + x2vec) - (x1vec * x2vec) * nk) / nk^2
   rk <- x1vec * n2vec / nk
   sk <- x2vec * n1vec / nk
-  denom <- sum(rk) * sum(sk)
-  var.log.rr <- sum(numer) / denom
+  sum_rk <- sum(rk)
+  sum_sk <- sum(sk)
+
+  # save data and empirical Rs
+  Y <- cbind(Y, R.obs)
+
+  # Point estimate (Greenland & Robins, eq. 4.  Lachin, eq. 4.17)
+  rr.est <- sum_rk / sum_sk
+
+  # variance of log RR (Greenland & Robins, eq. 13)
+  numer <- sum((n1vec * rk + n2vec * sk - x1vec * x2vec) / nk)
+  denom <- sum_rk * sum_sk
+  var.log.rr <- numer / denom
 
   # Confidence limits
-  rr.ci.lo <- exp(log(rr.est) - zcrit * sqrt(var.log.rr))
-  rr.ci.hi <- exp(log(rr.est) + zcrit * sqrt(var.log.rr))
+  radius <- exp(zcrit * sqrt(var.log.rr))
+  int <- c(rr.est, rr.est / radius, rr.est * radius)
 
-  int <- c(rr.est, rr.ci.lo, rr.ci.hi)
-
-  if (!pf) {
-    names(int) <- c("RR", "LL", "UL")
-  } else {
+  if (pf) {
     int <- 1 - int[c(1, 3, 2)]
     names(int) <- c("PF", "LL", "UL")
+  } else {
+    names(int) <- c("RR", "LL", "UL")
   }
 
   return(rr1$new(estimate = int, estimator = ifelse(pf, "PF", "RR"),

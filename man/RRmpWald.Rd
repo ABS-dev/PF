@@ -18,9 +18,9 @@ RRmpWald(
 )
 }
 \arguments{
-\item{formula}{Formula of the form \code{y ~ x + cluster(w)}, where y is the
-indicator for an individual's positive response, x is a factor with two
-levels of treatment, and w identifies the pairs.}
+\item{formula}{Formula of the form \code{y ~ x + cluster(w)}, where \code{y} is the
+indicator for an individual's positive response, \code{x} is a factor with two
+levels of treatment, and \code{w} identifies the pairs.}
 
 \item{data}{\code{data.frame} containing variables in formula}
 
@@ -38,27 +38,24 @@ be input as frequency vector. See example for how to order this vector.}
 
 \item{tdist}{Use t distribution?}
 
-\item{df}{Degrees of freedom. When NULL, the function will default to
-\code{df = N - 2}, where N is the total number of pairs.}
+\item{df}{Degrees of freedom. When NULL, the function will default to `df = N
+\itemize{
+\item 2`, where N is the total number of pairs.
+}}
 
 \item{rnd}{Number of digits for rounding. Affects display only, not
 estimates.}
 }
 \value{
-A \code{\link{rrmp}} object with the following fields:
-
-\item{estimate}{vector of point and interval estimates - see details}
-
-\item{estimator}{either \code{"PF"} or \code{"RR"}}
-
-\item{compare}{text vector, same as input}
-
-\item{alpha}{complement of confidence level}
-
-\item{rnd}{how many digits to round the display}
-
-\item{multvec}{data frame showing the multinomial representation of the
-data}
+A \link{rrmp} object with the following fields:
+\itemize{
+\item \code{estimate}: vector of point and interval estimates - see details
+\item \code{estimator}: either \code{"PF"} or \code{"RR"}
+\item \code{compare}: text vector, same as input
+\item \code{alpha}: complement of confidence level
+\item \code{rnd}: how many digits to round the display
+\item \code{multvec}: data frame showing the multinomial representation of the data
+}
 }
 \description{
 Estimates confidence intervals for the risk ratio or prevented
@@ -70,21 +67,25 @@ fraction from matched pairs. The response is the tetranomial vector \code{c(11, 
 the column when displayed as a 2x2 table. Wald type confidence intervals
 are found by applying the delta method to the multinomial variance. This
 method fails when there are no responders in one of the treatment groups.
-\cr \cr Alternative forms of data entry are illustrated by the output, say
-\cr \code{Y}, where \code{c(Y$xtable) = Y$freqvec = Y$multvec$Freq}. \cr
-\cr If RR = 0 (PF = 1), the function will return degenerate interval.
+
+Alternative forms of data entry are illustrated by the output, say \code{Y},
+where \code{c(Y$xtable) = Y$freqvec = Y$multvec$Freq}.
+
+If \code{RR = 0} (\code{PF = 1}), the function will return degenerate interval.
 }
 \note{
 Experimental functions for estimating profile likelihood intervals are
-in the CVBmisc package. \cr \cr Call to this function may be one of two
-formats: (1) specify \code{data} and \code{formula} or (2) as a vector
-\code{x} \cr \cr \code{RRmpWald(formula, data, compare = c('vac', 'con'),
-  affected = 1, alpha = 0.05,} \cr \code{pf = TRUE, tdist = TRUE, df = NULL,
-  rnd = 3)} \cr \cr \code{RRmpWald(x, compare = c('vac', 'con'), affected =
-  1, alpha = 0, 05,} \cr \code{pf = TRUE, tdist = TRUE, df = NULL, rnd = 3)}
+in the CVBmisc package.
+
+Call to this function may be one of two formats: (1) specify \code{data} and
+\code{formula} or (2) as a vector \code{x}
+
+\code{RRmpWald(formula, data, compare = c("vac", "con"), affected = 1, alpha = 0.05, pf = TRUE, tdist = TRUE, df = NULL, rnd = 3)}
+
+\code{RRmpWald(x, compare = c("vac", "con"), affected = 1, alpha = 0, 05, pf = TRUE, tdist = TRUE, df = NULL, rnd = 3)}
 }
 \examples{
-RRmpWald(pos ~ tx + cluster(cage), New, compare = c('vac', 'con'))
+RRmpWald(pos ~ tx + cluster(cage), New, compare = c("vac", "con"))
 
 # PF
 # 95\% interval estimates

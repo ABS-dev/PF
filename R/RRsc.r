@@ -6,12 +6,14 @@
 #'   statistic. The score method was introduced by Koopman (1984). Gart and
 #'   Nam's modification (1988) includes a skewness correction. The method of
 #'   Miettinen and Nurminen (1985) is a version made slightly more conservative
-#'   than Koopman's by including a factor of \code{(N-1)/N}. The starting
+#'   than Koopman's by including a factor of \eqn{(N - 1) / N}. The starting
 #'   estimate for the DUD algorithm is obtained by the modified Katz method (log
 #'   method with 0.5 added to each cell). Both forms of the Katz estimate may be
-#'   retrieved from the returned object using \code{RRsc()$estimate}. \cr \cr
-#'   The data may also be a matrix. In that case \code{y} would be entered as
-#'   \cr \code{matrix(c(y1, n1-y1, y2, n2-y2), 2, 2, byrow = TRUE)}.
+#'   retrieved from the returned object using `RRsc()$estimate`.
+#'
+#'   The data may also be a matrix. In that case `Y` would be entered as
+#'
+#'   `matrix(c(y1, n1-y1, y2, n2-y2), 2, 2, byrow = TRUE)`.
 #' @param y Data vector c(y1, n1, y2, n2) where y are the positives, n are the
 #'   total, and group 1 is compared to group 2 (control or reference group).
 #' @param formula Formula of the form `cbind(y, n) ~ x`, where y is the number
@@ -20,28 +22,34 @@
 #' @param compare Text vector stating the factor levels: `compare[1]` is the
 #'   vaccinate group to which `compare[2]` (control or reference) is compared.
 #' @param alpha Complement of the confidence level.
-#' @param pf Estimate \emph{RR} or its complement \emph{PF}?
+#' @param pf Estimate *RR* or its complement *PF*?
 #' @param trace.it Verbose tracking of the iterations?
 #' @param iter.max Maximum number of iterations
 #' @param converge Convergence criterion
 #' @param rnd Number of digits for rounding. Affects display only, not
 #'   estimates.
-#' @return A \code{\link{rrsc}} object with the following fields.
-#'   \item{estimate}{matrix of point and interval estimates - see details}
-#'   \item{estimator}{either \code{"PF"} or \code{"RR"}} \item{y}{data.frame
-#'   with "y1", "n1", "y2", "n2" values. } \item{rnd}{how many digits to round
-#'   the display} \item{alpha}{complement of confidence level}
+#' @returns A [rrsc] object with the following fields.
+#' * `estimate`: matrix of point and interval estimates - see details
+#' * `estimator`: either `"PF"` or `"RR"`
+#' * `y`: data.frame with "y1", "n1", "y2", "n2" values.
+#' * `rnd`: how many digits to round the display
+#' * `alpha`: complement of confidence level
 #' @export
 #' @references Gart JJ, Nam J, 1988. Approximate interval estimation of the
 #'   ratio of binomial parameters: a review and corrections for skewness.
-#'   \emph{Biometrics} 44:323-338. \cr Koopman PAR, 1984. Confidence intervals
-#'   for the ratio of two binomial proportions. \emph{Biometrics} 40:513-517.
-#'   \cr Miettinen O, Nurminen M, 1985. Comparative analysis of two rates.
-#'   \emph{Statistics in Medicine} 4:213-226. \cr Ralston ML, Jennrich RI, 1978.
+#'   *Biometrics* 44:323-338.
+#'
+#'   Koopman PAR, 1984. Confidence intervals
+#'   for the ratio of two binomial proportions. *Biometrics* 40:513-517.
+#'
+#'   Miettinen O, Nurminen M, 1985. Comparative analysis of two rates.
+#'   *Statistics in Medicine* 4:213-226.
+#'
+#'   Ralston ML, Jennrich RI, 1978.
 #'   DUD, A Derivative-Free Algorithm for Nonlinear Least Squares.
-#'   \emph{Technometrics} 20:7-14.
-#' @author \link{PF-package}
-#' @seealso \code{\link{rrsc}}
+#'   *Technometrics* 20:7-14.
+#' @author [PF-package]
+#' @seealso [rrsc]
 #'
 #' @examples
 #' # All examples represent the same observation, with data entry by using
@@ -76,7 +84,7 @@
 #' data1 <- data.frame(group = rep(c("treated", "control"), each = 2),
 #'   y = c(1, 3, 7, 5),
 #'   n = c(12, 12, 14, 14),
-#'   cage = rep(paste('cage', 1:2), 2))
+#'   cage = rep(paste("cage", 1:2), 2))
 #'
 #' data2 <- data1 |>
 #'   group_by(group) |>
@@ -92,10 +100,6 @@
 #' # MN method    0.611 0.0251 0.857
 #' # score method 0.611 0.0328 0.855
 #' # skew corr    0.611 0.0380 0.876
-
-##-------------------------------
-## RRsc function
-##-------------------------------
 #' @importFrom stats qnorm
 RRsc <- function(y = NULL,
                  data = NULL,
@@ -122,11 +126,11 @@ RRsc <- function(y = NULL,
   ##
   ## internal functions
   ###############################
-  u.p <- function(p1, p2, n1, n2) {
+  u_p <- function(p1, p2, n1, n2) {
     (1 - p1) / (n1 * p1) + (1 - p2) / (n2 * p2)
   }
 
-  zsc.phi <- function(phi, x1, x2, n1, n2, u.p, root, za, MN = FALSE) {
+  zsc.phi <- function(phi, x1, x2, n1, n2, u_p, root, za, MN = FALSE) {
     # for score interval in RRsc
     if (MN)
       mn <- sqrt((n1 + n2 - 1) / (n1 + n2))
@@ -134,7 +138,7 @@ RRsc <- function(y = NULL,
       mn <- 1
     p2 <- root(x1, x2, n1, n2, phi)
     p1 <- p2 * phi
-    u <- u.p(p1, p2, n1, n2)
+    u <- u_p(p1, p2, n1, n2)
     u[u < 0] <- NA
     z <- ((x1 - n1 * p1) / (1. - p1)) * sqrt(u) * mn
     zd <- abs(z - za)
@@ -142,22 +146,22 @@ RRsc <- function(y = NULL,
     return(unique(z[zd == min(zd)]))
   }
 
-  zsk.phi <- function(phi, x1, x2, n1, n2, u.p, root, za, MN = FALSE) {
+  zsk.phi <- function(phi, x1, x2, n1, n2, u_p, root, za, MN = FALSE) {
     # for skewness-corrected interval in RRsc
     p2 <- root(x1, x2, n1, n2, phi)
     p1 <- p2 * phi
     q1 <- 1 - p1
     q2 <- 1 - p2
-    u <- u.p(p1, p2, n1, n2)
+    u <- u_p(p1, p2, n1, n2)
     u[u < 0] <- NA
-    z.ph <- ((x1 - n1 * p1) / (1 - p1)) * sqrt(u)
+    z_ph <- ((x1 - n1 * p1) / (1 - p1)) * sqrt(u)
     g <- (q1 * (q1 - p1)) / (n1 * p1)^2 - (q2 * (q2 - p2)) / (n2 * p2) ^
       2
     g.ph <- g / u^1.5
-    z.s <- z.ph - (g.ph * (za^2 - 1)) / 6
-    zd <- abs(z.s - za)
+    z_s <- z_ph - (g.ph * (za^2 - 1)) / 6
+    zd <- abs(z_s - za)
     zd[is.na(zd)] <- 2 * zd[!is.na(zd)]
-    return(unique(z.s[zd == min(zd)]))
+    return(unique(z_s[zd == min(zd)]))
   }
 
   root <- function(x1, x2, n1, n2, phi) {
@@ -183,32 +187,32 @@ RRsc <- function(y = NULL,
     return(c(r1, r2))
   }
 
-  rr.opt <- function(z.phi, phi, za, trace.it, u.p, root, MN) {
+  rr.opt <- function(z_phi, phi, za, trace.it, u_p, root, MN) {
     # optimizer function for RRsc
     # data from parent environment
-    zz <- c(z.phi(phi[1], x1, x2, n1, n2, u.p, root, za, MN),
-            z.phi(phi[2], x1, x2, n1, n2, u.p, root, za, MN))
+    zz <- c(z_phi(phi[1], x1, x2, n1, n2, u_p, root, za, MN),
+            z_phi(phi[2], x1, x2, n1, n2, u_p, root, za, MN))
     if (abs(za - zz[1]) > abs(za - zz[2]))
       phi <- rev(phi)
-    phi.new <- phi[1]
-    phi.old <- phi[2]
-    z.old <- z.phi(phi.old, x1, x2, n1, n2, u.p, root, za, MN)
+    phi_new <- phi[1]
+    phi_old <- phi[2]
+    z_old <- z_phi(phi_old, x1, x2, n1, n2, u_p, root, za, MN)
     if (trace.it)
       cat("\n\nR start", phi, "\n")
     iter <- 0
     repeat {
       iter <- iter + 1
-      z.new <-
-        z.phi(phi.new, x1, x2, n1, n2, u.p, root, za, MN)
+      z_new <-
+        z_phi(phi_new, x1, x2, n1, n2, u_p, root, za, MN)
       phi <-
-        exp(log(phi.old) + log(phi.new / phi.old) *
-              ((za - z.old) / (z.new - z.old)))
-      phi.old <- phi.new
-      z.old <- z.new
-      phi.new <- phi
+        exp(log(phi_old) + log(phi_new / phi_old) *
+              ((za - z_old) / (z_new - z_old)))
+      phi_old <- phi_new
+      z_old <- z_new
+      phi_new <- phi
       if (trace.it)
-        cat("iteration", iter, "  z", z.new, "phi", phi.new, "\n")
-      if (abs(za - z.new) < converge)
+        cat("iteration", iter, "  z", z_new, "phi", phi_new, "\n")
+      if (abs(za - z_new) < converge)
         break
       if (iter == iter.max) {
         # no convergence
@@ -216,13 +220,8 @@ RRsc <- function(y = NULL,
         break
       }
     } # end repeat
-    return(phi.new)
+    return(phi_new)
   }
-
-  #---------------------------------------
-  # end internal function definitions
-  #---------------------------------------
-
   ###########################################
   ## Data reshaping
   ## - y can be matrix or vector (expects formula and data to be NULL)
@@ -255,16 +254,16 @@ RRsc <- function(y = NULL,
       c("upper", "lower")
     ))
   al2 <- alpha / 2
-  z.al2 <- qnorm(al2)
-  z.ah2 <- qnorm(1 - al2)
-  zv <- c(z.al2, z.ah2)
+  z_al2 <- qnorm(al2)
+  z_ah2 <- qnorm(1 - al2)
+  zv <- c(z_al2, z_ah2)
   int["point", ] <- rep((x1 / n1) / (x2 / n2), 2)
   p1 <- x1 / n1
 
   # log method
   p2 <- x2 / n2
   phi <- p1 / p2
-  v <- sqrt(u.p(p1, p2, n1, n2))
+  v <- sqrt(u_p(p1, p2, n1, n2))
   intv <- exp(v * zv + logb(phi))
   int["log method", ] <- intv
 
@@ -272,7 +271,7 @@ RRsc <- function(y = NULL,
   p1 <- (x1 + 0.5) / (n1 + 0.5)
   p2 <- (x2 + 0.5) / (n2 + 0.5)
   phi <- p1 / p2
-  v <- sqrt(u.p(p1, p2, (n1 + 0.5), (n2 + 0.5)))
+  v <- sqrt(u_p(p1, p2, (n1 + 0.5), (n2 + 0.5)))
   intv <- exp(v * zv + logb(phi))
   int["0.5 method", ] <- intv
 
@@ -296,17 +295,17 @@ RRsc <- function(y = NULL,
       cat("\nMN", switch(k, "lower", "upper"))
     za <-  -zv[k]
     phi <- c(int["0.5 method", k], 0.9 * int["0.5 method", k])
-    phi.new <-
+    phi_new <-
       rr.opt(
-        z.phi = zsc.phi,
+        z_phi = zsc.phi,
         phi = phi,
         za = za,
         trace.it = trace.it,
-        u.p = u.p,
+        u_p = u_p,
         root = root,
         MN = TRUE
       )
-    score[k] <- phi.new
+    score[k] <- phi_new
   }
   int["MN method", ] <- score
 
@@ -317,17 +316,17 @@ RRsc <- function(y = NULL,
       cat("\nScore", switch(k, "lower", "upper"))
     za <-  -zv[k]
     phi <- c(int["0.5 method", k], 0.9 * int["0.5 method", k])
-    phi.new <-
+    phi_new <-
       rr.opt(
-        z.phi = zsc.phi,
+        z_phi = zsc.phi,
         phi = phi,
         za = za,
         trace.it = trace.it,
-        u.p = u.p,
+        u_p = u_p,
         root = root,
         MN = FALSE
       )
-    score[k] <- phi.new
+    score[k] <- phi_new
   }
   int["score method", ] <- score
 
@@ -338,17 +337,17 @@ RRsc <- function(y = NULL,
       cat("\nSkew corr", switch(k, "lower", "upper"))
     za <-  -zv[k]
     phi <- c(int["0.5 method", k], 0.9 * int["0.5 method", k])
-    phi.new <-
+    phi_new <-
       rr.opt(
-        z.phi = zsk.phi,
+        z_phi = zsk.phi,
         phi = phi,
         za = za,
         trace.it = trace.it,
-        u.p = u.p,
+        u_p = u_p,
         root = root,
         MN = FALSE
       )
-    score[k] <- phi.new
+    score[k] <- phi_new
   }
   int["skew corr", ] <- score
 

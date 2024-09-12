@@ -4,7 +4,6 @@
   cluster <- function(x) {
     return(x)
   }
-  this.call <- match.call()
   drop.levels <- function(x) {
     for (j in seq_len(ncol(x))) {
       if (is.factor(x[, j])) {

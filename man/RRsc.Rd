@@ -43,11 +43,14 @@ vaccinate group to which \code{compare[2]} (control or reference) is compared.}
 estimates.}
 }
 \value{
-A \code{\link{rrsc}} object with the following fields.
-\item{estimate}{matrix of point and interval estimates - see details}
-\item{estimator}{either \code{"PF"} or \code{"RR"}} \item{y}{data.frame
-with "y1", "n1", "y2", "n2" values. } \item{rnd}{how many digits to round
-the display} \item{alpha}{complement of confidence level}
+A \link{rrsc} object with the following fields.
+\itemize{
+\item \code{estimate}: matrix of point and interval estimates - see details
+\item \code{estimator}: either \code{"PF"} or \code{"RR"}
+\item \code{y}: data.frame with "y1", "n1", "y2", "n2" values.
+\item \code{rnd}: how many digits to round the display
+\item \code{alpha}: complement of confidence level
+}
 }
 \description{
 Estimates confidence intervals for the risk ratio or prevented
@@ -58,12 +61,14 @@ Estimates are returned for three estimators based on the score
 statistic. The score method was introduced by Koopman (1984). Gart and
 Nam's modification (1988) includes a skewness correction. The method of
 Miettinen and Nurminen (1985) is a version made slightly more conservative
-than Koopman's by including a factor of \code{(N-1)/N}. The starting
+than Koopman's by including a factor of \eqn{(N - 1) / N}. The starting
 estimate for the DUD algorithm is obtained by the modified Katz method (log
 method with 0.5 added to each cell). Both forms of the Katz estimate may be
-retrieved from the returned object using \code{RRsc()$estimate}. \cr \cr
-The data may also be a matrix. In that case \code{y} would be entered as
-\cr \code{matrix(c(y1, n1-y1, y2, n2-y2), 2, 2, byrow = TRUE)}.
+retrieved from the returned object using \code{RRsc()$estimate}.
+
+The data may also be a matrix. In that case \code{Y} would be entered as
+
+\code{matrix(c(y1, n1-y1, y2, n2-y2), 2, 2, byrow = TRUE)}.
 }
 \examples{
 # All examples represent the same observation, with data entry by using
@@ -98,7 +103,7 @@ require(dplyr)
 data1 <- data.frame(group = rep(c("treated", "control"), each = 2),
   y = c(1, 3, 7, 5),
   n = c(12, 12, 14, 14),
-  cage = rep(paste('cage', 1:2), 2))
+  cage = rep(paste("cage", 1:2), 2))
 
 data2 <- data1 |>
   group_by(group) |>
@@ -118,15 +123,20 @@ RRsc(data = data2, formula = cbind(sum_y, sum_n) ~ group,
 \references{
 Gart JJ, Nam J, 1988. Approximate interval estimation of the
 ratio of binomial parameters: a review and corrections for skewness.
-\emph{Biometrics} 44:323-338. \cr Koopman PAR, 1984. Confidence intervals
+\emph{Biometrics} 44:323-338.
+
+Koopman PAR, 1984. Confidence intervals
 for the ratio of two binomial proportions. \emph{Biometrics} 40:513-517.
-\cr Miettinen O, Nurminen M, 1985. Comparative analysis of two rates.
-\emph{Statistics in Medicine} 4:213-226. \cr Ralston ML, Jennrich RI, 1978.
+
+Miettinen O, Nurminen M, 1985. Comparative analysis of two rates.
+\emph{Statistics in Medicine} 4:213-226.
+
+Ralston ML, Jennrich RI, 1978.
 DUD, A Derivative-Free Algorithm for Nonlinear Least Squares.
 \emph{Technometrics} 20:7-14.
 }
 \seealso{
-\code{\link{rrsc}}
+\link{rrsc}
 }
 \author{
 \link{PF-package}

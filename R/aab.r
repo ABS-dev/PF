@@ -3,20 +3,15 @@
 ### this function is used in RRstr and RRmh
 
 #' @title Convert data.frame and formula to a matrix
-#' @description This function converts a subset of columns in \emph{data} as
-#'   specified by \emph{formula} into a matrix
+#' @description This function converts a subset of columns in `data` as
+#'   specified by `formula` into a matrix
 #' @param formula the formula to use. of format cbind(y, n) ~ tx + cluster(clus)
 #' @param compare what to compare (length == 2)
-#' @return list of: \itemize{
-#'
-#'   \item{\code{A: }}{A data.frame containing only the variables of
-#'   \emph{formula}}
-#'
-#'   \item{\code{Y: }}{a matrix where each compare element is the set of columns
-#'   (y, n) and each unique(clus) is a row}
-#'
-#'   }
-#' @seealso \code{\link{RRmh}, \link{RRstr}}
+#' @returns list of:
+#' `A`: A data.frame containing only the variables of `formula`
+#' `Y`: a matrix where each compare element is the set of columns `(y, n)` and
+#' each `unique(clus)` is a row
+#' @seealso [RRmh], [RRstr]
 #' @importFrom plyr ddply
 #' @importFrom stats model.frame terms
 #' @noRd
@@ -76,8 +71,6 @@
                   collapse = "", sep = ""))
     A <- droplevels(A[!A[, 4] %in% rmclus, ])
   }
-  y <- A[, 1]
-  n <- A[, 2]
   x <- as.factor(A[, 3])
 
   if (!any(levels(x) == compare[1]) || !any(levels(x) == compare[2])) {
@@ -89,4 +82,15 @@
   Y <- as.matrix(cbind(Y2, Y1))
   dimnames(Y) <- list(levels(clus), c("y1", "n1", "y2", "n2"))
   return(list(A = A, Y = Y))
+}
+
+
+.check_factor <- function(x) {
+  parameter_name <- deparse(substitute(x))
+  if (!is.null(x) && !is.factor(x)) {
+    x <- factor(x)
+    cat("Converting paramter ", parameter_name,
+            " to factor")
+  }
+  x
 }

@@ -16,10 +16,9 @@ RRmh(
 )
 }
 \arguments{
-\item{formula}{Formula of the form \code{cbind(y, n) ~ x + cluster(w)}, where
-\code{y} is the number positive, \code{n} is the group size, \code{x} is a
-factor with two levels of treatment, and \code{w} is a factor indicating
-the clusters.}
+\item{formula}{Formula of the form \code{cbind(y, n) ~ x + cluster(w)}, where \code{Y}
+is the number positive, \code{n} is the group size, \code{x} is a factor with two
+levels of treatment, and \code{w} is a factor indicating the clusters.}
 
 \item{data}{\code{data.frame} containing variables for formula}
 
@@ -40,18 +39,15 @@ entered by formula and dataframe, \code{Y} is generated automatically.}
 estimates.}
 }
 \value{
-An object of class \code{\link{rr1}}  with the following fields.
-
-\item{estimate}{vector of point and interval estimates:  point estimate,
-lower confidence limit, upper confidence limit}
-
-\item{estimator}{either \code{"PF"} or \code{"RR"}}
-
-\item{y}{data.frame of restructured input}
-
-\item{rnd}{how many digits to round the display}
-
-\item{alpha}{complement of confidence level}
+An object of class \link{rr1}  with the following fields.
+\itemize{
+\item \code{estimate}: vector of point and interval estimates:  point estimate, lower
+confidence limit, upper confidence limit
+\item \code{estimator}: either \code{"PF"} or \code{"RR"}
+\item \code{y}: data.frame of restructured input
+\item \code{rnd}: how many digits to round the display
+\item \code{alpha}: complement of confidence level
+}
 }
 \description{
 Estimates confidence intervals for the risk ratio or prevented
@@ -67,11 +63,15 @@ less efficient than maximum likelihood for large data sets.
 }
 \note{
 If either all y1's or all y2's are zero, a division by zero may occur,
-and a NaN returned for some values. \cr \cr Vignette \emph{Examples for
-Stratified Designs} forthcoming with more examples. \cr Call to this
-function may be one of two formats: (1) specify \code{data} and
-\code{formula} or (2) as a matrix \code{Y} \cr \cr \code{RRmh(formula,
-  data, compare = c('b','a'), pf = TRUE, alpha = 0.05, rnd = 3)} \cr \cr
+and a NaN returned for some values.
+
+Vignette \emph{Examples for Stratified Designs} forthcoming with more examples.
+
+Call to this function may be one of two formats: (1) specify \code{data} and
+\code{formula} or (2) as a matrix \code{Y}
+
+\code{RRmh(formula, data, compare = c("b", "a"), pf = TRUE, alpha = 0.05, rnd = 3)}
+
 \code{RRmh(Y, pf = TRUE, alpha = 0.05, rnd = 3)}
 }
 \examples{
@@ -82,7 +82,7 @@ function may be one of two formats: (1) specify \code{data} and
 # tx group "b" is control
 RRmh(cbind(y, n) ~ tx + cluster(clus),
      Table6,
-     compare = c('a', 'b'), pf = FALSE)
+     compare = c("a", "b"), pf = FALSE)
 
 # RR
 # 95\% interval estimates
@@ -102,17 +102,21 @@ RRmh(Y = table6, pf = FALSE)
 }
 \references{
 Mantel N, Haenszel W, 1959.  Statistical aspects of the analysis
-of data from retrospective studies of disease. \emph{Journal of the
-National Cancer Institute} 22:  719-748. \cr \cr Greenland S, Robins JM,
-1985.  Estimation of a common effect parameter from sparse follow-up data.
-\emph{Biometrics}  41:  55-68.  Errata, 45:  1323-1324. \cr \cr Agresti A,
-Hartzel J, 2000.  Strategies for comparing treatments on a binary response
-with multi-centre data.  \emph{Statistics in Medicine}  19:  1115-1139. \cr
+of data from retrospective studies of disease. \emph{Journal of the National
+Cancer Institute} 22:719-748.
+
+Greenland S, Robins JM, 1985.  Estimation of a common effect parameter from
+sparse follow-up data. \emph{Biometrics}  41:  55-68.  Errata, 45: 1323-1324.
+
+Agresti A, Hartzel J, 2000.  Strategies for comparing treatments on a
+binary response with multi-centre data.  \emph{Statistics in Medicine}  19:
+1115-1139.
+
 Lachin JM, 2000.  \emph{Biostatistical Methods:  The Assessment of Relative
 Risks} (Wiley, New York), Sec. 4.3.1.
 }
 \seealso{
-\code{\link{rr1}}
+\link{rr1}
 }
 \author{
 \link{PF-package}

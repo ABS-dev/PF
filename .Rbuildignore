@@ -1,13 +1,14 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^\.[^/]*$
-^[^/]*\.r$
-^[^/]*\.R$
+^[^/]*\.[rR]$
 NEWS
 dev_notes
 old_files
 utilities
-^_pkgdown\.yml$
+^[^/]*\.yml$
 ^docs$
 ^pkgdown$
 ^public$
+^doc$
+^Meta$

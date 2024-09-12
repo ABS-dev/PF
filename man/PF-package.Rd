@@ -6,14 +6,15 @@
 \alias{PF-package}
 \title{PF: Prevented fraction}
 \description{
-Functions related to PF (prevented fraction). Calculate incidence density ratio, confidence interval, and Rao-Scott weights of PF by multiple methods. See http://goo.gl/eJ6Rxi for definition of PF. No endorsement, claim, or warranty is implied for this package. It is made available for investigational or pedagogical use only.
+\if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
+
+Functions related to PF (prevented fraction). Calculate incidence density ratio, confidence interval, and Rao-Scott weights of PF by multiple methods. See http://goo.gl/eJ6Rxi for definition of PF. No endorsement, claim, or warranty is implied for this package. It is made available for investigational or pedagogical use only. See https://www.aphis.usda.gov/animal_health/vet_biologics/publications/STATWI0007.pdf for futher details.
 }
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://www.aphis.usda.gov/animal_health/vet_biologics/publications/STATWI0007.pdf}
-  \item \url{https://github.com/ABS-dev/PF/blob/master/doc/PFPackageManual.pdf}
-  \item Report bugs at \url{https://github.com/ABS-dev/PF/issues}
+  \item \url{https://github.com/ABS-dev/PF/}
+  \item Report bugs at \url{https://github.com/ABS-dev/PF/issues/}
 }
 
 }

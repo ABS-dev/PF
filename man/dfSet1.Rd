@@ -6,16 +6,11 @@
 \title{Set1 dataset}
 \format{
 a data.frame with 6 observation of the following 4 variables, no NAs
-\describe{
-
-\item{y}{number positive}
-
-\item{n}{total number in group \code{tx} x \code{clus}}
-
-\item{tx}{treatment 'vac' or 'con'}
-
-\item{clus}{cluster ID}
-
+\itemize{
+\item \code{y}: number positive
+\item \code{n}: total number in group \code{tx} x \code{clus}
+\item \code{tx}: treatment "vac" or "con"
+\item \code{clus}: cluster ID
 }
 }
 \description{

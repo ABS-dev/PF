@@ -1,59 +1,60 @@
 Package: PF
 Type: Package
 Title: Prevented fraction
-Version: 9.6.8
-Date: 2024-06-06
+Version: 9.6.9
+Date: 2024-07-24
 Authors@R: c(
   person(given   = "CVB Statistics", email = "CVB.Data.Help@usda.gov", role = c("cre", "fmo")),
   person(given   = "David",  family  = "Siev",        role = "aut", comment = "until 2019"),
   person(given   = "Marie",  family  = "Vendettuoli", role = "aut", comment = "until 2019"),
   person(given   = "Thomas", family  = "Kent",        role = "aut", comment = "starting 2020"))
 Description: Functions related to PF (prevented fraction). Calculate incidence
-    density ratio, confidence interval, and Rao-Scott weights of PF by multiple
-    methods. See http://goo.gl/eJ6Rxi for definition of PF. 
-    No endorsement, claim, or warranty is implied for this package. It is made 
-    available for investigational or pedagogical use only.
+  density ratio, confidence interval, and Rao-Scott weights of PF by multiple
+  methods. See http://goo.gl/eJ6Rxi for definition of PF. 
+  No endorsement, claim, or warranty is implied for this package. It is made 
+  available for investigational or pedagogical use only.  See
+  https://www.aphis.usda.gov/animal_health/vet_biologics/publications/STATWI0007.pdf
+  for futher details.
 License: file LICENSE
-URL: https://www.aphis.usda.gov/animal_health/vet_biologics/publications/STATWI0007.pdf, https://github.com/ABS-dev/PF/blob/master/doc/PFPackageManual.pdf
-BugReports: https://github.com/ABS-dev/PF/issues
+URL: https://github.com/ABS-dev/PF/
+BugReports: https://github.com/ABS-dev/PF/issues/
 LazyLoad: true
 LazyData: true
 Depends:
-    R (>= 4.1)
+  R (>= 4.2)
 Imports:
-    methods,
-    plyr,
-    dplyr,
-    tidyr
+  methods,
+  plyr,
+  dplyr,
+  tidyr
 Suggests:
-    magrittr,
-    testthat,
-    knitr,
-    R.rsp,
-    rmarkdown
+  magrittr,
+  testthat,
+  knitr,
+  rmarkdown,
+  R.rsp
 Collate:
-    'aaa.r'
-    'aab.r'
-    'aac.r'
-    'class.r'
-    'generics.r'
-    'PF.r'
-    'PF-package.r'
-    'IDRlsi.r'
-    'IDRsc.r'
-    'phiWt.r'
-    'RRlsi.r'
-    'RRmh.r'
-    'RRmpWald.r'
-    'RRor.r'
-    'RRotsst.r'
-    'RRsc.r'
-    'RRStr.r'
-    'RRtosst.r'
-    'rsbWt.r'
-    'tauWt.r'
+  'aaa.r'
+  'aab.r'
+  'aac.r'
+  'class.r'
+  'generics.r'
+  'PF.r'
+  'PF-package.r'
+  'IDRlsi.r'
+  'IDRsc.r'
+  'phiWt.r'
+  'RRlsi.r'
+  'RRmh.r'
+  'RRmpWald.r'
+  'RRor.r'
+  'RRotsst.r'
+  'RRsc.r'
+  'RRStr.r'
+  'RRtosst.r'
+  'rsbWt.r'
+  'tauWt.r'
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.3
-Config/build/clean-inst-doc: FALSE
+RoxygenNote: 7.3.2
 VignetteBuilder: R.rsp

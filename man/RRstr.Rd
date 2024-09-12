@@ -20,9 +20,9 @@ RRstr(
 )
 }
 \arguments{
-\item{formula}{Formula of the form \code{cbind(y, n) ~ x + cluster(w)}, where
-y is the number positive, n is the group size, x is a factor with two
-levels of treatment, and w is a factor indicating the clusters.}
+\item{formula}{Formula of the form \code{cbind(y, n) ~ x + cluster(w)}, where y is
+the number positive, n is the group size, x is a factor with two levels of
+treatment, and w is a factor indicating the clusters.}
 
 \item{data}{data.frame containing variables of formula}
 
@@ -52,14 +52,18 @@ estimates.}
 \item{divider}{internal control parameter for algorithm}
 }
 \value{
-A \code{\link{rrstr}} object with the following fields:
-\item{estimate}{matrix of point and interval estimates - starting value,
-MLE, and skewness corrected} \item{hom}{list of homogeneity statistic,
-p-value, and degrees of freedom, or error message if appropriate.}
-\item{estimator}{either \code{"PF"} or \code{"RR"}} \item{y}{data.frame of
-restructured input} \item{compare}{groups compared} \item{rnd}{how many
-digits to round the display} \item{alpha}{size of test; complement of
-confidence level}
+A \link{rrstr} object with the following fields:
+\itemize{
+\item \code{estimate}: matrix of point and interval estimates - starting value, MLE,
+and skewness corrected
+\item \code{hom}: list of homogeneity statistic, p-value, and degrees of freedom, or
+error message if appropriate.
+\item \code{estimator}: either \code{"PF"} or \code{"RR"}
+\item \code{y}: \code{data.frame} of restructured input
+\item \code{compare}: groups compared
+\item \code{rnd}: how many digits to round the display
+\item \code{alpha}: size of test; complement of confidence level
+}
 }
 \description{
 Estimates confidence intervals for the risk ratio or prevented
@@ -73,13 +77,12 @@ method of Gart.
 Vignette \emph{Examples for Stratified Designs} forthcoming with more
 examples.
 
-Call to this function may be one of two formats: (1) specify
-\code{data} and \code{formula} or (2) as a matrix \code{Y} \cr \cr
-\code{RRstr(formula, data, compare = c('b','a'), pf = TRUE, alpha = 0.05,
-  trace.it = FALSE,} \cr {iter.max = 24, converge = 1e-6, rnd = 3, multiplier
-= 0.7, divider = 1.1)} \cr \cr \code{RRstr(Y, compare = c('b','a'), pf =
-  TRUE, alpha = 0.05, trace.it = FALSE, iter.max = 24,} \cr \code{converge =
-  1e-6, rnd = 3, multiplier = 0.7, divider = 1.1)}
+Call to this function may be one of two formats: (1) specify \code{data} and
+\code{formula} or (2) as a matrix \code{Y}
+
+\code{RRstr(formula, data, compare = c("b", "a"), pf = TRUE, alpha = 0.05, trace.it = FALSE, iter.max = 24, converge = 1e-6, rnd = 3, multiplier = 0.7, divider = 1.1)}
+
+\code{RRstr(Y, compare = c("b", "a"), pf = TRUE, alpha = 0.05, trace.it = FALSE, iter.max = 24, converge = 1e-6, rnd = 3, multiplier = 0.7, divider = 1.1)}
 }
 \examples{
 ## Table 1 from Gart (1985)
@@ -87,7 +90,7 @@ Call to this function may be one of two formats: (1) specify
 ## "b" is control group
 RRstr(cbind(y, n) ~ tx + cluster(clus),
       Table6,
-      compare = c('a', 'b'), pf = FALSE)
+      compare = c("a", "b"), pf = FALSE)
 
 # Test of homogeneity across clusters
 
@@ -107,21 +110,24 @@ RRstr(Y = table6, pf = FALSE)
 
 tst <- data.frame(y = c(0, 2, 0, 4, 0, 3, 0, 7),
 n = rep(10, 8),
-tx = rep(c('a', 'b'), 4),
-clus = rep(paste('Row', 1:4, sep = ''), each = 2))
+tx = rep(c("a", "b"), 4),
+clus = rep(paste("Row", 1:4, sep = ""), each = 2))
 
 }
 \references{
 Gart JJ, 1985. Approximate tests and interval estimation of the
 common relative risk in the combination of \eqn{2 x 2} tables.
-\emph{Biometrika} 72:673-677. \cr Gart JJ, Nam J, 1988. Approximate
-interval estimation of the ratio of binomial parameters: a review and
-corrections for skewness. \emph{Biometrics} 44:323-338. \cr Ralston ML,
-Jennrich RI, 1978. DUD, A Derivative-Free Algorithm for Nonlinear Least
-Squares. \emph{Technometrics} 20:7-14.
+\emph{Biometrika} 72:673-677.
+
+Gart JJ, Nam J, 1988. Approximate interval estimation of the ratio of
+binomial parameters: a review and corrections for skewness.
+\emph{Biometrics} 44:323-338.
+
+Ralston ML, Jennrich RI, 1978. DUD, A Derivative-Free Algorithm for
+Nonlinear Least Squares. \emph{Technometrics} 20:7-14.
 }
 \seealso{
-\code{\link{rrstr}}
+\link{rrstr}
 }
 \author{
 \link{PF-package}

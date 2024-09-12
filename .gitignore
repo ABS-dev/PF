@@ -4,3 +4,7 @@
 *.Ruserdata
 .Rproj.user
 docs
+public
+pkgdown
+/doc/
+/Meta/

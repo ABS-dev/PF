@@ -4,54 +4,50 @@
 #' @details Estimates likelihood support interval for the incidence density
 #'   ratio based on orthogonal factoring of reparameterized likelihood. The
 #'   incidence density is the number of cases per subject-time; its distribution
-#'   is assumed Poisson. \cr \cr Likelihood support intervals are usually formed
-#'   based on the desired likelihood ratio, often 1/8 or 1/32. Under some
-#'   conditions the log likelihood ratio may follow the chi square distribution.
-#'   If so,
+#'   is assumed Poisson.
+#'
+#'   Likelihood support intervals are usually formed based on the desired
+#'   likelihood ratio, often 1 / 8 or 1 / 32. Under some conditions the log
+#'   likelihood ratio may follow the chi square distribution. If so,
 
 ##  Latex version not good
-## then \eqn{\alpha=1-{{F}_{{{\chi }^{2}}}}\left( 2\log (k), 1 \right)}.
+## then \eqn{\alpha = 1 - {{F}_{{{\chi }^{2}}}} \left( 2\log (k), 1 \right)}.
 
-#'then \eqn{\alpha=1-F(2log(k), 1)}, where \eqn{F} is a chi-square CDF.
-#'\code{RRsc()} will make the conversion from \eqn{\alpha} to \emph{k} if
-#'\code{use.alpha = TRUE}. \cr \cr The data may also be a matrix. In that case
-#'\code{y} would be entered as \cr \code{matrix(c(y1, n1 - y1, y2, n2 - y2), 2,
-#'2, byrow = TRUE)}.
-#'@param y Data vector c(y1, n1, y2, n2) where y are the positives, n are the
-#'  total, and group 1 is compared to group 2 (control or reference).
-#'@param compare  Text vector stating the factor levels: `compare[1]` is the
-#'  vaccinate group to which `compare[2]` (control or reference) is compared.
-#'@param data data.frame containing variables of the formula.
-#'@param formula  Formula of the form cbind(y, n) ~ x, where y is the number
-#'  positive, n is the group size, x is a factor with two levels of treatment.#'
-#'@param k Likelihood ratio criterion.
-#'@param alpha Complement of the confidence level.
-#'@param use.alpha Base choice of k on its relationship to alpha?
-#'@param pf Estimate \emph{IDR} or its complement \emph{PF}?
-#'@param trace.it Verbose tracking of the iterations?
-#'@param iter.max Maximum number of iterations
-#'@param converge Convergence criterion
-#'@param rnd Number of digits for rounding. Affects display only, not estimates.
-#'@param start describe here.
-#'@return A \code{\link{rrsi}} object with the following elements.
+#' then \eqn{\alpha = 1 - F(2log(k), 1)}, where \eqn{F} is a chi-square CDF. if
+#' `use.alpha = TRUE``RRsc()` will make the conversion from \eqn{\alpha} to
+#' \eqn{k} .
 #'
-#'  \item{estimate}{vector with point and interval estimate}
-#'
-#'  \item{estimator}{either \emph{PF} or \emph{IDR}}
-#'
-#'  \item{y}{data.frame with "y1", "n1", "y2", "n2" values.}
-#'
-#'  \item{k}{Likelihood ratio criterion}
-#'
-#'  \item{rnd}{how many digits to round the display}
-#'
-#'  \item{alpha}{complement of confidence level}
-#'
-#'@references Royall R. \emph{Statistical Evidence: A Likelihood Paradigm}.
-#'  Chapman & Hall, Boca Raton, 1997. Section 7.2.
-#'@author \link{PF-package}
-#'@seealso \code{\link{IDRsc}}
-#'@export
+#' The data may also be a matrix, in which case `y` would be entered as
+#' `matrix(c(y1, n1 - y1, y2, n2 - y2), 2, 2, byrow = TRUE)`.
+#' @param y Data vector c(y1, n1, y2, n2) where y are the positives, n are the
+#'   total, and group 1 is compared to group 2 (control or reference).
+#' @param compare  Text vector stating the factor levels: `compare[1]` is the
+#'   vaccinate group to which `compare[2]` (control or reference) is compared.
+#' @param data data.frame containing variables of the formula.
+#' @param formula  Formula of the form cbind(y, n) ~ x, where y is the number
+#'   positive, n is the group size, x is a factor with two levels of treatment.
+#' @param k Likelihood ratio criterion.
+#' @param alpha Complement of the confidence level.
+#' @param use.alpha Base choice of k on its relationship to alpha?
+#' @param pf Estimate *IDR* or its complement *PF*?
+#' @param trace.it Verbose tracking of the iterations?
+#' @param iter.max Maximum number of iterations
+#' @param converge Convergence criterion
+#' @param rnd Number of digits for rounding. Affects display only, not
+#'   estimates.
+#' @param start describe here.
+#' @returns A [rrsi] object with the following elements.
+#' * `estimate`: vector with point and interval estimate
+#' * `estimator`: either *PF* or *IDR*
+#' * `y`: data.frame with "y1", "n1", "y2", "n2" values.
+#' * `k`: Likelihood ratio criterion
+#' * `rnd`: how many digits to round the display
+#' * `alpha`: complement of confidence level
+#' @references Royall R. *Statistical Evidence: A Likelihood Paradigm*.
+#'   Chapman & Hall, Boca Raton, 1997. Section 7.2.
+#' @author [PF-package]
+#' @seealso [IDRsc]
+#' @export
 #' @examples
 #' # Both examples represent the same observation, with data entry by vector
 #' # and matrix notation.
@@ -59,7 +55,7 @@
 #' y_vector <- c(26, 204, 10, 205)
 #' IDRlsi(y_vector, pf = FALSE)
 #'
-#' # 1/8 likelihood support interval for IDR
+#' # 1 / 8 likelihood support interval for IDR
 #'
 #' # corresponds to 95.858% confidence
 #' #   (under certain assumptions)
@@ -76,7 +72,7 @@
 #'
 #' IDRlsi(y_matrix, pf = FALSE)
 #'
-#' # 1/8 likelihood support interval for IDR
+#' # 1 / 8 likelihood support interval for IDR
 #'
 #' # corresponds to 95.858% confidence
 #' #   (under certain assumptions)
@@ -88,11 +84,11 @@
 #' data1 <- data.frame(group = rep(c("treated", "control"), each = 5),
 #'              n = c(rep(41, 4), 40, rep(41, 5)),
 #'              y = c(4, 5, 7, 6, 4, 1, 3, 3, 2, 1),
-#'              cage = rep(paste('cage', 1:5), 2))
+#'              cage = rep(paste("cage", 1:5), 2))
 #' IDRlsi(data = data1, formula = cbind(y, n) ~ group,
 #'                compare = c("treated", "control"), pf = FALSE)
 #'
-#' # 1/8 likelihood support interval for IDR
+#' # 1 / 8 likelihood support interval for IDR
 #'
 #' # corresponds to 95.858% confidence
 #' #   (under certain assumptions)
@@ -110,7 +106,7 @@
 #' IDRlsi(data = data2, formula = cbind(sum_y, sum_n) ~ group,
 #'                compare = c("treated", "control"), pf = FALSE)
 #'
-#' # 1/8 likelihood support interval for IDR
+#' # 1 / 8 likelihood support interval for IDR
 #'
 #' # corresponds to 95.858% confidence
 #' #   (under certain assumptions)
@@ -202,8 +198,8 @@ IDRlsi <- function(y = NULL,
     Q <- c(L(y, start[1, i]), L(y, start[2, i]))
     Q <- Q[rev(order(abs(Q - end)))]
     tt <- start[rev(order(abs(Q - end))), i]
-    Q2 <- Q[2]
-    Q1 <- Q[1]
+    q2 <- Q[2]
+    q1 <- Q[1]
     t2 <- tt[2]
     t1 <- tt[1]
     iter <- 0
@@ -212,7 +208,7 @@ IDRlsi <- function(y = NULL,
       if (trace.it) {
         cat("iter", iter, "\t")
       }
-      t3 <- t2 + (t2 - t1) * (end - Q2) / (Q2 - Q1)
+      t3 <- t2 + (t2 - t1) * (end - q2) / (q2 - q1)
       if (trace.it) {
         cat("t321",
             t3,
@@ -220,8 +216,8 @@ IDRlsi <- function(y = NULL,
             t1,
             "321",
             L(y, t3),
-            Q2,
-            Q1,
+            q2,
+            q1,
             "converge",
             abs(t3 - t2) / t2,
             "\n")
@@ -231,8 +227,8 @@ IDRlsi <- function(y = NULL,
           break
       t1 <- t2
       t2 <- t3
-      Q1 <- Q2
-      Q2 <- L(y, t3)
+      q1 <- q2
+      q2 <- L(y, t3)
       if (iter > iter.max)
         break
     }
@@ -256,12 +252,4 @@ IDRlsi <- function(y = NULL,
     k = k,
     alpha = alpha
   ))
-  # out <- list(estimate = int,
-  #             estimator = ifelse(pf, "PF_IDR", "IDR"),
-  #             y = y,
-  #             rnd = rnd,
-  #             k = k,
-  #             alpha = alpha)
-  # class(out) <- "rrsi"
-  # return(out)
 }

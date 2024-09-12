@@ -11,29 +11,19 @@ data class rrmp
 
 \section{Fields}{
 
-
 \itemize{
-
-\item[\code{estimate}]{  vector with point and interval estimate}
-
-\item[\code{estimator}]{  either \code{"PF"} or \code{"IDR"}}
-
-\item[\code{y}]{  data vector}
-
-\item[\code{rnd}]{  how many digits to round display}
-
-\item[\code{alpha}]{  complement of c.i.}
-
-\item[\code{compare}]{  text vector, same as input}
-
-\item[\code{multvec}]{  data.frame showing the multinomial representation
-of the data}
-
+\item \code{estimate}:  vector with point and interval estimate
+\item \code{estimator}:  either \code{"PF"} or \code{"IDR"}
+\item \code{Y}:  data vector
+\item \code{rnd}:  how many digits to round display
+\item \code{alpha}:  complement of c.i.
+\item \code{compare}:  text vector, same as input
+\item \code{multvec}:  data.frame showing the multinomial representation of the data
 }
 }
 
 \seealso{
-\code{\link{RRmpWald}}
+\link{RRmpWald}
 }
 \author{
 \link{PF-package}

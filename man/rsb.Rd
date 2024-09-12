@@ -20,17 +20,19 @@ by subset.}
 \item{id}{vector of factor for estimating the weights by subset.}
 }
 \value{
-A list with the following elements. \item{w}{vector of weights}
-\item{d}{vector of \eqn{{d}_{i}}{d_i} estimates}
+A list with the following elements.
+\itemize{
+\item \code{w}: vector of weights
+\item \code{d}: vector of \eqn{{d}_{i}}{d_i} estimates
+}
 }
 \description{
 Rao-Scott weights.
 }
 \details{
 Estimates the cluster design effect \eqn{{d}_{i}}{d_i} as the
-variance inflation due to clustering by the method of Rao and Scott.
-\code{rsb} estimates the \eqn{{d}_{i}}{d_i} for use by \code{rsbWt} or other
-functions.
+variance inflation due to clustering by the method of Rao and Scott. \code{rsb}
+estimates the \eqn{{d}_{i}}{d_i} for use by \code{rsbWt} or other functions.
 }
 \examples{
 # Weil's rat data (Table 1 of Rao and Scott)
@@ -46,7 +48,7 @@ Rao JNK, Scott AJ, 1992. A simple method for the analysis of
 clustered binary data. \emph{Biometrics} 48:577-585.
 }
 \seealso{
-\code{\link{rsbWt}}.
+\link{rsbWt}.
 }
 \author{
 \link{PF-package}
