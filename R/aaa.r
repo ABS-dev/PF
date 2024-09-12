@@ -42,7 +42,7 @@
 # handle both summarized data (each group on one line) and stratified data where
 # we intend to ignore the strafication and summarize by the control and
 # vaccinate groups
-#' @importFrom dplyr "%>%" group_by_at select summarize_at ungroup
+#' @importFrom dplyr group_by_at select summarize_at ungroup
 #' @importFrom stats filter
 .extract_freqvec <- function(formula, data, compare = c("vac", "con")) {
   vars <- all.vars(formula)
@@ -53,10 +53,10 @@
             " designation in data",
             "column ", vars[3])
   }
-  sumdata <- data %>%
-    ungroup %>%
-    select(vars[1:3]) %>%
-    group_by_at(vars[3]) %>%
+  sumdata <- data |>
+    ungroup() |>
+    select(vars[1:3]) |>
+    group_by_at(vars[3]) |>
     summarize_at(c(vars[1:2]), sum, na.rm = TRUE)
   colnames(sumdata) <- c("group", "y", "n")
   out <- as.numeric(c(sumdata[sumdata$group == compare[1], c("y", "n")],

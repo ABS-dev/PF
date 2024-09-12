@@ -8,11 +8,11 @@ test_that("examples work", {
     x = quote(TRUE), y = quote(TRUE))
 
   expect_identical(ex1$call, thiscall)
-  expect_equal(coefficients(ex1) %>%
-      unname %>%
+  expect_equal(coefficients(ex1) |>
+      unname() |>
       signif(3), c(1.2, -0.405))
-  expect_equal(ex1$deviance %>% signif(3), 4.07)
-  expect_equal(ex1$null.deviance %>% signif(3), 8.85)
-  expect_equal(ex1$aic %>% signif(3), 12.4)
+  expect_equal(ex1$deviance |> signif(3), 4.07)
+  expect_equal(ex1$null.deviance |> signif(3), 8.85)
+  expect_equal(ex1$aic |> signif(3), 12.4)
 
 })

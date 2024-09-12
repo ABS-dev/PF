@@ -6,9 +6,9 @@ test_that("examples work", {
 
   expect_s4_class(ex1, "rr1")
   expect_identical(ex1$estimator, "PF")
-  expect_equal(ex1$estimate %>% signif(ex1$rnd) %>% unname,
+  expect_equal(ex1$estimate |> signif(ex1$rnd) |> unname(),
                c(0.6110, 0.0148, 0.8520))
-  expect_equal(ex1$y %>% as.numeric, y1)
+  expect_equal(ex1$y |> as.numeric(), y1)
   expect_equal(ex1$alpha, 0.05)
 
   y2 <- matrix(c(4, 20, 12, 16), 2, 2, byrow = TRUE)
@@ -23,8 +23,8 @@ test_that("examples work", {
                  compare = c("treated", "control"))
   expect_equal(ex1, ex3)
 
-  data2 <- data1 %>%
-    dplyr::group_by(group) %>%
+  data2 <- data1 |>
+    dplyr::group_by(group) |>
     dplyr::summarize(sum_y = sum(y),
               sum_n = sum(n))
   ex4 <- RRotsst(data = data2, formula =  cbind(sum_y, sum_n) ~ group,

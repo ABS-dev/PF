@@ -62,11 +62,11 @@
 #' # 0.550 0.183 0.752
 #'
 #' require(magrittr)
-#' thistable <- New %>%
-#'   tidyr::spread(tx, pos) %>%
+#' thistable <- New |>
+#'   tidyr::spread(tx, pos) |>
 #'   dplyr::mutate(vac = factor(vac, levels = 1:0),
-#'     con = factor(con, levels = 1:0)) %>%
-#'   with(., table(vac, con))
+#'     con = factor(con, levels = 1:0)) |>
+#'   with(table(vac, con))
 #' thistable
 #' #    con
 #' # vac  1  0
@@ -82,7 +82,6 @@
 #' #
 #' #    PF    LL    UL
 #' # 0.550 0.183 0.752
-#' @importFrom dplyr "%>%"
 #' @importFrom stats qnorm qt
 RRmpWald <- function(formula = NULL, data = NULL, compare = c("vac", "con"),
                      affected = 1, x, alpha = 0.05, pf = TRUE, tdist = TRUE,
@@ -118,7 +117,7 @@ RRmpWald <- function(formula = NULL, data = NULL, compare = c("vac", "con"),
     multvec <- xtable
     rownames(multvec) <- c("pos", "neg")
     colnames(multvec) <- c("pos", "neg")
-    multvec <- multvec %>% as.table %>% as.data.frame
+    multvec <- multvec |> as.table() |> as.data.frame()
     colnames(multvec) <- c(compare, "Freq")
 
   }

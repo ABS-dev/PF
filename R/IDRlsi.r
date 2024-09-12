@@ -102,8 +102,8 @@
 #' # 2.61 1.26 5.88
 #'
 #' require(dplyr)
-#' data2 <- data1 %>%
-#'   group_by(group) %>%
+#' data2 <- data1 |>
+#'   group_by(group) |>
 #'   summarize(sum_y = sum(y),
 #'     sum_n = sum(n))
 #'
