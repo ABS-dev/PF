@@ -6,8 +6,8 @@ Description: Functions related to PF (prevented fraction). Calculate incidence
     methods. See http://goo.gl/eJ6Rxi for definition of PF. 
     No endorsement, claim, or warranty is implied for this package. It is made 
     available for investigational or pedagogical use only.
-Version: 9.6.0
-Date: 2023-10-23
+Version: 9.6.1
+Date: 2023-10-24
 Authors@R: c(
   person("CVB", "Statistics", , "CVB.Data.Help@usda.gov", "cre"),
   person("David", "Siev", , , c("fmo", "aut"), comment = "until 2019"),
