@@ -1,8 +1,12 @@
-# Under Reconstruction
+PF - Prevented Fraction
+==
 
-**2024-09-11**
 
-The Repository for the R package `{PF}` has temporarily been taken down.
+#### First-time usage
 
-Watch for updates.
+From **within R**
 
+```
+require(devtools)
+install_github(repo = "PF", username = "ABS-dev")
+```
