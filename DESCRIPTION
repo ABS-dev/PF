@@ -1,27 +1,27 @@
 Package: PF
 Type: Package
-Title: Prevented fraction.
-Version: 9.5.1
-Date: 2015-03-31
+Title: Prevented fraction
+Version: 9.5.3
+Date: 2018-08-01
 Author: Dave Siev
 Maintainer: Marie Vendettuoli <marie.c.vendettuoli@aphis.usda.gov>
-Description: Functions related to PF (prevented fraction). Calculate incidence density ratio, confidence interval, and Rao-Scott weights of PF by multiple methods. See http://goo.gl/eJ6Rxi for definition of PF.
+Description: Functions related to PF (prevented fraction). Calculate incidence
+    density ratio, confidence interval, and Rao-Scott weights of PF by multiple
+    methods. See http://goo.gl/eJ6Rxi for definition of PF. 
+    No endorsement, claim, or warranty is implied for this package. It is made available for investigational or pedagogical use only
 License: MIT + file LICENSE
+URL: https://www.aphis.usda.gov/animal_health/vet_biologics/publications/STATWI0007.pdf, https://github.com/ABS-dev/PF/blob/master/doc/PFPackageManual.pdf
+BugReports: https://github.com/ABS-dev/PF/issues
 LazyLoad: yes
 LazyData: yes
 Depends:
-    methods, grid, xtable, RColorBrewer, gdata
+    R (>= 3.4.4), methods
+Suggests:
+  knitr
 Collate:
-    'aaa.r'
     'aab.r'
-    'class-rr1_tables.r'
-    'class-rror_tables.r'
-    'class-rrsc_tables.r'
-    'class-rrsi_tables.r'
-    'class-rrstr_tables.r'
     'class.r'
     'generics.r'
-    'getPFTable_generics.r'
     'PF-package.r'
     'IDRlsi.r'
     'IDRsc.r'
@@ -36,3 +36,5 @@ Collate:
     'RRtosst.r'
     'rsbWt.r'
     'tauWt.r'
+VignetteBuilder: knitr
+RoxygenNote: 6.0.1

@@ -6,7 +6,8 @@
 #' more conservative than Koopman's by including a factor of \code{(N-1)/N}. The starting estimate for the DUD algorithm is obtained by the 
 #' modified Katz method (log method with 0.5 added to each cell). Both forms of the Katz estimate may be retrieved from the returned object
 #' using \code{RRsc()$estimate}.
-#' \cr \cr The data may also be a matrix. In that case \code{y} would be entered as \code{matrix(c(y1, n1-y1, y2, n2-y2), 2, 2, byrow = TRUE)}.
+#' \cr \cr The data may also be a matrix. In that case \code{y} would be entered as \cr
+#' \code{matrix(c(y1, n1-y1, y2, n2-y2), 2, 2, byrow = TRUE)}.
 # @usage RRsc(y, alpha = 0.05, pf = T)
 #' @param y Data vector c(y1, n1, y2, n2) where y are the positives, n are the total, and group 1 is compared to group 2.
 #' @param alpha Complement of the confidence level.
@@ -27,7 +28,6 @@
 #' \cr Miettinen O, Nurminen M, 1985. Comparative analysis of two rates. \emph{Statistics in Medicine} 4:213-226.
 #' \cr Ralston ML, Jennrich RI, 1978. DUD, A Derivative-Free Algorithm for Nonlinear Least Squares. \emph{Technometrics} 20:7-14. 
 #' @author David Siev \email{david.siev@@aphis.usda.gov}
-#' @note Level tested: High.
 #' @seealso \code{\link{rrsc}}
 #' 
 #' @examples
@@ -44,15 +44,15 @@
 ##-------------------------------
 ## RRsc function
 ##-------------------------------
-RRsc <- function(y = NULL, alpha = 0.05, pf = TRUE, trace.it = FALSE, iter.max = 18, converge = 1e-6, rnd = 3){
-# coded 1993 by D. Siev (as ve.rr)
-# revised for package 2010
+RRsc <- function(y = NULL, alpha = 0.05, pf = TRUE, 
+                 trace.it = FALSE, iter.max = 18, converge = 1e-6, rnd = 3){
+
 #---------------------------------------
-# define internal functions:
-#  u.p, zi.phi, zis.phi, root, rr.opt	
-	
-	u.p <- function(p1, p2, n1, n2)
-		(1 - p1)/(n1 * p1) + (1 - p2)/(n2 * p2)
+# internal functions
+###############################
+  u.p <- function(p1, p2, n1, n2){
+    (1 - p1)/(n1 * p1) + (1 - p2)/(n2 * p2)
+  }
 	
 	zsc.phi <- function(phi, x1, x2, n1, n2, u.p, root, za, MN = F){
 		# for score interval in RRsc
@@ -109,8 +109,8 @@ RRsc <- function(y = NULL, alpha = 0.05, pf = TRUE, trace.it = FALSE, iter.max =
 		return(c(r1, r2))
 		}
 
-rr.opt <- function(z.phi,phi,za,trace.it,u.p,root,MN){
-    # optimizer function for RRsc
+  rr.opt <- function(z.phi,phi,za,trace.it,u.p,root,MN){
+  # optimizer function for RRsc
 	# data from parent environment
         zz <- c(z.phi(phi[1], x1, x2, n1, n2, u.p, root, za, MN), z.phi(phi[2], x1, x2, n1, n2, u.p, root, za, MN))
         if(abs(za - zz[1]) > abs(za - zz[2]))
@@ -236,9 +236,7 @@ rr.opt <- function(z.phi,phi,za,trace.it,u.p,root,MN){
         dimnames(int)[[2]] <- c("PF", "LL", "UL")
         }
 	return(rrsc$new(estimate = int, estimator = ifelse(pf, 'PF', 'RR'), y = y, rnd = rnd, alpha = alpha))
-    # out <- list(estimate = int, estimator = ifelse(pf, 'PF', 'RR'), y = y, rnd = rnd, alpha = alpha)
-    # class(out) <- 'rrsc'
-    # return(out)
+
 }
 
 

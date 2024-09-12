@@ -1,5 +1,5 @@
 #' @title RR likelihood support interval.
-#' @descriptionEstimates likelihood support interval for the risk ratio or prevented fraction by the likelihood profile.
+#' @description likelihood support interval for the risk ratio or prevented fraction by the likelihood profile.
 #' @details Estimates a likelihood support interval for \emph{RR} or \emph{PF} by the profile likelihood method using the DUD algorithm.
 #' \cr \cr Likelihood support intervals are usually formed based on the desired likelihood ratio, often 1/8 or 1/32. Under some conditions the log likelihood ratio
 #' may follow the chi square distribution. If so, 
@@ -8,7 +8,8 @@
 #' then \eqn{\alpha=1-F(2log(k),1)}, where \eqn{F} is a chi-square CDF. 
 #' \code{RRlsi()} will make the conversion from \eqn{\alpha}
 #' to \emph{k} if \code{use.alpha = TRUE}.
-#' \cr \cr The data may also be a matrix. In that case \code{y} would be entered as \code{matrix(c(y1, n1-y1, y2, n2-y2), 2, 2, byrow = TRUE)}.
+#' \cr \cr The data may also be a matrix. In that case \code{y} would be entered as \cr
+#' \code{matrix(c(y1, n1-y1, y2, n2-y2), 2, 2, byrow = TRUE)}.
 # @usage RRlsi(y, k=8, use.alpha = F pf = T)
 #' @param y Data vector c(y1, n1, y2, n2) where y are the positives, n are the total, and group 1 is compared to group 2.
 #' @param k Likelihood ratio criterion.
@@ -32,7 +33,6 @@
 #' @references Royall R. \emph{Statistical Evidence: A Likelihood Paradigm}. Chapman & Hall, Boca Raton, 1997.  Section 7.6
 #' \cr Ralston ML, Jennrich RI, 1978. DUD, A Derivative-Free Algorithm for Nonlinear Least Squares. \emph{Technometrics} 20:7-14. 
 #' @author David Siev \email{david.siev@@aphis.usda.gov}
-#' @note Level tested: High.
 #' @examples
 #' RRlsi(c(4,24,12,28))
 #' 

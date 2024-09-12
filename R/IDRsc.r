@@ -6,7 +6,8 @@
 #' IDR=\widehat{IDR}\left\{ 1+\left( \frac{1}{{{y}_{1}}}+\frac{1}{{{y}_{2}}} \right)\frac{z_{\alpha /2}^{2}}{2}\ \ \pm \ \ \frac{z_{\alpha
 #'  /2}^{2}}{2{{y}_{1}}{{y}_{2}}}\sqrt{{{y}_{\bullet }}\left( {{y}_{\bullet }}z_{\alpha /2}^{2}+4{{y}_{1}}{{y}_{2}} \right)} \right\}
 #' }{(See the PF Package Vignette for the formula.)}
-#' \cr \cr The data may also be a matrix. In that case \code{y} would be entered as \code{matrix(c(y1, n1 - y1, y2, n2 - y2), 2, 2, byrow = TRUE)}.
+#' \cr \cr The data may also be a matrix. In that case \code{y} would be entered as \cr
+#' \code{matrix(c(y1, n1 - y1, y2, n2 - y2), 2, 2, byrow = TRUE)}.
 #' @param y Data vector c(y1, n1, y2, n2) where y are the positives, n are the total, and group 1 is compared to group 2.
 #' @param alpha Complement of the confidence level.
 #' @param pf Estimate \emph{IDR}, or its complement \emph{PF}? 
@@ -24,7 +25,6 @@
 #' \cr Siev D, 2004. Letter to the editor. \emph{Statistics in Medicine} 23:693. (Typographical error in formula: replace the two final minus
 #' signs with subscript dots.)
 #' @author David Siev \email{david.siev@@aphis.usda.gov}
-#' @note Level tested: High.
 #' @seealso \code{\link{IDRlsi}}
 #' 
 #' @examples

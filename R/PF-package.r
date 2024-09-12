@@ -5,8 +5,8 @@
 #' \tabular{ll}{
 #' Package: \tab pf-package\cr
 #' Type: \tab Package\cr
-#' Version: \tab 9.5.1\cr
-#' Date: \tab 2015-03-31\cr
+#' Version: \tab 9.5.3\cr
+#' Date: \tab 2018-08-01\cr
 #' License: \tab MIT\cr
 #' LazyLoad: \tab yes\cr
 #' LazyData: \tab yes\cr
@@ -16,35 +16,42 @@
 #' @aliases PF
 #' @docType package
 #' @author David Siev \email{David.Siev@@aphis.usda.gov}
-#' @examples
-#' #---------------------------------------------
-#' # Checking PF package
-#' #---------------------------------------------
-#' example(RRsc)
-#' example(RRstr)
-#' example(RRmh)
-#' example(RRor)
-#' example(phiWt)
-#' example(tauWt)
-#' example(rsbWt)
-#' example(rsb)
-#' example(RRlsi)
-#' example(IDRsc)
-#' example(IDRlsi)
-#' #---------------------------------------------
-#' # The next two take a moment to run
-#' #---------------------------------------------
-#' example(RRtosst)
-#' example(RRotsst)
-#' #---------------------------------------------
-#' # End examples
-#' #---------------------------------------------
-#' invisible()
+#' @section Resources:
+#' 
+#' \itemize{
+#' \item GUIDANCE: \url{https://www.aphis.usda.gov/aphis/ourfocus/animalhealth/veterinary-biologics/biologics-regulations-and-guidance/ct_vb_statwi}
+#' \item QUICK START: \url{https://github.com/ABS-dev/PF/blob/master/README.md}
+#' \item BUG REPORTS: \url{https://github.com/ABS-dev/PF/issues}
+#' }
+# @examples
+# #---------------------------------------------
+# # Checking PF package
+# #---------------------------------------------
+# example(RRsc)
+# example(RRstr)
+# example(RRmh)
+# example(RRor)
+# example(phiWt)
+# example(tauWt)
+# example(rsbWt)
+# example(rsb)
+# example(RRlsi)
+# example(IDRsc)
+# example(IDRlsi)
+# #---------------------------------------------
+# # The next two take a moment to run
+# #---------------------------------------------
+# example(RRtosst)
+# example(RRotsst)
+# #---------------------------------------------
+# # End examples
+# #---------------------------------------------
+# invisible()
 NA
 
 #' @name New
 #' @title New dataset
-#' @alias New-data
+#' @description New dataset
 #' @docType data
 #' @format a data frame with 52 observations of the following 3 variables, no NAs
 #' \describe{
@@ -58,7 +65,7 @@ NA
 
 #' @name Set1
 #' @title Set1 dataset
-#' @alias Set1-data
+#' @description Set1 dataset
 #' @rdname dfSet1
 #' @docType data
 #' @format a data.frame with 6 observation of the following 4 variables, no NAs
@@ -74,7 +81,7 @@ NA
 
 #' @name Table6
 #' @title Table6 dataset
-#' @alias Table6-data
+#' @description Table6 dataset
 #' @rdname dfTable6
 #' @docType data
 #' @format a data.frame with 8 observations of the following 4 variables, no NAs
@@ -90,7 +97,7 @@ NA
 
 #' @name bird
 #' @title bird dataset
-#' @alias bird-data
+#' @description bird dataset
 #' @docType data
 #' @format a data.frame with 6 observations of the following 4 variables, no NAs
 #' \describe{
@@ -105,7 +112,7 @@ NA
 
 #' @name birdm
 #' @title birdm dataset
-#' @alias birdm-data
+#' @description birdm dataset
 #' @docType data
 #' @format a data.frame with 6 observations of the following 4 variables, no NAs
 #' \describe{
@@ -120,22 +127,22 @@ NA
 
 #' @name set1
 #' @title set1 dataset
-#' @alias set1-data
+#' @description set1 dataset
 #' @format a 3 x 4 matrix of data in \code{\link{Set1}}
 #' @references we need some references!
 #' @keywords datasets
 NA
 
 #' @name table6
+#' @description table6 dataset
 #' @title table6 dataset
-#' @alias table6-data
 #' @format matrix for of data in \code{\link{Table6}}
 #' @keywords datasets
 NA
 
 #' @name rat
 #' @title rat dataset
-#' @alias rat-data
+#' @description rat dataset
 #' @format a data.frame with 32 observations of the following 3 variables, no NAs
 #' \describe{
 #' \item{y}{number positive}

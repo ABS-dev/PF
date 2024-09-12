@@ -1,5 +1,6 @@
 #' @title Data class pf
 # @name pf-class
+#' @description data class pf
 #' @aliases pf
 #' @rdname pf
 #' @section Fields:
@@ -17,6 +18,7 @@ pf <- setRefClass('pf', fields = list(estimator = 'character', rnd = 'numeric',
 	
 #' @title Data class rr1
 # @name rr1-class
+#' @description Data class rr1
 #' @aliases rr1
 #' @name rr1
 #' @rdname rr1
@@ -36,6 +38,7 @@ rr1 <- setRefClass('rr1', contains = 'pf', fields = list(estimate = 'numeric',
 
 #' @title Data class rror
 # @name rror-class
+#' @description data class rror
 #' @aliases rror
 #' @rdname rrorclass
 #' @section Fields:
@@ -56,6 +59,7 @@ rror <- setRefClass('rror', contains = 'rr1', fields = list(norm = 'logical',
 	degf = 'numeric', mu = 'matrix'))
 
 #' @title Data class rrsi
+#' @description data class rrsi
 # @name rrsi-class
 #' @aliases rrsi
 #' @rdname rrsi
@@ -75,6 +79,7 @@ rrsi <- setRefClass('rrsi', contains = 'pf', fields = list(y = 'numeric', k =
 	'numeric', estimate = 'numeric'))
 
 #' @title Data class rrmp
+#' @description data class rrmp
 # @name rrmp-class
 #' @aliases rrmp
 #' @rdname rrmp
@@ -97,7 +102,7 @@ rrmp <- setRefClass('rrmp', contains = 'rr1', fields = list(compare = 'character
 	xtable = 'matrix', freqvec = 'numeric', multvec = 'data.frame'))
 
 #' @title Data class rrsc
-#' @alias rrsc
+#' @description data class rrsc
 #' @rdname rrscclass
 #' @section Fields:
 #' \itemize{
@@ -114,6 +119,7 @@ rrsc <- setRefClass('rrsc', contains = 'pf', fields = list(estimate = 'matrix',
 	y = 'numeric'))
 	
 #' @title Data class rrstr
+#' @description data class rrstr
 # @name rrstr-class
 #' @aliases rrstr
 #' @rdname rrstrclass
