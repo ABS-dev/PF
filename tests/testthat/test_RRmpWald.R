@@ -1,10 +1,7 @@
 context("RRmpWald")
 
 test_that("examples work", {
-  # warning will go away once issue #5 is resolved
-  expect_warning(ex1 <- RRmpWald(pos ~ tx + cluster(cage),
-                                 New,
-                                 compare = c("vac", "con")))
+  ex1 <- RRmpWald(pos ~ tx + cluster(cage), New, compare = c("vac", "con"))
   thismultvec <- data.frame(vac = rep(c("pos", "neg"), 2),
                             con = rep(c("pos", "neg"), each = 2),
                             Freq = c(7, 13, 2, 4))
@@ -20,12 +17,11 @@ test_that("examples work", {
   expect_equal(ex1$multvec, thismultvec)
 
   thistable <- New |>
-    tidyr::spread(tx, pos) |>
-    dplyr::mutate(vac = factor(vac, levels = 1:0),
+    spread(tx, pos) |>
+    mutate(vac = factor(vac, levels = 1:0),
                   con = factor(con, levels = 1:0)) |>
     with(table(vac, con))
-  # warning will go away once issue #5 is resolved
-  expect_warning(ex2 <- RRmpWald(x = as.vector(thistable)))
+  ex2 <- RRmpWald(x = as.vector(thistable))
   expect_equal(ex2$estimate, ex1$estimate)
   expect_equal(ex2$estimator, ex1$estimator)
   expect_equal(ex2$compare, ex1$compare)

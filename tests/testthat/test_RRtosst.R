@@ -24,8 +24,8 @@ test_that("examples work", {
   expect_equal(ex1, ex3)
 
   data2 <- data1 |>
-    dplyr::group_by(group) |>
-    dplyr::summarize(sum_y = sum(y),
+    group_by(group) |>
+    summarize(sum_y = sum(y),
               sum_n = sum(n))
 
   ex4 <- RRtosst(data = data2, formula =  cbind(sum_y, sum_n) ~ group,

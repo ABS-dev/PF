@@ -199,6 +199,7 @@ RRstr <- function(formula = NULL, data = NULL, compare = c("vac", "con"), Y,
 
   # convert to matrix
 
+
   if (!is.null(formula) && !is.null(data)) {
     Y <- .matricize(formula = formula, data = data, compare = compare)$Y
   }
@@ -268,7 +269,6 @@ RRstr <- function(formula = NULL, data = NULL, compare = c("vac", "con"), Y,
     hom <- list(stat = hom.test, df = df.test, p = p.test)
   }
   #---------------------------------------
-
   # Score intervals
   for (k in which) {
     if (trace.it) cat("\nScore", switch(k, "lower", "upper"))
