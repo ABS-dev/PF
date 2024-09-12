@@ -1,23 +1,23 @@
 Package: PF
 Type: Package
 Title: Prevented fraction
+Version: 9.6.2
+Date: 2023-11-1
+Authors@R: c(
+  person(given   = "CVB Statistics", email = "CVB.Data.Help@usda.gov", role = c("cre", "fmo")),
+  person(given   = "David",  family  = "Siev",        role = "aut", comment = "until 2019"),
+  person(given   = "Marie",  family  = "Vendettuoli", role = "aut", comment = "until 2019"),
+  person(given   = "Thomas", family  = "Kent",        role = "aut", comment = "starting 2020"))
 Description: Functions related to PF (prevented fraction). Calculate incidence
     density ratio, confidence interval, and Rao-Scott weights of PF by multiple
     methods. See http://goo.gl/eJ6Rxi for definition of PF. 
     No endorsement, claim, or warranty is implied for this package. It is made 
     available for investigational or pedagogical use only.
-Version: 9.6.1
-Date: 2023-10-24
-Authors@R: c(
-  person("CVB", "Statistics", , "CVB.Data.Help@usda.gov", "cre"),
-  person("David", "Siev", , , c("fmo", "aut"), comment = "until 2019"),
-  person("CVB", "Statistics", , "CVB.Data.Help@usda.gov", "aut", 
-    comment = "starting 2010"))
 License: CC0
 URL: https://www.aphis.usda.gov/animal_health/vet_biologics/publications/STATWI0007.pdf, https://github.com/ABS-dev/PF/blob/master/doc/PFPackageManual.pdf
 BugReports: https://github.com/ABS-dev/PF/issues
-LazyLoad: yes
-LazyData: yes
+LazyLoad: true
+LazyData: true
 Depends:
     R (>= 4.0)
 Imports:
@@ -52,4 +52,5 @@ Collate:
     'tauWt.r'
 VignetteBuilder: knitr
 Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3

@@ -29,8 +29,8 @@ positive, n is the group size, x is a factor with two levels of treatment.}
 
 \item{data}{data.frame containing variables of formula.}
 
-\item{compare}{Text vector stating the factor levels: compare[1] is the
-vaccinate group to which compare[2] (control or reference) is compared.}
+\item{compare}{Text vector stating the factor levels: compare\link{1} is the
+vaccinate group to which compare\link{2} (control or reference) is compared.}
 
 \item{alpha}{Complement of the confidence level.}
 
@@ -55,24 +55,24 @@ nuisance parameter evaluation)}
 }
 \value{
 A \code{\link{rr1}} object with the following fields.
-  \item{estimate}{vector with point and interval estimate}
-  \item{estimator}{either \code{"PF"} or \code{"RR"}} \item{y}{data.frame
-  with "y1", "n1", "y2", "n2" values. } \item{rnd}{how many digits to round
-  the display} \item{alpha}{complement of confidence level}
+\item{estimate}{vector with point and interval estimate}
+\item{estimator}{either \code{"PF"} or \code{"RR"}} \item{y}{data.frame
+with "y1", "n1", "y2", "n2" values. } \item{rnd}{how many digits to round
+the display} \item{alpha}{complement of confidence level}
 }
 \description{
 Estimates confidence interval for the risk ratio or prevented
-  fraction; exact method based on the score statistic (inverts two one-sided
-  tests).
+fraction; exact method based on the score statistic (inverts two one-sided
+tests).
 }
 \details{
 Estimates confidence intervals based on the score statistic that are
-  'exact' in the sense of accounting for discreteness. Inverts two one-sided
-  score tests. The score statistic is used to select tail area tables, and
-  the binomial probability is estimated over the tail area by taking the
-  maximum over the nuisance parameter. Algorithm is a simple step search. \cr
-  \cr The data may also be a matrix. In that case \code{y} would be entered
-  as \cr \code{matrix(c(y1, n1-y1, y2, n2-y2), 2, 2, byrow = TRUE)}.
+'exact' in the sense of accounting for discreteness. Inverts two one-sided
+score tests. The score statistic is used to select tail area tables, and
+the binomial probability is estimated over the tail area by taking the
+maximum over the nuisance parameter. Algorithm is a simple step search. \cr
+\cr The data may also be a matrix. In that case \code{y} would be entered
+as \cr \code{matrix(c(y1, n1-y1, y2, n2-y2), 2, 2, byrow = TRUE)}.
 }
 \examples{
 # Both examples represent the same observation, with data entry by vector
@@ -120,11 +120,11 @@ RRtosst(data = data2, formula =  cbind(sum_y, sum_n) ~ group,
 }
 \references{
 Koopman PAR, 1984. Confidence intervals for the ratio of two
-  binomial proportions. \emph{Biometrics} 40:513-517. \cr Agresti A, Min Y,
-  2001.  On small-sample confidence intervals for parameters in discrete
-  distribution. \emph{Biometrics} 57: 963-971. \cr Berger RL, Boos DD, 1994.
-  P values maximized over a confidence set for the nuisance parameter.
-  \emph{Journal of the American Statistical Association} 89:214-220.
+binomial proportions. \emph{Biometrics} 40:513-517. \cr Agresti A, Min Y,
+2001.  On small-sample confidence intervals for parameters in discrete
+distribution. \emph{Biometrics} 57: 963-971. \cr Berger RL, Boos DD, 1994.
+P values maximized over a confidence set for the nuisance parameter.
+\emph{Journal of the American Statistical Association} 89:214-220.
 }
 \seealso{
 \code{\link{RRotsst}, \link{rr1}}

@@ -30,8 +30,8 @@ positive, n is the group size, x is a factor with two levels of treatment.}
 
 \item{data}{data.frame containing variables of formula.}
 
-\item{compare}{Text vector stating the factor levels: compare[1] is the
-vaccinate group to which compare[2] (control or reference) is compared.}
+\item{compare}{Text vector stating the factor levels: compare\link{1} is the
+vaccinate group to which compare\link{2} (control or reference) is compared.}
 
 \item{alpha}{Complement of the confidence level (see details).}
 
@@ -57,28 +57,28 @@ estimates.}
 \value{
 An object of class \code{\link{rrsi}} with the following fields: \cr
 
-  \item{estimate}{matrix of point and interval estimates - see details}
+\item{estimate}{matrix of point and interval estimates - see details}
 
-  \item{estimator}{either \code{"PF"} or \code{"RR"}}
+\item{estimator}{either \code{"PF"} or \code{"RR"}}
 
-  \item{y}{data.frame with "y1", "n1", "y2", "n2" values. }
+\item{y}{data.frame with "y1", "n1", "y2", "n2" values. }
 
-  \item{rnd}{how many digits to round the display}
+\item{rnd}{how many digits to round the display}
 
-  \item{k}{likelihood ratio criterion}
+\item{k}{likelihood ratio criterion}
 
-  \item{alpha}{complement of confidence level}
+\item{alpha}{complement of confidence level}
 }
 \description{
 likelihood support interval for the risk ratio or prevented
-  fraction by the likelihood profile.
+fraction by the likelihood profile.
 }
 \details{
 Estimates a likelihood support interval for \emph{RR} or \emph{PF}
-  by the profile likelihood method using the DUD algorithm. \cr \cr
-  Likelihood support intervals are usually formed based on the desired
-  likelihood ratio, often 1/8 or 1/32. Under some conditions the log
-  likelihood ratio may follow the chi square distribution. If so,
+by the profile likelihood method using the DUD algorithm. \cr \cr
+Likelihood support intervals are usually formed based on the desired
+likelihood ratio, often 1/8 or 1/32. Under some conditions the log
+likelihood ratio may follow the chi square distribution. If so,
 then \eqn{\alpha=1-F(2log(k), 1)}, where \eqn{F} is a chi-square CDF.
 \code{RRlsi()} will make the conversion from \eqn{\alpha} to \emph{k} if
 \code{use.alpha = TRUE}. \cr \cr The data may also be a matrix. In that case
@@ -142,9 +142,9 @@ RRlsi(data = data2, formula =  cbind(sum_y, sum_n) ~ group,
 }
 \references{
 Royall R. \emph{Statistical Evidence: A Likelihood Paradigm}.
-  Chapman & Hall, Boca Raton, 1997.  Section 7.6 \cr Ralston ML, Jennrich RI,
-  1978. DUD, A Derivative-Free Algorithm for Nonlinear Least Squares.
-  \emph{Technometrics} 20:7-14.
+Chapman & Hall, Boca Raton, 1997.  Section 7.6 \cr Ralston ML, Jennrich RI,
+1978. DUD, A Derivative-Free Algorithm for Nonlinear Least Squares.
+\emph{Technometrics} 20:7-14.
 }
 \author{
 \link{PF-package}

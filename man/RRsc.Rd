@@ -26,8 +26,8 @@ total, and group 1 is compared to group 2 (control or reference group).}
 \item{formula}{Formula of the form cbind(y, n) ~ x, where y is the number
 positive, n is the group size, x is a factor with two levels of treatment.}
 
-\item{compare}{Text vector stating the factor levels: compare[1] is the
-vaccinate group to which compare[2] (control or reference) is compared.}
+\item{compare}{Text vector stating the factor levels: compare\link{1} is the
+vaccinate group to which compare\link{2} (control or reference) is compared.}
 
 \item{alpha}{Complement of the confidence level.}
 
@@ -44,26 +44,26 @@ estimates.}
 }
 \value{
 A \code{\link{rrsc}} object with the following fields.
-  \item{estimate}{matrix of point and interval estimates - see details}
-  \item{estimator}{either \code{"PF"} or \code{"RR"}} \item{y}{data.frame
-  with "y1", "n1", "y2", "n2" values. } \item{rnd}{how many digits to round
-  the display} \item{alpha}{complement of confidence level}
+\item{estimate}{matrix of point and interval estimates - see details}
+\item{estimator}{either \code{"PF"} or \code{"RR"}} \item{y}{data.frame
+with "y1", "n1", "y2", "n2" values. } \item{rnd}{how many digits to round
+the display} \item{alpha}{complement of confidence level}
 }
 \description{
 Estimates confidence intervals for the risk ratio or prevented
-  fraction based on the score statistic.
+fraction based on the score statistic.
 }
 \details{
 Estimates are returned for three estimators based on the score
-  statistic. The score method was introduced by Koopman (1984). Gart and
-  Nam's modification (1988) includes a skewness correction. The method of
-  Miettinen and Nurminen (1985) is a version made slightly more conservative
-  than Koopman's by including a factor of \code{(N-1)/N}. The starting
-  estimate for the DUD algorithm is obtained by the modified Katz method (log
-  method with 0.5 added to each cell). Both forms of the Katz estimate may be
-  retrieved from the returned object using \code{RRsc()$estimate}. \cr \cr
-  The data may also be a matrix. In that case \code{y} would be entered as
-  \cr \code{matrix(c(y1, n1-y1, y2, n2-y2), 2, 2, byrow = TRUE)}.
+statistic. The score method was introduced by Koopman (1984). Gart and
+Nam's modification (1988) includes a skewness correction. The method of
+Miettinen and Nurminen (1985) is a version made slightly more conservative
+than Koopman's by including a factor of \code{(N-1)/N}. The starting
+estimate for the DUD algorithm is obtained by the modified Katz method (log
+method with 0.5 added to each cell). Both forms of the Katz estimate may be
+retrieved from the returned object using \code{RRsc()$estimate}. \cr \cr
+The data may also be a matrix. In that case \code{y} would be entered as
+\cr \code{matrix(c(y1, n1-y1, y2, n2-y2), 2, 2, byrow = TRUE)}.
 }
 \examples{
 # All examples represent the same observation, with data entry by using
@@ -117,13 +117,13 @@ RRsc(data = data2, formula = cbind(sum_y, sum_n) ~ group,
 }
 \references{
 Gart JJ, Nam J, 1988. Approximate interval estimation of the
-  ratio of binomial parameters: a review and corrections for skewness.
-  \emph{Biometrics} 44:323-338. \cr Koopman PAR, 1984. Confidence intervals
-  for the ratio of two binomial proportions. \emph{Biometrics} 40:513-517.
-  \cr Miettinen O, Nurminen M, 1985. Comparative analysis of two rates.
-  \emph{Statistics in Medicine} 4:213-226. \cr Ralston ML, Jennrich RI, 1978.
-  DUD, A Derivative-Free Algorithm for Nonlinear Least Squares.
-  \emph{Technometrics} 20:7-14.
+ratio of binomial parameters: a review and corrections for skewness.
+\emph{Biometrics} 44:323-338. \cr Koopman PAR, 1984. Confidence intervals
+for the ratio of two binomial proportions. \emph{Biometrics} 40:513-517.
+\cr Miettinen O, Nurminen M, 1985. Comparative analysis of two rates.
+\emph{Statistics in Medicine} 4:213-226. \cr Ralston ML, Jennrich RI, 1978.
+DUD, A Derivative-Free Algorithm for Nonlinear Least Squares.
+\emph{Technometrics} 20:7-14.
 }
 \seealso{
 \code{\link{rrsc}}

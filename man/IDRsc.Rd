@@ -23,8 +23,8 @@ total, and group 1 is compared to group 2 (control or reference).}
 \item{formula}{Formula of the form cbind(y, n) ~ x, where y is the number
 positive, n is the group size, x is a factor with two levels of treatment.}
 
-\item{compare}{Text vector stating the factor levels: compare[1] is the
-vaccinate group to which compare[2] (control or reference) is compared.}
+\item{compare}{Text vector stating the factor levels: compare\link{1} is the
+vaccinate group to which compare\link{2} (control or reference) is compared.}
 
 \item{alpha}{Complement of the confidence level.}
 
@@ -36,33 +36,33 @@ estimates.}
 \value{
 A \code{\link{rr1}} object with the following elements.
 
-  \item{estimate}{vector with point and interval estimate}
+\item{estimate}{vector with point and interval estimate}
 
-  \item{estimator}{either \emph{PF} or \emph{IDR}}
+\item{estimator}{either \emph{PF} or \emph{IDR}}
 
-  \item{y}{data vector}
+\item{y}{data vector}
 
-  \item{rnd}{how many digits to round the display}
+\item{rnd}{how many digits to round the display}
 
-  \item{alpha}{complement of confidence level}
+\item{alpha}{complement of confidence level}
 }
 \description{
 Estimates confidence interval for the incidence density ratio or
-  prevented fraction based on it.
+prevented fraction based on it.
 }
 \details{
 The incidence density is the number of cases per subject-time; its
-  distribution is assumed Poisson. \code{IDRsc} estimates a confidence
-  interval for the incidence density ratio using Siev's formula based on the
-  Poisson score statistic. \eqn{ IDR=\widehat{IDR}\left\{ 1+\left(
+distribution is assumed Poisson. \code{IDRsc} estimates a confidence
+interval for the incidence density ratio using Siev's formula based on the
+Poisson score statistic. \eqn{ IDR=\widehat{IDR}\left\{ 1+\left(
   \frac{1}{{{y}_{1}}}+\frac{1}{{{y}_{2}}} \right)\frac{z_{\alpha /2}^{2}}{2}\
   \ \pm \ \ \frac{z_{\alpha /2}^{2}}{2{{y}_{1}}{{y}_{2}}}\sqrt{{{y}_{\bullet
   }}\left( {{y}_{\bullet }}z_{\alpha /2}^{2}+4{{y}_{1}}{{y}_{2}} \right)}
   \right\} }{(See
   \hyperref{https://www.aphis.usda.gov/animal_health/vet_biologics/
   publications/STATWI0007.pdf}{USDA CVB StatWI0007} for the formula.)} \cr
-  \cr The data may also be a matrix. In that case \code{y} would be entered
-  as \cr \code{matrix(c(y1, n1 - y1, y2, n2 - y2), 2, 2, byrow = TRUE)}.
+\cr The data may also be a matrix. In that case \code{y} would be entered
+as \cr \code{matrix(c(y1, n1 - y1, y2, n2 - y2), 2, 2, byrow = TRUE)}.
 }
 \examples{
 # All examples represent the same observation, with data entry by vector,
@@ -111,12 +111,12 @@ IDRsc(data = data2, formula =  cbind(sum_y, sum_n) ~ group,
 }
 \references{
 Siev D, 1994. Estimating vaccine efficacy in prospective studies.
-  \emph{Preventive Veterinary Medicine} 20:279-296, Appendix 1. \cr Graham
-  PL, Mengersen K, Morton AP, 2003. Confidence limits for the ratio of two
-  rates based on likelihood scores:non-iterative method \emph{Statistics in
-  Medicine} 22:2071-2083. \cr Siev D, 2004. Letter to the editor.
-  \emph{Statistics in Medicine} 23:693. (Typographical error in formula:
-  replace the two final minus signs with subscript dots.)
+\emph{Preventive Veterinary Medicine} 20:279-296, Appendix 1. \cr Graham
+PL, Mengersen K, Morton AP, 2003. Confidence limits for the ratio of two
+rates based on likelihood scores:non-iterative method \emph{Statistics in
+Medicine} 22:2071-2083. \cr Siev D, 2004. Letter to the editor.
+\emph{Statistics in Medicine} 23:693. (Typographical error in formula:
+replace the two final minus signs with subscript dots.)
 }
 \seealso{
 \code{\link{IDRlsi}}
