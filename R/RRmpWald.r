@@ -53,33 +53,16 @@
 #' @examples
 #' RRmpWald(pos ~ tx + cluster(cage), New, compare = c("vac", "con"))
 #'
-#' # PF
-#' # 95% interval estimates
-#' #
-#' #    PF    LL    UL
-#' # 0.550 0.183 0.752
-#'
-#' require(magrittr)
 #' thistable <- New |>
 #'   tidyr::spread(tx, pos) |>
+#'   tidyr::drop_na() |>
 #'   dplyr::mutate(vac = factor(vac, levels = 1:0),
 #'     con = factor(con, levels = 1:0)) |>
 #'   with(table(vac, con))
 #' thistable
-#' #    con
-#' # vac  1  0
-#' #   1  7  2
-#' #   0 13  4
 #' as.vector(thistable)
-#' # [1]  7 13  2  4
 #'
 #' RRmpWald(x = as.vector(thistable))
-#'
-#' # PF
-#' # 95% interval estimates
-#' #
-#' #    PF    LL    UL
-#' # 0.550 0.183 0.752
 #' @importFrom stats qnorm qt
 RRmpWald <- function(formula = NULL, data = NULL, compare = c("vac", "con"),
                      affected = 1, x, alpha = 0.05, pf = TRUE, tdist = TRUE,
@@ -94,26 +77,20 @@ RRmpWald <- function(formula = NULL, data = NULL, compare = c("vac", "con"),
   # ordered by vac/con pairs: c(11, 01, 10, 00)
   multvec <- NULL
   if (!is.null(formula) && !is.null(data)) {
-    Xx <- .twoby(formula = formula, data = data, compare = compare,
+    x <- .twoby(formula = formula, data = data, compare = compare,
                  affected = affected)
-    xtable <- Xx$xtable
-    x <- Xx$freqvec
-    multvec <- Xx$multvec
   } else if (is.matrix(x)) {
     stop("RRmpWald: data input by matrix is deprecated.")
   } else if (is.vector(x)) {
     if (length(x) != 4) {
       stop("Vector length must be 4\n")
     }
-    xtable <- matrix(x, 2, 2, byrow = FALSE)
-    multvec <- xtable
-    rownames(multvec) <- c("pos", "neg")
-    colnames(multvec) <- c("pos", "neg")
-    multvec <- multvec |> as.table() |> as.data.frame()
-    colnames(multvec) <- c(compare, "Freq")
-
   }
-
+  multvec <- matrix(x, 2, 2, byrow = FALSE)
+  rownames(multvec) <- c("pos", "neg")
+  colnames(multvec) <- c("pos", "neg")
+  multvec <- multvec |> as.table() |> as.data.frame()
+  colnames(multvec) <- c(compare, "Freq")
 
   N <- sum(x)
   p <- x / N
@@ -157,4 +134,28 @@ RRmpWald <- function(formula = NULL, data = NULL, compare = c("vac", "con"),
                   compare = compare, alpha = alpha, rnd = rnd,
                   multvec =	multvec))
 
+}
+
+#' @importFrom stats model.frame terms
+#' @importFrom data.table fifelse
+#' @importFrom tidyr spread drop_na
+.twoby <- function(formula, data, compare, affected) {
+  tx <- pos <- NULL
+  cluster <- function(x) {
+    return(x)
+  }
+  data <- droplevels(data)
+  Terms <- terms(formula, specials = "cluster", data = data)
+  environment(Terms) <- environment()
+  A <- model.frame(formula = Terms, data = data)
+  names(A) <- c("pos", "tx", "cage")
+  A <- tidyr::drop_na(A)
+  A$pos <- fifelse(A$pos %in% affected, 1, 0)
+  A$pos <- factor(A$pos, levels = 1:0)
+  A$tx  <- fifelse(A$tx %in% compare[1], "vac", "con")
+  tbl <- A |>
+    spread(tx, pos) |>
+    drop_na() |>
+    with(table(vac, con))
+  as.vector(tbl)
 }

@@ -1,8 +1,8 @@
 Package: PF
 Type: Package
 Title: Prevented fraction
-Version: 9.6.9
-Date: 2024-07-24
+Version: 9.6.10
+Date: 2024-08-07
 Authors@R: c(
   person(given   = "CVB Statistics", email = "CVB.Data.Help@usda.gov", role = c("cre", "fmo")),
   person(given   = "David",  family  = "Siev",        role = "aut", comment = "until 2019"),
@@ -26,9 +26,9 @@ Imports:
   methods,
   plyr,
   dplyr,
-  tidyr
+  tidyr,
+  data.table
 Suggests:
-  magrittr,
   testthat,
   knitr,
   rmarkdown,
@@ -36,7 +36,6 @@ Suggests:
 Collate:
   'aaa.r'
   'aab.r'
-  'aac.r'
   'class.r'
   'generics.r'
   'PF.r'

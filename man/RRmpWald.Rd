@@ -87,33 +87,15 @@ Call to this function may be one of two formats: (1) specify \code{data} and
 \examples{
 RRmpWald(pos ~ tx + cluster(cage), New, compare = c("vac", "con"))
 
-# PF
-# 95\% interval estimates
-#
-#    PF    LL    UL
-# 0.550 0.183 0.752
-
-require(magrittr)
 thistable <- New |>
   tidyr::spread(tx, pos) |>
   dplyr::mutate(vac = factor(vac, levels = 1:0),
     con = factor(con, levels = 1:0)) |>
   with(table(vac, con))
 thistable
-#    con
-# vac  1  0
-#   1  7  2
-#   0 13  4
 as.vector(thistable)
-# [1]  7 13  2  4
 
 RRmpWald(x = as.vector(thistable))
-
-# PF
-# 95\% interval estimates
-#
-#    PF    LL    UL
-# 0.550 0.183 0.752
 }
 \author{
 \link{PF-package}

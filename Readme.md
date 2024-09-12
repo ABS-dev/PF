@@ -1,35 +1,18 @@
-PF - Prevented Fraction
-==
+# PF - Prevented Fraction <img src="man/figures/logo.png" alt="Package Logo" width="100" align="right"/>
 
+## Installation
 
-### To install or update PF:
-
-From **within R**
-
-1. Installing last release [v9.5.4](https://github.com/ABS-dev/PF/releases/tag/v9.5.4)
-
-```
-require(devtools)
-install_github("ABS-dev/PF", ref = "v9.5.4")
-```
-*See all historical releases [here](https://github.com/ABS-dev/PF/releases)*
-
-2. Installing work-in-progress towards v9.5.5
-
-[![Build Status](https://travis-ci.org/ABS-dev/PF.svg?branch=master)](https://travis-ci.org/ABS-dev/PF)
-[![codecov](https://codecov.io/gh/ABS-dev/PF/branch/master/graph/badge.svg)](https://codecov.io/gh/ABS-dev/PF)
-
-```
-require(devtools)
-install_github("ABS-dev/PF")
+```         
+devtools::install_github("ABS-dev/PF")
 ```
 
-### Package Vignette:
+## Vignettes
 
-Read online at https://www.aphis.usda.gov/animal_health/vet_biologics/publications/STATWI0007.pdf
+This package contains the following manuals and vignettes:
 
-### Package Manual:
+-   PF Package
+-   PF Vignette
 
-Read online at https://github.com/ABS-dev/PF/blob/master/inst/doc/PFPackageManual.pdf
+## Issues
 
-
+Report any issues or requests on the package [issues](https://github.com/ABS-dev/PF/issues) page.

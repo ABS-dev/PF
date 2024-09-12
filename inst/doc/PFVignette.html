@@ -38,7 +38,7 @@ overflow: visible;
 </style>
 <style type="text/css" data-origin="pandoc">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -137,6 +137,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; }
 div.csl-bib-body { }
 div.csl-entry {
 clear: both;
+margin-bottom: 0em;
 }
 .hanging div.csl-entry {
 margin-left:2em;
@@ -412,9 +413,8 @@ where hat indicates the MLE and tilde indicates the MLE under the restriction th
 <h2><span class="header-section-number">2.2</span> Asymptotic intervals</h2>
 <p><code>RRsc()</code> estimates asymptotic confidence intervals for the risk ratio or prevented fraction based on the score statistic.
 Interval estimates are returned for three estimators. The score method was originally introduced by <span class="citation">(Koopman 1984)</span>. Gart and Nam’s modification includes a skewness correction <span class="citation">(Gart and Nam 1988)</span>. The method of <span class="citation">(Miettinen and Nurminen 1985)</span> is a version made slightly more conservative than Koopman’s by including a factor of <span class="math inline">\({(N-1)}/{N}\;\)</span>.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">require</span>(PF)</span></code></pre></div>
-<pre><code>## Loading required package: PF</code></pre>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">RRsc</span>(<span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">24</span>, <span class="dv">12</span>, <span class="dv">28</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">require</span>(PF)</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">RRsc</span>(<span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">24</span>, <span class="dv">12</span>, <span class="dv">28</span>))</span></code></pre></div>
 <pre><code>## 
 ## PF 
 ## 95% interval estimates
@@ -434,14 +434,14 @@ estimated over the tail area by taking the maximum over the nuisance parameter. 
 by the Berger-Boos correction <span class="citation">(Berger and Boos 1994)</span>.</p>
 <p><code>RRtosst()</code> gives intervals obtained by inverting two one-sided score tests; <code>RRotsst()</code> gives intervals obtained by inverting one two-sided score test. <code>RRtosst()</code> is thus more conservative, preserving at least <span class="math inline">\({\alpha }/{2}\;\)</span> in each tail.
 <span class="citation">(Agresti and Min 2001)</span> discuss the properties and relative benefits of the two approaches. The price of exactnesss is conservatism, due to the discreteness of the binomial distribution <span class="citation">(Agresti 2001)</span>. This means that the actual coverage of the confidence interval does not exactly conform to the nominal coverage, but it will not be less than it. (See also <span class="citation">(Agresti 2003)</span>.) Both functions use a simple step search algorithm.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="fu">RRotsst</span>(<span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">24</span>, <span class="dv">12</span>, <span class="dv">28</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">RRotsst</span>(<span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">24</span>, <span class="dv">12</span>, <span class="dv">28</span>))</span></code></pre></div>
 <pre><code>## 
 ## PF 
 ## 95% interval estimates
 ## 
 ##     PF     LL     UL 
 ## 0.6111 0.0148 0.8519</code></pre>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="fu">RRtosst</span>(<span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">24</span>, <span class="dv">12</span>, <span class="dv">28</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="fu">RRtosst</span>(<span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">24</span>, <span class="dv">12</span>, <span class="dv">28</span>))</span></code></pre></div>
 <pre><code>## 
 ## PF 
 ## 95% interval estimates
@@ -458,8 +458,8 @@ by the Berger-Boos correction <span class="citation">(Berger and Boos 1994)</spa
 <p><span class="citation">(Gart 1985)</span> and <span class="citation">(Gart and Nam 1988)</span> derived a score statistic for a common estimate of <em>RR</em> from designs with multiple independent strata, and they showed that it is identical to one proposed by <span class="citation">(Radhakrishnan 1965)</span> from a different perspective.</p>
 <p><code>RRstr()</code> provides confidence intervals and a homogeneity test based on Gart’s statistic.</p>
 <p>Data may be input two ways, either using a formula and data frame, or as a matrix.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="fu">RRstr</span>(<span class="fu">cbind</span>(y, n) <span class="sc">~</span> tx <span class="sc">+</span> <span class="fu">cluster</span>(clus), Table6,</span>
-<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>      <span class="at">compare =</span> <span class="fu">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>), <span class="at">pf =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="fu">RRstr</span>(<span class="fu">cbind</span>(y, n) <span class="sc">~</span> tx <span class="sc">+</span> <span class="fu">cluster</span>(clus), Table6,</span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>      <span class="at">compare =</span> <span class="fu">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>), <span class="at">pf =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>## 
 ## Test of homogeneity across clusters
 ## 
@@ -474,7 +474,7 @@ by the Berger-Boos correction <span class="citation">(Berger and Boos 1994)</spa
 ## starting  2.66 1.37 5.18
 ## mle       2.65 1.39 5.03
 ## skew corr 2.65 1.31 5.08</code></pre>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="co"># Data matrix input: RRstr(Y = table6, pf = F)</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="co"># Data matrix input: RRstr(Y = table6, pf = F)</span></span></code></pre></div>
 </div>
 <div id="mantel-haenszel-estimator" class="section level2" number="3.2">
 <h2><span class="header-section-number">3.2</span> Mantel-Haenszel estimator</h2>
@@ -485,15 +485,15 @@ and the case of limited number of strata where the stratum size is assumed incre
 efficient than maximum likelihood <span class="citation">Greenland and Robins (1985)</span>.
 Additional discussion may be found in Section 4.3.1 <span class="citation">(Lachin 2000)</span>, <span class="citation">(Landis et al. 2005)</span>, and <span class="citation">(Somes and O’Brien 2006)</span>
 <a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="fu">RRmh</span>(<span class="fu">cbind</span>(y, n) <span class="sc">~</span> tx <span class="sc">+</span> <span class="fu">cluster</span>(clus), Table6,</span>
-<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a>     <span class="at">compare =</span> <span class="fu">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>), <span class="at">pf =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="fu">RRmh</span>(<span class="fu">cbind</span>(y, n) <span class="sc">~</span> tx <span class="sc">+</span> <span class="fu">cluster</span>(clus), Table6,</span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a>     <span class="at">compare =</span> <span class="fu">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>), <span class="at">pf =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>## 
 ## RR 
 ## 95% interval estimates
 ## 
 ##   RR   LL   UL 
 ## 2.67 1.37 5.23</code></pre>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="co"># Data matrix input: RRmh(Y = table6, pf = F)</span></span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="co"># Data matrix input: RRmh(Y = table6, pf = F)</span></span></code></pre></div>
 </div>
 <div id="examples" class="section level2" number="3.3">
 <h2><span class="header-section-number">3.3</span> Examples</h2>
@@ -505,8 +505,8 @@ Additional discussion may be found in Section 4.3.1 <span class="citation">(Lach
 <div id="logistic-regression-estimates" class="section level2" number="4.1">
 <h2><span class="header-section-number">4.1</span> Logistic regression estimates</h2>
 <p>Intervals may be estimated from logistic regression models with <code>RRor()</code>. It takes the fit of a <code>glm()</code> object and estimates the intervals by the delta method.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a>bird.fit <span class="ot">&lt;-</span> <span class="fu">glm</span>(<span class="fu">cbind</span>(y, n <span class="sc">-</span> y) <span class="sc">~</span> tx <span class="sc">-</span> <span class="dv">1</span>, binomial, bird)</span>
-<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a><span class="fu">RRor</span>(bird.fit)</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a>bird.fit <span class="ot">&lt;-</span> <span class="fu">glm</span>(<span class="fu">cbind</span>(y, n <span class="sc">-</span> y) <span class="sc">~</span> tx <span class="sc">-</span> <span class="dv">1</span>, binomial, bird)</span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a><span class="fu">RRor</span>(bird.fit)</span></code></pre></div>
 <pre><code>## 
 ## 95% t intervals on 4 df
 ## 
@@ -528,14 +528,14 @@ where <span class="math inline">\(a(\hat{\varphi })\)</span> is a function of th
 <p>A simple estimator of the dispersion parameter, <span class="math inline">\(\varphi\)</span>, may be estimated by the method of moments [Wed74]. It is given by <code>phiWt()</code>.
 This form of the dispersion parameter has <span class="math inline">\(a(\varphi)=\varphi\)</span>, and <span class="math inline">\(\varphi\)</span> is estimated by <span class="math inline">\({X^2}/{df}\;\)</span>, the Pearson statistic divided by the degrees of freedom.</p>
 <p>Note that <span class="math inline">\(\varphi\)</span> is the same estimator as may be obtained by the <code>quasibinomial</code> family in <code>glm()</code> which is, in fact, what is used by <code>phiWt()</code> to reweight the original fit:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="fu">phiWt</span>(bird.fit, <span class="at">fit.only =</span> <span class="cn">FALSE</span>)<span class="sc">$</span>phi</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="fu">phiWt</span>(bird.fit, <span class="at">fit.only =</span> <span class="cn">FALSE</span>)<span class="sc">$</span>phi</span></code></pre></div>
 <pre><code>##      all 
 ## 2.471592</code></pre>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">update</span>(bird.fit, <span class="at">family =</span> quasibinomial))<span class="sc">$</span>disp</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">update</span>(bird.fit, <span class="at">family =</span> quasibinomial))<span class="sc">$</span>disp</span></code></pre></div>
 <pre><code>## [1] 2.471592</code></pre>
 <p><code>phiWt()</code> makes it easy to estimate <em>PF</em> intervals with a single command.</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="co"># model weighted by phi hat</span></span>
-<span id="cb21-2"><a href="#cb21-2" tabindex="-1"></a><span class="fu">RRor</span>(<span class="fu">phiWt</span>(bird.fit))</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="co"># model weighted by phi hat</span></span>
+<span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a><span class="fu">RRor</span>(<span class="fu">phiWt</span>(bird.fit))</span></code></pre></div>
 <pre><code>## 
 ## 95% t intervals on 4 df
 ## 
@@ -547,8 +547,8 @@ This form of the dispersion parameter has <span class="math inline">\(a(\varphi)
 ## txcon  0.733 0.943 0.3121
 ## txvac  0.367 0.752 0.0997</code></pre>
 <p>It also allows different estimates of <span class="math inline">\({\hat{\varphi}}\)</span> for specified subsets of the data.</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a><span class="co"># model with separate phi for vaccinates and controls</span></span>
-<span id="cb23-2"><a href="#cb23-2" tabindex="-1"></a><span class="fu">RRor</span>(<span class="fu">phiWt</span>(bird.fit, <span class="at">subset.factor =</span> bird<span class="sc">$</span>tx))</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="co"># model with separate phi for vaccinates and controls</span></span>
+<span id="cb21-2"><a href="#cb21-2" tabindex="-1"></a><span class="fu">RRor</span>(<span class="fu">phiWt</span>(bird.fit, <span class="at">subset.factor =</span> bird<span class="sc">$</span>tx))</span></code></pre></div>
 <pre><code>## 
 ## 95% t intervals on 4 df
 ## 
@@ -560,8 +560,8 @@ This form of the dispersion parameter has <span class="math inline">\(a(\varphi)
 ## txcon  0.733 0.938 0.3330
 ## txvac  0.367 0.767 0.0925</code></pre>
 <p>If you want to subtract a degree of freedom for each additional parameter, you can do that by entering the degrees of freedom as an argument to <code>RRor()</code>.</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a><span class="co"># subtract 2 degrees of freedom</span></span>
-<span id="cb25-2"><a href="#cb25-2" tabindex="-1"></a><span class="fu">RRor</span>(<span class="fu">phiWt</span>(bird.fit, <span class="at">subset.factor =</span> bird<span class="sc">$</span>tx), <span class="at">degf =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a><span class="co"># subtract 2 degrees of freedom</span></span>
+<span id="cb23-2"><a href="#cb23-2" tabindex="-1"></a><span class="fu">RRor</span>(<span class="fu">phiWt</span>(bird.fit, <span class="at">subset.factor =</span> bird<span class="sc">$</span>tx), <span class="at">degf =</span> <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## 
 ## 95% t intervals on 2 df
 ## 
@@ -576,8 +576,8 @@ This form of the dispersion parameter has <span class="math inline">\(a(\varphi)
 <div id="dispersion-parameter-tau" class="section level3" number="4.2.2">
 <h3><span class="header-section-number">4.2.2</span> Dispersion parameter <span class="math inline">\(\tau\)</span></h3>
 <p>When overdispersion is due to intra-cluster correlation, it may make sense to estimate the dispersion as a function of the intra-cluster correlation parameter <span class="math inline">\(\tau\)</span>. In other words, <span class="math inline">\({a({\varphi }_{ij})}=1+{{\tau }_{j}}({{n}_{ij}}-1)\)</span>. <code>tauWt()</code> does this using the Williams procedure <span class="citation">(Williams 1982)</span>.</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a><span class="co"># model weighted using tau hat</span></span>
-<span id="cb27-2"><a href="#cb27-2" tabindex="-1"></a><span class="fu">RRor</span>(<span class="fu">tauWt</span>(bird.fit, <span class="at">subset.factor =</span> bird<span class="sc">$</span>tx))</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a><span class="co"># model weighted using tau hat</span></span>
+<span id="cb25-2"><a href="#cb25-2" tabindex="-1"></a><span class="fu">RRor</span>(<span class="fu">tauWt</span>(bird.fit, <span class="at">subset.factor =</span> bird<span class="sc">$</span>tx))</span></code></pre></div>
 <pre><code>## 
 ## 95% t intervals on 4 df
 ## 
@@ -589,9 +589,9 @@ This form of the dispersion parameter has <span class="math inline">\(a(\varphi)
 ## txcon  0.733 0.938 0.3330
 ## txvac  0.367 0.767 0.0925</code></pre>
 <p>In this example the <code>tauWt()</code> estimates are the same as the <code>phiWt()</code> estimates. That is because the cluster sizes are all the same. Let’s see what happens if we modify the <code>bird</code> data set. The <code>birdm</code> data set has the same cluster fractions but differing cluster sizes.</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" tabindex="-1"></a><span class="co"># different cluster sizes, same cluster fractions</span></span>
-<span id="cb29-2"><a href="#cb29-2" tabindex="-1"></a>birdm.fit <span class="ot">&lt;-</span> <span class="fu">glm</span>(<span class="fu">cbind</span>(y, n <span class="sc">-</span> y) <span class="sc">~</span> tx <span class="sc">-</span> <span class="dv">1</span>, binomial, birdm)</span>
-<span id="cb29-3"><a href="#cb29-3" tabindex="-1"></a><span class="fu">RRor</span>(<span class="fu">tauWt</span>(birdm.fit, <span class="at">subset.factor =</span> birdm<span class="sc">$</span>tx))</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a><span class="co"># different cluster sizes, same cluster fractions</span></span>
+<span id="cb27-2"><a href="#cb27-2" tabindex="-1"></a>birdm.fit <span class="ot">&lt;-</span> <span class="fu">glm</span>(<span class="fu">cbind</span>(y, n <span class="sc">-</span> y) <span class="sc">~</span> tx <span class="sc">-</span> <span class="dv">1</span>, binomial, birdm)</span>
+<span id="cb27-3"><a href="#cb27-3" tabindex="-1"></a><span class="fu">RRor</span>(<span class="fu">tauWt</span>(birdm.fit, <span class="at">subset.factor =</span> birdm<span class="sc">$</span>tx))</span></code></pre></div>
 <pre><code>## 
 ## 95% t intervals on 4 df
 ## 
@@ -605,15 +605,15 @@ This form of the dispersion parameter has <span class="math inline">\(a(\varphi)
 <p>Note that increasing cluster size can make things worse when there is intra-cluster correlation.</p>
 <p>Now let’s compare the weights from <code>phiWt()</code> and <code>tauWt()</code> with unequal cluster sizes.
 In the output below, <code>w</code> represents <span class="math inline">\(1/a(\hat{\varphi })\;\)</span> and <code>nw</code> is <span class="math inline">\(n/a(\hat{\varphi })\;\)</span></p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" tabindex="-1"></a><span class="co"># Compare phi and tau weights</span></span>
-<span id="cb31-2"><a href="#cb31-2" tabindex="-1"></a><span class="co">#</span></span>
-<span id="cb31-3"><a href="#cb31-3" tabindex="-1"></a>phi.wts <span class="ot">&lt;-</span> <span class="fu">phiWt</span>(birdm.fit, <span class="at">fit.only =</span> <span class="cn">FALSE</span>, <span class="at">subset.factor =</span> birdm<span class="sc">$</span>tx)<span class="sc">$</span>weights</span>
-<span id="cb31-4"><a href="#cb31-4" tabindex="-1"></a>tau.wts <span class="ot">&lt;-</span> <span class="fu">tauWt</span>(birdm.fit, <span class="at">fit.only =</span> <span class="cn">FALSE</span>, <span class="at">subset.factor =</span> birdm<span class="sc">$</span>tx)<span class="sc">$</span>weights</span>
-<span id="cb31-5"><a href="#cb31-5" tabindex="-1"></a>w <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="at">w.phi  =</span> phi.wts,</span>
-<span id="cb31-6"><a href="#cb31-6" tabindex="-1"></a>           <span class="at">w.tau  =</span> tau.wts,</span>
-<span id="cb31-7"><a href="#cb31-7" tabindex="-1"></a>           <span class="at">nw.phi =</span> phi.wts <span class="sc">*</span> birdm<span class="sc">$</span>n,</span>
-<span id="cb31-8"><a href="#cb31-8" tabindex="-1"></a>           <span class="at">nw.tau =</span> tau.wts <span class="sc">*</span> birdm<span class="sc">$</span>n)</span>
-<span id="cb31-9"><a href="#cb31-9" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">cbind</span>(birdm[, <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">2</span>)], <span class="fu">round</span>(w, <span class="dv">2</span>)), <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" tabindex="-1"></a><span class="co"># Compare phi and tau weights</span></span>
+<span id="cb29-2"><a href="#cb29-2" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb29-3"><a href="#cb29-3" tabindex="-1"></a>phi.wts <span class="ot">&lt;-</span> <span class="fu">phiWt</span>(birdm.fit, <span class="at">fit.only =</span> <span class="cn">FALSE</span>, <span class="at">subset.factor =</span> birdm<span class="sc">$</span>tx)<span class="sc">$</span>weights</span>
+<span id="cb29-4"><a href="#cb29-4" tabindex="-1"></a>tau.wts <span class="ot">&lt;-</span> <span class="fu">tauWt</span>(birdm.fit, <span class="at">fit.only =</span> <span class="cn">FALSE</span>, <span class="at">subset.factor =</span> birdm<span class="sc">$</span>tx)<span class="sc">$</span>weights</span>
+<span id="cb29-5"><a href="#cb29-5" tabindex="-1"></a>w <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="at">w.phi  =</span> phi.wts,</span>
+<span id="cb29-6"><a href="#cb29-6" tabindex="-1"></a>           <span class="at">w.tau  =</span> tau.wts,</span>
+<span id="cb29-7"><a href="#cb29-7" tabindex="-1"></a>           <span class="at">nw.phi =</span> phi.wts <span class="sc">*</span> birdm<span class="sc">$</span>n,</span>
+<span id="cb29-8"><a href="#cb29-8" tabindex="-1"></a>           <span class="at">nw.tau =</span> tau.wts <span class="sc">*</span> birdm<span class="sc">$</span>n)</span>
+<span id="cb29-9"><a href="#cb29-9" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">cbind</span>(birdm[, <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">2</span>)], <span class="fu">round</span>(w, <span class="dv">2</span>)), <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>##   tx  y  n w.phi w.tau nw.phi nw.tau
 ##  vac  1 10  0.32  0.35   3.20   3.55
 ##  vac  8 20  0.32  0.21   6.40   4.13
@@ -629,8 +629,8 @@ In the output below, <code>w</code> represents <span class="math inline">\(1/a(\
 <p><span class="citation">(Rao and Scott 1992)</span> give a method of weighting clustered binomial observations based on the variance inflation due to clustering.
 They relate their approach to the concepts of design effect and effective sample size familiar in survey sampling, and they illustrate its use in a variety of contexts.
 <code>rsbWt()</code> implements it in the same manner as <code>phiWt()</code> and <code>tauWt()</code>. For more general use, the function <code>rsb()</code> just returns the design effect estimates and the weights.</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" tabindex="-1"></a><span class="co"># model weighted with Rao-Scott weights</span></span>
-<span id="cb33-2"><a href="#cb33-2" tabindex="-1"></a><span class="fu">RRor</span>(<span class="fu">rsbWt</span>(birdm.fit, <span class="at">subset.factor =</span> birdm<span class="sc">$</span>tx))</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" tabindex="-1"></a><span class="co"># model weighted with Rao-Scott weights</span></span>
+<span id="cb31-2"><a href="#cb31-2" tabindex="-1"></a><span class="fu">RRor</span>(<span class="fu">rsbWt</span>(birdm.fit, <span class="at">subset.factor =</span> birdm<span class="sc">$</span>tx))</span></code></pre></div>
 <pre><code>## 
 ## 95% t intervals on 4 df
 ## 
@@ -641,8 +641,8 @@ They relate their approach to the concepts of design effect and effective sample
 ##       mu.hat    LL    UL
 ## txcon  0.768 0.960 0.311
 ## txvac  0.400 0.717 0.149</code></pre>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" tabindex="-1"></a><span class="co"># just the design effect estimates</span></span>
-<span id="cb35-2"><a href="#cb35-2" tabindex="-1"></a><span class="fu">rsb</span>(birdm<span class="sc">$</span>y, birdm<span class="sc">$</span>n)<span class="sc">$</span>d</span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" tabindex="-1"></a><span class="co"># just the design effect estimates</span></span>
+<span id="cb33-2"><a href="#cb33-2" tabindex="-1"></a><span class="fu">rsb</span>(birdm<span class="sc">$</span>y, birdm<span class="sc">$</span>n)<span class="sc">$</span>d</span></code></pre></div>
 <pre><code>##      all 
 ## 6.334514</code></pre>
 </div>
@@ -651,7 +651,7 @@ They relate their approach to the concepts of design effect and effective sample
 <h1><span class="header-section-number">5</span> Likelihood based intervals</h1>
 <p>The <code>RRlsi()</code> function estimates likelihood support intervals for <em>RR</em> by the profile likelihood Section 7.6 <span class="citation">(Royall 1997)</span>.</p>
 <p>Likelihood support intervals are usually formed based on the desired likelihood ratio, <span class="math inline">\({1}/{k}\;\)</span>, often <span class="math inline">\({1}/{8}\;\)</span> or <span class="math inline">\({1}/{32}\;\)</span>. Under some conditions the log likelihood ratio may follow the chi-square distribution. If so, then <span class="math inline">\(\alpha =1-{{F}_{{{\chi }^{2}}}}\left( 2\log (k),1 \right)\)</span>. <code>RRsc()</code> will make the conversion from <span class="math inline">\(\alpha\)</span> to <span class="math inline">\(k\)</span> with the argument <code>use.alpha = T</code>.</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" tabindex="-1"></a><span class="fu">RRlsi</span>(<span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">24</span>, <span class="dv">12</span>, <span class="dv">28</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" tabindex="-1"></a><span class="fu">RRlsi</span>(<span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">24</span>, <span class="dv">12</span>, <span class="dv">28</span>))</span></code></pre></div>
 <pre><code>## 
 ## 1/8 likelihood support interval for PF 
 ## 
@@ -661,7 +661,7 @@ They relate their approach to the concepts of design effect and effective sample
 ## PF 
 ##     PF     LL     UL 
 ## 0.6111 0.0168 0.8859</code></pre>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" tabindex="-1"></a><span class="fu">RRlsi</span>(<span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">24</span>, <span class="dv">12</span>, <span class="dv">28</span>), <span class="at">use.alpha =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" tabindex="-1"></a><span class="fu">RRlsi</span>(<span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">24</span>, <span class="dv">12</span>, <span class="dv">28</span>), <span class="at">use.alpha =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## 
 ## 1/6.826 likelihood support interval for PF 
 ## 
@@ -679,7 +679,7 @@ They relate their approach to the concepts of design effect and effective sample
 <h2><span class="header-section-number">6.1</span> Score method</h2>
 <p><code>IDRsc()</code> estimates a confidence interval for the incidence density ratio using Siev’s formula Appendix 1 <span class="citation">(Siev 1994)</span> based on the Poisson score statistic<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>.
 <span class="math display">\[IDR=\widehat{IDR}\left\{ 1+\left( \frac{1}{{{y}_{1}}}+\frac{1}{{{y}_{2}}} \right)\frac{z_{\alpha /2}^{2}}{2}\ \ \pm \ \ \frac{z_{\alpha /2}^{2}}{2{{y}_{1}}{{y}_{2}}}\sqrt{{{y}_{\bullet }}\left( {{y}_{\bullet }}z_{\alpha /2}^{2}+4{{y}_{1}}{{y}_{2}} \right)} \right\}\]</span></p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" tabindex="-1"></a><span class="fu">IDRsc</span>(<span class="fu">c</span>(<span class="dv">26</span>, <span class="dv">204</span>, <span class="dv">10</span>, <span class="dv">205</span>), <span class="at">pf =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" tabindex="-1"></a><span class="fu">IDRsc</span>(<span class="fu">c</span>(<span class="dv">26</span>, <span class="dv">204</span>, <span class="dv">10</span>, <span class="dv">205</span>), <span class="at">pf =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>## 
 ## IDR 
 ## 95% interval estimates
@@ -691,7 +691,7 @@ They relate their approach to the concepts of design effect and effective sample
 <h2><span class="header-section-number">6.2</span> Likelihood method</h2>
 <p>A likelihood support interval for <span class="math inline">\(IDR\)</span> may be estimated based on orthogonal factoring of the reparameterized likelihood. Section 7.2 <span class="citation">(Royall 1997)</span> <code>IDRlsi()</code> implements this method.</p>
 <p>Likelihood support intervals are usually formed based on the desired likelihood ratio, <span class="math inline">\({1}/{k}\;\)</span>, often <span class="math inline">\({1}/{8}\;\)</span> or <span class="math inline">\({1}/{32}\;\)</span>. Under some conditions the log likelihood ratio may follow the chi square distribution. If so, then <span class="math inline">\(\alpha =1-{{F}_{{{\chi }^{2}}}}\left( 2\log (k),1 \right)\)</span>. <code>IDRlsi()</code> will make the conversion from <span class="math inline">\(\alpha\)</span> tp <span class="math inline">\(k\)</span> with the argument <code>use.alpha = T</code>.</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" tabindex="-1"></a><span class="fu">IDRlsi</span>(<span class="fu">c</span>(<span class="dv">26</span>, <span class="dv">204</span>, <span class="dv">10</span>, <span class="dv">205</span>), <span class="at">pf =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" tabindex="-1"></a><span class="fu">IDRlsi</span>(<span class="fu">c</span>(<span class="dv">26</span>, <span class="dv">204</span>, <span class="dv">10</span>, <span class="dv">205</span>), <span class="at">pf =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>## 
 ## 1/8 likelihood support interval for IDR 
 ## 
@@ -701,7 +701,7 @@ They relate their approach to the concepts of design effect and effective sample
 ## IDR 
 ##  IDR   LL   UL 
 ## 2.61 1.26 5.88</code></pre>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" tabindex="-1"></a><span class="fu">IDRlsi</span>(<span class="fu">c</span>(<span class="dv">26</span>, <span class="dv">204</span>, <span class="dv">10</span>, <span class="dv">205</span>), <span class="at">pf =</span> <span class="cn">FALSE</span>, <span class="at">use.alpha =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" tabindex="-1"></a><span class="fu">IDRlsi</span>(<span class="fu">c</span>(<span class="dv">26</span>, <span class="dv">204</span>, <span class="dv">10</span>, <span class="dv">205</span>), <span class="at">pf =</span> <span class="cn">FALSE</span>, <span class="at">use.alpha =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## 
 ## 1/6.826 likelihood support interval for IDR 
 ## 
@@ -717,7 +717,7 @@ They relate their approach to the concepts of design effect and effective sample
 </div>
 <div id="references" class="section level1 unnumbered">
 <h1>References</h1>
-<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
 <div id="ref-AA01" class="csl-entry">
 Agresti, A. 2001. <span>“Exact Inference for Categorical Data: Recent Advances and Continuing Controversies.”</span> <em>Statistics in Medicine</em> 20: 2709–22.
 </div>

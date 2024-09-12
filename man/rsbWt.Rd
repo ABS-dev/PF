@@ -7,9 +7,10 @@
 rsbWt(fit = NULL, subset.factor = NULL, fit.only = TRUE)
 }
 \arguments{
-\item{fit}{A \link{glm} object.}
+\item{fit}{A \link[stats:glm]{stats::glm} object.}
 
-\item{subset.factor}{Factor for estimating the weights by subset.}
+\item{subset.factor}{Factor for estimating phi by subset.  Will be converted
+to a factor if it is not a factor.}
 
 \item{fit.only}{Return only the new fit? If FALSE, also returns the weights
 and phi estimates.}
