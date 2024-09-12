@@ -30,3 +30,8 @@ importFrom("methods", "new")
 importFrom("stats", "binomial", "coef", "glm", "model.frame", "pchisq",
              "qbeta", "qchisq", "qnorm", "qt", "resid", "terms",
              "update")
+importFrom('plyr', 'ddply', '.')
+importFrom('dplyr', 'ungroup', 'group_by_at', 'group_by', '%>%', 'select', 'filter', 
+  'summarize_at', 'summarize')
+importFrom('rlang', '.data')
+

@@ -17,9 +17,7 @@ data class rrmp
 \item[\code{y}]{  data vector}
 \item[\code{rnd}]{  how many digits to round display}
 \item[\code{alpha}]{  complement of c.i.}
-\item[\code{xtable}]{  2 x 2 data matrix} 
 \item[\code{compare}]{  text vector, same as input}
-\item[\code{frecvec}]{  data arrayed a vector of length 4}
 \item[\code{multvec}]{  data.frame showing the multinomial representation of the data}
 }
 }
@@ -28,5 +26,5 @@ data class rrmp
 \code{\link{RRmpWald}}
 }
 \author{
-Marie Vendettuoli \email{marie.c.vendettuoli@aphis.usda.gov}
+\link{PF-package}
 }

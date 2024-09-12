@@ -22,5 +22,5 @@ data class pf
 \code{\link{rr1}, \link{rrsi}, \link{rrsc}, \link{rrstr}}
 }
 \author{
-Marie Vendettuoli \email{marie.c.vendettuoli@aphis.usda.gov}
+\link{PF-package}
 }

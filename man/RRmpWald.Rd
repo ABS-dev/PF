@@ -4,9 +4,9 @@
 \alias{RRmpWald}
 \title{Wald confidence intervals for RR from matched pairs}
 \usage{
-RRmpWald(formula = NULL, data = NULL, compare = c("con", "vac"),
-  affected = 1, x, alpha = 0.05, pf = TRUE, tdist = TRUE, df = NULL,
-  rnd = 3)
+RRmpWald(formula = NULL, data = NULL, compare = c("vac", "con"),
+  affected = 1, x, alpha = 0.05, pf = TRUE, tdist = TRUE,
+  df = NULL, rnd = 3)
 }
 \arguments{
 \item{formula}{Formula of the form \code{y ~ x + cluster(w)}, where y is the 
@@ -15,13 +15,13 @@ of treatment, and w identifies the pairs.}
 
 \item{data}{\code{data.frame} containing variables in formula}
 
-\item{compare}{Text vector stating the factor levels: compare[1] is the control 
-or reference group to which compare[2] is compared}
+\item{compare}{Text vector stating the factor levels: compare[1] is the vaccinate
+group to which compare[2] (control or reference) is compared.}
 
 \item{affected}{Indicator for positive response}
 
 \item{x}{Alternative data input. Instead of formula and data frame, data may 
-be input as vector or 2x2 table}
+be input as frequency vector. See example for how to order this vector.}
 
 \item{alpha}{Complement of the confidence level}
 
@@ -41,8 +41,6 @@ A \code{\link{rrmp}} object with the following fields:
  \item{compare}{text vector, same as input}
  \item{alpha}{complement of confidence level}
  \item{rnd}{how many digits to round the display}
- \item{xtable}{data arrayed in 2x2 matrix}
- \item{freqvec}{data arrayed a 4-vector}
  \item{multvec}{data frame showing the multinomial representation of the data}
 }
 \description{
@@ -58,32 +56,47 @@ applying the delta method to the multinomial variance. This method fails when th
 \cr \cr If RR = 0 (PF = 1), the function will return degenerate interval.
 }
 \note{
-Experimental functions for estimating profile likelihood intervals are in the CVBmisc package. \cr \cr
-Call to this function may be one of two formats: (1) specify \code{data} and \code{formula} or (2) as a vector or 2 x 2 table \code{x} \cr \cr
-\code{RRmpWald(formula, data, compare = c('con', 'vac'), affected = 1, alpha = 0.05,} \cr
+Experimental functions for estimating profile likelihood intervals are 
+in the CVBmisc package. \cr \cr
+Call to this function may be one of two formats: (1) specify \code{data} and 
+\code{formula} or (2) as a vector  \code{x} \cr \cr
+\code{RRmpWald(formula, data, compare = c('vac', 'con'), affected = 1, 
+alpha = 0.05,} \cr
 \code{pf = TRUE, tdist = TRUE, df = NULL, rnd = 3)} \cr \cr
-\code{RRmpWald(x, compare = c('con', 'vac'), affected = 1, alpha = 0,05,} \cr 
+\code{RRmpWald(x, compare = c('vac', 'con'), affected = 1, alpha = 0,05,} \cr 
 \code{pf = TRUE, tdist = TRUE, df = NULL, rnd = 3)}
 }
 \examples{
-RRmpWald(pos ~ tx + cluster(cage), New, compare = c('con', 'vac'))
+RRmpWald(pos ~ tx + cluster(cage), New, compare = c('vac', 'con'))
 
 # PF 
 # 95\% interval estimates
 #
-#   PF    LL    UL 
+#    PF    LL    UL 
 # 0.550 0.183 0.752 
 
+require(magrittr)
+thistable <- New \%>\%
+  tidyr::spread(tx, pos) \%>\%
+  dplyr::mutate(vac = factor(vac, levels = 1:0),
+    con = factor(con, levels = 1:0)) \%>\%
+  with(., table(vac, con)) 
+thistable
+#    con
+# vac  1  0
+#   1  7  2
+#   0 13  4
+as.vector(thistable)
+# [1]  7 13  2  4
 
-RRmpWald(x = c(2, 9, 1, 6))
+RRmpWald(x = as.vector(thistable))
 
 # PF 
 # 95\% interval estimates
-
-#   PF    LL    UL 
-# 0.727 0.124 0.915
-
+#
+#    PF    LL    UL 
+# 0.550 0.183 0.752 
 }
 \author{
-David Siev \email{david.siev@aphis.usda.gov}
+\link{PF-package}
 }

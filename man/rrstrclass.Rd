@@ -16,8 +16,10 @@ data class rrstr
 \item[\code{rnd}]{  how many digits to round display}
 \item[\code{alpha}]{  complement of c.i.}
 \item[\code{estimator}]{  either \code{"PF"} or \code{"RR"}}
-\item[\code{hom}]{  list of homogeneity statistic, p-value, and degrees of freedom}
-\item[\code{y}]{  matrix of data}
+\item[\code{hom}]{list of homogeneity statistic, p-value, and degrees of freedom.
+If \code{Phi == 0 | Phi == 1}, homogeneity test is not possible and error message
+displays}
+\item[\code{y}]{data.frame of restructured input}
 \item[\code{compare}]{  groups compared}
 }
 }
@@ -26,5 +28,5 @@ data class rrstr
 \code{\link{RRstr}}
 }
 \author{
-Marie Vendettuoli \email{marie.c.vendettuoli@aphis.usda.gov}
+\link{PF-package}
 }

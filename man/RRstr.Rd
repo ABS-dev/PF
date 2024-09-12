@@ -4,7 +4,7 @@
 \alias{RRstr}
 \title{Gart-Nam method, CI for common RR over strata or clusters.}
 \usage{
-RRstr(formula = NULL, data = NULL, compare = c("b", "a"), Y,
+RRstr(formula = NULL, data = NULL, compare = c("vac", "con"), Y,
   alpha = 0.05, pf = TRUE, trace.it = FALSE, iter.max = 24,
   converge = 1e-06, rnd = 3, multiplier = 0.7, divider = 1.1)
 }
@@ -36,9 +36,9 @@ RRstr(formula = NULL, data = NULL, compare = c("b", "a"), Y,
 \value{
 A \code{\link{rrstr}} object with the following fields:
  \item{estimate}{matrix of point and interval estimates - starting value, MLE, and skewness corrected}
- \item{hom}{list of homogeneity statistic, p-value, and degrees of freedom}
+ \item{hom}{list of homogeneity statistic, p-value, and degrees of freedom, or error message if appropriate.}
  \item{estimator}{either \code{"PF"} or \code{"RR"}}
- \item{y}{Y matrix of the data}
+ \item{y}{data.frame of restructured input}
  \item{compare}{groups compared}
  \item{rnd}{how many digits to round the display}
  \item{alpha}{size of test; complement of confidence level}
@@ -50,7 +50,7 @@ Estimates confidence intervals for the risk ratio or prevented fraction from clu
 Uses the DUD algorithm to estimate confidence intervals by the method of Gart.
 }
 \note{
-See vignette \emph{Examples for Stratified Designs} for more examples (enter \code{?PF}).
+Vignette \emph{Examples for Stratified Designs} forthcoming with more examples.
 
 Call to this function may be one of two formats: (1) specify \code{data} and \code{formula} or (2) as a matrix \code{Y} \cr \cr
 \code{RRstr(formula, data, compare = c('b','a'), pf = TRUE, alpha = 0.05, trace.it = FALSE,} \cr
@@ -61,7 +61,8 @@ Call to this function may be one of two formats: (1) specify \code{data} and \co
 \examples{
 ## Table 1 from Gart (1985)
 ##  as data frame
-RRstr(cbind(y,n) ~ tx + cluster(clus), Table6 , pf = FALSE)
+## "b" is control group
+RRstr(cbind(y, n) ~ tx + cluster(clus), Table6 , compare = c('a', 'b'), pf = FALSE)
 
 # Test of homogeneity across clusters
 
@@ -79,6 +80,11 @@ RRstr(cbind(y,n) ~ tx + cluster(clus), Table6 , pf = FALSE)
 ## or as matrix
 RRstr(Y = table6, pf = FALSE)
 
+tst <- data.frame(y = c(0, 2, 0, 4, 0, 3, 0, 7),
+n = rep(10, 8),
+tx = rep(c('a', 'b'), 4),
+clus = rep(paste('Row', 1:4, sep = ''), each = 2))
+
 }
 \references{
 Gart JJ, 1985. Approximate tests and interval estimation of the common relative risk in the combination of \eqn{2 x 2} tables. \emph{Biometrika} 72:673-677.
@@ -89,5 +95,5 @@ Gart JJ, 1985. Approximate tests and interval estimation of the common relative 
 \code{\link{rrstr}}
 }
 \author{
-David Siev \email{david.siev@aphis.usda.gov}
+\link{PF-package}
 }

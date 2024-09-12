@@ -12,7 +12,7 @@ data class rrsi
 \section{Fields}{
 
 \itemize{
-\item[\code{y}]{  numeric data vector }
+\item[\code{y}]{ data.frame with restructured input}
 \item[\code{k}]{  likelihood ratio criterion}
 \item[\code{rnd}]{  digits to round display}
 \item[\code{alpha}]{  complement of c.i.}
@@ -25,5 +25,5 @@ data class rrsi
 \code{\link{IDRlsi}, \link{RRlsi}}
 }
 \author{
-Marie Vendettuoli \email{marie.c.vendettuoli@aphis.usda.gov}
+\link{PF-package}
 }

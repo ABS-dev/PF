@@ -17,8 +17,8 @@
 #' @export
 #' @references Williams DA, 1982. Extra-binomial variation in logistic linear models. \emph{Applied Statistics} 31:144-148.
 #' \cr Wedderburn RWM, 1974. Quasi-likelihood functions, generalized linear models, and the Gauss-Newton method. \emph{Biometrika} 61:439-447.
-#' @author David Siev \email{david.siev@@aphis.usda.gov}
-#' @seealso \code{\link{phiWt}}, \code{\link{RRor}}, see package vignette for more examples
+#' @author \link{PF-package}
+#' @seealso \code{\link{phiWt}}, \code{\link{RRor}}.
 #' 
 #' @examples
 #' birdm.fit <- glm(cbind(y,n-y)~tx-1, binomial, birdm)
@@ -34,8 +34,6 @@
 #' # txcon  0.737 0.944 0.320
 #' # txvac  0.376 0.758 0.104
 #' #
-#' # See the package vignette for more examples
-
 # binomial family only
 # any link
 tauWt <- function(fit,subset.factor=NULL, fit.only = TRUE, iter.max = 12, converge = 1e-6, trace.it = FALSE){

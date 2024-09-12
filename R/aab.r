@@ -44,7 +44,7 @@
 		}
 	}
 	
-    cluster <- function(x){return(x)}
+  cluster <- function(x){return(x)}
 	environment(cluster) <- parent.env(environment())
 
 	Terms <- terms(formula, data = data)
@@ -52,17 +52,27 @@
 	A <- model.frame(formula = Terms, data = data)
 
 	A <- data.frame(A[, 1], A[, 2:3]) # for easier subscripting
-    A <- A[order(A[, 4], A[, 3]), ]
-    y <- A[, 1]
-    n <- A[, 2]
-    x <- as.factor(A[, 3])
-    if(!any(levels(x) == compare[1]) | !any(levels(x) == compare[2])){
+  A <- A[order(A[, 4], A[, 3]), ]
+  
+  counts <- ddply(A, names(A)[4], nrow)
+  rmclus <- counts[counts$V1 != 2, 1]
+  if(length(rmclus) > 0){
+    message(paste('.matricize: Cluster group(s):', paste(rmclus, collapse = ', ', 
+                                                       sep = ''), 
+      ' does not have both comparison treatment levels. Removing from analysis.', 
+                collapse = '', sep = ''))
+    A <- droplevels(A[!A[,4] %in% rmclus, ])
+  }
+  y <- A[, 1]
+  n <- A[, 2]
+  x <- as.factor(A[, 3])
+  if(!any(levels(x) == compare[1]) | !any(levels(x) == compare[2])){
 		stop('matricize: What is being compared?')
 	}
-    clus <- A[, 4]
-    Y1 <- A[x == compare[2], 1:2]
-    Y2 <- A[x == compare[1], 1:2]
-    Y <- as.matrix(cbind(Y1, Y2))
-    dimnames(Y) <- list(levels(clus), c('y1', 'n1', 'y2', 'n2'))
-    return(list(A = A, Y = Y))
+  clus <- A[, 4]
+  Y1 <- A[x == compare[2], 1:2]
+  Y2 <- A[x == compare[1], 1:2]
+  Y <- as.matrix(cbind(Y2, Y1))
+  dimnames(Y) <- list(levels(clus), c('y1', 'n1', 'y2', 'n2'))
+  return(list(A = A, Y = Y))
 }

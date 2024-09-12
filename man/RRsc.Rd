@@ -4,11 +4,21 @@
 \alias{RRsc}
 \title{RR score based asymptotic CI.}
 \usage{
-RRsc(y = NULL, alpha = 0.05, pf = TRUE, trace.it = FALSE,
-  iter.max = 18, converge = 1e-06, rnd = 3)
+RRsc(y = NULL, data = NULL, formula = NULL, compare = c("vac",
+  "con"), alpha = 0.05, pf = TRUE, trace.it = FALSE, iter.max = 18,
+  converge = 1e-06, rnd = 3)
 }
 \arguments{
-\item{y}{Data vector c(y1, n1, y2, n2) where y are the positives, n are the total, and group 1 is compared to group 2.}
+\item{y}{Data vector c(y1, n1, y2, n2) where y are the positives,  n are the 
+total, and group 1 is compared to group 2 (control or reference group).}
+
+\item{data}{data.frame containing variables of formula.}
+
+\item{formula}{Formula of the form cbind(y, n) ~ x, where y is the number 
+positive, n is the group size, x is a factor with two levels of treatment.}
+
+\item{compare}{Text vector stating the factor levels: compare[1] is the vaccinate
+group to which compare[2] (control or reference) is compared.}
 
 \item{alpha}{Complement of the confidence level.}
 
@@ -26,7 +36,7 @@ RRsc(y = NULL, alpha = 0.05, pf = TRUE, trace.it = FALSE,
 A \code{\link{rrsc}} object with the following fields.
  \item{estimate}{matrix of point and interval estimates - see details}
  \item{estimator}{either \code{"PF"} or \code{"RR"}}
- \item{y}{data vector}
+ \item{y}{data.frame with "y1", "n1", "y2", "n2" values. }
  \item{rnd}{how many digits to round the display}
  \item{alpha}{complement of confidence level}
 }
@@ -34,18 +44,22 @@ A \code{\link{rrsc}} object with the following fields.
 Estimates confidence intervals for the risk ratio or prevented fraction based on the score statistic.
 }
 \details{
-Estimates are returned for three estimators based on the score statistic. The score method was introduced by Koopman (1984). Gart 
-and Nam's modification (1988) includes a skewness correction. The method of Miettinen and Nurminen (1985) is a version made slightly 
-more conservative than Koopman's by including a factor of \code{(N-1)/N}. The starting estimate for the DUD algorithm is obtained by the 
+Estimates are returned for three estimators based on the score statistic. The score method was introduced by Koopman (1984). Gart
+and Nam's modification (1988) includes a skewness correction. The method of Miettinen and Nurminen (1985) is a version made slightly
+more conservative than Koopman's by including a factor of \code{(N-1)/N}. The starting estimate for the DUD algorithm is obtained by the
 modified Katz method (log method with 0.5 added to each cell). Both forms of the Katz estimate may be retrieved from the returned object
 using \code{RRsc()$estimate}.
 \cr \cr The data may also be a matrix. In that case \code{y} would be entered as \cr
 \code{matrix(c(y1, n1-y1, y2, n2-y2), 2, 2, byrow = TRUE)}.
 }
 \examples{
-RRsc(c(4, 24, 12, 28))
+# All examples represent the same observation, with data entry by using
+# multiple notation options.
 
-# PF 
+y_vector <- c(4, 24, 12, 28)
+RRsc(y_vector)
+
+# PF
 # 95\% interval estimates
 
 # 				PF     LL    UL
@@ -53,6 +67,40 @@ RRsc(c(4, 24, 12, 28))
 # score method 0.611 0.0328 0.855
 # skew corr    0.611 0.0380 0.876
 
+y_matrix <- matrix(c(4, 20, 12, 16), 2, 2, byrow = TRUE)
+#       [,1] [,2]
+# [1,]    4   20
+# [2,]   12   16
+
+RRsc(y_matrix)
+
+# PF
+# 95\% interval estimates
+
+# 				PF     LL    UL
+# MN method    0.611 0.0251 0.857
+# score method 0.611 0.0328 0.855
+# skew corr    0.611 0.0380 0.876
+require(dplyr)
+data1 <- data.frame(group = rep(c("treated", "control"), each = 2),
+  y = c(1, 3, 7, 5),
+  n = c(12, 12, 14, 14), 
+  cage = rep(paste('cage', 1:2), 2))
+
+data2 <- data1 \%>\%
+  group_by(group) \%>\%
+  summarize(sum_y = sum(y),
+    sum_n = sum(n))
+RRsc(data = data2, formula = cbind(sum_y, sum_n) ~ group, 
+  compare = c("treated", "control"))
+
+# PF
+# 95\% interval estimates
+
+# 				PF     LL    UL
+# MN method    0.611 0.0251 0.857
+# score method 0.611 0.0328 0.855
+# skew corr    0.611 0.0380 0.876
 }
 \references{
 Gart JJ, Nam J, 1988. Approximate interval estimation of the ratio of binomial parameters: a review and corrections for skewness. \emph{Biometrics} 44:323-338.
@@ -64,5 +112,5 @@ Gart JJ, Nam J, 1988. Approximate interval estimation of the ratio of binomial p
 \code{\link{rrsc}}
 }
 \author{
-David Siev \email{david.siev@aphis.usda.gov}
+\link{PF-package}
 }

@@ -4,12 +4,22 @@
 \alias{RRotsst}
 \title{RR exact CI, OTSST method.}
 \usage{
-RRotsst(y, alpha = 0.05, pf = TRUE, stepstart = 0.1, iter.max = 36,
-  converge = 1e-06, rnd = 3, trace.it = FALSE, nuisance.points = 120,
-  gamma = 1e-06)
+RRotsst(y = NULL, data = NULL, formula = NULL, compare = c("vac",
+  "con"), alpha = 0.05, pf = TRUE, stepstart = 0.1, iter.max = 36,
+  converge = 1e-06, rnd = 3, trace.it = FALSE,
+  nuisance.points = 120, gamma = 1e-06)
 }
 \arguments{
-\item{y}{Data vector c(y1, n1, y2, n2) where y are the positives, n are the total, and group 1 is compared to group 2.}
+\item{y}{Data vector c(y1, n1, y2, n2) where y are the positives,
+n are the total, and group 1 is compared to group 2 (control or reference).}
+
+\item{data}{data.frame containing variables of the formula.}
+
+\item{formula}{Formula of the form cbind(y, n) ~ x, where y is the number 
+positive, n is the group size, x is a factor with two levels of treatment.}
+
+\item{compare}{Text vector stating the factor levels: compare[1] is the 
+vaccinate group to which compare[2] (control or reference) is compared.}
 
 \item{alpha}{Complement of the confidence level.}
 
@@ -33,29 +43,61 @@ RRotsst(y, alpha = 0.05, pf = TRUE, stepstart = 0.1, iter.max = 36,
 An object of class \code{\link{rr1}} with the following fields: \cr
  \item{estimate}{vector with point and interval estimate}
  \item{estimator}{either \code{"PF"} or \code{"RR"}}
- \item{y}{data vector}
+ \item{y}{data.frame with "y1", "n1", "y2", "n2" values. }
  \item{rnd}{how many digits to round the display}
  \item{alpha}{complement of confidence level}
 }
 \description{
-Estimates confidence interval for the risk ratio or prevented fraction, exact method based on the 
+Estimates confidence interval for the risk ratio or prevented fraction, exact method based on the
 score statistic (inverts one two-sided test).
 }
 \details{
-Estimates confidence intervals based on the score statistic that are 'exact' in the sense of accounting for discreteness. 
+Estimates confidence intervals based on the score statistic that are 'exact' in the sense of accounting for discreteness.
 The score statistic is used to select tail area tables, and the binomial probability is estimated over the tail area
 by taking the maximum over the nuisance parameter. Algorithm is a simple step search.
 \cr \cr The data may also be a matrix. In that case \code{y} would be entered as \cr
 \code{matrix(c(y1, n1 - y1, y2, n2 - y2), 2, 2, byrow = TRUE)}.
 }
 \examples{
- \dontrun{RRotsst(c(4, 24, 12, 28), rnd = 3)
+# All examples represent the same observation, with data entry by multiple
+# options.
 
-# PF 
+y_vector <- c(4, 24, 12, 28)
+RRotsst(y_vector, rnd = 3)
+
+# PF
 # 95\% interval estimates
 
- #    PF     LL     UL 
-# 0.6111 0.0148 0.8519 }
+#    PF     LL     UL
+# 0.6111 0.0148 0.8519
+
+y_matrix <- matrix(c(4, 20, 12, 16), 2, 2, byrow = TRUE)
+RRotsst(y_matrix, rnd = 3)
+
+# PF
+# 95\% interval estimates
+
+#    PF     LL     UL
+# 0.6111 0.0148 0.8519
+
+require(dplyr)
+data1 <- data.frame(group = rep(c("treated", "control"), each = 2),
+  y = c(1, 3, 7, 5),
+  n = c(12, 12, 14, 14), 
+  cage = rep(paste('cage', 1:2), 2))
+
+data2 <- data1 \%>\%
+  group_by(group) \%>\%
+  summarize(sum_y = sum(y),
+    sum_n = sum(n))
+RRotsst(data = data2, formula =  cbind(sum_y, sum_n) ~ group, 
+   compare = c("treated", "control"))
+   
+# PF 
+# 95\% interval estimates
+# 
+# PF     LL     UL 
+# 0.6111 0.0148 0.8519 
 }
 \references{
 Koopman PAR, 1984. Confidence intervals for the ratio of two binomial proportions. \emph{Biometrics} 40:513-517.
@@ -66,5 +108,5 @@ Koopman PAR, 1984. Confidence intervals for the ratio of two binomial proportion
 \code{\link{RRtosst}, \link{rr1}}.
 }
 \author{
-David Siev \email{david.siev@aphis.usda.gov}
+\link{PF-package}
 }

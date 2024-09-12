@@ -4,12 +4,22 @@
 \alias{RRlsi}
 \title{RR likelihood support interval.}
 \usage{
-RRlsi(y, alpha = 0.05, k = 8, use.alpha = FALSE, pf = TRUE,
+RRlsi(y = NULL, formula = NULL, data = NULL, compare = c("vac",
+  "con"), alpha = 0.05, k = 8, use.alpha = FALSE, pf = TRUE,
   iter.max = 50, converge = 1e-06, rnd = 3, start = NULL,
   track = FALSE, full.track = FALSE)
 }
 \arguments{
-\item{y}{Data vector c(y1, n1, y2, n2) where y are the positives, n are the total, and group 1 is compared to group 2.}
+\item{y}{Data vector c(y1, n1, y2, n2) where y are the positives, n are the 
+total, and group 1 is compared to group 2 (control or reference group).}
+
+\item{formula}{Formula of the form cbind(y, n) ~ x, where y is the number 
+positive, n is the group size, x is a factor with two levels of treatment.}
+
+\item{data}{data.frame containing variables of formula.}
+
+\item{compare}{Text vector stating the factor levels: compare[1] is the vaccinate
+group to which compare[2] (control or reference) is compared.}
 
 \item{alpha}{Complement of the confidence level (see details).}
 
@@ -35,7 +45,7 @@ RRlsi(y, alpha = 0.05, k = 8, use.alpha = FALSE, pf = TRUE,
 An object of class \code{\link{rrsi}} with the following fields: \cr
  \item{estimate}{matrix of point and interval estimates - see details}
  \item{estimator}{either \code{"PF"} or \code{"RR"}}
- \item{y}{data vector}
+ \item{y}{data.frame with "y1", "n1", "y2", "n2" values. }
  \item{rnd}{how many digits to round the display}
  \item{k}{likelihood ratio criterion}
  \item{alpha}{complement of confidence level}
@@ -54,7 +64,11 @@ to \emph{k} if \code{use.alpha = TRUE}.
 \code{matrix(c(y1, n1-y1, y2, n2-y2), 2, 2, byrow = TRUE)}.
 }
 \examples{
-RRlsi(c(4,24,12,28))
+# All examples represent the same observation, with data entry by vector,
+# matrix, and formula+data notation.
+
+y_vector <- c(4, 24, 12, 28)
+RRlsi(y_vector)
 
 # 1/8 likelihood support interval for PF 
 
@@ -64,11 +78,50 @@ RRlsi(c(4,24,12,28))
 # PF 
 #     PF     LL     UL 
 # 0.6111 0.0168 0.8859 
+
+y_matrix <- matrix(c(4, 20, 12, 16), 2, 2, byrow = TRUE)
+y_matrix
+#      [,1] [,2]
+# [1,]    4   20
+# [2,]   12   16
+
+RRlsi(y_matrix)
+
+# 1/8 likelihood support interval for PF 
+
+# corresponds to 95.858\% confidence
+#   (under certain assumptions)
+
+# PF 
+#     PF     LL     UL 
+# 0.6111 0.0168 0.8859 
+
+require(dplyr)
+data1 <- data.frame(group = rep(c("treated", "control"), each = 2),
+  y = c(1, 3, 7, 5),
+  n = c(12, 12, 14, 14), 
+  cage = rep(paste('cage', 1:2), 2))
+
+data2 <- data1 \%>\%
+  group_by(group) \%>\%
+  summarize(sum_y = sum(y),
+    sum_n = sum(n))
+RRlsi(data = data2, formula =  cbind(sum_y, sum_n) ~ group, 
+   compare = c("treated", "control"))
+
+# 1/8 likelihood support interval for PF 
+# 
+# corresponds to 95.858\% confidence
+# (under certain assumptions)
+# 
+# PF 
+# PF     LL     UL 
+# 0.6111 0.0168 0.8859 
 }
 \references{
 Royall R. \emph{Statistical Evidence: A Likelihood Paradigm}. Chapman & Hall, Boca Raton, 1997.  Section 7.6
 \cr Ralston ML, Jennrich RI, 1978. DUD, A Derivative-Free Algorithm for Nonlinear Least Squares. \emph{Technometrics} 20:7-14.
 }
 \author{
-David Siev \email{david.siev@aphis.usda.gov}
+\link{PF-package}
 }

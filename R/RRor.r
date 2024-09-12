@@ -26,13 +26,12 @@
 #'  \item{norm}{logical indicating Gaussian or t interval}
 #'  \item{degf}{degrees of freedom}
 #' @export
-#' @references No references yet.
-#' @author David Siev \email{david.siev@@aphis.usda.gov}
+#' @author \link{PF-package}
 #' @note Call to this function may be one of two formats: (1) specify \code{fit}  or (2) \code{beta.hat}, \code{var.beta.hat}, \code{degf}  \cr \cr
 #' \code{RRor(fit, degf = NULL, pf = TRUE, alpha = 0.05, which = c(1, 2), norm = TRUE, rnd = 3)} \cr \cr
 #' \code{RRor(beta.hat, var.beta.hat, degf,  pf = TRUE, alpha = 0.05, which = c(1, 2), norm = TRUE, rnd = 3)}
-#' @seealso \code{\link{rror}, \link{phiWt}, \link{tauWt}}. See the package vignette for more examples.
-#' 
+#' @seealso \code{\link{rror}, \link{phiWt}, \link{tauWt}}
+#' \href{https://www.aphis.usda.gov/animal_health/vet_biologics/publications/STATWI0007.pdf}{StatWI007} for more examples
 #' @examples
 #' bird.fit <- glm(cbind(y, n - y) ~ tx - 1, binomial, bird)
 #' RRor(tauWt(bird.fit))
@@ -46,8 +45,19 @@
 #' #       mu.hat    LL     UL
 #' # txcon  0.733 0.943 0.3121
 #' # txvac  0.367 0.752 0.0997
+#' 
+#' RRor(phiWt(bird.fit))
+#' # 95% t intervals on 4 df
 #' # 
-#' # See the package vignette for more examples
+#' # PF 
+#' #     PF     LL     UL 
+#' #  0.500 -0.583  0.842 
+#' # 
+#' #       mu.hat    LL     UL
+#' # txcon  0.733 0.943 0.3121
+#' # txvac  0.367 0.752 0.0997
+#' 
+#' 
 
 ##-----------------------------------------------
 ## RRor
