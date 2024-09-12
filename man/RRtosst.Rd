@@ -4,22 +4,33 @@
 \alias{RRtosst}
 \title{RR exact CI, TOSST method.}
 \usage{
-RRtosst(y = NULL, formula = NULL, data = NULL, compare = c("vac",
-  "con"), alpha = 0.05, pf = TRUE, stepstart = 0.1, iter.max = 36,
-  converge = 1e-06, rnd = 3, trace.it = FALSE,
-  nuisance.points = 120, gamma = 1e-06)
+RRtosst(
+  y = NULL,
+  formula = NULL,
+  data = NULL,
+  compare = c("vac", "con"),
+  alpha = 0.05,
+  pf = TRUE,
+  stepstart = 0.1,
+  iter.max = 36,
+  converge = 1e-06,
+  rnd = 3,
+  trace.it = FALSE,
+  nuisance.points = 120,
+  gamma = 1e-06
+)
 }
 \arguments{
-\item{y}{Data vector c(y1, n1, y2, n2) where y are the positives,n are the 
+\item{y}{Data vector c(y1, n1, y2, n2) where y are the positives, n are the
 total, and group 1 is compared to group 2 (control or reference group).}
 
-\item{formula}{Formula of the form cbind(y, n) ~ x, where y is the number 
+\item{formula}{Formula of the form cbind(y, n) ~ x, where y is the number
 positive, n is the group size, x is a factor with two levels of treatment.}
 
 \item{data}{data.frame containing variables of formula.}
 
-\item{compare}{Text vector stating the factor levels: compare[1] is the vaccinate
-group to which compare[2] (control or reference) is compared.}
+\item{compare}{Text vector stating the factor levels: compare[1] is the
+vaccinate group to which compare[2] (control or reference) is compared.}
 
 \item{alpha}{Complement of the confidence level.}
 
@@ -31,32 +42,37 @@ group to which compare[2] (control or reference) is compared.}
 
 \item{converge}{Convergence criterion}
 
-\item{rnd}{Number of digits for rounding. Affects display only, not estimates.}
+\item{rnd}{Number of digits for rounding. Affects display only, not
+estimates.}
 
 \item{trace.it}{Verbose tracking of the iterations?}
 
-\item{nuisance.points}{number of points over which to evaluate nuisance parameter}
+\item{nuisance.points}{number of points over which to evaluate nuisance
+parameter}
 
-\item{gamma}{parameter for Berger-Boos correction (restricts range of nuisance parameter evaluation)}
+\item{gamma}{parameter for Berger-Boos correction (restricts range of
+nuisance parameter evaluation)}
 }
 \value{
 A \code{\link{rr1}} object with the following fields.
- \item{estimate}{vector with point and interval estimate}
- \item{estimator}{either \code{"PF"} or \code{"RR"}}
- \item{y}{data.frame with "y1", "n1", "y2", "n2" values. }
- \item{rnd}{how many digits to round the display}
- \item{alpha}{complement of confidence level}
+  \item{estimate}{vector with point and interval estimate}
+  \item{estimator}{either \code{"PF"} or \code{"RR"}} \item{y}{data.frame
+  with "y1", "n1", "y2", "n2" values. } \item{rnd}{how many digits to round
+  the display} \item{alpha}{complement of confidence level}
 }
 \description{
-Estimates confidence interval for the risk ratio or prevented fraction; exact method based on the
-score statistic (inverts two one-sided tests).
+Estimates confidence interval for the risk ratio or prevented
+  fraction; exact method based on the score statistic (inverts two one-sided
+  tests).
 }
 \details{
-Estimates confidence intervals based on the score statistic that are 'exact' in the sense of accounting for discreteness.
-Inverts two one-sided score tests. The score statistic is used to select tail area tables, and the binomial probability is estimated
-over the tail area by taking the maximum over the nuisance parameter. Algorithm is a simple step search.
-\cr \cr The data may also be a matrix. In that case \code{y} would be entered as \cr
-\code{matrix(c(y1, n1-y1, y2, n2-y2), 2, 2, byrow = TRUE)}.
+Estimates confidence intervals based on the score statistic that are
+  'exact' in the sense of accounting for discreteness. Inverts two one-sided
+  score tests. The score statistic is used to select tail area tables, and
+  the binomial probability is estimated over the tail area by taking the
+  maximum over the nuisance parameter. Algorithm is a simple step search. \cr
+  \cr The data may also be a matrix. In that case \code{y} would be entered
+  as \cr \code{matrix(c(y1, n1-y1, y2, n2-y2), 2, 2, byrow = TRUE)}.
 }
 \examples{
 # Both examples represent the same observation, with data entry by vector
@@ -72,9 +88,9 @@ RRtosst(y_vector)
 # 0.611 0.012 0.902
 
 y_matrix <- matrix(c(4, 20, 12, 16), 2, 2, byrow = TRUE)
-#      [,1] [,2]
-# [1,]    4   20
-# [2,]   12   16
+#      [, 1] [, 2]
+# [1, ]    4   20
+# [2, ]   12   16
 
 RRtosst(y_matrix)
 
@@ -87,14 +103,14 @@ RRtosst(y_matrix)
 require(dplyr)
 data1 <- data.frame(group = rep(c("treated", "control"), each = 2),
   y = c(1, 3, 7, 5),
-  n = c(12, 12, 14, 14), 
+  n = c(12, 12, 14, 14),
   cage = rep(paste('cage', 1:2), 2))
 data2 <- data1 \%>\%
   group_by(group) \%>\%
   summarize(sum_y = sum(y),
     sum_n = sum(n))
-RRtosst(data = data2, formula =  cbind(sum_y, sum_n) ~ group, 
-  compare = c("treated", "control")) 
+RRtosst(data = data2, formula =  cbind(sum_y, sum_n) ~ group,
+  compare = c("treated", "control"))
 
 # PF
 # 95\% interval estimates
@@ -103,9 +119,12 @@ RRtosst(data = data2, formula =  cbind(sum_y, sum_n) ~ group,
 # 0.611 0.012 0.902
 }
 \references{
-Koopman PAR, 1984. Confidence intervals for the ratio of two binomial proportions. \emph{Biometrics} 40:513-517.
-\cr Agresti A, Min Y, 2001.  On small-sample confidence intervals for parameters in discrete distribution. \emph{Biometrics} 57: 963-971.
-\cr Berger RL, Boos DD, 1994. P values maximized over a confidence set for the nuisance parameter. \emph{Journal of the American Statistical Association} 89:214-220.
+Koopman PAR, 1984. Confidence intervals for the ratio of two
+  binomial proportions. \emph{Biometrics} 40:513-517. \cr Agresti A, Min Y,
+  2001.  On small-sample confidence intervals for parameters in discrete
+  distribution. \emph{Biometrics} 57: 963-971. \cr Berger RL, Boos DD, 1994.
+  P values maximized over a confidence set for the nuisance parameter.
+  \emph{Journal of the American Statistical Association} 89:214-220.
 }
 \seealso{
 \code{\link{RRotsst}, \link{rr1}}

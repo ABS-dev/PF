@@ -9,10 +9,10 @@ test_that("examples work", {
   expect_identical(ex1$y %>% as.numeric, y1)
   expect_identical(ex1$k, 8)
   expect_identical(names(ex1$estimate), c("IDR", "LL", "UL"))
-  expect_equal(ex1$estimate %>% 
-      unname %>%
-      signif(ex1$rnd), c(2.61, 1.26, 5.88))
-  
+  expect_equal(ex1$estimate %>%
+                 unname %>%
+                 signif(ex1$rnd), c(2.61, 1.26, 5.88))
+
   y2 <- matrix(c(26, 178, 10, 195), 2, 2, byrow = TRUE)
   ex2 <- IDRlsi(y2, pf = FALSE)
   expect_s4_class(ex2, class(ex1))
@@ -21,28 +21,27 @@ test_that("examples work", {
   expect_identical(ex2$y, ex1$y)
   expect_identical(ex2$k, ex1$k)
   expect_identical(names(ex2$estimate), names(ex1$estimate))
-  expect_equal(ex2$estimate %>% 
-      unname %>%
-      signif(ex1$rnd), 
-    ex1$estimate %>% 
-      unname %>%
-      signif(ex1$rnd))
-  
+  expect_equal(ex2$estimate %>%
+                 unname %>%
+                 signif(ex1$rnd),
+               ex1$estimate %>%
+                 unname %>%
+                 signif(ex1$rnd))
+
   data1 <- data.frame(group = rep(c("treated", "control"), each = 5),
-    n = c(rep(41, 4), 40, rep(41, 5)),
-    y = c(4, 5, 7, 6, 4,
-      1, 3, 3, 2, 1), 
-    cage = rep(paste('cage', 1:5), 2))
-  ex3 <- IDRlsi(data = data1, formula = cbind(y, n) ~ group, 
-    compare = c("treated", "control"), pf = FALSE)
+                      n = c(rep(41, 4), 40, rep(41, 5)),
+                      y = c(4, 5, 7, 6, 4,
+                            1, 3, 3, 2, 1),
+                      cage = rep(paste("cage", 1:5), 2))
+  ex3 <- IDRlsi(data = data1, formula = cbind(y, n) ~ group,
+                compare = c("treated", "control"), pf = FALSE)
   expect_equal(ex1, ex3)
 
   data2 <- data1 %>%
-    group_by(group) %>%
-    summarize(sum_y = sum(y),
-      sum_n = sum(n))
-  ex4 <- IDRlsi(data = data2, formula =  cbind(sum_y, sum_n) ~ group, 
-    compare = c("treated", "control"), pf = FALSE)
+    dplyr::group_by(group) %>%
+    dplyr::summarize(sum_y = sum(y),
+              sum_n = sum(n))
+  ex4 <- IDRlsi(data = data2, formula =  cbind(sum_y, sum_n) ~ group,
+                compare = c("treated", "control"), pf = FALSE)
   expect_equal(ex1, ex4)
-  
 })

@@ -6,8 +6,8 @@ Description: Functions related to PF (prevented fraction). Calculate incidence
     methods. See http://goo.gl/eJ6Rxi for definition of PF. 
     No endorsement, claim, or warranty is implied for this package. It is made 
     available for investigational or pedagogical use only.
-Version: 9.5.4
-Date: 2019-08-15
+Version: 9.6.0
+Date: 2023-10-23
 Authors@R: c(
   person("CVB", "Statistics", , "CVB.Data.Help@usda.gov", "cre"),
   person("David", "Siev", , , c("fmo", "aut"), comment = "until 2019"),
@@ -19,11 +19,11 @@ BugReports: https://github.com/ABS-dev/PF/issues
 LazyLoad: yes
 LazyData: yes
 Depends:
-    R (>= 3.5), methods
+    R (>= 4.0)
 Imports:
+    methods,
     plyr,
     dplyr,
-    rlang
 Suggests:
     knitr,
     tidyr,
@@ -51,5 +51,5 @@ Collate:
     'rsbWt.r'
     'tauWt.r'
 VignetteBuilder: knitr
-RoxygenNote: 6.1.1
 Encoding: UTF-8
+RoxygenNote: 7.2.3

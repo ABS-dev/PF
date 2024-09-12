@@ -4,16 +4,27 @@
 \alias{IDRlsi}
 \title{IDR likelihood support interval.}
 \usage{
-IDRlsi(y = NULL, formula = NULL, data = NULL, alpha = 0.05,
-  k = 8, use.alpha = FALSE, pf = TRUE, converge = 1e-08, rnd = 3,
-  start = NULL, trace.it = FALSE, iter.max = 24, compare = c("con",
-  "vac"))
+IDRlsi(
+  y = NULL,
+  formula = NULL,
+  data = NULL,
+  alpha = 0.05,
+  k = 8,
+  use.alpha = FALSE,
+  pf = TRUE,
+  converge = 1e-08,
+  rnd = 3,
+  start = NULL,
+  trace.it = FALSE,
+  iter.max = 24,
+  compare = c("con", "vac")
+)
 }
 \arguments{
-\item{y}{Data vector c(y1, n1, y2, n2) where y are the positives, n are the total, 
-and group 1 is compared to group 2 (control or reference).}
+\item{y}{Data vector c(y1, n1, y2, n2) where y are the positives, n are the
+total, and group 1 is compared to group 2 (control or reference).}
 
-\item{formula}{Formula of the form cbind(y, n) ~ x, where y is the number 
+\item{formula}{Formula of the form cbind(y, n) ~ x, where y is the number
 positive, n is the group size, x is a factor with two levels of treatment.#'}
 
 \item{data}{data.frame containing variables of the formula.}
@@ -36,32 +47,41 @@ positive, n is the group size, x is a factor with two levels of treatment.#'}
 
 \item{iter.max}{Maximum number of iterations}
 
-\item{compare}{Text vector stating the factor levels: compare[1] is the 
+\item{compare}{Text vector stating the factor levels: compare[1] is the
 vaccinate group to which compare[2] (control or reference) is compared.}
 }
 \value{
 A \code{\link{rrsi}} object with the following elements.
+
  \item{estimate}{vector with point and interval estimate}
+
  \item{estimator}{either \emph{PF} or \emph{IDR}}
+
  \item{y}{data.frame with "y1", "n1", "y2", "n2" values.}
-\item{k}{Likelihood ratio criterion}
+
+ \item{k}{Likelihood ratio criterion}
+
  \item{rnd}{how many digits to round the display}
+
  \item{alpha}{complement of confidence level}
 }
 \description{
-Estimates likelihood support interval for the incidence density ratio or prevented fraction based on it.
+Estimates likelihood support interval for the incidence density
+  ratio or prevented fraction based on it.
 }
 \details{
-Estimates likelihood support interval for the incidence density ratio based on orthogonal factoring of reparameterized likelihood.
-The incidence density is the number of cases per subject-time; its distribution is assumed Poisson.
-\cr \cr Likelihood support intervals are usually formed based on the desired likelihood ratio, often 1/8 or 1/32. 
-Under some conditions the log likelihood ratio
-may follow the chi square distribution. If so, 
-then \eqn{\alpha=1-F(2log(k),1)}, where \eqn{F} is a chi-square CDF. 
-\code{RRsc()} will make the conversion from \eqn{\alpha}
-to \emph{k} if \code{use.alpha = TRUE}.
-\cr \cr The data may also be a matrix. In that case \code{y} would be entered as \cr
-\code{matrix(c(y1, n1 - y1, y2, n2 - y2), 2, 2, byrow = TRUE)}.
+Estimates likelihood support interval for the incidence density
+  ratio based on orthogonal factoring of reparameterized likelihood. The
+  incidence density is the number of cases per subject-time; its distribution
+  is assumed Poisson. \cr \cr Likelihood support intervals are usually formed
+  based on the desired likelihood ratio, often 1/8 or 1/32. Under some
+  conditions the log likelihood ratio may follow the chi square distribution.
+  If so,
+then \eqn{\alpha=1-F(2log(k), 1)}, where \eqn{F} is a chi-square CDF.
+\code{RRsc()} will make the conversion from \eqn{\alpha} to \emph{k} if
+\code{use.alpha = TRUE}. \cr \cr The data may also be a matrix. In that case
+\code{y} would be entered as \cr \code{matrix(c(y1, n1 - y1, y2, n2 - y2), 2,
+2, byrow = TRUE)}.
 }
 \examples{
 # Both examples represent the same observation, with data entry by vector
@@ -70,68 +90,69 @@ to \emph{k} if \code{use.alpha = TRUE}.
 y_vector <- c(26, 204, 10, 205)
 IDRlsi(y_vector, pf = FALSE)
 
-# 1/8 likelihood support interval for IDR 
+# 1/8 likelihood support interval for IDR
 
 # corresponds to 95.858\% confidence
 #   (under certain assumptions)
 
-# IDR 
-#  IDR   LL   UL 
-# 2.61 1.26 5.88 
+# IDR
+#  IDR   LL   UL
+# 2.61 1.26 5.88
 
 y_matrix <- matrix(c(26, 178, 10, 195), 2, 2, byrow = TRUE)
 y_matrix
-#      [,1] [,2]
-# [1,]   26  178
-# [2,]   10  195
+#      [, 1] [, 2]
+# [1, ]   26  178
+# [2, ]   10  195
 
 IDRlsi(y_matrix, pf = FALSE)
 
-# 1/8 likelihood support interval for IDR 
+# 1/8 likelihood support interval for IDR
 
 # corresponds to 95.858\% confidence
 #   (under certain assumptions)
 
-# IDR 
-#  IDR   LL   UL 
-# 2.61 1.26 5.88 
+# IDR
+#  IDR   LL   UL
+# 2.61 1.26 5.88
 
 data1 <- data.frame(group = rep(c("treated", "control"), each = 5),
              n = c(rep(41, 4), 40, rep(41, 5)),
-             y = c(4, 5, 7, 6, 4, 1, 3, 3, 2, 1), 
+             y = c(4, 5, 7, 6, 4, 1, 3, 3, 2, 1),
              cage = rep(paste('cage', 1:5), 2))
-IDRlsi(data = data1, formula = cbind(y, n) ~ group, 
+IDRlsi(data = data1, formula = cbind(y, n) ~ group,
                compare = c("treated", "control"), pf = FALSE)
 
-# 1/8 likelihood support interval for IDR 
+# 1/8 likelihood support interval for IDR
 
 # corresponds to 95.858\% confidence
 #   (under certain assumptions)
 
-# IDR 
-#  IDR   LL   UL 
-# 2.61 1.26 5.88 
+# IDR
+#  IDR   LL   UL
+# 2.61 1.26 5.88
 
 require(dplyr)
 data2 <- data1 \%>\%
   group_by(group) \%>\%
   summarize(sum_y = sum(y),
     sum_n = sum(n))
-    
-IDRlsi(data = data2, formula = cbind(sum_y, sum_n) ~ group, 
+
+IDRlsi(data = data2, formula = cbind(sum_y, sum_n) ~ group,
                compare = c("treated", "control"), pf = FALSE)
 
-# 1/8 likelihood support interval for IDR 
+# 1/8 likelihood support interval for IDR
 
 # corresponds to 95.858\% confidence
 #   (under certain assumptions)
 
-# IDR 
-#  IDR   LL   UL 
-# 2.61 1.26 5.88 
+# IDR
+#  IDR   LL   UL
+# 2.61 1.26 5.88
 }
 \references{
-Royall R. \emph{Statistical Evidence: A Likelihood Paradigm}. Chapman & Hall, Boca Raton, 1997. Section 7.2.
+Royall R. \emph{Statistical Evidence: A Likelihood Paradigm}.
+ Chapman & Hall, Boca Raton, 1997. Section 7.2.
 }
 \seealso{
 \code{\link{IDRsc}}

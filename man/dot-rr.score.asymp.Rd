@@ -4,8 +4,7 @@
 \alias{.rr.score.asymp}
 \title{Internal function.}
 \usage{
-.rr.score.asymp(y, alpha = 0.05, iter.max = 18, converge = 1e-04,
-  mn = F)
+.rr.score.asymp(y, alpha = 0.05, iter.max = 18, converge = 1e-04, mn = FALSE)
 }
 \arguments{
 \item{y}{data}

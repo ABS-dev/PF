@@ -4,22 +4,34 @@
 \alias{RRlsi}
 \title{RR likelihood support interval.}
 \usage{
-RRlsi(y = NULL, formula = NULL, data = NULL, compare = c("vac",
-  "con"), alpha = 0.05, k = 8, use.alpha = FALSE, pf = TRUE,
-  iter.max = 50, converge = 1e-06, rnd = 3, start = NULL,
-  track = FALSE, full.track = FALSE)
+RRlsi(
+  y = NULL,
+  formula = NULL,
+  data = NULL,
+  compare = c("vac", "con"),
+  alpha = 0.05,
+  k = 8,
+  use.alpha = FALSE,
+  pf = TRUE,
+  iter.max = 50,
+  converge = 1e-06,
+  rnd = 3,
+  start = NULL,
+  track = FALSE,
+  full.track = FALSE
+)
 }
 \arguments{
-\item{y}{Data vector c(y1, n1, y2, n2) where y are the positives, n are the 
+\item{y}{Data vector c(y1, n1, y2, n2) where y are the positives, n are the
 total, and group 1 is compared to group 2 (control or reference group).}
 
-\item{formula}{Formula of the form cbind(y, n) ~ x, where y is the number 
+\item{formula}{Formula of the form cbind(y, n) ~ x, where y is the number
 positive, n is the group size, x is a factor with two levels of treatment.}
 
 \item{data}{data.frame containing variables of formula.}
 
-\item{compare}{Text vector stating the factor levels: compare[1] is the vaccinate
-group to which compare[2] (control or reference) is compared.}
+\item{compare}{Text vector stating the factor levels: compare[1] is the
+vaccinate group to which compare[2] (control or reference) is compared.}
 
 \item{alpha}{Complement of the confidence level (see details).}
 
@@ -33,7 +45,8 @@ group to which compare[2] (control or reference) is compared.}
 
 \item{converge}{Convergence criterion}
 
-\item{rnd}{Number of digits for rounding. Affects display onlyRR, not estimates.}
+\item{rnd}{Number of digits for rounding. Affects display onlyRR, not
+estimates.}
 
 \item{start}{Optional starting value.}
 
@@ -43,25 +56,34 @@ group to which compare[2] (control or reference) is compared.}
 }
 \value{
 An object of class \code{\link{rrsi}} with the following fields: \cr
- \item{estimate}{matrix of point and interval estimates - see details}
- \item{estimator}{either \code{"PF"} or \code{"RR"}}
- \item{y}{data.frame with "y1", "n1", "y2", "n2" values. }
- \item{rnd}{how many digits to round the display}
- \item{k}{likelihood ratio criterion}
- \item{alpha}{complement of confidence level}
+
+  \item{estimate}{matrix of point and interval estimates - see details}
+
+  \item{estimator}{either \code{"PF"} or \code{"RR"}}
+
+  \item{y}{data.frame with "y1", "n1", "y2", "n2" values. }
+
+  \item{rnd}{how many digits to round the display}
+
+  \item{k}{likelihood ratio criterion}
+
+  \item{alpha}{complement of confidence level}
 }
 \description{
-likelihood support interval for the risk ratio or prevented fraction by the likelihood profile.
+likelihood support interval for the risk ratio or prevented
+  fraction by the likelihood profile.
 }
 \details{
-Estimates a likelihood support interval for \emph{RR} or \emph{PF} by the profile likelihood method using the DUD algorithm.
-\cr \cr Likelihood support intervals are usually formed based on the desired likelihood ratio, often 1/8 or 1/32. Under some conditions the log likelihood ratio
-may follow the chi square distribution. If so, 
-then \eqn{\alpha=1-F(2log(k),1)}, where \eqn{F} is a chi-square CDF. 
-\code{RRlsi()} will make the conversion from \eqn{\alpha}
-to \emph{k} if \code{use.alpha = TRUE}.
-\cr \cr The data may also be a matrix. In that case \code{y} would be entered as \cr
-\code{matrix(c(y1, n1-y1, y2, n2-y2), 2, 2, byrow = TRUE)}.
+Estimates a likelihood support interval for \emph{RR} or \emph{PF}
+  by the profile likelihood method using the DUD algorithm. \cr \cr
+  Likelihood support intervals are usually formed based on the desired
+  likelihood ratio, often 1/8 or 1/32. Under some conditions the log
+  likelihood ratio may follow the chi square distribution. If so,
+then \eqn{\alpha=1-F(2log(k), 1)}, where \eqn{F} is a chi-square CDF.
+\code{RRlsi()} will make the conversion from \eqn{\alpha} to \emph{k} if
+\code{use.alpha = TRUE}. \cr \cr The data may also be a matrix. In that case
+\code{y} would be entered as \cr \code{matrix(c(y1, n1-y1, y2, n2-y2), 2, 2,
+byrow = TRUE)}.
 }
 \examples{
 # All examples represent the same observation, with data entry by vector,
@@ -70,57 +92,59 @@ to \emph{k} if \code{use.alpha = TRUE}.
 y_vector <- c(4, 24, 12, 28)
 RRlsi(y_vector)
 
-# 1/8 likelihood support interval for PF 
+# 1/8 likelihood support interval for PF
 
 # corresponds to 95.858\% confidence
 #   (under certain assumptions)
 
-# PF 
-#     PF     LL     UL 
-# 0.6111 0.0168 0.8859 
+# PF
+#     PF     LL     UL
+# 0.6111 0.0168 0.8859
 
 y_matrix <- matrix(c(4, 20, 12, 16), 2, 2, byrow = TRUE)
 y_matrix
-#      [,1] [,2]
-# [1,]    4   20
-# [2,]   12   16
+#      [, 1] [, 2]
+# [1, ]    4   20
+# [2, ]   12   16
 
 RRlsi(y_matrix)
 
-# 1/8 likelihood support interval for PF 
+# 1/8 likelihood support interval for PF
 
 # corresponds to 95.858\% confidence
 #   (under certain assumptions)
 
-# PF 
-#     PF     LL     UL 
-# 0.6111 0.0168 0.8859 
+# PF
+#     PF     LL     UL
+# 0.6111 0.0168 0.8859
 
 require(dplyr)
 data1 <- data.frame(group = rep(c("treated", "control"), each = 2),
   y = c(1, 3, 7, 5),
-  n = c(12, 12, 14, 14), 
+  n = c(12, 12, 14, 14),
   cage = rep(paste('cage', 1:2), 2))
 
 data2 <- data1 \%>\%
   group_by(group) \%>\%
   summarize(sum_y = sum(y),
     sum_n = sum(n))
-RRlsi(data = data2, formula =  cbind(sum_y, sum_n) ~ group, 
+RRlsi(data = data2, formula =  cbind(sum_y, sum_n) ~ group,
    compare = c("treated", "control"))
 
-# 1/8 likelihood support interval for PF 
-# 
+# 1/8 likelihood support interval for PF
+#
 # corresponds to 95.858\% confidence
 # (under certain assumptions)
-# 
-# PF 
-# PF     LL     UL 
-# 0.6111 0.0168 0.8859 
+#
+# PF
+# PF     LL     UL
+# 0.6111 0.0168 0.8859
 }
 \references{
-Royall R. \emph{Statistical Evidence: A Likelihood Paradigm}. Chapman & Hall, Boca Raton, 1997.  Section 7.6
-\cr Ralston ML, Jennrich RI, 1978. DUD, A Derivative-Free Algorithm for Nonlinear Least Squares. \emph{Technometrics} 20:7-14.
+Royall R. \emph{Statistical Evidence: A Likelihood Paradigm}.
+  Chapman & Hall, Boca Raton, 1997.  Section 7.6 \cr Ralston ML, Jennrich RI,
+  1978. DUD, A Derivative-Free Algorithm for Nonlinear Least Squares.
+  \emph{Technometrics} 20:7-14.
 }
 \author{
 \link{PF-package}

@@ -11,8 +11,8 @@ rsb(y = NULL, n = NULL, formula = NULL, data = NULL, id = NULL)
 
 \item{n}{vector of total number.}
 
-\item{formula}{Formula of the form cbind(y, n) ~ id, where y is the number 
-positive, n is the total number, id is a factor for estimating the weights 
+\item{formula}{Formula of the form cbind(y, n) ~ id, where y is the number
+positive, n is the total number, id is a factor for estimating the weights
 by subset.}
 
 \item{data}{data.frame containing variables of formula.}
@@ -20,16 +20,17 @@ by subset.}
 \item{id}{vector of factor for estimating the weights by subset.}
 }
 \value{
-A list with the following elements.
- \item{w}{vector of weights}
-\item{d}{vector of \eqn{{d}_{i}}{d_i} estimates}
+A list with the following elements. \item{w}{vector of weights}
+ \item{d}{vector of \eqn{{d}_{i}}{d_i} estimates}
 }
 \description{
 Rao-Scott weights.
 }
 \details{
-Estimates the cluster design effect \eqn{{d}_{i}}{d_i} as the variance inflation due to clustering by the method of Rao and Scott.
-\code{rsb} estimates the \eqn{{d}_{i}}{d_i} for use by \code{rsbWt} or other functions.
+Estimates the cluster design effect \eqn{{d}_{i}}{d_i} as the
+ variance inflation due to clustering by the method of Rao and Scott.
+ \code{rsb} estimates the \eqn{{d}_{i}}{d_i} for use by \code{rsbWt} or other
+ functions.
 }
 \examples{
 # Weil's rat data (Table 1 of Rao and Scott)
@@ -37,11 +38,12 @@ rsb(rat$y, rat$n, id = rat$group)$d
 #  control  treated
 # 1.232495 3.952861
 rsb(data = rat, formula = cbind(y, n) ~ group)$d
-#  control  treated 
-# 1.232495 3.952861 
+#  control  treated
+# 1.232495 3.952861
 }
 \references{
-Rao JNK, Scott AJ, 1992. A simple method for the analysis of clustered binary data. \emph{Biometrics} 48:577-585.
+Rao JNK, Scott AJ, 1992. A simple method for the analysis of
+ clustered binary data. \emph{Biometrics} 48:577-585.
 }
 \seealso{
 \code{\link{rsbWt}}.
