@@ -15,8 +15,8 @@
 #'   indicator for an individual's positive response, x is a factor with two
 #'   levels of treatment, and w identifies the pairs.
 #' @param data \code{data.frame} containing variables in formula
-#' @param compare Text vector stating the factor levels: compare[1] is the
-#'   vaccinate group to which compare[2] (control or reference) is compared.
+#' @param compare Text vector stating the factor levels: `compare[1]` is the
+#'   vaccinate group to which `compare[2]` (control or reference) is compared.
 #' @param affected Indicator for positive response
 #' @param x Alternative data input. Instead of formula and data frame, data may
 #'   be input as frequency vector. See example for how to order this vector.

@@ -4,42 +4,55 @@
 #' @details Estimates confidence intervals using the delta method on parameters
 #'   from a generalized linear model with logit link.
 #'
-#		Latex code not good here
-# \cr \cr  \eqn{RR={{{{\hat{\mu}}}_{2}}}/{{{{\hat{\mu}}}_{1}}}}, where
-# \eqn{{\hat{\mu}}_{i}} are
 #'
-#'\cr \cr  \eqn{RR={{{\mu}}_{2}}/{{{\mu}}_{1}}}{RR=muhat_2/muhat_1}, where
-#'\eqn{{\mu}_{i}}{muhat_i} are the estimated probabilities from the model.
-#'@param fit A \code{\link{glm}} object.
-#'@param beta.hat Parameters estimates from a logistic regression with no
-#'  intercept.
-#'@param var.beta.hat Variance-covariance matrix from a logistic regression with
-#'  no intercept.
-#'@param degf Degrees of freedom.
-#'@param which Numeric vector indicating which parameters to compare, so that
-#'  \emph{RR} = compare[2]/compare[1]
-#'@param pf Estimate \emph{RR} or its complement \emph{PF}?
-#'@param norm Estimate confidence interval using quantiles of Guassian rather
-#'  than t distribution quantiles?
-#'@param alpha Complement of the confidence level.
-#'@param rnd Number of digits for rounding. Affects display only, not estimates.
-#'@return A \code{\link{rror}} object with the following fields.
-#'  \item{estimate}{vector with point and interval estimate}
-#'  \item{estimator}{either \emph{PF} or \emph{RR}} \item{mu}{matrix with rows
-#'  giving probability estimates for each of the groups} \item{rnd}{how many
-#'  digits to round the display} \item{alpha}{complement of confidence level}
-#'  \item{norm}{logical indicating Gaussian or t interval} \item{degf}{degrees
-#'  of freedom}
-#'@export
-#'@author \link{PF-package}
-#'@note Call to this function may be one of two formats: (1) specify \code{fit}
-#'  or (2) \code{beta.hat}, \code{var.beta.hat}, \code{degf}  \cr \cr
-#'  \code{RRor(fit, degf = NULL, pf = TRUE, alpha = 0.05, which = c(1, 2), norm
-#'  = TRUE, rnd = 3)} \cr \cr \code{RRor(beta.hat, var.beta.hat, degf, pf =
-#'  TRUE, alpha = 0.05, which = c(1, 2), norm = TRUE, rnd = 3)}
-#'@seealso \code{\link{rror}, \link{phiWt}, \link{tauWt}}
-#'  \href{https://www.aphis.usda.gov/animal_health/vet_biologics/publications/STATWI0007.pdf}{StatWI007}
-#'  for more examples
+#'   \eqn{RR={{{\mu}}_{2}}/{{{\mu}}_{1}}}{RR=muhat_2/muhat_1}, where
+#'   \eqn{{\mu}_{i}}{muhat_i} are the estimated probabilities from the model.
+#'
+#' @param fit A \code{\link{glm}} object.
+#'
+#' @param beta.hat Parameters estimates from a logistic regression with no
+#'   intercept.
+#'
+#' @param var.beta.hat Variance-covariance matrix from a logistic regression
+#'   with no intercept.
+#'
+#' @param degf Degrees of freedom.
+#'
+#' @param which Numeric vector indicating which parameters to compare, so that
+#'   `RR = compare[2]/compare[1]`
+#'
+#' @param pf Estimate \emph{RR} or its complement \emph{PF}?
+#'
+#' @param norm Estimate confidence interval using quantiles of Guassian rather
+#'
+#'   than t distribution quantiles?
+#' @param alpha Complement of the confidence level.
+#'
+#' @param rnd Number of digits for rounding. Affects display only, not
+#'   estimates.
+#'
+#' @return A \code{\link{rror}} object with the following fields.
+#'   \item{estimate}{vector with point and interval estimate}
+#'   \item{estimator}{either \emph{PF} or \emph{RR}} \item{mu}{matrix with rows
+#'   giving probability estimates for each of the groups} \item{rnd}{how many
+#'   digits to round the display} \item{alpha}{complement of confidence level}
+#'   \item{norm}{logical indicating Gaussian or t interval} \item{degf}{degrees
+#'   of freedom}
+#'
+#' @export
+#'
+#' @author \link{PF-package}
+#'
+#' @note Call to this function may be one of two formats: (1) specify \code{fit}
+#'   or (2) \code{beta.hat}, \code{var.beta.hat}, \code{degf}
+#'   \code{RRor(fit, degf = NULL, pf = TRUE, alpha = 0.05, which = c(1, 2), norm
+#'   = TRUE, rnd = 3)} \cr \cr \code{RRor(beta.hat, var.beta.hat, degf, pf =
+#'   TRUE, alpha = 0.05, which = c(1, 2), norm = TRUE, rnd = 3)}
+#'
+#' @seealso \link{rror}, \link{phiWt}, \link{tauWt}
+#'   \href{https://www.aphis.usda.gov/animal_health/vet_biologics/publications/STATWI0007.pdf}{StatWI007}
+#'   for more examples
+#'
 #' @examples
 #' bird.fit <- glm(cbind(y, n - y) ~ tx - 1, binomial, bird)
 #' RRor(tauWt(bird.fit))

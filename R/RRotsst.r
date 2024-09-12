@@ -11,8 +11,8 @@
 #'   y2, n2 - y2), 2, 2, byrow = TRUE)}.
 #' @param y Data vector c(y1, n1, y2, n2) where y are the positives, n are the
 #'   total, and group 1 is compared to group 2 (control or reference).
-#' @param compare Text vector stating the factor levels: compare[1] is the
-#'   vaccinate group to which compare[2] (control or reference) is compared.
+#' @param compare Text vector stating the factor levels: `compare[1]` is the
+#'   vaccinate group to which `compare[2]` (control or reference) is compared.
 #' @param data data.frame containing variables of the formula.
 #' @param formula  Formula of the form cbind(y, n) ~ x, where y is the number
 #'   positive, n is the group size, x is a factor with two levels of treatment.

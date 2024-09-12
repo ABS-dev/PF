@@ -22,22 +22,24 @@ RRor(
 \item{beta.hat}{Parameters estimates from a logistic regression with no
 intercept.}
 
-\item{var.beta.hat}{Variance-covariance matrix from a logistic regression with
-no intercept.}
+\item{var.beta.hat}{Variance-covariance matrix from a logistic regression
+with no intercept.}
 
 \item{degf}{Degrees of freedom.}
 
 \item{which}{Numeric vector indicating which parameters to compare, so that
-\emph{RR} = compare\link{2}/compare\link{1}}
+\code{RR = compare[2]/compare[1]}}
 
 \item{pf}{Estimate \emph{RR} or its complement \emph{PF}?}
 
 \item{norm}{Estimate confidence interval using quantiles of Guassian rather
+
 than t distribution quantiles?}
 
 \item{alpha}{Complement of the confidence level.}
 
-\item{rnd}{Number of digits for rounding. Affects display only, not estimates.}
+\item{rnd}{Number of digits for rounding. Affects display only, not
+estimates.}
 }
 \value{
 A \code{\link{rror}} object with the following fields.
@@ -56,15 +58,15 @@ fraction from a logistic regression model.
 Estimates confidence intervals using the delta method on parameters
 from a generalized linear model with logit link.
 
-\cr \cr  \eqn{RR={{{\mu}}_{2}}/{{{\mu}}_{1}}}{RR=muhat_2/muhat_1}, where
+\eqn{RR={{{\mu}}_{2}}/{{{\mu}}_{1}}}{RR=muhat_2/muhat_1}, where
 \eqn{{\mu}_{i}}{muhat_i} are the estimated probabilities from the model.
 }
 \note{
 Call to this function may be one of two formats: (1) specify \code{fit}
-or (2) \code{beta.hat}, \code{var.beta.hat}, \code{degf}  \cr \cr
+or (2) \code{beta.hat}, \code{var.beta.hat}, \code{degf}
 \code{RRor(fit, degf = NULL, pf = TRUE, alpha = 0.05, which = c(1, 2), norm
- = TRUE, rnd = 3)} \cr \cr \code{RRor(beta.hat, var.beta.hat, degf, pf =
- TRUE, alpha = 0.05, which = c(1, 2), norm = TRUE, rnd = 3)}
+  = TRUE, rnd = 3)} \cr \cr \code{RRor(beta.hat, var.beta.hat, degf, pf =
+  TRUE, alpha = 0.05, which = c(1, 2), norm = TRUE, rnd = 3)}
 }
 \examples{
 bird.fit <- glm(cbind(y, n - y) ~ tx - 1, binomial, bird)
@@ -94,7 +96,7 @@ RRor(phiWt(bird.fit))
 
 }
 \seealso{
-\code{\link{rror}, \link{phiWt}, \link{tauWt}}
+\link{rror}, \link{phiWt}, \link{tauWt}
 \href{https://www.aphis.usda.gov/animal_health/vet_biologics/publications/STATWI0007.pdf}{StatWI007}
 for more examples
 }

@@ -23,8 +23,8 @@ the clusters.}
 
 \item{data}{\code{data.frame} containing variables for formula}
 
-\item{compare}{Text vector stating the factor levels: compare\link{1} is the
-vaccinate group to which compare\link{2} (control or reference) is compared.}
+\item{compare}{Text vector stating the factor levels: \code{compare[1]} is the
+vaccinate group to which \code{compare[2]} (control or reference) is compared.}
 
 \item{Y}{Matrix of data, \eqn{K \times 4}{K x 4}. Each row is a stratum or
 cluster. The columns are \eqn{y1, n1, y2, n2}, where the y's are the number
