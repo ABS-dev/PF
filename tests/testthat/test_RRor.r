@@ -1,5 +1,3 @@
-context("RRor")
-
 test_that("examples work", {
   bird.fit <- glm(cbind(y, n - y) ~ tx - 1, binomial, bird)
   ex1 <- RRor(tauWt(bird.fit))

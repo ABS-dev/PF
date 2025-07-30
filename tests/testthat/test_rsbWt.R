@@ -1,5 +1,3 @@
-context("rsbWt")
-
 test_that("examples work", {
   birdm.fit <- glm(cbind(y, n - y) ~ tx - 1, binomial, birdm)
   ex1 <- rsbWt(birdm.fit)

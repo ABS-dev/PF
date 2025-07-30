@@ -1,5 +1,3 @@
-context("RRmh")
-
 test_that("examples work", {
   ex1 <- RRmh(cbind(y, n) ~ tx + cluster(clus),
               Table6,

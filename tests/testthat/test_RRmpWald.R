@@ -1,5 +1,3 @@
-context("RRmpWald")
-
 test_that("examples work", {
   ex1 <- RRmpWald(pos ~ tx + cluster(cage), New, compare = c("vac", "con"))
   thismultvec <- data.frame(vac = rep(c("pos", "neg"), 2),

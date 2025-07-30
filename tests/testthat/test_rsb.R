@@ -1,5 +1,3 @@
-context("rsb")
-
 test_that("examples work", {
   ex1 <- rsb(rat$y, rat$n, id = rat$group)
   thisd <- c(1.232495, 3.952861) |> array()

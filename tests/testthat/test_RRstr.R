@@ -1,5 +1,3 @@
-context("RRstr")
-
 test_that("examples work", {
   Table6$tx <- factor(Table6$tx, labels = c("vac", "con"))
   ex1 <- RRstr(cbind(y, n) ~ tx + cluster(clus), Table6,

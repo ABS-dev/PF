@@ -1,5 +1,3 @@
-context("check_input_cases")
-
 test_that("check_3input_cases_freq", {
   y1 <- NULL
   data1 <- New

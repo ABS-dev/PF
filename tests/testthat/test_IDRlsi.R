@@ -1,5 +1,3 @@
-context("IDRlsi")
-
 test_that("examples work", {
   y1 <- c(26, 204, 10, 205)
   ex1 <- IDRlsi(y1, pf = FALSE)

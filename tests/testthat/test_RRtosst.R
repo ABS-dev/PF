@@ -1,5 +1,3 @@
-context("RRtosst")
-
 test_that("examples work", {
   y1 <- c(4, 24, 12, 28)
   ex1 <- RRtosst(y1)
