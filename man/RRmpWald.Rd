@@ -89,6 +89,7 @@ RRmpWald(pos ~ tx + cluster(cage), New, compare = c("vac", "con"))
 
 thistable <- New |>
   tidyr::spread(tx, pos) |>
+  tidyr::drop_na() |>
   dplyr::mutate(vac = factor(vac, levels = 1:0),
     con = factor(con, levels = 1:0)) |>
   with(table(vac, con))
