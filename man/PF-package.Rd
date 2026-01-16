@@ -14,6 +14,7 @@ Functions related to PF (prevented fraction). Calculate incidence density ratio,
 Useful links:
 \itemize{
   \item \url{https://github.com/ABS-dev/PF/}
+  \item \url{https://abs-dev.github.io/PF/}
   \item Report bugs at \url{https://github.com/ABS-dev/PF/issues/}
 }
 

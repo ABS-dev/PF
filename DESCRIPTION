@@ -16,7 +16,7 @@ Description: Functions related to PF (prevented fraction). Calculate incidence
   https://www.aphis.usda.gov/animal_health/vet_biologics/publications/STATWI0007.pdf
   for futher details.
 License: file LICENSE
-URL: https://github.com/ABS-dev/PF/
+URL: https://github.com/ABS-dev/PF/, https://abs-dev.github.io/PF/
 BugReports: https://github.com/ABS-dev/PF/issues/
 LazyLoad: true
 LazyData: true
