@@ -6,6 +6,11 @@
 devtools::install_github("ABS-dev/PF")
 ```
 
+```
+# Install an older version
+devtools::install_github("ABS-dev/PF", ref = "9.6.10")
+```
+
 ## Vignettes
 
 This package contains the following manuals and vignettes:

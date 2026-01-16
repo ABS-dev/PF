@@ -1,4 +1,59 @@
 url: https://abs-dev.github.io/PF/
+destination: docs/
 template:
   bootstrap: 5
-
+  math-rendering: mathjax
+  light-switch: true
+repo:
+  url:
+    home:  https://github.com/ABS-dev/PF
+    issue: https://github.com/ABS-dev/PF/issues
+home:
+  sidebar:
+    structure: [links, license, community, citation, authors, dev, primary]
+    components:
+      primary:
+        title: All Packages
+        text: |
+          | [DiagTestKit](https://abs-dev.github.io/DiagTestKit/)
+          | [MF](https://abs-dev.github.io/MF/)
+          | [PF](https://abs-dev.github.io/PF/)
+          | [skrmdb](https://abs-dev.github.io/skrmdb/)
+reference:
+- title: Exported Functions
+- contents:
+  - IDRlsi
+  - IDRsc
+  - RRlsi
+  - RRmh
+  - RRmpWald
+  - RRor
+  - RRotsst
+  - RRsc
+  - RRstr
+  - RRtosst
+  - phiWt
+  - rsb
+  - rsbWt
+  - tauWt
+  - .rr.score.asymp
+- title: S3 and S4 classes
+- contents:
+  - pf-class
+  - rr1-class
+  - rrmp-class
+  - rror-class
+  - rrsc-class
+  - rrsi-class
+  - rrstr-class
+  - print.rr1
+- title: Data Sets
+- contents:
+  - bird
+  - birdm
+  - New
+  - rat
+  - set1
+  - Set1
+  - Table6
+  - table6
