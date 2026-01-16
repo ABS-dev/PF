@@ -2,7 +2,8 @@
 
 ## Installation
 
-```         
+```
+# Install latest version
 devtools::install_github("ABS-dev/PF")
 ```
 
