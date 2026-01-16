@@ -12,13 +12,6 @@ devtools::install_github("ABS-dev/PF")
 devtools::install_github("ABS-dev/PF", ref = "9.6.10")
 ```
 
-## Vignettes
-
-This package contains the following manuals and vignettes:
-
--   PF Package
--   PF Vignette
-
 ## Issues
 
 Report any issues or requests on the package [issues](https://github.com/ABS-dev/PF/issues) page.
